@@ -60,8 +60,6 @@ export async function sendQRCodeEmail({
       subject: subject,
       html: generateEmailHTML({
         packageName,
-        qrCode,
-        qrCodeUrl,
         orderId,
         errorMessage,
       }),
@@ -106,15 +104,16 @@ export async function sendQRCodeEmail({
     return {
       success: true,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("❌ Email send error:", error);
+    const err = error as Error;
     console.error("❌ Error details:", {
-      message: error.message,
-      stack: error.stack,
+      message: err.message,
+      stack: err.stack,
     });
     return {
       success: false,
-      error: error.message || "Failed to send email",
+      error: err.message || "Failed to send email",
     };
   }
 }
@@ -124,14 +123,10 @@ export async function sendQRCodeEmail({
  */
 function generateEmailHTML({
   packageName,
-  qrCode,
-  qrCodeUrl,
   orderId,
   errorMessage,
 }: {
   packageName: string;
-  qrCode?: string;
-  qrCodeUrl?: string;
   orderId?: string;
   errorMessage?: string;
 }): string {

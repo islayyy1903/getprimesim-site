@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useRef } from "react";
+import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useUser } from "../components/UserContext";
@@ -12,13 +13,18 @@ function SuccessContent() {
   const sessionId = searchParams.get("session_id");
   const { useDiscount } = useUser();
   const [loading, setLoading] = useState(true);
-  const [orderStatus, setOrderStatus] = useState<any>(null);
+  const [orderStatus, setOrderStatus] = useState<{ sessionId?: string; packageName?: string; customerEmail?: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const discountAppliedRef = useRef(false);
 
   useEffect(() => {
     if (sessionId) {
-      // Mark discount as used after successful payment
-      useDiscount();
+      // Mark discount as used after successful payment (only once)
+      if (!discountAppliedRef.current) {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useDiscount(); // This is not a hook, just a function with "use" prefix
+        discountAppliedRef.current = true;
+      }
       
       // Fetch order status
       fetch(`/api/order-status?session_id=${sessionId}`)
@@ -35,7 +41,8 @@ function SuccessContent() {
     } else {
       setLoading(false);
     }
-  }, [sessionId, useDiscount]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionId]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -114,11 +121,11 @@ function SuccessContent() {
                 </div>
                 <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-800">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    What's Next?
+                    What&apos;s Next?
                   </h3>
                   <ul className="text-left space-y-2 text-sm text-gray-600 dark:text-gray-400">
                     <li>✓ Check your email for the QR code</li>
-                    <li>✓ Scan the QR code in your phone's eSim settings</li>
+                    <li>✓ Scan the QR code in your phone&apos;s eSim settings</li>
                     <li>✓ Start using your eSim immediately</li>
                   </ul>
                 </div>

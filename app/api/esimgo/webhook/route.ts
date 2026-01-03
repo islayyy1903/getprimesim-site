@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
               console.error("  - Email:", email);
               console.error("  - Order ID:", orderId);
             }
-          } catch (emailError: any) {
+          } catch (emailError: unknown) {
             console.error("❌ Email send error:", emailError);
             console.error("  - Email:", email);
             console.error("  - Order ID:", orderId);
@@ -159,17 +159,18 @@ export async function POST(request: NextRequest) {
           } else {
             console.error("❌ Failed to send QR code email:", emailResult.error);
           }
-        } catch (emailError: any) {
+        } catch (emailError: unknown) {
           console.error("❌ Email send error:", emailError);
         }
       }
     }
     
     return NextResponse.json({ received: true, message: "Event received" });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("❌ eSimGo webhook error:", error);
+    const err = error as Error;
     return NextResponse.json(
-      { error: error.message || "Webhook processing failed" },
+      { error: err.message || "Webhook processing failed" },
       { status: 500 }
     );
   }

@@ -78,7 +78,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
       event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
       console.log("✅ Webhook signature verified successfully (string)");
-    } catch (stringError: any) {
+    } catch {
       // If string fails, try with Buffer
       console.log("⚠️ String verification failed, trying Buffer...");
       const bodyBuffer = Buffer.from(body, 'utf8');
@@ -88,10 +88,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     
     console.log("  - Event type:", event.type);
     console.log("  - Event ID:", event.id);
-  } catch (error: any) {
+    } catch (error: unknown) {
+    const stripeError = error as Stripe.errors.StripeError & { message?: string; type?: string };
     console.error("❌ Webhook signature verification failed:");
-    console.error("  - Error message:", error.message);
-    console.error("  - Error type:", error.type);
+    console.error("  - Error message:", stripeError.message);
+    console.error("  - Error type:", stripeError.type);
     console.error("  - Body length:", body.length);
     console.error("  - Body type:", typeof body);
     console.error("  - Body first 200 chars:", body.substring(0, 200));
@@ -109,15 +110,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     
     // For debugging: Try to parse event without verification (DANGEROUS - only for debugging)
     try {
-      const testEvent = JSON.parse(body);
+      const testEvent = JSON.parse(body) as { type?: string };
       console.log("⚠️ DEBUG: Event parsed without verification:", testEvent.type);
-    } catch (parseError) {
+    } catch {
       console.error("❌ DEBUG: Cannot parse body as JSON");
     }
     
     return NextResponse.json(
       { 
-        error: `Webhook signature verification failed: ${error.message}`,
+        error: `Webhook signature verification failed: ${stripeError.message || 'Unknown error'}`,
         hint: "Check if STRIPE_WEBHOOK_SECRET is correct in Vercel Environment Variables. Secret should start with 'whsec_'"
       },
       { status: 400 }
@@ -133,7 +134,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Get package information from metadata
     const packageName = session.metadata?.packageName;
-    const packageId = session.metadata?.packageId;
     const customerEmail = session.customer_email || session.customer_details?.email;
 
     if (!packageName || !customerEmail) {
@@ -160,8 +160,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       console.log("  - Email:", customerEmail);
       console.log("  - Session ID:", session.id);
       
-      // Stripe session ID'yi de gönder (unique profileID oluşturmak için)
-      const purchaseResult = await purchaseEsim(esimGoPackageId, customerEmail, session.id);
+      // Purchase eSim from eSimGo
+      const purchaseResult = await purchaseEsim(esimGoPackageId, customerEmail);
 
       if (!purchaseResult.success) {
         console.error("❌ eSimGo purchase failed:");
@@ -192,7 +192,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           } else {
             console.error("❌ Failed to send notification email:", emailResult.error);
           }
-        } catch (emailError: any) {
+        } catch (emailError: unknown) {
           console.error("❌ Email send error:", emailError);
         }
         
@@ -245,7 +245,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
               finalQrCodeUrl = assignmentsResult2.qrCodeUrl;
             }
           }
-        } catch (assignmentsError: any) {
+        } catch (assignmentsError: unknown) {
           console.error("❌ Assignments check error:", assignmentsError);
           // Devam et, email gönder (QR code olmadan - callback ile gelecek)
         }
@@ -271,7 +271,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           console.error("  - Package:", packageName);
           // Don't fail the webhook, email can be sent later
         }
-      } catch (emailError: any) {
+      } catch (emailError: unknown) {
         console.error("❌ Email send error:", emailError);
         console.error("  - Email:", customerEmail);
         console.error("  - Package:", packageName);
@@ -283,13 +283,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         message: "Payment processed and eSim purchased",
         orderId: purchaseResult.orderId,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("❌ Error processing eSimGo purchase:", error);
+      const err = error as Error;
       // Log error but don't fail the webhook
       return NextResponse.json({
         received: true,
         warning: "Payment successful but eSimGo purchase error",
-        error: error.message,
+        error: err.message,
       });
     }
   }

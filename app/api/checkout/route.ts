@@ -52,7 +52,7 @@ export async function POST(
     // Calculate final price with discount (only for logged-in first-time users)
     let finalPrice = price;
     if (isFirstPurchase) {
-      finalPrice = price * 0.85; // 15% discount
+      finalPrice = price * 0.70; // 30% discount
     }
 
     // Map currency symbol to Stripe currency code
@@ -73,7 +73,7 @@ export async function POST(
     console.log("Currency mapping:", { input: currency, output: stripeCurrency });
 
     // Create Stripe Checkout Session
-    const sessionConfig: any = {
+    const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ["card"],
       line_items: [
         {
@@ -123,18 +123,19 @@ export async function POST(
       sessionId: session.id, 
       url: session.url 
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Stripe checkout error:", error);
+    const stripeError = error as Stripe.errors.StripeError & { message?: string; type?: string; code?: string; statusCode?: number };
     console.error("Error details:", {
-      message: error.message,
-      type: error.type,
-      code: error.code,
-      statusCode: error.statusCode
+      message: stripeError.message,
+      type: stripeError.type,
+      code: stripeError.code,
+      statusCode: stripeError.statusCode
     });
     
     // Check if it's an API key error
-    let errorMessage = error.message || "Failed to create checkout session";
-    if (error.type === 'StripeAuthenticationError' || error.message?.includes('Invalid API Key')) {
+    let errorMessage = stripeError.message || "Failed to create checkout session";
+    if (stripeError.type === 'StripeAuthenticationError' || stripeError.message?.includes('Invalid API Key')) {
       errorMessage = "Stripe API key is invalid. Please check STRIPE_SECRET_KEY in Vercel Environment Variables.";
       console.error("❌ Stripe API key authentication failed");
     }
@@ -142,7 +143,7 @@ export async function POST(
     return NextResponse.json(
       { 
         error: errorMessage,
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        details: process.env.NODE_ENV === 'development' ? stripeError.message : undefined
       },
       { status: 500 }
     );

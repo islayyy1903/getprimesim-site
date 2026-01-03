@@ -180,9 +180,10 @@ export async function GET(request: NextRequest) {
         "Content-Type": "text/html",
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as Error;
     return NextResponse.json(
-      { error: error.message || "Failed to fetch QR code" },
+      { error: err.message || "Failed to fetch QR code" },
       { status: 500 }
     );
   }
@@ -208,7 +209,7 @@ export async function POST(request: NextRequest) {
     console.log("  - Email:", email);
 
     // Sipariş oluştur
-    const purchaseResult = await purchaseEsim(packageId, email, "test-session-id");
+    const purchaseResult = await purchaseEsim(packageId, email);
 
     if (!purchaseResult.success || !purchaseResult.orderId) {
       return NextResponse.json(
@@ -237,9 +238,10 @@ export async function POST(request: NextRequest) {
       qrCodeLength: qrResult.qrCode?.length || 0,
       qrCodePreview: qrResult.qrCode?.substring(0, 100) || null,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as Error;
     return NextResponse.json(
-      { error: error.message || "Failed to test QR code" },
+      { error: err.message || "Failed to test QR code" },
       { status: 500 }
     );
   }

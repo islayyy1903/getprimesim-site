@@ -16,7 +16,7 @@ export default function LoginPage() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
+    // Password validation removed - using localStorage for demo
 
     // Check if user exists in localStorage
     const savedUser = localStorage.getItem("primesim_user");
@@ -115,13 +115,13 @@ export default function LoginPage() {
 
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Don't have an account?{" "}
+                  Don&apos;t have an account?{" "}
                   <Link href="/register" className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">
                     Create account
                   </Link>
                 </p>
                 <p className="mt-2 text-xs text-gray-500 dark:text-gray-500">
-                  New members get <span className="font-bold text-blue-600">15% OFF</span> on first purchase!
+                  New members get <span className="font-bold text-blue-600">30% OFF</span> on first purchase!
                 </p>
               </div>
             </div>

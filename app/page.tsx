@@ -132,7 +132,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">24/7 Support</h3>
                 <p className="mt-2 text-gray-600 dark:text-gray-400">
-                  We're always here for you. 24/7 customer support to quickly resolve your issues.
+                  We&apos;re always here for you. 24/7 customer support to quickly resolve your issues.
                 </p>
               </div>
             </div>

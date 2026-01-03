@@ -176,7 +176,7 @@ export default function ContactPage() {
                           24/7 Customer Support
                         </p>
                         <p className="text-sm text-gray-500 dark:text-gray-500">
-                          We're always here for you
+                          We&apos;re always here for you
                         </p>
                       </div>
                     </div>

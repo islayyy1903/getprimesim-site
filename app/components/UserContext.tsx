@@ -31,10 +31,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
       
       if (savedUser) {
         const userData = JSON.parse(savedUser);
-        setUser(userData);
-        if (!discountUsed) {
-          setIsFirstPurchase(true);
-        }
+        // Use setTimeout to avoid calling setState synchronously within effect
+        setTimeout(() => {
+          setUser(userData);
+          if (!discountUsed) {
+            setIsFirstPurchase(true);
+          }
+        }, 0);
       }
     }
   }, []);

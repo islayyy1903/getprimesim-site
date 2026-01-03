@@ -52,10 +52,11 @@ export async function GET(request: NextRequest) {
       message: "Payment successful. QR code will be sent to your email shortly.",
       note: "If QR code doesn't arrive, please contact support with your order ID.",
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error retrieving session:", error);
+    const err = error as Error;
     return NextResponse.json(
-      { error: error.message || "Failed to retrieve order status" },
+      { error: err.message || "Failed to retrieve order status" },
       { status: 500 }
     );
   }

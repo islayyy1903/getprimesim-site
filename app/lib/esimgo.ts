@@ -5,11 +5,7 @@
  * eSimGo'dan API bilgilerini aldıktan sonra bu dosyayı güncelleyin.
  */
 
-interface ESimGoPurchaseRequest {
-  packageId: string;
-  email: string;
-  quantity?: number;
-}
+// ESimGoPurchaseRequest interface removed - not used
 
 interface ESimGoPurchaseResponse {
   success: boolean;
@@ -35,30 +31,15 @@ interface ESimGoPurchaseResponse {
  * 
  * Format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
  */
-function generateProfileID(email: string, sessionId?: string): string {
+function generateProfileID(email: string): string {
   // eSimGo API'de profileID genelde email olarak kullanılır
-  // Manuel assign edince çalışıyorsa, profileID formatı sorunlu olabilir
-  // Email kullanarak deniyoruz (eSimGo genelde email'i profileID olarak kabul eder)
-  // Eğer bu da çalışmazsa, UUID formatına geri dönebiliriz
-  
   // Email'i profileID olarak kullan (eSimGo genelde bunu tercih eder)
   return email;
-  
-  // Alternatif: UUID formatı (eğer email çalışmazsa)
-  // function generateUUID(): string {
-  //   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-  //     const r = Math.random() * 16 | 0;
-  //     const v = c === 'x' ? r : (r & 0x3 | 0x8);
-  //     return v.toString(16);
-  //   });
-  // }
-  // return generateUUID();
 }
 
 export async function purchaseEsim(
   packageId: string,
-  email: string,
-  sessionId?: string // Stripe session ID (opsiyonel, unique ID için)
+  email: string
 ): Promise<ESimGoPurchaseResponse> {
   const apiKey = process.env.ESIMGO_API_KEY;
   const apiUrl = process.env.ESIMGO_API_URL;
@@ -86,7 +67,7 @@ export async function purchaseEsim(
       : "https://getprimesim.com/api/esimgo/webhook";
     
     // Unique profileID oluştur
-    const profileID = generateProfileID(email, sessionId);
+    const profileID = generateProfileID(email);
     
     console.log("📝 Generated profileID:", profileID);
     
@@ -211,11 +192,12 @@ export async function purchaseEsim(
       qrCode: qrCode, // Muhtemelen boş, /esims/assignments'ten alınmalı
       qrCodeUrl: qrCodeUrl, // Muhtemelen boş, /esims/assignments'ten alınmalı
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("eSimGo purchase error:", error);
+    const err = error as Error;
     return {
       success: false,
-      error: error.message || "Failed to purchase eSim",
+      error: err.message || "Failed to purchase eSim",
     };
   }
 }
@@ -417,11 +399,12 @@ export async function getQRCodeFromAssignments(
         error: "QR code PNG not found in ZIP file",
       };
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("❌ eSimGo assignments error:", error);
+    const err = error as Error;
     return {
       success: false,
-      error: error.message || "Failed to get QR code from assignments",
+      error: err.message || "Failed to get QR code from assignments",
     };
   }
 }
@@ -496,11 +479,12 @@ export async function getOrderStatus(
       qrCode: qrCode,
       qrCodeUrl: qrCodeUrl,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("eSimGo order status error:", error);
+    const err = error as Error;
     return {
       success: false,
-      error: error.message || "Failed to get order status",
+      error: err.message || "Failed to get order status",
     };
   }
 }
@@ -518,14 +502,49 @@ export async function getOrderStatus(
 export function mapPackageToEsimGo(packageName: string): string {
   // eSimGo Bundle isimleri
   const bundleMap: Record<string, string> = {
+    // North America (RNA)
+    "North America – 1GB": "esim_1GB_7D_RNA_V2",
+    "North America – 2GB": "esim_2GB_15D_RNA_V2",
+    "North America – 3GB": "esim_3GB_30D_RNA_V2",
+    "North America – 5GB": "esim_5GB_30D_RNA_V2",
+    "North America – 10GB": "esim_10GB_30D_RNA_V2",
+    // Europa+ (REUP)
+    "Europa+ – 1GB": "esim_1GB_7D_REUP_V2",
+    "Europa+ – 2GB": "esim_2GB_15D_REUP_V2",
+    "Europa+ – 3GB": "esim_3GB_30D_REUP_V2",
+    "Europa+ – 5GB": "esim_5GB_30D_REUP_V2",
+    "Europa+ – 10GB": "esim_10GB_30D_REUP_V2",
+    "Europa+ – 50GB": "esim_50GB_30D_REUP_V2",
+    // Global (RGB)
+    "Global – 1GB": "esim_1GB_7D_RGB_V2",
+    "Global – 2GB": "esim_2GB_15D_RGB_V2",
+    "Global – 3GB": "esim_3GB_30D_RGB_V2",
+    "Global – 5GB": "esim_5GB_30D_RGB_V2",
+    "Global – 10GB": "esim_10GB_30D_RGB_V2",
+    "Global – 20GB": "esim_20GB_30D_RGB_V2",
+    // Asia (RAS)
+    "Asia – 1GB": "esim_1GB_7D_RAS_V2",
+    "Asia – 2GB": "esim_2GB_15D_RAS_V2",
+    "Asia – 3GB": "esim_3GB_30D_RAS_V2",
+    "Asia – 5GB": "esim_5GB_30D_RAS_V2",
+    "Asia – 10GB": "esim_10GB_30D_RAS_V2",
+    "Asia – 50GB": "esim_50GB_30D_RAS_V2",
+    // Individual Countries
+    "USA – 1GB": "esim_1GB_7D_US_V2",
+    "USA – 3GB": "esim_3GB_30D_US_V2",
+    "UK – 1GB": "esim_1GB_7D_GB_V2",
+    "UK – 3GB": "esim_3GB_30D_GB_V2",
+    "Germany – 1GB": "esim_1GB_7D_DE_V2",
+    "Germany – 3GB": "esim_3GB_30D_DE_V2",
+    // Legacy support
     "USA eSIM – 1GB": "esim_1GB_7D_US_V2",
     "USA eSIM – 3GB": "esim_3GB_30D_US_V2",
     "UK eSIM – 1GB": "esim_1GB_7D_GB_V2",
     "UK eSIM – 3GB": "esim_3GB_30D_GB_V2",
     "Germany eSIM – 1GB": "esim_1GB_7D_DE_V2",
     "Germany eSIM – 3GB": "esim_3GB_30D_DE_V2",
-    "Global eSIM – 1GB": "esim_1GB_7D_GL_V2", // ⚠️ Global için format kontrol edin
-    "Global eSIM – 3GB": "esim_3GB_30D_GL_V2", // ⚠️ Global için format kontrol edin
+    "Global eSIM – 1GB": "esim_1GB_7D_GL_V2",
+    "Global eSIM – 3GB": "esim_3GB_30D_GL_V2",
   };
 
   const bundleName = bundleMap[packageName];

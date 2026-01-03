@@ -57,8 +57,13 @@ export default function Header() {
               <Link href="/login" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
                 Sign In
               </Link>
-              <Link href="/register" className="rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-700">
-                Sign Up
+              <Link href="/register" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-all hover:bg-blue-700">
+                <span>Sign Up</span>
+                <span className="inline-flex items-center gap-0.5 rounded-md bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md">
+                  <span className="animate-pulse">🔥</span>
+                  <span>30%</span>
+                  <span className="text-[10px]">OFF</span>
+                </span>
               </Link>
             </>
           )}
@@ -139,6 +144,18 @@ export default function Header() {
                     onClick={closeMobileMenu}
                   >
                     Sign Up
+                  </Link>
+                  <Link 
+                    href="/register" 
+                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-all hover:bg-blue-700"
+                    onClick={closeMobileMenu}
+                  >
+                    <span>Sign Up</span>
+                    <span className="inline-flex items-center gap-0.5 rounded-md bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md">
+                      <span className="animate-pulse">🔥</span>
+                      <span>30%</span>
+                      <span className="text-[10px]">OFF</span>
+                    </span>
                   </Link>
                 </div>
               </>
