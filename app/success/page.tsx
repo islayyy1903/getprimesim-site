@@ -1,0 +1,150 @@
+"use client";
+
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { useUser } from "../components/UserContext";
+
+function SuccessContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get("session_id");
+  const { useDiscount } = useUser();
+  const [loading, setLoading] = useState(true);
+  const [orderStatus, setOrderStatus] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (sessionId) {
+      // Mark discount as used after successful payment
+      useDiscount();
+      
+      // Fetch order status
+      fetch(`/api/order-status?session_id=${sessionId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setOrderStatus(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Error fetching order status:", err);
+          setError("Failed to fetch order status");
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, [sessionId, useDiscount]);
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+              </div>
+            ) : (
+              <>
+                <div className="mb-8">
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                    <svg
+                      className="h-12 w-12 text-green-600 dark:text-green-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                  Payment Successful!
+                </h1>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
+                  Thank you for your purchase. Your eSim QR code will be sent to your email within minutes.
+                </p>
+                {orderStatus && (
+                  <div className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                      <strong>Order ID:</strong> {orderStatus.sessionId?.substring(0, 20)}...
+                    </p>
+                    {orderStatus.packageName && (
+                      <p className="text-sm text-blue-800 dark:text-blue-200 mt-2">
+                        <strong>Package:</strong> {orderStatus.packageName}
+                      </p>
+                    )}
+                    {orderStatus.customerEmail && (
+                      <p className="text-sm text-blue-800 dark:text-blue-200 mt-2">
+                        <strong>Email:</strong> {orderStatus.customerEmail}
+                      </p>
+                    )}
+                  </div>
+                )}
+                {error && (
+                  <div className="mb-8 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
+                    <p className="text-sm text-red-800 dark:text-red-200">
+                      {error}
+                    </p>
+                  </div>
+                )}
+                <div className="space-y-4">
+                  <Link
+                    href="/esim"
+                    className="inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+                  >
+                    View More Plans
+                  </Link>
+                  <div>
+                    <Link
+                      href="/"
+                      className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                    >
+                      Back to Home
+                    </Link>
+                  </div>
+                </div>
+                <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-800">
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    What's Next?
+                  </h3>
+                  <ul className="text-left space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li>✓ Check your email for the QR code</li>
+                    <li>✓ Scan the QR code in your phone's eSim settings</li>
+                    <li>✓ Start using your eSim immediately</li>
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        </main>
+        <Footer />
+      </div>
+    }>
+      <SuccessContent />
+    </Suspense>
+  );
+}
+
