@@ -656,9 +656,232 @@ export default function ESimPage() {
         <section className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 dark:from-gray-900 dark:to-gray-800 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Mobile: Accordion style - Packages under each tab */}
+            <div className="lg:hidden space-y-4">
+              {packageCategories.map((category) => {
+                const colorClasses = {
+                  blue: {
+                    active: "bg-blue-600 text-white border-blue-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/20",
+                    text: "text-blue-600 dark:text-blue-400",
+                  },
+                  purple: {
+                    active: "bg-purple-600 text-white border-purple-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-purple-50 dark:hover:bg-purple-900/20",
+                    text: "text-purple-600 dark:text-purple-400",
+                  },
+                  red: {
+                    active: "bg-red-600 text-white border-red-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-red-50 dark:hover:bg-red-900/20",
+                    text: "text-red-600 dark:text-red-400",
+                  },
+                  indigo: {
+                    active: "bg-indigo-600 text-white border-indigo-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20",
+                    text: "text-indigo-600 dark:text-indigo-400",
+                  },
+                };
+                const tabColors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
+                const isActive = activeCategory === category.id;
+
+                return (
+                  <div key={category.id}>
+                    <button
+                      onClick={() => setActiveCategory(isActive ? "" : category.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl font-semibold transition-all duration-300 border-2 ${
+                        isActive ? tabColors.active : tabColors.inactive
+                      } shadow-md hover:shadow-lg`}
+                    >
+                      <span className="text-2xl">{category.icon}</span>
+                      <div className="text-left flex-1">
+                        <div className="font-bold">{category.name}</div>
+                        {isActive && (
+                          <div className="text-xs opacity-90 mt-0.5">
+                            {category.description}
+                          </div>
+                        )}
+                      </div>
+                      <svg 
+                        className={`w-5 h-5 transition-transform duration-300 ${isActive ? 'rotate-90' : ''}`} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                    
+                    {/* Packages directly under the tab on mobile */}
+                    {isActive && (
+                      <div className="mt-4 space-y-4">
+                        {category.packages.map((pkg, index) => {
+                          const pricing = calculatePrice(pkg.price);
+                          const pkgColors = {
+                            blue: {
+                              gradient: "from-blue-500 to-blue-600",
+                              border: "border-blue-500",
+                              text: "text-blue-600",
+                              bg: "bg-blue-50 dark:bg-blue-900/20",
+                              button: "bg-blue-600 hover:bg-blue-700",
+                            },
+                            purple: {
+                              gradient: "from-purple-500 to-purple-600",
+                              border: "border-purple-500",
+                              text: "text-purple-600",
+                              bg: "bg-purple-50 dark:bg-purple-900/20",
+                              button: "bg-purple-600 hover:bg-purple-700",
+                            },
+                            red: {
+                              gradient: "from-red-500 to-red-600",
+                              border: "border-red-500",
+                              text: "text-red-600",
+                              bg: "bg-red-50 dark:bg-red-900/20",
+                              button: "bg-red-600 hover:bg-red-700",
+                            },
+                            indigo: {
+                              gradient: "from-indigo-500 to-indigo-600",
+                              border: "border-indigo-500",
+                              text: "text-indigo-600",
+                              bg: "bg-indigo-50 dark:bg-indigo-900/20",
+                              button: "bg-indigo-600 hover:bg-indigo-700",
+                            },
+                          };
+                          const colors = pkgColors[category.color as keyof typeof pkgColors] || pkgColors.blue;
+
+                          return (
+                            <div
+                              key={index}
+                              className={`group relative rounded-2xl border-2 bg-white p-6 shadow-lg transition-all hover:shadow-2xl hover:-translate-y-1 dark:bg-gray-800 ${
+                                pkg.popular
+                                  ? `${colors.border} scale-105`
+                                  : "border-gray-200 dark:border-gray-700"
+                              }`}
+                            >
+                              {(pkg.badge || pkg.popular) && (
+                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                                  <span className={`rounded-full px-4 py-1 text-xs font-semibold text-white ${colors.button}`}>
+                                    {pkg.badge || "Most Popular"}
+                                  </span>
+                                </div>
+                              )}
+                              {isFirstPurchase && isLoggedIn && (
+                                <div className="absolute -top-3 right-4 z-10">
+                                  <span className="rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-gray-900">
+                                    -30%
+                                  </span>
+                                </div>
+                              )}
+                              
+                              <div className="text-center">
+                                <div className={`mb-4 inline-flex items-center gap-2 rounded-full ${colors.bg} px-4 py-2`}>
+                                  <span className={`text-2xl font-bold ${colors.text} dark:text-white`}>
+                                    {pkg.data}
+                                  </span>
+                                  <span className="text-gray-500 dark:text-gray-400">•</span>
+                                  <span className="text-sm text-gray-600 dark:text-gray-300">
+                                    {pkg.validity}
+                                  </span>
+                                </div>
+
+                                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                                  {pkg.name.split("–")[1]?.trim() || pkg.name}
+                                </h4>
+
+                                {pkg.shortDescription && (
+                                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 min-h-[2.5rem]">
+                                    {pkg.shortDescription}
+                                  </p>
+                                )}
+
+                                <div className="mb-4">
+                                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                                    🌍 {pkg.countries}
+                                  </p>
+                                </div>
+
+                                <div className="mb-6">
+                                  {pricing.discount > 0 ? (
+                                    <div>
+                                      <div className="flex items-center justify-center gap-2">
+                                        <span className="text-lg text-gray-400 line-through">
+                                          {pkg.currency}{pricing.original.toFixed(2)}
+                                        </span>
+                                        <span className={`text-3xl font-bold ${colors.text} dark:text-white`}>
+                                          {pkg.currency}{pricing.discounted.toFixed(2)}
+                                        </span>
+                                      </div>
+                                      <p className="text-xs text-green-600 font-semibold mt-1">
+                                        Save {pkg.currency}{pricing.discount.toFixed(2)}
+                                      </p>
+                                    </div>
+                                  ) : (
+                                    <span className={`text-3xl font-bold ${colors.text} dark:text-white`}>
+                                      {pkg.currency}{pricing.original.toFixed(2)}
+                                    </span>
+                                  )}
+                                </div>
+
+                                <div className="mb-6 space-y-2 text-left text-sm">
+                                  <div className="flex items-center gap-2">
+                                    <svg className="h-4 w-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                    <span className="text-gray-700 dark:text-gray-300">Instant Activation</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <svg className="h-4 w-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                    <span className="text-gray-700 dark:text-gray-300">No Roaming Fees</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <svg className="h-4 w-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                    <span className="text-gray-700 dark:text-gray-300">4G / 5G Ready</span>
+                                  </div>
+                                </div>
+
+                                {isFirstPurchase && isLoggedIn && (
+                                  <div className="mb-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 p-2">
+                                    <p className="text-xs text-yellow-800 dark:text-yellow-200">
+                                      Code: <span className="font-mono font-bold">WELCOME30</span>
+                                    </p>
+                                  </div>
+                                )}
+
+                                <button
+                                  onClick={() => handleCheckout(pkg)}
+                                  disabled={loading === pkg.name}
+                                  className={`w-full rounded-lg ${colors.button} px-6 py-3 font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed`}
+                                >
+                                  {loading === pkg.name ? (
+                                    <span className="flex items-center justify-center gap-2">
+                                      <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                      </svg>
+                                      Processing...
+                                    </span>
+                                  ) : (
+                                    "Buy Now"
+                                  )}
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Desktop: Side-by-side layout */}
+            <div className="hidden lg:grid grid-cols-4 gap-8">
               {/* Vertical Tabs Navigation */}
-              <div className="lg:col-span-1">
+              <div className="col-span-1">
                 <div className="space-y-3">
                   {packageCategories.map((category) => {
                     const colorClasses = {
@@ -715,7 +938,7 @@ export default function ESimPage() {
               </div>
 
               {/* Active Category Content */}
-              <div className="lg:col-span-3">
+              <div className="col-span-3">
                 {packageCategories.map((category) => {
                   if (activeCategory !== category.id) return null;
 
