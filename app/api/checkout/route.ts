@@ -49,11 +49,9 @@ export async function POST(
       );
     }
 
-    // Calculate final price with discount (only for logged-in first-time users)
-    let finalPrice = price;
-    if (isFirstPurchase) {
-      finalPrice = price * 0.70; // 30% discount
-    }
+    // Price is already calculated with %20 discount + sign-up bonus (if applicable) from frontend
+    // Use the price directly
+    const finalPrice = price;
 
     // Map currency symbol to Stripe currency code
     // € → eur, £ → gbp, $ → usd
