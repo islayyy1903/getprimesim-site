@@ -648,7 +648,7 @@ export default function ESimPage() {
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               eSim Plans
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-300">
               Digital SIM cards that activate instantly with QR code, without physical SIM cards. 
               Fast and reliable internet connection in USA, UK, Germany, and 150+ countries worldwide.
             </p>
@@ -671,24 +671,24 @@ export default function ESimPage() {
               {packageCategories.map((category) => {
                 const colorClasses = {
                   blue: {
-                    active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                    text: "text-blue-600 dark:text-blue-400",
+                    active: "bg-black text-white border-black shadow-lg",
+                    inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                    text: "text-black dark:text-black",
                   },
                   purple: {
-                    active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                    text: "text-blue-600 dark:text-blue-400",
+                    active: "bg-black text-white border-black shadow-lg",
+                    inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                    text: "text-black dark:text-black",
                   },
                   red: {
-                    active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                    text: "text-blue-600 dark:text-blue-400",
+                    active: "bg-black text-white border-black shadow-lg",
+                    inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                    text: "text-black dark:text-black",
                   },
                   indigo: {
-                    active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                    text: "text-blue-600 dark:text-blue-400",
+                    active: "bg-black text-white border-black shadow-lg",
+                    inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                    text: "text-black dark:text-black",
                   },
                 };
                 const tabColors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
@@ -732,28 +732,28 @@ export default function ESimPage() {
                               border: "border-orange-500",
                               text: "text-orange-600",
                               bg: "bg-orange-50 dark:bg-orange-900/20",
-                              button: "bg-blue-600 hover:bg-orange-400",
+                              button: "bg-black hover:bg-white hover:text-black",
                             },
                             purple: {
                               gradient: "from-orange-500 to-orange-600",
                               border: "border-orange-500",
                               text: "text-orange-600",
                               bg: "bg-orange-50 dark:bg-orange-900/20",
-                              button: "bg-blue-600 hover:bg-orange-400",
+                              button: "bg-black hover:bg-white hover:text-black",
                             },
                             red: {
                               gradient: "from-orange-500 to-orange-600",
                               border: "border-orange-500",
                               text: "text-orange-600",
                               bg: "bg-orange-50 dark:bg-orange-900/20",
-                              button: "bg-blue-600 hover:bg-orange-400",
+                              button: "bg-black hover:bg-white hover:text-black",
                             },
                             indigo: {
                               gradient: "from-orange-500 to-orange-600",
                               border: "border-orange-500",
                               text: "text-orange-600",
                               bg: "bg-orange-50 dark:bg-orange-900/20",
-                              button: "bg-blue-600 hover:bg-orange-400",
+                              button: "bg-black hover:bg-white hover:text-black",
                             },
                           };
                           const colors = pkgColors[category.color as keyof typeof pkgColors] || pkgColors.blue;
@@ -891,24 +891,24 @@ export default function ESimPage() {
                   {packageCategories.map((category) => {
                     const colorClasses = {
                       blue: {
-                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                        text: "text-blue-600 dark:text-blue-400",
+                        active: "bg-black text-white border-black shadow-lg",
+                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        text: "text-black dark:text-black",
                       },
                       purple: {
-                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                        text: "text-blue-600 dark:text-blue-400",
+                        active: "bg-black text-white border-black shadow-lg",
+                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        text: "text-black dark:text-black",
                       },
                       red: {
-                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                        text: "text-blue-600 dark:text-blue-400",
+                        active: "bg-black text-white border-black shadow-lg",
+                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        text: "text-black dark:text-black",
                       },
                       indigo: {
-                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
-                        text: "text-blue-600 dark:text-blue-400",
+                        active: "bg-black text-white border-black shadow-lg",
+                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        text: "text-black dark:text-black",
                       },
                     };
                     const tabColors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
