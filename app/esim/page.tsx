@@ -537,21 +537,20 @@ export default function ESimPage() {
   const packages = packageCategories.flatMap(cat => cat.packages);
 
   const calculatePrice = (price: number) => {
-    // Her zaman %20 indirim uygula (genel indirim)
-    const baseDiscountedPrice = price * 0.8;
-    const baseDiscount = price * 0.2;
-    
     if (isFirstPurchase && isLoggedIn) {
-      // Sign-up bonusu: %20 indirimli fiyattan %50 daha indirim
-      const signupDiscount = baseDiscountedPrice * 0.50;
-      const finalPrice = baseDiscountedPrice - signupDiscount;
+      // Sign-up bonusu: Sadece %50 indirim (orijinal fiyattan)
+      const signupDiscount = price * 0.50;
+      const finalPrice = price - signupDiscount;
       return {
         original: price,
         discounted: finalPrice,
-        discount: price - finalPrice,
-        baseDiscount: baseDiscount,
+        discount: signupDiscount,
+        baseDiscount: 0,
       };
     }
+    // Normal kullanıcılar: %20 genel indirim
+    const baseDiscountedPrice = price * 0.8;
+    const baseDiscount = price * 0.2;
     return {
       original: price,
       discounted: baseDiscountedPrice,
@@ -814,16 +813,14 @@ export default function ESimPage() {
                                       </span>
                                     </div>
                                     <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
-                                      <p className="text-xs text-green-600 font-semibold">
-                                        20% OFF
-                                      </p>
-                                      {isFirstPurchase && isLoggedIn && (
-                                        <>
-                                          <span className="text-gray-400">•</span>
-                                          <p className="text-xs text-yellow-600 font-semibold">
-                                            +50% Sign-up Bonus
-                                          </p>
-                                        </>
+                                      {isFirstPurchase && isLoggedIn ? (
+                                        <p className="text-xs text-yellow-600 font-semibold">
+                                          50% OFF
+                                        </p>
+                                      ) : (
+                                        <p className="text-xs text-green-600 font-semibold">
+                                          20% OFF
+                                        </p>
                                       )}
                                     </div>
                                   </div>
@@ -1069,16 +1066,14 @@ export default function ESimPage() {
                                     </span>
                                   </div>
                                   <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
-                                    <p className="text-xs text-green-600 font-semibold">
-                                      20% OFF
-                                    </p>
-                                    {isFirstPurchase && isLoggedIn && (
-                                      <>
-                                        <span className="text-gray-400">•</span>
-                                        <p className="text-xs text-yellow-600 font-semibold">
-                                          +50% Sign-up Bonus
-                                        </p>
-                                      </>
+                                    {isFirstPurchase && isLoggedIn ? (
+                                      <p className="text-xs text-yellow-600 font-semibold">
+                                        50% OFF
+                                      </p>
+                                    ) : (
+                                      <p className="text-xs text-green-600 font-semibold">
+                                        20% OFF
+                                      </p>
                                     )}
                                   </div>
                                 </div>
