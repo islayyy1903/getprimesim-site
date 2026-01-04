@@ -643,7 +643,7 @@ export default function ESimPage() {
       ))}
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 px-4 py-16 text-white sm:px-6 lg:px-8">
+        <section className="bg-gradient-to-br from-black to-gray-900 px-4 py-16 text-white sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               eSim Plans
