@@ -34,7 +34,7 @@ export default function Header() {
           <Link href="/" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
             Home
           </Link>
-          <Link href="/esim" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+          <Link href="/esim" className="rounded-lg bg-orange-400 px-3 py-1.5 text-white transition-colors hover:bg-black dark:bg-orange-400 dark:text-white dark:hover:bg-black">
             eSim
           </Link>
           <Link href="/contact" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
@@ -57,7 +57,7 @@ export default function Header() {
               <Link href="/login" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
                 Sign In
               </Link>
-              <Link href="/register" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-all hover:bg-blue-700">
+              <Link href="/register" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-orange-400 px-4 py-2 font-semibold text-white transition-all hover:bg-black">
                 <span>Sign Up</span>
                 <span className="inline-flex items-center gap-0.5 rounded-md bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md">
                   <span className="animate-pulse">🔥</span>
@@ -99,7 +99,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/esim" 
-              className="block text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              className="block rounded-lg bg-orange-400 px-3 py-1.5 text-white transition-colors hover:bg-black dark:bg-orange-400 dark:text-white dark:hover:bg-black"
               onClick={closeMobileMenu}
             >
               eSim
@@ -140,20 +140,13 @@ export default function Header() {
                   </Link>
                   <Link 
                     href="/register" 
-                    className="block rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white text-center transition-colors hover:bg-blue-700"
-                    onClick={closeMobileMenu}
-                  >
-                    Sign Up
-                  </Link>
-                  <Link 
-                    href="/register" 
-                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-all hover:bg-blue-700"
+                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg bg-orange-400 px-4 py-2 font-semibold text-white transition-all hover:bg-black"
                     onClick={closeMobileMenu}
                   >
                     <span>Sign Up</span>
                     <span className="inline-flex items-center gap-0.5 rounded-md bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md">
                       <span className="animate-pulse">🔥</span>
-                      <span>30%</span>
+                      <span>50%</span>
                       <span className="text-[10px]">OFF</span>
                     </span>
                   </Link>
