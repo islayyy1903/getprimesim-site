@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useUser } from "../components/UserContext";
@@ -10,12 +10,18 @@ export default function ESimPage() {
   const { user, isLoggedIn, isFirstPurchase } = useUser();
   const [loading, setLoading] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("north-america");
+  const [activePackageType, setActivePackageType] = useState<"standard" | "unlimited-lite" | "unlimited-plus">("standard");
+  
+  // Kategori değiştiğinde package type'ı standard'a resetle
+  useEffect(() => {
+    setActivePackageType("standard");
+  }, [activeCategory]);
 
   const handleCheckout = async (pkg: { name: string; bundleId?: string; price: number; currency?: string }) => {
     setLoading(pkg.name);
     try {
-      // Calculate final price with %20 discount + sign-up bonus if applicable
-      const pricing = calculatePrice(pkg.price);
+      // Calculate final price with discount + sign-up bonus if applicable
+      const pricing = calculatePrice(pkg.price, pkg.data);
       const checkoutData = {
         packageId: pkg.bundleId || pkg.name.toLowerCase().replace(/\s+/g, "-"),
         packageName: pkg.name,
@@ -125,7 +131,7 @@ export default function ESimPage() {
       icon: "🌎",
       color: "blue",
       description: "Coverage across USA, Canada, and Mexico",
-      packages: [
+      standardPackages: [
         {
           name: "North America – 1GB",
           bundleId: "esim_1GB_7D_RNA_V2",
@@ -187,6 +193,178 @@ export default function ESimPage() {
           shortDescription: "Maximum data for power users",
         },
       ],
+      unlimitedLitePackages: [
+        {
+          name: "North America – Unlimited Lite 1 Day",
+          bundleId: "esim_ULP_1D_RNA_V2",
+          data: "Unlimited Lite",
+          validity: "1 day",
+          countries: "USA, Canada, Mexico",
+          price: 5.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "North America – Unlimited Lite 3 Days",
+          bundleId: "esim_ULP_3D_RNA_V2",
+          data: "Unlimited Lite",
+          validity: "3 days",
+          countries: "USA, Canada, Mexico",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "North America – Unlimited Lite 5 Days",
+          bundleId: "esim_ULP_5D_RNA_V2",
+          data: "Unlimited Lite",
+          validity: "5 days",
+          countries: "USA, Canada, Mexico",
+          price: 24.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "North America – Unlimited Lite 7 Days",
+          bundleId: "esim_ULP_7D_RNA_V2",
+          data: "Unlimited Lite",
+          validity: "7 days",
+          countries: "USA, Canada, Mexico",
+          price: 34.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "North America – Unlimited Lite 10 Days",
+          bundleId: "esim_ULP_10D_RNA_V2",
+          data: "Unlimited Lite",
+          validity: "10 days",
+          countries: "USA, Canada, Mexico",
+          price: 49.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "North America – Unlimited Lite 15 Days",
+          bundleId: "esim_ULP_15D_RNA_V2",
+          data: "Unlimited Lite",
+          validity: "15 days",
+          countries: "USA, Canada, Mexico",
+          price: 69.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "North America – Unlimited Lite 30 Days",
+          bundleId: "esim_ULP_30D_RNA_V2",
+          data: "Unlimited Lite",
+          validity: "30 days",
+          countries: "USA, Canada, Mexico",
+          price: 129.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
+      unlimitedPlusPackages: [
+        {
+          name: "North America – Unlimited Plus 1 Day",
+          bundleId: "esim_ULP_1D_RNA_V2",
+          data: "Unlimited Plus",
+          validity: "1 day",
+          countries: "USA, Canada, Mexico",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "North America – Unlimited Plus 3 Days",
+          bundleId: "esim_ULP_3D_RNA_V2",
+          data: "Unlimited Plus",
+          validity: "3 days",
+          countries: "USA, Canada, Mexico",
+          price: 34.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "North America – Unlimited Plus 5 Days",
+          bundleId: "esim_ULP_5D_RNA_V2",
+          data: "Unlimited Plus",
+          validity: "5 days",
+          countries: "USA, Canada, Mexico",
+          price: 54.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "North America – Unlimited Plus 7 Days",
+          bundleId: "esim_ULP_7D_RNA_V2",
+          data: "Unlimited Plus",
+          validity: "7 days",
+          countries: "USA, Canada, Mexico",
+          price: 74.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "North America – Unlimited Plus 10 Days",
+          bundleId: "esim_ULP_10D_RNA_V2",
+          data: "Unlimited Plus",
+          validity: "10 days",
+          countries: "USA, Canada, Mexico",
+          price: 99.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "North America – Unlimited Plus 15 Days",
+          bundleId: "esim_ULP_15D_RNA_V2",
+          data: "Unlimited Plus",
+          validity: "15 days",
+          countries: "USA, Canada, Mexico",
+          price: 149.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "North America – Unlimited Plus 30 Days",
+          bundleId: "esim_ULP_30D_RNA_V2",
+          data: "Unlimited Plus",
+          validity: "30 days",
+          countries: "USA, Canada, Mexico",
+          price: 279.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
     },
     {
       id: "europa",
@@ -194,7 +372,7 @@ export default function ESimPage() {
       icon: "🇪🇺",
       color: "purple",
       description: "European Union plus extended European coverage",
-      packages: [
+      standardPackages: [
         {
           name: "Europa+ – 1GB",
           bundleId: "esim_1GB_7D_REUP_V2",
@@ -268,6 +446,178 @@ export default function ESimPage() {
           shortDescription: "Maximum data for long stays",
         },
       ],
+      unlimitedLitePackages: [
+        {
+          name: "Europa+ – Unlimited Lite 1 Day",
+          bundleId: "esim_UL_1D_REUL_V2",
+          data: "Unlimited Lite",
+          validity: "1 day",
+          countries: "EU + Extended",
+          price: 4.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Europa+ – Unlimited Lite 3 Days",
+          bundleId: "esim_UL_3D_REUL_V2",
+          data: "Unlimited Lite",
+          validity: "3 days",
+          countries: "EU + Extended",
+          price: 9.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Europa+ – Unlimited Lite 5 Days",
+          bundleId: "esim_UL_5D_REUL_V2",
+          data: "Unlimited Lite",
+          validity: "5 days",
+          countries: "EU + Extended",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Europa+ – Unlimited Lite 7 Days",
+          bundleId: "esim_UL_7D_REUL_V2",
+          data: "Unlimited Lite",
+          validity: "7 days",
+          countries: "EU + Extended",
+          price: 19.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Europa+ – Unlimited Lite 10 Days",
+          bundleId: "esim_UL_10D_REUL_V2",
+          data: "Unlimited Lite",
+          validity: "10 days",
+          countries: "EU + Extended",
+          price: 24.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "Europa+ – Unlimited Lite 15 Days",
+          bundleId: "esim_UL_15D_REUL_V2",
+          data: "Unlimited Lite",
+          validity: "15 days",
+          countries: "EU + Extended",
+          price: 34.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "Europa+ – Unlimited Lite 30 Days",
+          bundleId: "esim_UL_30D_REUL_V2",
+          data: "Unlimited Lite",
+          validity: "30 days",
+          countries: "EU + Extended",
+          price: 59.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
+      unlimitedPlusPackages: [
+        {
+          name: "Europa+ – Unlimited Plus 1 Day",
+          bundleId: "esim_ULP_1D_REUL_V2",
+          data: "Unlimited Plus",
+          validity: "1 day",
+          countries: "EU + Extended",
+          price: 5.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Europa+ – Unlimited Plus 3 Days",
+          bundleId: "esim_ULP_3D_REUL_V2",
+          data: "Unlimited Plus",
+          validity: "3 days",
+          countries: "EU + Extended",
+          price: 12.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Europa+ – Unlimited Plus 5 Days",
+          bundleId: "esim_ULP_5D_REUL_V2",
+          data: "Unlimited Plus",
+          validity: "5 days",
+          countries: "EU + Extended",
+          price: 19.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Europa+ – Unlimited Plus 7 Days",
+          bundleId: "esim_ULP_7D_REUL_V2",
+          data: "Unlimited Plus",
+          validity: "7 days",
+          countries: "EU + Extended",
+          price: 26.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Europa+ – Unlimited Plus 10 Days",
+          bundleId: "esim_ULP_10D_REUL_V2",
+          data: "Unlimited Plus",
+          validity: "10 days",
+          countries: "EU + Extended",
+          price: 34.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "Europa+ – Unlimited Plus 15 Days",
+          bundleId: "esim_ULP_15D_REUL_V2",
+          data: "Unlimited Plus",
+          validity: "15 days",
+          countries: "EU + Extended",
+          price: 44.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "Europa+ – Unlimited Plus 30 Days",
+          bundleId: "esim_ULP_30D_REUL_V2",
+          data: "Unlimited Plus",
+          validity: "30 days",
+          countries: "EU + Extended",
+          price: 89.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
     },
     {
       id: "asia",
@@ -275,7 +625,7 @@ export default function ESimPage() {
       icon: "🌏",
       color: "red",
       description: "Coverage across Asia-Pacific region",
-      packages: [
+      standardPackages: [
         {
           name: "Asia – 1GB",
           bundleId: "esim_1GB_7D_RAS_V2",
@@ -349,6 +699,178 @@ export default function ESimPage() {
           shortDescription: "Maximum data for long stays",
         },
       ],
+      unlimitedLitePackages: [
+        {
+          name: "Asia – Unlimited Lite 1 Day",
+          bundleId: "esim_UL_1D_RAS_V2",
+          data: "Unlimited Lite",
+          validity: "1 day",
+          countries: "Asia-Pacific",
+          price: 6.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Asia – Unlimited Lite 3 Days",
+          bundleId: "esim_UL_3D_RAS_V2",
+          data: "Unlimited Lite",
+          validity: "3 days",
+          countries: "Asia-Pacific",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Asia – Unlimited Lite 5 Days",
+          bundleId: "esim_UL_5D_RAS_V2",
+          data: "Unlimited Lite",
+          validity: "5 days",
+          countries: "Asia-Pacific",
+          price: 24.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Asia – Unlimited Lite 7 Days",
+          bundleId: "esim_UL_7D_RAS_V2",
+          data: "Unlimited Lite",
+          validity: "7 days",
+          countries: "Asia-Pacific",
+          price: 34.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Asia – Unlimited Lite 10 Days",
+          bundleId: "esim_UL_10D_RAS_V2",
+          data: "Unlimited Lite",
+          validity: "10 days",
+          countries: "Asia-Pacific",
+          price: 44.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "Asia – Unlimited Lite 15 Days",
+          bundleId: "esim_UL_15D_RAS_V2",
+          data: "Unlimited Lite",
+          validity: "15 days",
+          countries: "Asia-Pacific",
+          price: 59.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "Asia – Unlimited Lite 30 Days",
+          bundleId: "esim_UL_30D_RAS_V2",
+          data: "Unlimited Lite",
+          validity: "30 days",
+          countries: "Asia-Pacific",
+          price: 99.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
+      unlimitedPlusPackages: [
+        {
+          name: "Asia – Unlimited Plus 1 Day",
+          bundleId: "esim_ULP_1D_RAS_V2",
+          data: "Unlimited Plus",
+          validity: "1 day",
+          countries: "Asia-Pacific",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Asia – Unlimited Plus 3 Days",
+          bundleId: "esim_ULP_3D_RAS_V2",
+          data: "Unlimited Plus",
+          validity: "3 days",
+          countries: "Asia-Pacific",
+          price: 39.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Asia – Unlimited Plus 5 Days",
+          bundleId: "esim_ULP_5D_RAS_V2",
+          data: "Unlimited Plus",
+          validity: "5 days",
+          countries: "Asia-Pacific",
+          price: 64.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Asia – Unlimited Plus 7 Days",
+          bundleId: "esim_ULP_7D_RAS_V2",
+          data: "Unlimited Plus",
+          validity: "7 days",
+          countries: "Asia-Pacific",
+          price: 89.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Asia – Unlimited Plus 10 Days",
+          bundleId: "esim_ULP_10D_RAS_V2",
+          data: "Unlimited Plus",
+          validity: "10 days",
+          countries: "Asia-Pacific",
+          price: 119.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "Asia – Unlimited Plus 15 Days",
+          bundleId: "esim_ULP_15D_RAS_V2",
+          data: "Unlimited Plus",
+          validity: "15 days",
+          countries: "Asia-Pacific",
+          price: 169.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "Asia – Unlimited Plus 30 Days",
+          bundleId: "esim_ULP_30D_RAS_V2",
+          data: "Unlimited Plus",
+          validity: "30 days",
+          countries: "Asia-Pacific",
+          price: 299.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
     },
     {
       id: "global",
@@ -356,7 +878,7 @@ export default function ESimPage() {
       icon: "🌍",
       color: "indigo",
       description: "Worldwide coverage in 150+ countries",
-      packages: [
+      standardPackages: [
         {
           name: "Global – 1GB",
           bundleId: "esim_1GB_7D_RGB_V2",
@@ -430,6 +952,130 @@ export default function ESimPage() {
           shortDescription: "Maximum global coverage",
         },
       ],
+      unlimitedLitePackages: [
+        {
+          name: "Global – Unlimited Lite 1 Day",
+          bundleId: "esim_ULP_1D_RGB_V2",
+          data: "Unlimited Lite",
+          validity: "1 day",
+          countries: "150+ Countries",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Global – Unlimited Lite 3 Days",
+          bundleId: "esim_ULP_3D_RGB_V2",
+          data: "Unlimited Lite",
+          validity: "3 days",
+          countries: "150+ Countries",
+          price: 39.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Global – Unlimited Lite 5 Days",
+          bundleId: "esim_ULP_5D_RGB_V2",
+          data: "Unlimited Lite",
+          validity: "5 days",
+          countries: "150+ Countries",
+          price: 69.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Global – Unlimited Lite 7 Days",
+          bundleId: "esim_ULP_7D_RGB_V2",
+          data: "Unlimited Lite",
+          validity: "7 days",
+          countries: "150+ Countries",
+          price: 94.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Global – Unlimited Lite 10 Days",
+          bundleId: "esim_ULP_10D_RGB_V2",
+          data: "Unlimited Lite",
+          validity: "10 days",
+          countries: "150+ Countries",
+          price: 129.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Extended travel coverage",
+        },
+      ],
+      unlimitedPlusPackages: [
+        {
+          name: "Global – Unlimited Plus 1 Day",
+          bundleId: "esim_ULP_1D_RGB_V2",
+          data: "Unlimited Plus",
+          validity: "1 day",
+          countries: "150+ Countries",
+          price: 39.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Global – Unlimited Plus 3 Days",
+          bundleId: "esim_ULP_3D_RGB_V2",
+          data: "Unlimited Plus",
+          validity: "3 days",
+          countries: "150+ Countries",
+          price: 109.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Global – Unlimited Plus 5 Days",
+          bundleId: "esim_ULP_5D_RGB_V2",
+          data: "Unlimited Plus",
+          validity: "5 days",
+          countries: "150+ Countries",
+          price: 179.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Global – Unlimited Plus 7 Days",
+          bundleId: "esim_ULP_7D_RGB_V2",
+          data: "Unlimited Plus",
+          validity: "7 days",
+          countries: "150+ Countries",
+          price: 249.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Global – Unlimited Plus 10 Days",
+          bundleId: "esim_ULP_10D_RGB_V2",
+          data: "Unlimited Plus",
+          validity: "10 days",
+          countries: "150+ Countries",
+          price: 349.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Extended travel coverage",
+        },
+      ],
     },
     // Countries (Ülkeler) - Kıtaların altında
     {
@@ -438,7 +1084,7 @@ export default function ESimPage() {
       icon: "🇺🇸",
       color: "blue",
       description: "United States of America",
-      packages: [
+      standardPackages: [
         {
           name: "USA – 1GB",
           bundleId: "esim_1GB_7D_US_V2",
@@ -452,6 +1098,18 @@ export default function ESimPage() {
           shortDescription: "Perfect for short trips",
         },
         {
+          name: "USA – 2GB",
+          bundleId: "esim_2GB_15D_US_V2",
+          data: "2GB",
+          validity: "15 days",
+          countries: "United States",
+          price: 9.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for week-long stays",
+        },
+        {
           name: "USA – 3GB",
           bundleId: "esim_3GB_30D_US_V2",
           data: "3GB",
@@ -463,6 +1121,238 @@ export default function ESimPage() {
           badge: "🔥 Most Popular",
           shortDescription: "Best value for extended travel",
         },
+        {
+          name: "USA – 5GB",
+          bundleId: "esim_5GB_30D_US_V2",
+          data: "5GB",
+          validity: "30 days",
+          countries: "United States",
+          price: 17.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for heavy data users",
+        },
+        {
+          name: "USA – 10GB",
+          bundleId: "esim_10GB_30D_US_V2",
+          data: "10GB",
+          validity: "30 days",
+          countries: "United States",
+          price: 29.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "USA – 20GB",
+          bundleId: "esim_20GB_30D_US_V2",
+          data: "20GB",
+          validity: "30 days",
+          countries: "United States",
+          price: 49.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Maximum data for power users",
+        },
+        {
+          name: "USA – 50GB",
+          bundleId: "esim_50GB_30D_US_V2",
+          data: "50GB",
+          validity: "30 days",
+          countries: "United States",
+          price: 79.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Premium data package",
+        },
+        {
+          name: "USA – 100GB",
+          bundleId: "esim_100GB_30D_US_V2",
+          data: "100GB",
+          validity: "30 days",
+          countries: "United States",
+          price: 119.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Ultimate data package",
+        },
+      ],
+      unlimitedLitePackages: [
+        {
+          name: "USA – Unlimited Lite 1 Day",
+          bundleId: "esim_UL_1D_US_V2",
+          data: "Unlimited Lite",
+          validity: "1 day",
+          countries: "United States",
+          price: 7.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "USA – Unlimited Lite 3 Days",
+          bundleId: "esim_UL_3D_US_V2",
+          data: "Unlimited Lite",
+          validity: "3 days",
+          countries: "United States",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "USA – Unlimited Lite 5 Days",
+          bundleId: "esim_UL_5D_US_V2",
+          data: "Unlimited Lite",
+          validity: "5 days",
+          countries: "United States",
+          price: 19.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "USA – Unlimited Lite 7 Days",
+          bundleId: "esim_UL_7D_US_V2",
+          data: "Unlimited Lite",
+          validity: "7 days",
+          countries: "United States",
+          price: 24.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "USA – Unlimited Lite 10 Days",
+          bundleId: "esim_UL_10D_US_V2",
+          data: "Unlimited Lite",
+          validity: "10 days",
+          countries: "United States",
+          price: 34.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "USA – Unlimited Lite 15 Days",
+          bundleId: "esim_UL_15D_US_V2",
+          data: "Unlimited Lite",
+          validity: "15 days",
+          countries: "United States",
+          price: 44.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "USA – Unlimited Lite 30 Days",
+          bundleId: "esim_UL_30D_US_V2",
+          data: "Unlimited Lite",
+          validity: "30 days",
+          countries: "United States",
+          price: 64.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
+      unlimitedPlusPackages: [
+        {
+          name: "USA – Unlimited Plus 1 Day",
+          bundleId: "esim_ULP_1D_US_V2",
+          data: "Unlimited Plus",
+          validity: "1 day",
+          countries: "United States",
+          price: 8.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "USA – Unlimited Plus 3 Days",
+          bundleId: "esim_ULP_3D_US_V2",
+          data: "Unlimited Plus",
+          validity: "3 days",
+          countries: "United States",
+          price: 19.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "USA – Unlimited Plus 5 Days",
+          bundleId: "esim_ULP_5D_US_V2",
+          data: "Unlimited Plus",
+          validity: "5 days",
+          countries: "United States",
+          price: 29.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "USA – Unlimited Plus 7 Days",
+          bundleId: "esim_ULP_7D_US_V2",
+          data: "Unlimited Plus",
+          validity: "7 days",
+          countries: "United States",
+          price: 39.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "USA – Unlimited Plus 10 Days",
+          bundleId: "esim_ULP_10D_US_V2",
+          data: "Unlimited Plus",
+          validity: "10 days",
+          countries: "United States",
+          price: 54.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "USA – Unlimited Plus 15 Days",
+          bundleId: "esim_ULP_15D_US_V2",
+          data: "Unlimited Plus",
+          validity: "15 days",
+          countries: "United States",
+          price: 79.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "USA – Unlimited Plus 30 Days",
+          bundleId: "esim_ULP_30D_US_V2",
+          data: "Unlimited Plus",
+          validity: "30 days",
+          countries: "United States",
+          price: 159.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
       ],
     },
     {
@@ -471,7 +1361,7 @@ export default function ESimPage() {
       icon: "🇬🇧",
       color: "purple",
       description: "United Kingdom",
-      packages: [
+      standardPackages: [
         {
           name: "UK – 1GB",
           bundleId: "esim_1GB_7D_GB_V2",
@@ -485,6 +1375,18 @@ export default function ESimPage() {
           shortDescription: "Perfect for short trips",
         },
         {
+          name: "UK – 2GB",
+          bundleId: "esim_2GB_15D_GB_V2",
+          data: "2GB",
+          validity: "15 days",
+          countries: "United Kingdom",
+          price: 8.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for week-long stays",
+        },
+        {
           name: "UK – 3GB",
           bundleId: "esim_3GB_30D_GB_V2",
           data: "3GB",
@@ -496,6 +1398,238 @@ export default function ESimPage() {
           badge: "🔥 Most Popular",
           shortDescription: "Best value for extended travel",
         },
+        {
+          name: "UK – 5GB",
+          bundleId: "esim_5GB_30D_GB_V2",
+          data: "5GB",
+          validity: "30 days",
+          countries: "United Kingdom",
+          price: 16.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for heavy data users",
+        },
+        {
+          name: "UK – 10GB",
+          bundleId: "esim_10GB_30D_GB_V2",
+          data: "10GB",
+          validity: "30 days",
+          countries: "United Kingdom",
+          price: 24.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "UK – 20GB",
+          bundleId: "esim_20GB_30D_GB_V2",
+          data: "20GB",
+          validity: "30 days",
+          countries: "United Kingdom",
+          price: 39.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Maximum data for power users",
+        },
+        {
+          name: "UK – 50GB",
+          bundleId: "esim_50GB_30D_GB_V2",
+          data: "50GB",
+          validity: "30 days",
+          countries: "United Kingdom",
+          price: 64.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Premium data package",
+        },
+        {
+          name: "UK – 100GB",
+          bundleId: "esim_100GB_30D_GB_V2",
+          data: "100GB",
+          validity: "30 days",
+          countries: "United Kingdom",
+          price: 99.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Ultimate data package",
+        },
+      ],
+      unlimitedLitePackages: [
+        {
+          name: "UK – Unlimited Lite 1 Day",
+          bundleId: "esim_UL_1D_GB_V2",
+          data: "Unlimited Lite",
+          validity: "1 day",
+          countries: "United Kingdom",
+          price: 6.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "UK – Unlimited Lite 3 Days",
+          bundleId: "esim_UL_3D_GB_V2",
+          data: "Unlimited Lite",
+          validity: "3 days",
+          countries: "United Kingdom",
+          price: 12.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "UK – Unlimited Lite 5 Days",
+          bundleId: "esim_UL_5D_GB_V2",
+          data: "Unlimited Lite",
+          validity: "5 days",
+          countries: "United Kingdom",
+          price: 17.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "UK – Unlimited Lite 7 Days",
+          bundleId: "esim_UL_7D_GB_V2",
+          data: "Unlimited Lite",
+          validity: "7 days",
+          countries: "United Kingdom",
+          price: 22.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "UK – Unlimited Lite 10 Days",
+          bundleId: "esim_UL_10D_GB_V2",
+          data: "Unlimited Lite",
+          validity: "10 days",
+          countries: "United Kingdom",
+          price: 29.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "UK – Unlimited Lite 15 Days",
+          bundleId: "esim_UL_15D_GB_V2",
+          data: "Unlimited Lite",
+          validity: "15 days",
+          countries: "United Kingdom",
+          price: 39.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "UK – Unlimited Lite 30 Days",
+          bundleId: "esim_UL_30D_GB_V2",
+          data: "Unlimited Lite",
+          validity: "30 days",
+          countries: "United Kingdom",
+          price: 59.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
+      unlimitedPlusPackages: [
+        {
+          name: "UK – Unlimited Plus 1 Day",
+          bundleId: "esim_ULP_1D_GB_V2",
+          data: "Unlimited Plus",
+          validity: "1 day",
+          countries: "United Kingdom",
+          price: 9.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "UK – Unlimited Plus 3 Days",
+          bundleId: "esim_ULP_3D_GB_V2",
+          data: "Unlimited Plus",
+          validity: "3 days",
+          countries: "United Kingdom",
+          price: 17.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "UK – Unlimited Plus 5 Days",
+          bundleId: "esim_ULP_5D_GB_V2",
+          data: "Unlimited Plus",
+          validity: "5 days",
+          countries: "United Kingdom",
+          price: 24.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "UK – Unlimited Plus 7 Days",
+          bundleId: "esim_ULP_7D_GB_V2",
+          data: "Unlimited Plus",
+          validity: "7 days",
+          countries: "United Kingdom",
+          price: 29.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "UK – Unlimited Plus 10 Days",
+          bundleId: "esim_ULP_10D_GB_V2",
+          data: "Unlimited Plus",
+          validity: "10 days",
+          countries: "United Kingdom",
+          price: 39.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "UK – Unlimited Plus 15 Days",
+          bundleId: "esim_ULP_15D_GB_V2",
+          data: "Unlimited Plus",
+          validity: "15 days",
+          countries: "United Kingdom",
+          price: 54.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "UK – Unlimited Plus 30 Days",
+          bundleId: "esim_ULP_30D_GB_V2",
+          data: "Unlimited Plus",
+          validity: "30 days",
+          countries: "United Kingdom",
+          price: 89.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
       ],
     },
     {
@@ -504,18 +1638,30 @@ export default function ESimPage() {
       icon: "🇩🇪",
       color: "red",
       description: "Germany",
-      packages: [
+      standardPackages: [
         {
           name: "Germany – 1GB",
           bundleId: "esim_1GB_7D_DE_V2",
           data: "1GB",
           validity: "7 days",
           countries: "Germany",
-          price: 5.99,
+          price: 4.99,
           currency: "$",
           popular: false,
           badge: null,
           shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Germany – 2GB",
+          bundleId: "esim_2GB_15D_DE_V2",
+          data: "2GB",
+          validity: "15 days",
+          countries: "Germany",
+          price: 7.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for week-long stays",
         },
         {
           name: "Germany – 3GB",
@@ -523,40 +1669,291 @@ export default function ESimPage() {
           data: "3GB",
           validity: "30 days",
           countries: "Germany",
-          price: 11.99,
+          price: 9.99,
           currency: "$",
           popular: true,
           badge: "🔥 Most Popular",
           shortDescription: "Best value for extended travel",
         },
+        {
+          name: "Germany – 5GB",
+          bundleId: "esim_5GB_30D_DE_V2",
+          data: "5GB",
+          validity: "30 days",
+          countries: "Germany",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for heavy data users",
+        },
+        {
+          name: "Germany – 10GB",
+          bundleId: "esim_10GB_30D_DE_V2",
+          data: "10GB",
+          validity: "30 days",
+          countries: "Germany",
+          price: 22.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "Germany – 20GB",
+          bundleId: "esim_20GB_30D_DE_V2",
+          data: "20GB",
+          validity: "30 days",
+          countries: "Germany",
+          price: 34.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Maximum data for power users",
+        },
+        {
+          name: "Germany – 50GB",
+          bundleId: "esim_50GB_30D_DE_V2",
+          data: "50GB",
+          validity: "30 days",
+          countries: "Germany",
+          price: 59.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Premium data package",
+        },
+        {
+          name: "Germany – 100GB",
+          bundleId: "esim_100GB_30D_DE_V2",
+          data: "100GB",
+          validity: "30 days",
+          countries: "Germany",
+          price: 94.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Ultimate data package",
+        },
+      ],
+      unlimitedLitePackages: [
+        {
+          name: "Germany – Unlimited Lite 1 Day",
+          bundleId: "esim_UL_1D_DE_V2",
+          data: "Unlimited Lite",
+          validity: "1 day",
+          countries: "Germany",
+          price: 6.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Germany – Unlimited Lite 3 Days",
+          bundleId: "esim_UL_3D_DE_V2",
+          data: "Unlimited Lite",
+          validity: "3 days",
+          countries: "Germany",
+          price: 11.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Germany – Unlimited Lite 5 Days",
+          bundleId: "esim_UL_5D_DE_V2",
+          data: "Unlimited Lite",
+          validity: "5 days",
+          countries: "Germany",
+          price: 15.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Germany – Unlimited Lite 7 Days",
+          bundleId: "esim_UL_7D_DE_V2",
+          data: "Unlimited Lite",
+          validity: "7 days",
+          countries: "Germany",
+          price: 19.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Germany – Unlimited Lite 10 Days",
+          bundleId: "esim_UL_10D_DE_V2",
+          data: "Unlimited Lite",
+          validity: "10 days",
+          countries: "Germany",
+          price: 26.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "Germany – Unlimited Lite 15 Days",
+          bundleId: "esim_UL_15D_DE_V2",
+          data: "Unlimited Lite",
+          validity: "15 days",
+          countries: "Germany",
+          price: 34.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "Germany – Unlimited Lite 30 Days",
+          bundleId: "esim_UL_30D_DE_V2",
+          data: "Unlimited Lite",
+          validity: "30 days",
+          countries: "Germany",
+          price: 54.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
+      ],
+      unlimitedPlusPackages: [
+        {
+          name: "Germany – Unlimited Plus 1 Day",
+          bundleId: "esim_ULP_1D_DE_V2",
+          data: "Unlimited Plus",
+          validity: "1 day",
+          countries: "Germany",
+          price: 8.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for short trips",
+        },
+        {
+          name: "Germany – Unlimited Plus 3 Days",
+          bundleId: "esim_ULP_3D_DE_V2",
+          data: "Unlimited Plus",
+          validity: "3 days",
+          countries: "Germany",
+          price: 14.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Great for weekend trips",
+        },
+        {
+          name: "Germany – Unlimited Plus 5 Days",
+          bundleId: "esim_ULP_5D_DE_V2",
+          data: "Unlimited Plus",
+          validity: "5 days",
+          countries: "Germany",
+          price: 19.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Ideal for week-long stays",
+        },
+        {
+          name: "Germany – Unlimited Plus 7 Days",
+          bundleId: "esim_ULP_7D_DE_V2",
+          data: "Unlimited Plus",
+          validity: "7 days",
+          countries: "Germany",
+          price: 24.99,
+          currency: "$",
+          popular: true,
+          badge: "🔥 Most Popular",
+          shortDescription: "Best value for extended travel",
+        },
+        {
+          name: "Germany – Unlimited Plus 10 Days",
+          bundleId: "esim_ULP_10D_DE_V2",
+          data: "Unlimited Plus",
+          validity: "10 days",
+          countries: "Germany",
+          price: 34.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Extended travel coverage",
+        },
+        {
+          name: "Germany – Unlimited Plus 15 Days",
+          bundleId: "esim_ULP_15D_DE_V2",
+          data: "Unlimited Plus",
+          validity: "15 days",
+          countries: "Germany",
+          price: 49.99,
+          currency: "$",
+          popular: false,
+          badge: null,
+          shortDescription: "Perfect for longer stays",
+        },
+        {
+          name: "Germany – Unlimited Plus 30 Days",
+          bundleId: "esim_ULP_30D_DE_V2",
+          data: "Unlimited Plus",
+          validity: "30 days",
+          countries: "Germany",
+          price: 79.99,
+          currency: "$",
+          popular: false,
+          badge: "💎 Premium",
+          shortDescription: "Maximum coverage for long stays",
+        },
       ],
     },
   ];
   
-  // Flatten packages for backward compatibility
-  const packages = packageCategories.flatMap(cat => cat.packages);
+  // Flatten packages for backward compatibility (schema için)
+  const packages = packageCategories.flatMap(cat => [...cat.standardPackages, ...cat.unlimitedLitePackages, ...cat.unlimitedPlusPackages]);
 
-  const calculatePrice = (price: number) => {
+  const calculatePrice = (price: number, packageData?: string) => {
+    // Unlimited paketleri kontrol et (Unlimited Lite veya Unlimited Plus)
+    const isUnlimited = packageData?.includes("Unlimited") || false;
+    
     if (isFirstPurchase && isLoggedIn) {
-      // Sign-up bonusu: Sadece %50 indirim (orijinal fiyattan)
-      const signupDiscount = price * 0.50;
+      // Sign-up bonusu: Tüm paketler için %25 indirim
+      const signupDiscount = price * 0.25;
       const finalPrice = price - signupDiscount;
       return {
         original: price,
         discounted: finalPrice,
         discount: signupDiscount,
         baseDiscount: 0,
+        discountPercentage: 25,
       };
     }
-    // Normal kullanıcılar: %20 genel indirim
-    const baseDiscountedPrice = price * 0.8;
-    const baseDiscount = price * 0.2;
-    return {
-      original: price,
-      discounted: baseDiscountedPrice,
-      discount: baseDiscount,
-      baseDiscount: baseDiscount,
-    };
+    // Normal kullanıcılar
+    if (isUnlimited) {
+      // Unlimited paketler için %10 genel indirim
+      const baseDiscountedPrice = price * 0.9;
+      const baseDiscount = price * 0.1;
+      return {
+        original: price,
+        discounted: baseDiscountedPrice,
+        discount: baseDiscount,
+        baseDiscount: baseDiscount,
+        discountPercentage: 10,
+      };
+    } else {
+      // Standard paketler için %20 genel indirim
+      const baseDiscountedPrice = price * 0.8;
+      const baseDiscount = price * 0.2;
+      return {
+        original: price,
+        discounted: baseDiscountedPrice,
+        discount: baseDiscount,
+        baseDiscount: baseDiscount,
+        discountPercentage: 20,
+      };
+    }
   };
 
   // Generate Product Schema for all packages
@@ -655,7 +2052,7 @@ export default function ESimPage() {
             {isFirstPurchase && isLoggedIn && (
               <div className="mt-6 mx-auto max-w-md rounded-lg bg-yellow-400/20 border border-yellow-300/30 p-4">
                 <p className="text-yellow-100 font-bold">
-                  🎉 Welcome! Use code <span className="font-mono bg-white/20 px-2 py-1 rounded">WELCOME50</span> for 50% OFF
+                  🎉 Welcome! Use code <span className="font-mono bg-white/20 px-2 py-1 rounded">WELCOME25</span> for 25% OFF
                 </p>
               </div>
             )}
@@ -704,7 +2101,7 @@ export default function ESimPage() {
                     >
                       <span className="text-2xl">{category.icon}</span>
                       <div className="text-left flex-1">
-                        <div className="font-bold">{category.name}</div>
+                        <div className="font-bold text-lg">{category.name.toUpperCase()}</div>
                         {isActive && (
                           <div className="text-xs opacity-90 mt-0.5">
                             {category.description}
@@ -723,9 +2120,49 @@ export default function ESimPage() {
                     
                     {/* Packages directly under the tab on mobile */}
                     {isActive && (
-                      <div className="mt-4 space-y-4">
-                        {category.packages.map((pkg, index) => {
-                          const pricing = calculatePrice(pkg.price);
+                      <div className="mt-4">
+                        {/* STANDARD FIXED / UNLIMITED LITE / UNLIMITED PLUS Tabs */}
+                        <div className="flex gap-2 mb-4">
+                          <button
+                            onClick={() => setActivePackageType("standard")}
+                            className={`flex-1 px-2 py-2 rounded-lg font-bold text-xs transition-all ${
+                              activePackageType === "standard"
+                                ? "bg-blue-600 text-white shadow-lg"
+                                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                            }`}
+                          >
+                            STANDARD FIXED
+                          </button>
+                          <button
+                            onClick={() => setActivePackageType("unlimited-lite")}
+                            className={`flex-1 px-2 py-2 rounded-lg font-bold text-xs transition-all ${
+                              activePackageType === "unlimited-lite"
+                                ? "bg-blue-600 text-white shadow-lg"
+                                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                            }`}
+                          >
+                            UNLIMITED LITE
+                          </button>
+                          <button
+                            onClick={() => setActivePackageType("unlimited-plus")}
+                            className={`flex-1 px-2 py-2 rounded-lg font-bold text-xs transition-all ${
+                              activePackageType === "unlimited-plus"
+                                ? "bg-blue-600 text-white shadow-lg"
+                                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                            }`}
+                          >
+                            UNLIMITED PLUS
+                          </button>
+                        </div>
+                        <div className="space-y-4">
+                        {(
+                          activePackageType === "standard" 
+                            ? category.standardPackages 
+                            : activePackageType === "unlimited-lite"
+                            ? category.unlimitedLitePackages
+                            : category.unlimitedPlusPackages
+                        ).map((pkg, index) => {
+                          const pricing = calculatePrice(pkg.price, pkg.data);
                           const pkgColors = {
                             blue: {
                               gradient: "from-orange-500 to-orange-600",
@@ -813,15 +2250,9 @@ export default function ESimPage() {
                                       </span>
                                     </div>
                                     <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
-                                      {isFirstPurchase && isLoggedIn ? (
-                                        <p className="text-xs text-yellow-600 font-bold">
-                                          50% OFF
-                                        </p>
-                                      ) : (
-                                        <p className="text-xs text-green-600 font-bold">
-                                          20% OFF
-                                        </p>
-                                      )}
+                                      <p className={`text-xs font-bold ${isFirstPurchase && isLoggedIn ? 'text-yellow-600' : 'text-green-600'}`}>
+                                        {pricing.discountPercentage}% OFF
+                                      </p>
                                     </div>
                                   </div>
                                 </div>
@@ -850,7 +2281,7 @@ export default function ESimPage() {
                                 {isFirstPurchase && isLoggedIn && (
                                   <div className="mb-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 p-2">
                                     <p className="text-xs text-yellow-800 dark:text-yellow-200">
-                                      Code: <span className="font-mono font-bold">WELCOME50</span>
+                                      Code: <span className="font-mono font-bold">WELCOME25</span>
                                     </p>
                                   </div>
                                 )}
@@ -876,6 +2307,7 @@ export default function ESimPage() {
                             </div>
                           );
                         })}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -924,7 +2356,7 @@ export default function ESimPage() {
                       >
                         <span className="text-2xl">{category.icon}</span>
                         <div className="text-left flex-1">
-                          <div className="font-bold">{category.name}</div>
+                          <div className="font-bold text-lg">{category.name.toUpperCase()}</div>
                           {isActive && (
                             <div className="text-xs opacity-90 mt-0.5">
                               {category.description}
@@ -996,10 +2428,50 @@ export default function ESimPage() {
                     </div>
                   </div>
 
+                  {/* STANDARD FIXED / UNLIMITED LITE / UNLIMITED PLUS Tabs */}
+                  <div className="flex gap-3 mb-6">
+                    <button
+                      onClick={() => setActivePackageType("standard")}
+                      className={`px-6 py-3 rounded-lg font-bold text-base transition-all ${
+                        activePackageType === "standard"
+                          ? "bg-blue-600 text-white shadow-lg"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                      }`}
+                    >
+                      STANDARD FIXED
+                    </button>
+                    <button
+                      onClick={() => setActivePackageType("unlimited-lite")}
+                      className={`px-6 py-3 rounded-lg font-bold text-base transition-all ${
+                        activePackageType === "unlimited-lite"
+                          ? "bg-blue-600 text-white shadow-lg"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                      }`}
+                    >
+                      UNLIMITED LITE
+                    </button>
+                    <button
+                      onClick={() => setActivePackageType("unlimited-plus")}
+                      className={`px-6 py-3 rounded-lg font-bold text-base transition-all ${
+                        activePackageType === "unlimited-plus"
+                          ? "bg-blue-600 text-white shadow-lg"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                      }`}
+                    >
+                      UNLIMITED PLUS
+                    </button>
+                  </div>
+
                   {/* Packages Grid */}
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {category.packages.map((pkg, index) => {
-                      const pricing = calculatePrice(pkg.price);
+                    {(
+                      activePackageType === "standard" 
+                        ? category.standardPackages 
+                        : activePackageType === "unlimited-lite"
+                        ? category.unlimitedLitePackages
+                        : category.unlimitedPlusPackages
+                    ).map((pkg, index) => {
+                      const pricing = calculatePrice(pkg.price, pkg.data);
                       return (
                         <div
                           key={index}
@@ -1016,19 +2488,11 @@ export default function ESimPage() {
                               </span>
                             </div>
                           )}
-                          {!isFirstPurchase || !isLoggedIn ? (
-                            <div className="absolute -top-3 right-4 z-10">
-                              <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-white">
-                                20% OFF
-                              </span>
-                            </div>
-                          ) : (
-                            <div className="absolute -top-3 right-4 z-10">
-                              <span className="rounded-full bg-yellow-500 px-3 py-1 text-xs font-bold text-white">
-                                50% OFF
-                              </span>
-                            </div>
-                          )}
+                          <div className="absolute -top-3 right-4 z-10">
+                            <span className={`rounded-full px-3 py-1 text-xs font-bold text-white ${isFirstPurchase && isLoggedIn ? 'bg-yellow-500' : 'bg-green-500'}`}>
+                              {pricing.discountPercentage}% OFF
+                            </span>
+                          </div>
                           
                           <div className="text-center">
                             {/* Data & Validity */}
@@ -1074,15 +2538,9 @@ export default function ESimPage() {
                                     </span>
                                   </div>
                                   <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
-                                    {isFirstPurchase && isLoggedIn ? (
-                                      <p className="text-xs text-yellow-600 font-semibold">
-                                        50% OFF
-                                      </p>
-                                    ) : (
-                                      <p className="text-xs text-green-600 font-semibold">
-                                        20% OFF
-                                      </p>
-                                    )}
+                                    <p className={`text-xs font-semibold ${isFirstPurchase && isLoggedIn ? 'text-yellow-600' : 'text-green-600'}`}>
+                                      {pricing.discountPercentage}% OFF
+                                    </p>
                                   </div>
                                 </div>
                               ) : (
@@ -1096,7 +2554,7 @@ export default function ESimPage() {
                                     </span>
                                   </div>
                                   <p className="text-xs text-green-600 font-bold mt-1">
-                                    20% OFF
+                                    {pricing.discountPercentage}% OFF
                                   </p>
                                 </div>
                               )}
@@ -1127,7 +2585,7 @@ export default function ESimPage() {
                             {isFirstPurchase && isLoggedIn && (
                               <div className="mb-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 p-2">
                                 <p className="text-xs text-yellow-800 dark:text-yellow-200">
-                                  Code: <span className="font-mono font-bold">WELCOME50</span>
+                                  Code: <span className="font-mono font-bold">WELCOME25</span>
                                 </p>
                               </div>
                             )}

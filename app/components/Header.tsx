@@ -63,7 +63,7 @@ export default function Header() {
                   clipPath: 'polygon(0% 0%, calc(100% - 4px) 0%, 100% 50%, calc(100% - 4px) 100%, 0% 100%, 4px 50%)'
                 }}>
                   <span className="animate-pulse">🔥</span>
-                  <span>50%</span>
+                  <span>25%</span>
                   <span className="text-[10px]">OFF</span>
                 </span>
               </Link>
