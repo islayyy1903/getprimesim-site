@@ -896,19 +896,19 @@ export default function ESimPage() {
                         text: "text-orange-600 dark:text-orange-400",
                       },
                       purple: {
-                        active: "bg-purple-600 text-white border-purple-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-purple-50 dark:hover:bg-purple-900/20",
-                        text: "text-purple-600 dark:text-purple-400",
+                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                        text: "text-orange-600 dark:text-orange-400",
                       },
                       red: {
-                        active: "bg-red-600 text-white border-red-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-red-50 dark:hover:bg-red-900/20",
-                        text: "text-red-600 dark:text-red-400",
+                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                        text: "text-orange-600 dark:text-orange-400",
                       },
                       indigo: {
-                        active: "bg-indigo-600 text-white border-indigo-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20",
-                        text: "text-indigo-600 dark:text-indigo-400",
+                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                        text: "text-orange-600 dark:text-orange-400",
                       },
                     };
                     const tabColors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
