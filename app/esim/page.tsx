@@ -14,10 +14,13 @@ export default function ESimPage() {
   const handleCheckout = async (pkg: { name: string; bundleId?: string; price: number; currency?: string }) => {
     setLoading(pkg.name);
     try {
+      // Calculate final price with %20 discount + sign-up bonus if applicable
+      const pricing = calculatePrice(pkg.price);
       const checkoutData = {
         packageId: pkg.bundleId || pkg.name.toLowerCase().replace(/\s+/g, "-"),
         packageName: pkg.name,
-        price: pkg.price,
+        price: pricing.discounted, // Send the final discounted price
+        originalPrice: pkg.price, // Also send original price for reference
         currency: pkg.currency || "$",
         email: user?.email || undefined,
         isFirstPurchase: isLoggedIn && isFirstPurchase,
@@ -534,18 +537,26 @@ export default function ESimPage() {
   const packages = packageCategories.flatMap(cat => cat.packages);
 
   const calculatePrice = (price: number) => {
+    // Her zaman %20 indirim uygula (genel indirim)
+    const baseDiscountedPrice = price * 0.8;
+    const baseDiscount = price * 0.2;
+    
     if (isFirstPurchase && isLoggedIn) {
-      const discount = price * 0.30;
+      // Sign-up bonusu: %20 indirimli fiyattan %50 daha indirim
+      const signupDiscount = baseDiscountedPrice * 0.50;
+      const finalPrice = baseDiscountedPrice - signupDiscount;
       return {
         original: price,
-        discounted: price - discount,
-        discount: discount,
+        discounted: finalPrice,
+        discount: price - finalPrice,
+        baseDiscount: baseDiscount,
       };
     }
     return {
       original: price,
-      discounted: price,
-      discount: 0,
+      discounted: baseDiscountedPrice,
+      discount: baseDiscount,
+      baseDiscount: baseDiscount,
     };
   };
 
@@ -611,7 +622,7 @@ export default function ESimPage() {
         "name": "Do I get a discount on my first purchase?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! New customers who sign up get 30% off their first purchase. Simply create an account and the discount will be applied automatically.",
+          "text": "Yes! New customers who sign up get 50% off their first purchase. Simply create an account and the discount will be applied automatically.",
         },
       },
     ],
@@ -645,7 +656,7 @@ export default function ESimPage() {
             {isFirstPurchase && isLoggedIn && (
               <div className="mt-6 mx-auto max-w-md rounded-lg bg-yellow-400/20 border border-yellow-300/30 p-4">
                 <p className="text-yellow-100 font-semibold">
-                  🎉 Welcome! Use code <span className="font-mono bg-white/20 px-2 py-1 rounded">WELCOME30</span> for 30% OFF
+                  🎉 Welcome! Use code <span className="font-mono bg-white/20 px-2 py-1 rounded">WELCOME50</span> for 50% OFF
                 </p>
               </div>
             )}
@@ -764,13 +775,6 @@ export default function ESimPage() {
                                   </span>
                                 </div>
                               )}
-                              {isFirstPurchase && isLoggedIn && (
-                                <div className="absolute -top-3 right-4 z-10">
-                                  <span className="rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-gray-900">
-                                    -30%
-                                  </span>
-                                </div>
-                              )}
                               
                               <div className="text-center">
                                 <div className={`mb-4 inline-flex items-center gap-2 rounded-full ${colors.bg} px-4 py-2`}>
@@ -800,25 +804,29 @@ export default function ESimPage() {
                                 </div>
 
                                 <div className="mb-6">
-                                  {pricing.discount > 0 ? (
-                                    <div>
-                                      <div className="flex items-center justify-center gap-2">
-                                        <span className="text-lg text-gray-400 line-through">
-                                          {pkg.currency}{pricing.original.toFixed(2)}
-                                        </span>
-                                        <span className={`text-3xl font-bold ${colors.text} dark:text-white`}>
-                                          {pkg.currency}{pricing.discounted.toFixed(2)}
-                                        </span>
-                                      </div>
-                                      <p className="text-xs text-green-600 font-semibold mt-1">
-                                        Save {pkg.currency}{pricing.discount.toFixed(2)}
-                                      </p>
+                                  <div>
+                                    <div className="flex items-center justify-center gap-2">
+                                      <span className="text-lg text-gray-400 line-through">
+                                        {pkg.currency}{pricing.original.toFixed(2)}
+                                      </span>
+                                      <span className={`text-3xl font-bold ${colors.text} dark:text-white`}>
+                                        {pkg.currency}{pricing.discounted.toFixed(2)}
+                                      </span>
                                     </div>
-                                  ) : (
-                                    <span className={`text-3xl font-bold ${colors.text} dark:text-white`}>
-                                      {pkg.currency}{pricing.original.toFixed(2)}
-                                    </span>
-                                  )}
+                                    <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
+                                      <p className="text-xs text-green-600 font-semibold">
+                                        20% OFF
+                                      </p>
+                                      {isFirstPurchase && isLoggedIn && (
+                                        <>
+                                          <span className="text-gray-400">•</span>
+                                          <p className="text-xs text-yellow-600 font-semibold">
+                                            +50% Sign-up Bonus
+                                          </p>
+                                        </>
+                                      )}
+                                    </div>
+                                  </div>
                                 </div>
 
                                 <div className="mb-6 space-y-2 text-left text-sm">
@@ -845,7 +853,7 @@ export default function ESimPage() {
                                 {isFirstPurchase && isLoggedIn && (
                                   <div className="mb-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 p-2">
                                     <p className="text-xs text-yellow-800 dark:text-yellow-200">
-                                      Code: <span className="font-mono font-bold">WELCOME30</span>
+                                      Code: <span className="font-mono font-bold">WELCOME50</span>
                                     </p>
                                   </div>
                                 )}
@@ -1011,13 +1019,11 @@ export default function ESimPage() {
                               </span>
                             </div>
                           )}
-                          {isFirstPurchase && isLoggedIn && (
-                            <div className="absolute -top-3 right-4 z-10">
-                              <span className="rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-gray-900">
-                                -30%
-                              </span>
-                            </div>
-                          )}
+                          <div className="absolute -top-3 right-4 z-10">
+                            <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-white">
+                              20% OFF
+                            </span>
+                          </div>
                           
                           <div className="text-center">
                             {/* Data & Validity */}
@@ -1062,14 +1068,34 @@ export default function ESimPage() {
                                       {pkg.currency}{pricing.discounted.toFixed(2)}
                                     </span>
                                   </div>
-                                  <p className="text-xs text-green-600 font-semibold mt-1">
-                                    Save {pkg.currency}{pricing.discount.toFixed(2)}
-                                  </p>
+                                  <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
+                                    <p className="text-xs text-green-600 font-semibold">
+                                      20% OFF
+                                    </p>
+                                    {isFirstPurchase && isLoggedIn && (
+                                      <>
+                                        <span className="text-gray-400">•</span>
+                                        <p className="text-xs text-yellow-600 font-semibold">
+                                          +50% Sign-up Bonus
+                                        </p>
+                                      </>
+                                    )}
+                                  </div>
                                 </div>
                               ) : (
-                                <span className={`text-3xl font-bold ${colors.text} dark:text-white`}>
-                                  {pkg.currency}{pricing.original.toFixed(2)}
-                                </span>
+                                <div>
+                                  <div className="flex items-center justify-center gap-2">
+                                    <span className="text-lg text-gray-400 line-through">
+                                      {pkg.currency}{pricing.original.toFixed(2)}
+                                    </span>
+                                    <span className={`text-3xl font-bold ${colors.text} dark:text-white`}>
+                                      {pkg.currency}{pricing.discounted.toFixed(2)}
+                                    </span>
+                                  </div>
+                                  <p className="text-xs text-green-600 font-semibold mt-1">
+                                    20% OFF
+                                  </p>
+                                </div>
                               )}
                             </div>
 
@@ -1098,7 +1124,7 @@ export default function ESimPage() {
                             {isFirstPurchase && isLoggedIn && (
                               <div className="mb-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 p-2">
                                 <p className="text-xs text-yellow-800 dark:text-yellow-200">
-                                  Code: <span className="font-mono font-bold">WELCOME15</span>
+                                  Code: <span className="font-mono font-bold">WELCOME50</span>
                                 </p>
                               </div>
                             )}

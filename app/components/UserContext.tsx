@@ -72,7 +72,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         login,
         logout,
         isFirstPurchase,
-        discountCode: "WELCOME15",
+        discountCode: "WELCOME50",
         useDiscount,
       }}
     >

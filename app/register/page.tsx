@@ -54,7 +54,7 @@ export default function RegisterPage() {
               Create Account
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
-              Join PrimeSim and get <span className="font-bold text-yellow-300">30% OFF</span> on your first purchase!
+              Join PrimeSim and get <span className="font-bold text-yellow-300">50% OFF</span> on your first purchase!
             </p>
           </div>
         </section>
@@ -66,10 +66,10 @@ export default function RegisterPage() {
               {/* Special Offer Banner */}
               <div className="mb-6 rounded-lg bg-gradient-to-r from-yellow-400 to-orange-400 p-4 text-center">
                 <p className="text-lg font-bold text-white">
-                  🎉 Welcome Bonus: 30% OFF First Purchase!
+                  🎉 Welcome Bonus: 50% OFF First Purchase!
                 </p>
                 <p className="mt-1 text-sm text-white/90">
-                  Use code: <span className="font-mono font-bold">WELCOME15</span>
+                  Use code: <span className="font-mono font-bold">WELCOME50</span>
                 </p>
               </div>
 
@@ -161,7 +161,7 @@ export default function RegisterPage() {
                   type="submit"
                   className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
                 >
-                  Create Account & Get 30% OFF
+                  Create Account & Get 50% OFF
                 </button>
               </form>
 
@@ -183,7 +183,7 @@ export default function RegisterPage() {
                   <svg className="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  30% discount on first purchase
+                  50% discount on first purchase
                 </li>
                 <li className="flex items-center gap-2">
                   <svg className="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
