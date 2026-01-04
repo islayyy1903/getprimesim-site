@@ -186,14 +186,42 @@ function generateEmailHTML({
     `;
   }
   
-  // QR code link oluştur (orderId varsa test endpoint linki)
+  // QR code display oluştur
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://getprimesim.com';
-  const qrCodeLink = orderId 
-    ? `${baseUrl}/api/test-qrcode?orderReference=${encodeURIComponent(orderId)}`
-    : null;
   
-  const qrCodeDisplay = qrCodeLink
-    ? `
+  let qrCodeDisplay = '';
+  
+  // Eğer base64 QR code varsa, direkt email'e ekle
+  if (qrCode) {
+    // Base64 QR code'u img tag olarak ekle
+    const qrCodeDataUrl = qrCode.startsWith('data:image') 
+      ? qrCode 
+      : `data:image/png;base64,${qrCode}`;
+    
+    qrCodeDisplay = `
+      <div style="text-align: center; margin: 30px 0;">
+        <img src="${qrCodeDataUrl}" alt="QR Code" style="max-width: 300px; width: 100%; height: auto; border: 2px solid #e5e7eb; border-radius: 8px; padding: 10px; background: white;">
+      </div>
+      <p style="text-align: center; color: #6b7280; margin-top: 15px; font-size: 14px;">
+        Scan this QR code with your phone to activate your eSim.
+      </p>
+    `;
+  } 
+  // Eğer QR code URL varsa, URL'den göster
+  else if (qrCodeUrl) {
+    qrCodeDisplay = `
+      <div style="text-align: center; margin: 30px 0;">
+        <img src="${qrCodeUrl}" alt="QR Code" style="max-width: 300px; width: 100%; height: auto; border: 2px solid #e5e7eb; border-radius: 8px; padding: 10px; background: white;">
+      </div>
+      <p style="text-align: center; color: #6b7280; margin-top: 15px; font-size: 14px;">
+        Scan this QR code with your phone to activate your eSim.
+      </p>
+    `;
+  }
+  // Eğer orderId varsa, test endpoint linki ver
+  else if (orderId) {
+    const qrCodeLink = `${baseUrl}/api/test-qrcode?orderReference=${encodeURIComponent(orderId)}`;
+    qrCodeDisplay = `
       <div style="text-align: center; margin: 30px 0;">
         <a href="${qrCodeLink}" 
            style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
@@ -203,12 +231,16 @@ function generateEmailHTML({
       <p style="text-align: center; color: #6b7280; margin-top: 15px; font-size: 14px;">
         Click the button above to view and download your QR code.
       </p>
-    `
-    : `
+    `;
+  }
+  // Hiçbiri yoksa, işlem devam ediyor mesajı
+  else {
+    qrCodeDisplay = `
       <p style="color: #6b7280; text-align: center; padding: 20px; background: #f9fafb; border-radius: 8px;">
         Your QR code is being processed. Please check back in a few minutes or contact our support team.
       </p>
     `;
+  }
 
   return `
 <!DOCTYPE html>
