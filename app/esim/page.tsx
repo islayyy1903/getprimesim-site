@@ -891,24 +891,24 @@ export default function ESimPage() {
                   {packageCategories.map((category) => {
                     const colorClasses = {
                       blue: {
-                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
-                        text: "text-orange-600 dark:text-orange-400",
+                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
+                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
+                        text: "text-blue-600 dark:text-blue-400",
                       },
                       purple: {
-                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
-                        text: "text-orange-600 dark:text-orange-400",
+                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
+                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
+                        text: "text-blue-600 dark:text-blue-400",
                       },
                       red: {
-                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
-                        text: "text-orange-600 dark:text-orange-400",
+                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
+                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
+                        text: "text-blue-600 dark:text-blue-400",
                       },
                       indigo: {
-                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
-                        text: "text-orange-600 dark:text-orange-400",
+                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
+                        inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
+                        text: "text-blue-600 dark:text-blue-400",
                       },
                     };
                     const tabColors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
