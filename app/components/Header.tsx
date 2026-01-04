@@ -57,8 +57,10 @@ export default function Header() {
               <Link href="/login" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
                 Sign In
               </Link>
-              <Link href="/register" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-orange-400 px-3 py-1.5 font-semibold text-white transition-all hover:bg-black">
-                <span>Sign Up</span>
+              <div className="flex flex-col items-center gap-1">
+                <Link href="/register" className="rounded-lg bg-orange-400 px-3 py-1.5 font-semibold text-white transition-all hover:bg-black">
+                  Sign Up
+                </Link>
                 <span className="relative inline-flex items-center gap-0.5 bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md" style={{
                   clipPath: 'polygon(0% 0%, calc(100% - 4px) 0%, 100% 50%, calc(100% - 4px) 100%, 0% 100%, 4px 50%)'
                 }}>
@@ -66,7 +68,7 @@ export default function Header() {
                   <span>50%</span>
                   <span className="text-[10px]">OFF</span>
                 </span>
-              </Link>
+              </div>
             </>
           )}
         </div>
@@ -140,12 +142,14 @@ export default function Header() {
                   >
                     Sign In
                   </Link>
-                  <Link 
-                    href="/register" 
-                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg bg-orange-400 px-3 py-1.5 font-semibold text-white transition-all hover:bg-black"
-                    onClick={closeMobileMenu}
-                  >
-                    <span>Sign Up</span>
+                  <div className="flex flex-col items-center gap-1 w-full">
+                    <Link 
+                      href="/register" 
+                      className="w-full text-center rounded-lg bg-orange-400 px-3 py-1.5 font-semibold text-white transition-all hover:bg-black"
+                      onClick={closeMobileMenu}
+                    >
+                      Sign Up
+                    </Link>
                     <span className="relative inline-flex items-center gap-0.5 bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md" style={{
                       clipPath: 'polygon(0% 0%, calc(100% - 4px) 0%, 100% 50%, calc(100% - 4px) 100%, 0% 100%, 4px 50%)'
                     }}>
@@ -153,7 +157,7 @@ export default function Header() {
                       <span>50%</span>
                       <span className="text-[10px]">OFF</span>
                     </span>
-                  </Link>
+                  </div>
                 </div>
               </>
             )}
