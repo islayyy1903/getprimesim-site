@@ -62,6 +62,8 @@ export async function sendQRCodeEmail({
         packageName,
         orderId,
         errorMessage,
+        qrCode,
+        qrCodeUrl,
       }),
     };
     
@@ -125,10 +127,14 @@ function generateEmailHTML({
   packageName,
   orderId,
   errorMessage,
+  qrCode,
+  qrCodeUrl,
 }: {
   packageName: string;
   orderId?: string;
   errorMessage?: string;
+  qrCode?: string;
+  qrCodeUrl?: string;
 }): string {
   // If error message exists, show error instead of QR code
   if (errorMessage) {
