@@ -1016,11 +1016,19 @@ export default function ESimPage() {
                               </span>
                             </div>
                           )}
-                          <div className="absolute -top-3 right-4 z-10">
-                            <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-white">
-                              20% OFF
-                            </span>
-                          </div>
+                          {!isFirstPurchase || !isLoggedIn ? (
+                            <div className="absolute -top-3 right-4 z-10">
+                              <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-white">
+                                20% OFF
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="absolute -top-3 right-4 z-10">
+                              <span className="rounded-full bg-yellow-500 px-3 py-1 text-xs font-bold text-white">
+                                50% OFF
+                              </span>
+                            </div>
+                          )}
                           
                           <div className="text-center">
                             {/* Data & Validity */}
