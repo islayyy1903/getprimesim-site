@@ -953,28 +953,28 @@ export default function ESimPage() {
                   border: "border-orange-500",
                   text: "text-orange-600",
                   bg: "bg-orange-50 dark:bg-orange-900/20",
-                  button: "bg-black hover:bg-white hover:text-black",
+                  button: "bg-orange-400 hover:bg-black hover:text-white",
                 },
                 purple: {
                   gradient: "from-orange-500 to-orange-600",
                   border: "border-orange-500",
                   text: "text-orange-600",
                   bg: "bg-orange-50 dark:bg-orange-900/20",
-                  button: "bg-black hover:bg-white hover:text-black",
+                  button: "bg-orange-400 hover:bg-black hover:text-white",
                 },
                 red: {
                   gradient: "from-orange-500 to-orange-600",
                   border: "border-orange-500",
                   text: "text-orange-600",
                   bg: "bg-orange-50 dark:bg-orange-900/20",
-                  button: "bg-black hover:bg-white hover:text-black",
+                  button: "bg-orange-400 hover:bg-black hover:text-white",
                 },
                 indigo: {
                   gradient: "from-orange-500 to-orange-600",
                   border: "border-orange-500",
                   text: "text-orange-600",
                   bg: "bg-orange-50 dark:bg-orange-900/20",
-                  button: "bg-black hover:bg-white hover:text-black",
+                  button: "bg-orange-400 hover:bg-black hover:text-white",
                 },
               };
               const colors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
