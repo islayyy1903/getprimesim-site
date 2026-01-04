@@ -34,7 +34,7 @@ export default function Header() {
           <Link href="/" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
             Home
           </Link>
-          <Link href="/esim" className="rounded-lg bg-orange-400 px-3 py-1.5 text-white transition-colors hover:bg-black dark:bg-orange-400 dark:text-white dark:hover:bg-black">
+          <Link href="/esim" className="rounded-lg bg-blue-600 px-3 py-1.5 text-white transition-colors hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700">
             eSim
           </Link>
           <Link href="/contact" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
@@ -57,7 +57,7 @@ export default function Header() {
               <Link href="/login" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
                 Sign In
               </Link>
-              <Link href="/register" className="group relative inline-flex items-center gap-2 rounded-lg bg-orange-400 px-3 py-1.5 font-semibold text-white transition-all hover:bg-black">
+              <Link href="/register" className="group relative inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-blue-700">
                 <span>Sign Up</span>
                 <span className="relative inline-flex items-center gap-0.5 bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md" style={{
                   clipPath: 'polygon(0% 0%, calc(100% - 4px) 0%, 100% 50%, calc(100% - 4px) 100%, 0% 100%, 4px 50%)'
@@ -101,7 +101,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/esim" 
-              className="block rounded-lg bg-orange-400 px-3 py-1.5 text-white transition-colors hover:bg-black dark:bg-orange-400 dark:text-white dark:hover:bg-black"
+              className="block rounded-lg bg-blue-600 px-3 py-1.5 text-white transition-colors hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700"
               onClick={closeMobileMenu}
             >
               eSim
@@ -142,7 +142,7 @@ export default function Header() {
                   </Link>
                   <Link 
                     href="/register" 
-                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-lg bg-orange-400 px-3 py-1.5 font-semibold text-white transition-all hover:bg-black"
+                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-blue-700"
                     onClick={closeMobileMenu}
                   >
                     <span>Sign Up</span>
