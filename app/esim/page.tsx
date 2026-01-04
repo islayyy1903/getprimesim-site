@@ -643,18 +643,18 @@ export default function ESimPage() {
       ))}
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 px-4 py-16 text-white sm:px-6 lg:px-8">
+        <section className="bg-gradient-to-br from-orange-600 to-orange-700 px-4 py-16 text-white sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               eSim Plans
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-orange-100">
               Digital SIM cards that activate instantly with QR code, without physical SIM cards. 
               Fast and reliable internet connection in USA, UK, Germany, and 150+ countries worldwide.
             </p>
             {isFirstPurchase && isLoggedIn && (
               <div className="mt-6 mx-auto max-w-md rounded-lg bg-yellow-400/20 border border-yellow-300/30 p-4">
-                <p className="text-yellow-100 font-semibold">
+                <p className="text-yellow-100 font-bold">
                   🎉 Welcome! Use code <span className="font-mono bg-white/20 px-2 py-1 rounded">WELCOME50</span> for 50% OFF
                 </p>
               </div>
@@ -671,24 +671,24 @@ export default function ESimPage() {
               {packageCategories.map((category) => {
                 const colorClasses = {
                   blue: {
-                    active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/20",
-                    text: "text-blue-600 dark:text-blue-400",
+                    active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                    text: "text-orange-600 dark:text-orange-400",
                   },
                   purple: {
-                    active: "bg-purple-600 text-white border-purple-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-purple-50 dark:hover:bg-purple-900/20",
-                    text: "text-purple-600 dark:text-purple-400",
+                    active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                    text: "text-orange-600 dark:text-orange-400",
                   },
                   red: {
-                    active: "bg-red-600 text-white border-red-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-red-50 dark:hover:bg-red-900/20",
-                    text: "text-red-600 dark:text-red-400",
+                    active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                    text: "text-orange-600 dark:text-orange-400",
                   },
                   indigo: {
-                    active: "bg-indigo-600 text-white border-indigo-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20",
-                    text: "text-indigo-600 dark:text-indigo-400",
+                    active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                    text: "text-orange-600 dark:text-orange-400",
                   },
                 };
                 const tabColors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
@@ -698,7 +698,7 @@ export default function ESimPage() {
                   <div key={category.id}>
                     <button
                       onClick={() => setActiveCategory(isActive ? "" : category.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl font-semibold transition-all duration-300 border-2 ${
+                      className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl font-bold transition-all duration-300 border-2 ${
                         isActive ? tabColors.active : tabColors.inactive
                       } shadow-md hover:shadow-lg`}
                     >
@@ -728,32 +728,32 @@ export default function ESimPage() {
                           const pricing = calculatePrice(pkg.price);
                           const pkgColors = {
                             blue: {
-                              gradient: "from-blue-500 to-blue-600",
-                              border: "border-blue-500",
-                              text: "text-blue-600",
-                              bg: "bg-blue-50 dark:bg-blue-900/20",
-                              button: "bg-blue-600 hover:bg-blue-700",
+                              gradient: "from-orange-500 to-orange-600",
+                              border: "border-orange-500",
+                              text: "text-orange-600",
+                              bg: "bg-orange-50 dark:bg-orange-900/20",
+                              button: "bg-orange-600 hover:bg-orange-700",
                             },
                             purple: {
-                              gradient: "from-purple-500 to-purple-600",
-                              border: "border-purple-500",
-                              text: "text-purple-600",
-                              bg: "bg-purple-50 dark:bg-purple-900/20",
-                              button: "bg-purple-600 hover:bg-purple-700",
+                              gradient: "from-orange-500 to-orange-600",
+                              border: "border-orange-500",
+                              text: "text-orange-600",
+                              bg: "bg-orange-50 dark:bg-orange-900/20",
+                              button: "bg-orange-600 hover:bg-orange-700",
                             },
                             red: {
-                              gradient: "from-red-500 to-red-600",
-                              border: "border-red-500",
-                              text: "text-red-600",
-                              bg: "bg-red-50 dark:bg-red-900/20",
-                              button: "bg-red-600 hover:bg-red-700",
+                              gradient: "from-orange-500 to-orange-600",
+                              border: "border-orange-500",
+                              text: "text-orange-600",
+                              bg: "bg-orange-50 dark:bg-orange-900/20",
+                              button: "bg-orange-600 hover:bg-orange-700",
                             },
                             indigo: {
-                              gradient: "from-indigo-500 to-indigo-600",
-                              border: "border-indigo-500",
-                              text: "text-indigo-600",
-                              bg: "bg-indigo-50 dark:bg-indigo-900/20",
-                              button: "bg-indigo-600 hover:bg-indigo-700",
+                              gradient: "from-orange-500 to-orange-600",
+                              border: "border-orange-500",
+                              text: "text-orange-600",
+                              bg: "bg-orange-50 dark:bg-orange-900/20",
+                              button: "bg-orange-600 hover:bg-orange-700",
                             },
                           };
                           const colors = pkgColors[category.color as keyof typeof pkgColors] || pkgColors.blue;
@@ -769,7 +769,7 @@ export default function ESimPage() {
                             >
                               {(pkg.badge || pkg.popular) && (
                                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                                  <span className={`rounded-full px-4 py-1 text-xs font-semibold text-white ${colors.button}`}>
+                                  <span className={`rounded-full px-4 py-1 text-xs font-bold text-white ${colors.button}`}>
                                     {pkg.badge || "Most Popular"}
                                   </span>
                                 </div>
@@ -814,11 +814,11 @@ export default function ESimPage() {
                                     </div>
                                     <div className="flex items-center justify-center gap-2 mt-1 flex-wrap">
                                       {isFirstPurchase && isLoggedIn ? (
-                                        <p className="text-xs text-yellow-600 font-semibold">
+                                        <p className="text-xs text-yellow-600 font-bold">
                                           50% OFF
                                         </p>
                                       ) : (
-                                        <p className="text-xs text-green-600 font-semibold">
+                                        <p className="text-xs text-green-600 font-bold">
                                           20% OFF
                                         </p>
                                       )}
@@ -858,7 +858,7 @@ export default function ESimPage() {
                                 <button
                                   onClick={() => handleCheckout(pkg)}
                                   disabled={loading === pkg.name}
-                                  className={`w-full rounded-lg ${colors.button} px-6 py-3 font-semibold text-white transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed`}
+                                  className={`w-full rounded-lg ${colors.button} px-6 py-3 font-bold text-white transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed`}
                                 >
                                   {loading === pkg.name ? (
                                     <span className="flex items-center justify-center gap-2">
@@ -891,9 +891,9 @@ export default function ESimPage() {
                   {packageCategories.map((category) => {
                     const colorClasses = {
                       blue: {
-                        active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-blue-900/20",
-                        text: "text-blue-600 dark:text-blue-400",
+                        active: "bg-orange-600 text-white border-orange-600 shadow-lg",
+                        inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-50 dark:hover:bg-orange-900/20",
+                        text: "text-orange-600 dark:text-orange-400",
                       },
                       purple: {
                         active: "bg-purple-600 text-white border-purple-600 shadow-lg",
@@ -918,7 +918,7 @@ export default function ESimPage() {
                       <button
                         key={category.id}
                         onClick={() => setActiveCategory(category.id)}
-                        className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl font-semibold transition-all duration-300 border-2 ${
+                        className={`w-full flex items-center gap-3 px-4 py-4 rounded-xl font-bold transition-all duration-300 border-2 ${
                           isActive ? tabColors.active : tabColors.inactive
                         } shadow-md hover:shadow-lg`}
                       >
@@ -949,32 +949,32 @@ export default function ESimPage() {
 
               const colorClasses = {
                 blue: {
-                  gradient: "from-blue-500 to-blue-600",
-                  border: "border-blue-500",
-                  text: "text-blue-600",
-                  bg: "bg-blue-50 dark:bg-blue-900/20",
-                  button: "bg-blue-600 hover:bg-blue-700",
+                  gradient: "from-orange-500 to-orange-600",
+                  border: "border-orange-500",
+                  text: "text-orange-600",
+                  bg: "bg-orange-50 dark:bg-orange-900/20",
+                  button: "bg-orange-600 hover:bg-orange-700",
                 },
                 purple: {
-                  gradient: "from-purple-500 to-purple-600",
-                  border: "border-purple-500",
-                  text: "text-purple-600",
-                  bg: "bg-purple-50 dark:bg-purple-900/20",
-                  button: "bg-purple-600 hover:bg-purple-700",
+                  gradient: "from-orange-500 to-orange-600",
+                  border: "border-orange-500",
+                  text: "text-orange-600",
+                  bg: "bg-orange-50 dark:bg-orange-900/20",
+                  button: "bg-orange-600 hover:bg-orange-700",
                 },
                 red: {
-                  gradient: "from-red-500 to-red-600",
-                  border: "border-red-500",
-                  text: "text-red-600",
-                  bg: "bg-red-50 dark:bg-red-900/20",
-                  button: "bg-red-600 hover:bg-red-700",
+                  gradient: "from-orange-500 to-orange-600",
+                  border: "border-orange-500",
+                  text: "text-orange-600",
+                  bg: "bg-orange-50 dark:bg-orange-900/20",
+                  button: "bg-orange-600 hover:bg-orange-700",
                 },
                 indigo: {
-                  gradient: "from-indigo-500 to-indigo-600",
-                  border: "border-indigo-500",
-                  text: "text-indigo-600",
-                  bg: "bg-indigo-50 dark:bg-indigo-900/20",
-                  button: "bg-indigo-600 hover:bg-indigo-700",
+                  gradient: "from-orange-500 to-orange-600",
+                  border: "border-orange-500",
+                  text: "text-orange-600",
+                  bg: "bg-orange-50 dark:bg-orange-900/20",
+                  button: "bg-orange-600 hover:bg-orange-700",
                 },
               };
               const colors = colorClasses[category.color as keyof typeof colorClasses] || colorClasses.blue;
@@ -1095,7 +1095,7 @@ export default function ESimPage() {
                                       {pkg.currency}{pricing.discounted.toFixed(2)}
                                     </span>
                                   </div>
-                                  <p className="text-xs text-green-600 font-semibold mt-1">
+                                  <p className="text-xs text-green-600 font-bold mt-1">
                                     20% OFF
                                   </p>
                                 </div>
@@ -1173,37 +1173,37 @@ export default function ESimPage() {
             </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-600 dark:bg-blue-900 dark:text-blue-400">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-2xl font-bold text-orange-600 dark:bg-orange-900 dark:text-orange-400">
                   1
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Choose Plan</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Choose Plan</h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Select and purchase the eSim plan that fits your needs
                 </p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-600 dark:bg-blue-900 dark:text-blue-400">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-2xl font-bold text-orange-600 dark:bg-orange-900 dark:text-orange-400">
                   2
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Get QR Code</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Get QR Code</h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Receive your QR code via email (within minutes)
                 </p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-600 dark:bg-blue-900 dark:text-blue-400">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-2xl font-bold text-orange-600 dark:bg-orange-900 dark:text-orange-400">
                   3
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Activate</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Activate</h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Scan the QR code from your phone&apos;s eSim settings
                 </p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-600 dark:bg-blue-900 dark:text-blue-400">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-2xl font-bold text-orange-600 dark:bg-orange-900 dark:text-orange-400">
                   4
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Connect</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Connect</h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Get instant internet connection
                 </p>
@@ -1217,12 +1217,12 @@ export default function ESimPage() {
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <div className="rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-800 dark:bg-gray-800">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
-                  <svg className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900">
+                  <svg className="h-6 w-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Instant Activation</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Instant Activation</h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Becomes active within minutes after purchase
                 </p>
@@ -1233,7 +1233,7 @@ export default function ESimPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">150+ Countries</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">150+ Countries</h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Wide coverage area worldwide
                 </p>
@@ -1244,7 +1244,7 @@ export default function ESimPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Affordable Prices</h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Affordable Prices</h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Much more affordable than traditional roaming
                 </p>
