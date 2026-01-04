@@ -17,7 +17,7 @@ export default function ESimPage() {
     setActivePackageType("standard");
   }, [activeCategory]);
 
-  const handleCheckout = async (pkg: { name: string; bundleId?: string; price: number; currency?: string }) => {
+  const handleCheckout = async (pkg: { name: string; bundleId?: string; price: number; currency?: string; data?: string }) => {
     setLoading(pkg.name);
     try {
       // Calculate final price with discount + sign-up bonus if applicable
