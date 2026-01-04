@@ -78,12 +78,7 @@ export async function purchaseEsim(
     // eSimGo API v2.3 formatına göre request body (hazır prompt'a göre)
     // Manuel assign edince çalışıyorsa, assign: true yeterli olmayabilir
     // profileID'yi email olarak kullanıyoruz (eSimGo genelde bunu tercih eder)
-    
-    // USA paketleri için network tercih sırası: AT&T → T-Mobile → Verizon
-    const isUSPackage = packageId.includes('_US_') || packageId.includes('_RNA_');
-    const networkPreference = isUSPackage ? ['ATT', 'TMO', 'VZW'] : undefined;
-    
-    const requestBody: any = {
+    const requestBody = {
       type: "transaction", // Hazır prompt'a göre "transaction" kullanılmalı
       assign: true, // Hazır prompt'a göre true olmalı - otomatik assign için
       order: [
@@ -100,16 +95,7 @@ export async function purchaseEsim(
       callback_url: callbackUrl, // Callback URL (assignment tamamlandığında bildirim için)
     };
     
-    // Network tercih sırası ekle (eğer USA paketi ise)
-    if (networkPreference) {
-      requestBody.preferred_networks = networkPreference;
-      // Alternatif field isimleri (eSimGo API dokümantasyonuna göre değişebilir)
-      requestBody.networks = networkPreference;
-      requestBody.network_preference = networkPreference;
-      requestBody.carrier_preference = networkPreference;
-      console.log("📡 Network preference added:", networkPreference);
-      console.log("  - Priority: 1. AT&T, 2. T-Mobile, 3. Verizon");
-    }
+    console.log("📡 Network selection: eSimGo will automatically select the best network for the country");
     
     console.log("🔍 eSimGo Assignment Debug:");
     console.log("  - assign: true (otomatik assign aktif)");
