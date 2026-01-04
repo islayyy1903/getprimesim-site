@@ -643,12 +643,12 @@ export default function ESimPage() {
       ))}
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-orange-600 to-orange-700 px-4 py-16 text-white sm:px-6 lg:px-8">
+        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 px-4 py-16 text-white sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               eSim Plans
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-orange-100">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
               Digital SIM cards that activate instantly with QR code, without physical SIM cards. 
               Fast and reliable internet connection in USA, UK, Germany, and 150+ countries worldwide.
             </p>
