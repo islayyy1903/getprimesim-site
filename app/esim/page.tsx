@@ -672,22 +672,22 @@ export default function ESimPage() {
                 const colorClasses = {
                   blue: {
                     active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-500 hover:text-white hover:border-orange-400",
+                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
                     text: "text-blue-600 dark:text-blue-400",
                   },
                   purple: {
                     active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-500 hover:text-white hover:border-orange-400",
+                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
                     text: "text-blue-600 dark:text-blue-400",
                   },
                   red: {
                     active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-500 hover:text-white hover:border-orange-400",
+                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
                     text: "text-blue-600 dark:text-blue-400",
                   },
                   indigo: {
                     active: "bg-blue-600 text-white border-blue-600 shadow-lg",
-                    inactive: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-500 hover:text-white hover:border-orange-400",
+                    inactive: "bg-blue-600 text-white border-blue-600 dark:bg-blue-600 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-orange-400 dark:hover:bg-orange-400 hover:text-white hover:border-orange-400",
                     text: "text-blue-600 dark:text-blue-400",
                   },
                 };
