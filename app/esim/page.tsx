@@ -891,23 +891,23 @@ export default function ESimPage() {
                   {packageCategories.map((category) => {
                     const colorClasses = {
                       blue: {
-                        active: "bg-black text-white border-black shadow-lg",
-                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        active: "bg-orange-400 text-white border-orange-400 shadow-lg",
+                        inactive: "bg-orange-400 text-white border-orange-400 dark:bg-orange-400 dark:text-white border-orange-400 dark:border-orange-400 hover:bg-black dark:hover:bg-black hover:text-white hover:border-black",
                         text: "text-black dark:text-black",
                       },
                       purple: {
-                        active: "bg-black text-white border-black shadow-lg",
-                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        active: "bg-orange-400 text-white border-orange-400 shadow-lg",
+                        inactive: "bg-orange-400 text-white border-orange-400 dark:bg-orange-400 dark:text-white border-orange-400 dark:border-orange-400 hover:bg-black dark:hover:bg-black hover:text-white hover:border-black",
                         text: "text-black dark:text-black",
                       },
                       red: {
-                        active: "bg-black text-white border-black shadow-lg",
-                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        active: "bg-orange-400 text-white border-orange-400 shadow-lg",
+                        inactive: "bg-orange-400 text-white border-orange-400 dark:bg-orange-400 dark:text-white border-orange-400 dark:border-orange-400 hover:bg-black dark:hover:bg-black hover:text-white hover:border-black",
                         text: "text-black dark:text-black",
                       },
                       indigo: {
-                        active: "bg-black text-white border-black shadow-lg",
-                        inactive: "bg-black text-white border-black dark:bg-black dark:text-white border-black dark:border-black hover:bg-white dark:hover:bg-white hover:text-black hover:border-white",
+                        active: "bg-orange-400 text-white border-orange-400 shadow-lg",
+                        inactive: "bg-orange-400 text-white border-orange-400 dark:bg-orange-400 dark:text-white border-orange-400 dark:border-orange-400 hover:bg-black dark:hover:bg-black hover:text-white hover:border-black",
                         text: "text-black dark:text-black",
                       },
                     };
