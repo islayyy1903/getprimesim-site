@@ -61,7 +61,7 @@ export default function Header() {
                 <span>Sign Up</span>
                 <span className="inline-flex items-center gap-0.5 rounded-md bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md">
                   <span className="animate-pulse">🔥</span>
-                  <span>30%</span>
+                  <span>50%</span>
                   <span className="text-[10px]">OFF</span>
                 </span>
               </Link>
