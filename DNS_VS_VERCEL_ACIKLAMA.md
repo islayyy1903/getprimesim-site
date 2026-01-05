@@ -80,3 +80,4 @@ Bu değişkenler **uygulama çalışma zamanı** için gereklidir ve **Vercel'de
 
 
 
+

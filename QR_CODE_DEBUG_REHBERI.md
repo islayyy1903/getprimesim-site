@@ -162,3 +162,4 @@ QR Code first 50 chars: Boş veya geçersiz karakterler
 **Debug logları eklendi! Test siparişi ver ve Vercel loglarını kontrol et! 🔍**
 
 
+

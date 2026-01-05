@@ -130,3 +130,4 @@ git push
 **Vercel'in dinlediği yer:** Aynı repository (Vercel Dashboard'dan kontrol edin)
 
 
+

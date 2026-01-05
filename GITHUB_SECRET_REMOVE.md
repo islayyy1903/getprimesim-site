@@ -96,3 +96,4 @@ git push -f origin main
 2. VEYA git history'yi temizle (güvenli için)
 3. Push'u tekrar dene
 
+

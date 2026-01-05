@@ -195,3 +195,4 @@ Lütfen şunları paylaş:
 **Vercel Runtime Loglarını kontrol et ve paylaş! Özellikle ZIP parsing ve QR code uzunluğu önemli! 🔍**
 
 
+

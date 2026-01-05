@@ -62,3 +62,4 @@ Hazır prompt'ta (`ESIMGO_API_HAZIR_PROMPT.md`) belirtilen:
 **Vercel'de güncelle ve redeploy yap! 🚀**
 
 
+

@@ -47,3 +47,4 @@ Google'da "getprimesim.com" aratınca hala VPN görünüyor. Bu eski cache veya 
 
 
 
+

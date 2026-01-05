@@ -96,3 +96,4 @@ eSimGo API'den gelen PNG QR code kullanılıyor, ama bu QR code'un içeriği eks
 **Son Güncelleme:** LPA format field'ları loglanıyor.
 
 
+

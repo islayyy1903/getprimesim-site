@@ -145,3 +145,4 @@
 **Hazır: Başka bir AI'ye direkt verebilirsin! 👍**
 
 
+

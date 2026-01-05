@@ -149,3 +149,4 @@ Vercel Dashboard → Settings → Git sekmesine bakın:
 **Özet:** Vercel CLI kullanıyorsun, bu yüzden GitHub'a push yapmana gerek yok. Ama otomatik deploy istiyorsan Git Integration ekleyebilirsin! 🚀
 
 
+

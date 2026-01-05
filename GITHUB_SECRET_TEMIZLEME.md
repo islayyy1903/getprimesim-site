@@ -79,3 +79,4 @@ Eğer git history'yi temizlemek istemiyorsan:
 2. VEYA GitHub sayfasında "I'll fix it later" seç
 3. Push'u tekrar dene
 
+
