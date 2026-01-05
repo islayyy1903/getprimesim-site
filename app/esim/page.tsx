@@ -270,6 +270,17 @@ export default function ESimPage() {
       "french-southern-territories": "TF",
       "saint-pierre-and-miquelon": "PM",
       "wallis-and-futuna": "WF",
+      // Özel durumlar
+      "iran-islamic-republic-of": "IR",
+      "korea-republic-of": "KR",
+      "congo-the-democratic-republic-of-the": "CD",
+      "netherlands-antilles": "AN",
+      // Alternatif isimler
+      "south-korea": "KR",
+      "republic-of-korea": "KR",
+      "dr-congo": "CD",
+      "democratic-republic-of-congo": "CD",
+      "drc": "CD",
     };
     return idToIso[countryId] || null;
   };
@@ -282,7 +293,16 @@ export default function ESimPage() {
     const FlagComponent = (Flags as any)[isoCode];
     if (!FlagComponent) return null;
     
-    return <FlagComponent className="w-8 h-8 rounded-full object-cover border border-gray-200 shadow-sm" style={{ borderRadius: '50%' }} />;
+    return (
+      <FlagComponent 
+        className="w-8 h-8 rounded-full object-cover border-2 border-gray-200 shadow-md hover:shadow-lg transition-shadow" 
+        style={{ 
+          borderRadius: '50%',
+          aspectRatio: '1 / 1',
+          objectFit: 'cover'
+        }} 
+      />
+    );
   };
 
   // Ülke isimlerine göre bayrak emojileri
@@ -824,7 +844,6 @@ export default function ESimPage() {
       icon: "🌎",
       color: "blue",
       description: "Coverage across USA, Canada, and Mexico",
-      worldMapImage: "https://images.unsplash.com/photo-1533450718592-29d45635f0a9?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -1067,7 +1086,6 @@ export default function ESimPage() {
       icon: "🇪🇺",
       color: "purple",
       description: "European Union plus extended European coverage",
-      worldMapImage: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -1322,7 +1340,6 @@ export default function ESimPage() {
       icon: "🌏",
       color: "red",
       description: "Coverage across Asia-Pacific region",
-      worldMapImage: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -1577,7 +1594,6 @@ export default function ESimPage() {
       icon: "🌍",
       color: "indigo",
       description: "Worldwide coverage in 150+ countries",
-      worldMapImage: "https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -2893,7 +2909,6 @@ export default function ESimPage() {
       icon: "🌍",
       color: "green",
       description: "Africa",
-      worldMapImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -3582,7 +3597,6 @@ export default function ESimPage() {
       icon: "🌎",
       color: "pink",
       description: "Americas",
-      worldMapImage: "https://images.unsplash.com/photo-1533450718592-29d45635f0a9?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -6464,7 +6478,6 @@ export default function ESimPage() {
       icon: "🇧🇦",
       color: "purple",
       description: "Balkans",
-      worldMapImage: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -11070,7 +11083,6 @@ export default function ESimPage() {
       icon: "🇨🇺",
       color: "green",
       description: "Caribbean",
-      worldMapImage: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -12639,7 +12651,6 @@ export default function ESimPage() {
       icon: "🌍",
       color: "green",
       description: "CIS",
-      worldMapImage: "https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -32655,7 +32666,6 @@ export default function ESimPage() {
       icon: "🌍",
       color: "red",
       description: "Middle East & Africa",
-      worldMapImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -32922,7 +32932,6 @@ export default function ESimPage() {
       icon: "🌍",
       color: "blue",
       description: "Middle East and North Africa",
-      worldMapImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
