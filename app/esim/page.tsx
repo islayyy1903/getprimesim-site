@@ -1019,7 +1019,7 @@ export default function ESimPage() {
       icon: "🌎",
       color: "blue",
       description: "Coverage across USA, Canada, and Mexico",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/north-america-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1533450718592-29d45635f0a9?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -1262,7 +1262,7 @@ export default function ESimPage() {
       icon: "🇪🇺",
       color: "purple",
       description: "European Union plus extended European coverage",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/europe-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -1517,7 +1517,7 @@ export default function ESimPage() {
       icon: "🌏",
       color: "red",
       description: "Coverage across Asia-Pacific region",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/asia-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -1772,7 +1772,7 @@ export default function ESimPage() {
       icon: "🌍",
       color: "indigo",
       description: "Worldwide coverage in 150+ countries",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/world-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -3088,7 +3088,7 @@ export default function ESimPage() {
       icon: "🌍",
       color: "green",
       description: "Africa",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/africa-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -3777,7 +3777,7 @@ export default function ESimPage() {
       icon: "🌎",
       color: "pink",
       description: "Americas",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/north-america-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1533450718592-29d45635f0a9?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -6659,7 +6659,7 @@ export default function ESimPage() {
       icon: "🇧🇦",
       color: "purple",
       description: "Balkans",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/europe-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -11265,7 +11265,7 @@ export default function ESimPage() {
       icon: "🇨🇺",
       color: "green",
       description: "Caribbean",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/asia-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -12834,7 +12834,7 @@ export default function ESimPage() {
       icon: "🌍",
       color: "green",
       description: "CIS",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/world-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -32850,7 +32850,7 @@ export default function ESimPage() {
       icon: "🌍",
       color: "red",
       description: "Middle East & Africa",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/africa-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -33117,7 +33117,7 @@ export default function ESimPage() {
       icon: "🌍",
       color: "blue",
       description: "Middle East and North Africa",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/africa-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -37085,7 +37085,7 @@ export default function ESimPage() {
       icon: "🌏",
       color: "pink",
       description: "Oceania",
-      worldMapImage: "https://www.mapsofworld.com/images/world-continents-map/oceania-location-map.jpg",
+      worldMapImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop&q=80",
       isContinent: true,
       standardPackages: [
         {
@@ -52471,15 +52471,8 @@ export default function ESimPage() {
                         <span className="text-5xl">{category.icon}</span>
                       )}
                       <div className="flex-1">
-                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-                          {(category as any).worldMapImage && (
-                            <img 
-                              src={(category as any).worldMapImage} 
-                              alt={`${category.name} location`}
-                              className="w-16 h-12 rounded-lg object-cover border-2 border-gray-300 shadow-md"
-                            />
-                          )}
-                          <span>{category.name}</span>
+                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+                          {category.name}
                         </h3>
                         <p className="text-gray-600 dark:text-gray-300 mt-1">
                           {category.description}
@@ -52488,11 +52481,17 @@ export default function ESimPage() {
                     </div>
                     {/* Kıta için dünya haritası görseli */}
                     {(category as any).worldMapImage && (
-                      <div className="mt-4 rounded-xl overflow-hidden shadow-lg">
+                      <div className="mt-4 rounded-xl overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800">
                         <img 
                           src={(category as any).worldMapImage} 
                           alt={`${category.name} on world map`}
                           className="w-full h-64 object-cover"
+                          onError={(e) => {
+                            // Fallback görsel yükleme hatası durumunda
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                          loading="lazy"
                         />
                       </div>
                     )}
