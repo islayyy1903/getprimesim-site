@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useUser } from "../components/UserContext";
-import { getUnlimitedLitePriceByCountry } from "../lib/unlimitedLitePrices";
+// import { loadPrices, getUnlimitedLitePriceByCountrySync } from "../lib/unlimitedLitePrices";
 // Stripe initialization removed - not used in component
 
 export default function ESimPage() {
@@ -21040,18 +21040,24 @@ export default function ESimPage() {
   ];
   
   // Update unlimitedLitePackages prices from JSON file
-  packageCategories.forEach(category => {
-    if (category.unlimitedLitePackages && category.unlimitedLitePackages.length > 0) {
-      category.unlimitedLitePackages.forEach(pkg => {
-        if (pkg.bundleId) {
-          const priceFromJson = getUnlimitedLitePriceByCountry(category.name, pkg.bundleId);
-          if (priceFromJson !== null) {
-            pkg.price = priceFromJson;
-          }
-        }
-      });
-    }
-  });
+  // NOTE: JSON import disabled temporarily - prices are hardcoded in packageCategories
+  // TODO: Implement async JSON loading with useEffect if needed
+  // try {
+  //   packageCategories.forEach(category => {
+  //     if (category.unlimitedLitePackages && category.unlimitedLitePackages.length > 0) {
+  //       category.unlimitedLitePackages.forEach(pkg => {
+  //         if (pkg.bundleId) {
+  //           const priceFromJson = getUnlimitedLitePriceByCountry(category.name, pkg.bundleId);
+  //           if (priceFromJson !== null) {
+  //             pkg.price = priceFromJson;
+  //           }
+  //         }
+  //       });
+  //     }
+  //   });
+  // } catch (error) {
+  //   console.error("Error loading unlimited lite prices from JSON:", error);
+  // }
   
   // Flatten packages for backward compatibility (schema için)
   const packages = packageCategories.flatMap(cat => [...cat.standardPackages, ...cat.unlimitedLitePackages, ...cat.unlimitedPlusPackages]);

@@ -1,6 +1,32 @@
-import unlimitedLitePrices from "../../data/unlimited_lite_retail_prices_by_country.json";
+/**
+ * Unlimited Lite fiyatlarını JSON dosyasından yükler
+ * Client component'lerde kullanım için fetch ile çalışır
+ */
 
-type UnlimitedLitePrices = typeof unlimitedLitePrices;
+type UnlimitedLitePrices = Record<string, Record<string, number>>;
+
+let cachedPrices: UnlimitedLitePrices | null = null;
+
+/**
+ * JSON dosyasını yükler (cache'lenmiş)
+ */
+async function loadPrices(): Promise<UnlimitedLitePrices> {
+  if (cachedPrices) {
+    return cachedPrices;
+  }
+  
+  try {
+    const response = await fetch('/unlimited_lite_retail_prices_by_country.json');
+    if (!response.ok) {
+      throw new Error(`Failed to load prices: ${response.status}`);
+    }
+    cachedPrices = await response.json();
+    return cachedPrices;
+  } catch (error) {
+    console.error('Error loading unlimited lite prices:', error);
+    return {};
+  }
+}
 
 /**
  * Ülke adı mapping - kodda kullanılan isimler -> JSON'daki isimler
@@ -14,18 +40,19 @@ const countryNameMapping: Record<string, string> = {
 };
 
 /**
- * Bundle ID'den fiyat bulur
+ * Bundle ID'den fiyat bulur (async)
  * ULP formatını UL formatına çevirir (esim_ULP_1D_RNA_V2 -> esim_UL_1D_RNA_V2)
  */
-export function getUnlimitedLitePrice(bundleId: string): number | null {
+export async function getUnlimitedLitePrice(bundleId: string): Promise<number | null> {
+  const prices = await loadPrices();
   // Bundle ID'yi UL formatına çevir (ULP -> UL)
   const ulBundleId = bundleId.replace("esim_ULP_", "esim_UL_");
   
   // Tüm ülkelerde ara
-  for (const country in unlimitedLitePrices) {
-    const countryPrices = unlimitedLitePrices[country as keyof UnlimitedLitePrices];
+  for (const country in prices) {
+    const countryPrices = prices[country];
     if (countryPrices && typeof countryPrices === 'object') {
-      const price = countryPrices[ulBundleId as keyof typeof countryPrices];
+      const price = countryPrices[ulBundleId];
       if (typeof price === 'number') {
         return price;
       }
@@ -36,18 +63,22 @@ export function getUnlimitedLitePrice(bundleId: string): number | null {
 }
 
 /**
- * Ülke adı ve bundle ID'den fiyat bulur
+ * Ülke adı ve bundle ID'den fiyat bulur (sync - preloaded prices ile)
  */
-export function getUnlimitedLitePriceByCountry(countryName: string, bundleId: string): number | null {
+export function getUnlimitedLitePriceByCountrySync(
+  prices: UnlimitedLitePrices,
+  countryName: string,
+  bundleId: string
+): number | null {
   // Bundle ID'yi UL formatına çevir (ULP -> UL)
   const ulBundleId = bundleId.replace("esim_ULP_", "esim_UL_");
   
   // Ülke adı mapping'ini kontrol et
   const mappedCountryName = countryNameMapping[countryName] || countryName;
   
-  const countryPrices = unlimitedLitePrices[mappedCountryName as keyof UnlimitedLitePrices];
+  const countryPrices = prices[mappedCountryName];
   if (countryPrices && typeof countryPrices === 'object') {
-    const price = countryPrices[ulBundleId as keyof typeof countryPrices];
+    const price = countryPrices[ulBundleId];
     if (typeof price === 'number') {
       return price;
     }
@@ -56,3 +87,10 @@ export function getUnlimitedLitePriceByCountry(countryName: string, bundleId: st
   return null;
 }
 
+/**
+ * Ülke adı ve bundle ID'den fiyat bulur (async)
+ */
+export async function getUnlimitedLitePriceByCountry(countryName: string, bundleId: string): Promise<number | null> {
+  const prices = await loadPrices();
+  return getUnlimitedLitePriceByCountrySync(prices, countryName, bundleId);
+}
