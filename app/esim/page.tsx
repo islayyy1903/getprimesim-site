@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Script from "next/script";
+import { useUser } from "../components/UserContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useUser } from "../components/UserContext";
 import * as Flags from 'country-flag-icons/react/3x2';
 // import { loadPrices, getUnlimitedLitePriceByCountrySync } from "../lib/unlimitedLitePrices";
 // Stripe initialization removed - not used in component
 
 export default function ESimPage() {
   const { user, isLoggedIn, isFirstPurchase } = useUser();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("north-america");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activePackageType, setActivePackageType] = useState<"standard" | "unlimited-lite" | "unlimited-plus">("standard");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -284,11 +285,12 @@ export default function ESimPage() {
   };
 
   // Bayrak görseli component'i döndüren fonksiyon
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getCountryFlagComponent = (countryId: string) => {
     const isoCode = getCountryIsoCode(countryId);
     if (!isoCode) return null;
     
-    const FlagComponent = (Flags as any)[isoCode];
+    const FlagComponent = (Flags as Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>>)[isoCode];
     if (!FlagComponent) return null;
     
     return (
@@ -304,6 +306,7 @@ export default function ESimPage() {
   };
 
   // Ülke isimlerine göre bayrak emojileri
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getCountryFlag = (countryName: string): string => {
     const flagMap: Record<string, string> = {
       // Kıtalar ve Bölgeler
@@ -698,6 +701,7 @@ export default function ESimPage() {
   };
 
   // Arama ve scroll fonksiyonu (sadece Enter veya buton tıklamasında)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSearchAndScroll = () => {
     const categoryId = findCategory(searchQuery);
     if (categoryId) {
@@ -713,7 +717,7 @@ export default function ESimPage() {
   };
 
   // Calculate price with discount and sign-up bonus
-  const calculatePrice = (originalPrice: number, data?: string): { original: number; discounted: number } => {
+  const calculatePrice = (originalPrice: number, _data?: string): { original: number; discounted: number } => {
     // Apply 20% base discount
     let discountedPrice = originalPrice * 0.8;
     
@@ -728,6 +732,7 @@ export default function ESimPage() {
     };
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleCheckout = async (pkg: { name: string; bundleId?: string; price: number; currency?: string; data?: string }) => {
     setLoading(pkg.name);
     try {
@@ -35479,4 +35484,287 @@ export default function ESimPage() {
       ],
     },
   ];
+
+  // Filtered packages based on active category and search
+  const activeCategoryData = packageCategories.find(cat => cat.id === activeCategory);
+  const filteredPackages = activeCategoryData ? 
+    (activePackageType === "standard" ? activeCategoryData.standardPackages :
+     activePackageType === "unlimited-lite" ? activeCategoryData.unlimitedLitePackages :
+     activeCategoryData.unlimitedPlusPackages).filter(pkg => 
+      pkg.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pkg.countries.toLowerCase().includes(searchQuery.toLowerCase())
+    ) : [];
+
+  // Get packages for active category
+  const displayPackages = filteredPackages;
+
+  // Separate continents and countries
+  const continents = packageCategories.filter(cat => cat.isContinent);
+  const countries = packageCategories.filter(cat => !cat.isContinent);
+
+  // Group countries by continent (based on name matching or description)
+  const getCountriesForContinent = (continentName: string) => {
+    // Simple matching - countries that mention the continent in description or name
+    return countries.filter(country => {
+      const continentLower = continentName.toLowerCase();
+      const countryLower = country.name.toLowerCase();
+      const descLower = (country.description || "").toLowerCase();
+      return descLower.includes(continentLower) || countryLower.includes(continentLower);
+    });
+  };
+
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1 flex overflow-hidden">
+        {/* Left Sidebar - Continents and Countries */}
+        <div className="w-80 border-r border-gray-200 bg-gray-50 overflow-y-auto">
+          <div className="p-4 sticky top-0 bg-gray-50 border-b border-gray-200 z-10">
+            <h2 className="text-xl font-bold mb-4">Select Region</h2>
+            
+            {/* Package Type Selection */}
+            <div className="mb-4 flex flex-col gap-2">
+              <button
+                onClick={() => setActivePackageType("standard")}
+                className={`px-3 py-2 rounded text-sm transition-colors ${
+                  activePackageType === "standard"
+                    ? "bg-cyan-600 text-white"
+                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+                }`}
+              >
+                Standard
+              </button>
+              <button
+                onClick={() => setActivePackageType("unlimited-lite")}
+                className={`px-3 py-2 rounded text-sm transition-colors ${
+                  activePackageType === "unlimited-lite"
+                    ? "bg-cyan-600 text-white"
+                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+                }`}
+              >
+                Unlimited Lite
+              </button>
+              <button
+                onClick={() => setActivePackageType("unlimited-plus")}
+                className={`px-3 py-2 rounded text-sm transition-colors ${
+                  activePackageType === "unlimited-plus"
+                    ? "bg-cyan-600 text-white"
+                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+                }`}
+              >
+                Unlimited Plus
+              </button>
+            </div>
+
+            {/* Search */}
+            <input
+              type="text"
+              placeholder="Search countries..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+            />
+          </div>
+
+          {/* Continents and Countries List */}
+          <div className="p-2">
+            {continents
+              .filter(continent => 
+                !searchQuery || 
+                continent.name.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+              .map((continent) => {
+                const continentCountries = getCountriesForContinent(continent.name);
+                const hasPackages = 
+                  (activePackageType === "standard" && continent.standardPackages && continent.standardPackages.length > 0) ||
+                  (activePackageType === "unlimited-lite" && continent.unlimitedLitePackages && continent.unlimitedLitePackages.length > 0) ||
+                  (activePackageType === "unlimited-plus" && continent.unlimitedPlusPackages && continent.unlimitedPlusPackages.length > 0);
+
+                if (!hasPackages && continentCountries.length === 0) return null;
+
+                return (
+                  <div key={continent.id} className="mb-2">
+                    {/* Continent Header - Always visible */}
+                    <button
+                      onClick={() => setActiveCategory(continent.id)}
+                      className={`w-full text-left px-4 py-3 rounded-lg transition-colors flex items-center gap-3 ${
+                        activeCategory === continent.id
+                          ? "bg-cyan-600 text-white font-bold"
+                          : "bg-white text-gray-800 hover:bg-gray-100 font-semibold"
+                      }`}
+                    >
+                      <span className="text-2xl">{continent.icon}</span>
+                      <div className="flex-1">
+                        <div className="text-base">{continent.name}</div>
+                      </div>
+                      {activeCategory === continent.id && (
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                        </svg>
+                      )}
+                    </button>
+                    
+                    {/* Countries under continent - Always visible */}
+                    {continentCountries.length > 0 && (
+                      <div className="ml-2 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                        {continentCountries
+                          .filter(country => 
+                            !searchQuery || 
+                            country.name.toLowerCase().includes(searchQuery.toLowerCase())
+                          )
+                          .map((country) => {
+                            const isActive = activeCategory === country.id;
+                            const countryHasPackages = 
+                              (activePackageType === "standard" && country.standardPackages && country.standardPackages.length > 0) ||
+                              (activePackageType === "unlimited-lite" && country.unlimitedLitePackages && country.unlimitedLitePackages.length > 0) ||
+                              (activePackageType === "unlimited-plus" && country.unlimitedPlusPackages && country.unlimitedPlusPackages.length > 0);
+
+                            if (!countryHasPackages) return null;
+
+                            return (
+                              <button
+                                key={country.id}
+                                onClick={() => setActiveCategory(country.id)}
+                                className={`w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center gap-2 ${
+                                  isActive
+                                    ? "bg-cyan-600 text-white"
+                                    : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                                }`}
+                              >
+                                <span className="text-lg">{country.icon}</span>
+                                <div className="flex-1">
+                                  <div className="font-medium text-sm">{country.name}</div>
+                                </div>
+                                {isActive && (
+                                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                )}
+                              </button>
+                            );
+                          })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            
+            {/* Standalone countries (not under any continent) */}
+            {countries
+              .filter(country => {
+                const isUnderContinent = continents.some(continent => 
+                  getCountriesForContinent(continent.name).some(c => c.id === country.id)
+                );
+                return !isUnderContinent;
+              })
+              .filter(country => 
+                !searchQuery || 
+                country.name.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+              .map((country) => {
+                const isActive = activeCategory === country.id;
+                const hasPackages = 
+                  (activePackageType === "standard" && country.standardPackages && country.standardPackages.length > 0) ||
+                  (activePackageType === "unlimited-lite" && country.unlimitedLitePackages && country.unlimitedLitePackages.length > 0) ||
+                  (activePackageType === "unlimited-plus" && country.unlimitedPlusPackages && country.unlimitedPlusPackages.length > 0);
+
+                if (!hasPackages) return null;
+
+                return (
+                  <div key={country.id} className="mb-1">
+                    <button
+                      onClick={() => setActiveCategory(country.id)}
+                      className={`w-full text-left px-4 py-3 rounded-lg transition-colors flex items-center gap-3 ${
+                        isActive
+                          ? "bg-cyan-600 text-white"
+                          : "bg-white text-gray-700 hover:bg-gray-100"
+                      }`}
+                    >
+                      <span className="text-2xl">{country.icon}</span>
+                      <div className="flex-1">
+                        <div className="font-semibold">{country.name}</div>
+                      </div>
+                      {isActive && (
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+
+        {/* Right Content - Packages */}
+        <div className="flex-1 overflow-y-auto bg-white" id="packages-section">
+          <div className="p-6">
+            {activeCategoryData ? (
+              <>
+                <div className="mb-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-4xl">{activeCategoryData.icon}</span>
+                    <div>
+                      <h1 className="text-3xl font-bold text-gray-900">{activeCategoryData.name}</h1>
+                      {activeCategoryData.description && activeCategoryData.description !== activeCategoryData.name && (
+                        <p className="text-gray-600">{activeCategoryData.description}</p>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    {displayPackages.length} {activePackageType === "standard" ? "standard" : activePackageType === "unlimited-lite" ? "unlimited lite" : "unlimited plus"} packages available
+                  </p>
+                </div>
+
+                {displayPackages.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {displayPackages.map((pkg, index) => (
+                      <div key={index} className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow bg-white">
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="text-xl font-semibold text-gray-900">{pkg.name}</h3>
+                          {pkg.badge && (
+                            <span className="text-xs font-semibold px-2 py-1 bg-yellow-100 text-yellow-800 rounded">
+                              {pkg.badge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-gray-600 mb-2">{pkg.countries}</p>
+                        <p className="text-gray-600 mb-4 text-sm">{pkg.shortDescription}</p>
+                        <div className="flex items-center justify-between mb-4">
+                          <div>
+                            <p className="text-2xl font-bold text-cyan-600">
+                              {pkg.currency}{pkg.price}
+                            </p>
+                            <p className="text-xs text-gray-500">{pkg.data} • {pkg.validity}</p>
+                          </div>
+                        </div>
+                        <button 
+                          onClick={() => handleCheckout(pkg)}
+                          disabled={loading === pkg.name}
+                          className="w-full bg-cyan-600 text-white py-2 rounded-lg hover:bg-cyan-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {loading === pkg.name ? "Processing..." : "Buy Now"}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-gray-500 text-lg mb-2">No packages found for this selection.</p>
+                    <p className="text-gray-400 text-sm">Try selecting a different package type.</p>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-500 text-lg mb-2">Select a region from the left to view packages.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
 }
