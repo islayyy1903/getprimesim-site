@@ -276,9 +276,7 @@ export default function ESimPage() {
       "congo-the-democratic-republic-of-the": "CD",
       "netherlands-antilles": "AN",
       // Alternatif isimler
-      "south-korea": "KR",
       "republic-of-korea": "KR",
-      "dr-congo": "CD",
       "democratic-republic-of-congo": "CD",
       "drc": "CD",
     };
