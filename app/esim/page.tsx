@@ -21305,10 +21305,10 @@ export default function ESimPage() {
                         <div className="space-y-4">
                         {(
                           activePackageType === "standard" 
-                            ? category.standardPackages 
+                            ? (category.standardPackages || [])
                             : activePackageType === "unlimited-lite"
-                            ? category.unlimitedLitePackages
-                            : category.unlimitedPlusPackages
+                            ? (category.unlimitedLitePackages || [])
+                            : (category.unlimitedPlusPackages || [])
                         ).map((pkg, index) => {
                           const pricing = calculatePrice(pkg.price, pkg.data);
                           const pkgColors = {
@@ -21614,10 +21614,10 @@ export default function ESimPage() {
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {(
                       activePackageType === "standard" 
-                        ? category.standardPackages 
+                        ? (category.standardPackages || [])
                         : activePackageType === "unlimited-lite"
-                        ? category.unlimitedLitePackages
-                        : category.unlimitedPlusPackages
+                        ? (category.unlimitedLitePackages || [])
+                        : (category.unlimitedPlusPackages || [])
                     ).map((pkg, index) => {
                       const pricing = calculatePrice(pkg.price, pkg.data);
                       return (
