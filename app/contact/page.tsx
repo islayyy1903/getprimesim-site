@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -36,11 +37,12 @@ export default function ContactPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
-      <script
+      <Script
+        id="contact-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
       />
+      <Header />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-gray-800 to-gray-900 px-4 py-16 text-white sm:px-6 lg:px-8">
@@ -73,7 +75,7 @@ export default function ContactPage() {
                       id="name"
                       name="name"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                       placeholder="Your Full Name"
                     />
                   </div>
@@ -86,7 +88,7 @@ export default function ContactPage() {
                       id="email"
                       name="email"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                       placeholder="email@example.com"
                     />
                   </div>
@@ -99,7 +101,7 @@ export default function ContactPage() {
                       id="subject"
                       name="subject"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                       placeholder="Message subject"
                     />
                   </div>
@@ -112,13 +114,13 @@ export default function ContactPage() {
                       name="message"
                       rows={6}
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                       placeholder="Write your message here..."
                     ></textarea>
                   </div>
                   <button
                     type="submit"
-                    className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+                    className="w-full rounded-lg bg-cyan-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-cyan-700"
                   >
                     Send
                   </button>
@@ -133,14 +135,14 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   <div className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-800">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900">
-                        <svg className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-100 dark:bg-cyan-900">
+                        <svg className="h-6 w-6 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
-                        <a href="mailto:info@getprimesim.com" className="mt-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                        <a href="mailto:info@getprimesim.com" className="mt-2 text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">
                           info@getprimesim.com
                         </a>
                       </div>
@@ -156,7 +158,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Website</h3>
-                        <a href="https://getprimesim.com" target="_blank" rel="noopener noreferrer" className="mt-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                        <a href="https://getprimesim.com" target="_blank" rel="noopener noreferrer" className="mt-2 text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">
                           getprimesim.com
                         </a>
                       </div>
@@ -190,7 +192,7 @@ export default function ContactPage() {
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                     Visit our FAQ page for quick answers or contact us directly.
                   </p>
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                  <a href="#" className="text-sm text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300">
                     Go to FAQ page →
                   </a>
                 </div>

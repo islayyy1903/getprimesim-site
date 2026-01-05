@@ -25,7 +25,7 @@ export default function Footer() {
             <h4 className="mb-4 font-semibold text-white">Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/esim" className="hover:text-blue-400 transition-colors">
+                <Link href="/esim" className="hover:text-cyan-400 transition-colors">
                   eSim Plans
                 </Link>
               </li>
@@ -35,12 +35,12 @@ export default function Footer() {
             <h4 className="mb-4 font-semibold text-white">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/contact" className="hover:text-blue-400 transition-colors">
+                <Link href="/contact" className="hover:text-cyan-400 transition-colors">
                   Contact
                 </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-400 transition-colors">
+                <a href="#" className="hover:text-cyan-400 transition-colors">
                   About Us
                 </a>
               </li>
@@ -50,7 +50,7 @@ export default function Footer() {
             <h4 className="mb-4 font-semibold text-white">Contact</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="mailto:info@getprimesim.com" className="hover:text-blue-400 transition-colors">
+                <a href="mailto:info@getprimesim.com" className="hover:text-cyan-400 transition-colors">
                   info@getprimesim.com
                 </a>
               </li>

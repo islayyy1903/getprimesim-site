@@ -63,3 +63,8 @@ Hazır prompt'ta (`ESIMGO_API_HAZIR_PROMPT.md`) belirtilen:
 
 
 
+
+
+
+
+

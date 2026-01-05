@@ -153,3 +153,8 @@ Eğer hiçbir yöntem çalışmıyorsa:
 
 
 
+
+
+
+
+

@@ -68,3 +68,8 @@ if (arrayEndPattern.test(pageContent)) {
   console.log('⚠️ Please manually insert these countries before the ]; that closes packageCategories array');
 }
 
+
+
+
+
+

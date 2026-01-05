@@ -88,3 +88,8 @@ DNS ayarları yapıldıktan sonra:
 
 
 
+
+
+
+
+

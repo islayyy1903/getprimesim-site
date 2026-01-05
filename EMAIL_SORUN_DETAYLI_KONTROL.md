@@ -119,3 +119,8 @@ Tüm sistemi adım adım kontrol edelim.
 
 
 
+
+
+
+
+

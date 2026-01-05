@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -31,18 +32,20 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
-      <script
+      <Script
+        id="breadcrumb-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <script
+      <Script
+        id="website-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
+      <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 px-4 py-24 text-white sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800 px-4 py-24 text-white sm:px-6 lg:px-8">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[length:20px_20px]"></div>
           </div>
@@ -51,15 +54,15 @@ export default function Home() {
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
                 Worldwide
                 <br />
-                <span className="text-blue-200">Connectivity</span>
+                <span className="text-cyan-200">Connectivity</span>
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100 sm:text-xl">
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-cyan-100 sm:text-xl">
                 Stay connected while traveling or in your digital life with premium eSim services.
               </p>
               <div className="mt-10 flex items-center justify-center gap-4">
                 <Link
                   href="/esim"
-                  className="rounded-lg bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-lg transition-all hover:bg-blue-50 hover:shadow-xl"
+                  className="rounded-lg bg-white px-6 py-3 text-base font-semibold text-cyan-600 shadow-lg transition-all hover:bg-cyan-50 hover:shadow-xl"
                 >
                   Explore eSim
                 </Link>
@@ -81,8 +84,8 @@ export default function Home() {
             </div>
             <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-800">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900">
-                  <svg className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-100 dark:bg-cyan-900">
+                  <svg className="h-6 w-6 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
@@ -125,8 +128,8 @@ export default function Home() {
                 </p>
               </div>
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-800">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900">
-                  <svg className="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-100 dark:bg-cyan-900">
+                  <svg className="h-6 w-6 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                 </div>
@@ -152,7 +155,7 @@ export default function Home() {
             </div>
             <div className="mt-16 flex justify-center">
               {/* eSim Card */}
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 p-8 text-white shadow-xl transition-transform hover:scale-105 max-w-2xl w-full">
+              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 p-8 text-white shadow-xl transition-transform hover:scale-105 max-w-2xl w-full">
                 <div className="relative z-10">
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
                     <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,10 +163,10 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="mb-4 text-3xl font-bold">eSim Services</h3>
-                  <p className="mb-6 text-lg text-blue-100">
+                  <p className="mb-6 text-lg text-cyan-100">
                     Digital SIM cards that activate instantly with QR code, without physical SIM cards. Fast internet in 150+ countries.
                   </p>
-                  <ul className="mb-8 space-y-2 text-blue-100">
+                  <ul className="mb-8 space-y-2 text-cyan-100">
                     <li className="flex items-center gap-2">
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -185,7 +188,7 @@ export default function Home() {
                   </ul>
                   <Link
                     href="/esim"
-                    className="inline-block rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-colors hover:bg-blue-50"
+                    className="inline-block rounded-lg bg-white px-6 py-3 font-semibold text-cyan-600 transition-colors hover:bg-cyan-50"
                   >
                     View eSim Plans →
                   </Link>

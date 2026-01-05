@@ -28,16 +28,16 @@ export default function Header() {
             height={32}
             className="dark:opacity-90"
           />
-          <span className="text-xl font-bold text-blue-600 dark:text-blue-400">PrimeSim</span>
+          <span className="text-xl font-bold text-cyan-600 dark:text-cyan-400">PrimeSim</span>
         </Link>
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="/" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+          <Link href="/" className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400">
             Home
           </Link>
-          <Link href="/esim" className="rounded-lg bg-blue-600 px-3 py-1.5 text-white transition-colors hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700">
+          <Link href="/esim" className="rounded-lg bg-cyan-600 px-3 py-1.5 text-white transition-colors hover:bg-cyan-700 dark:bg-cyan-600 dark:text-white dark:hover:bg-cyan-700">
             eSim
           </Link>
-          <Link href="/contact" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+          <Link href="/contact" className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400">
             Contact
           </Link>
           {user ? (
@@ -47,17 +47,17 @@ export default function Header() {
               </span>
               <button
                 onClick={logout}
-                className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400"
               >
                 Sign Out
               </button>
             </>
           ) : (
             <>
-              <Link href="/login" className="text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+              <Link href="/login" className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400">
                 Sign In
               </Link>
-              <Link href="/register" className="group relative inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-blue-700">
+              <Link href="/register" className="group relative inline-flex items-center gap-2 rounded-lg bg-cyan-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-cyan-700">
                 <span>Sign Up</span>
                 <span className="relative inline-flex items-center gap-0.5 bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md" style={{
                   clipPath: 'polygon(0% 0%, calc(100% - 4px) 0%, 100% 50%, calc(100% - 4px) 100%, 0% 100%, 4px 50%)'
@@ -94,21 +94,21 @@ export default function Header() {
           <div className="px-4 py-4 space-y-4">
             <Link 
               href="/" 
-              className="block text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              className="block text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400"
               onClick={closeMobileMenu}
             >
               Home
             </Link>
             <Link 
               href="/esim" 
-              className="block rounded-lg bg-blue-600 px-3 py-1.5 text-white transition-colors hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700"
+              className="block rounded-lg bg-cyan-600 px-3 py-1.5 text-white transition-colors hover:bg-cyan-700 dark:bg-cyan-600 dark:text-white dark:hover:bg-cyan-700"
               onClick={closeMobileMenu}
             >
               eSim
             </Link>
             <Link 
               href="/contact" 
-              className="block text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              className="block text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400"
               onClick={closeMobileMenu}
             >
               Contact
@@ -124,7 +124,7 @@ export default function Header() {
                       logout();
                       closeMobileMenu();
                     }}
-                    className="block w-full text-left text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                    className="block w-full text-left text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400"
                   >
                     Sign Out
                   </button>
@@ -135,14 +135,14 @@ export default function Header() {
                 <div className="pt-2 border-t border-gray-200 dark:border-gray-800 space-y-2">
                   <Link 
                     href="/login" 
-                    className="block text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                    className="block text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400"
                     onClick={closeMobileMenu}
                   >
                     Sign In
                   </Link>
                   <Link 
                     href="/register" 
-                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-blue-700"
+                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-cyan-700"
                     onClick={closeMobileMenu}
                   >
                     <span>Sign Up</span>

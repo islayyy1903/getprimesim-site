@@ -38,12 +38,12 @@ export default function LoginPage() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 px-4 py-16 text-white sm:px-6 lg:px-8">
+        <section className="bg-gradient-to-br from-cyan-600 to-cyan-700 px-4 py-16 text-white sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               Sign In
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-cyan-100">
               Welcome back! Sign in to your PrimeSim account.
             </p>
           </div>
@@ -69,7 +69,7 @@ export default function LoginPage() {
                     id="email"
                     name="email"
                     required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                     id="password"
                     name="password"
                     required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     placeholder="Enter your password"
                   />
                 </div>
@@ -94,20 +94,20 @@ export default function LoginPage() {
                       id="remember"
                       name="remember"
                       type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      className="h-4 w-4 rounded border-gray-300 text-cyan-600 focus:ring-cyan-500"
                     />
                     <label htmlFor="remember" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                       Remember me
                     </label>
                   </div>
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                  <a href="#" className="text-sm text-cyan-600 hover:text-cyan-700 dark:text-cyan-400">
                     Forgot password?
                   </a>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+                  className="w-full rounded-lg bg-cyan-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-cyan-700"
                 >
                   Sign In
                 </button>
@@ -116,12 +116,12 @@ export default function LoginPage() {
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Don&apos;t have an account?{" "}
-                  <Link href="/register" className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                  <Link href="/register" className="font-medium text-cyan-600 hover:text-cyan-700 dark:text-cyan-400">
                     Create account
                   </Link>
                 </p>
                 <p className="mt-2 text-xs text-gray-500 dark:text-gray-500">
-                  New members get <span className="font-bold text-blue-600">30% OFF</span> on first purchase!
+                  New members get <span className="font-bold text-cyan-600">30% OFF</span> on first purchase!
                 </p>
               </div>
             </div>

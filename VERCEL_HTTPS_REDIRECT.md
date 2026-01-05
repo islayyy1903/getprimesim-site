@@ -79,3 +79,8 @@ Vercel'de bazı durumlarda HTTPS yönlendirmesi otomatik olarak aktif olur. Kont
 
 
 
+
+
+
+
+

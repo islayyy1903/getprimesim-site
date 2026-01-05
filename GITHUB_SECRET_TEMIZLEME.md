@@ -80,3 +80,8 @@ Eğer git history'yi temizlemek istemiyorsan:
 3. Push'u tekrar dene
 
 
+
+
+
+
+

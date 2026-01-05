@@ -116,3 +116,8 @@ Secret'ta boşluk yok, format doğru. Şimdi test edip logları kontrol edelim.
 
 
 
+
+
+
+
+

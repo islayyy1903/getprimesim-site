@@ -68,3 +68,8 @@ Gönderin, hemen ekleyeyim! 🚀
 
 
 
+
+
+
+
+

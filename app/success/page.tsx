@@ -52,7 +52,7 @@ function SuccessContent() {
           <div className="mx-auto max-w-2xl text-center">
             {loading ? (
               <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-600"></div>
               </div>
             ) : (
               <>
@@ -80,17 +80,17 @@ function SuccessContent() {
                   Thank you for your purchase. Your eSim QR code will be sent to your email within minutes.
                 </p>
                 {orderStatus && (
-                  <div className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
-                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                  <div className="mb-8 rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-800 dark:bg-cyan-900/20">
+                    <p className="text-sm text-cyan-800 dark:text-cyan-200">
                       <strong>Order ID:</strong> {orderStatus.sessionId?.substring(0, 20)}...
                     </p>
                     {orderStatus.packageName && (
-                      <p className="text-sm text-blue-800 dark:text-blue-200 mt-2">
+                      <p className="text-sm text-cyan-800 dark:text-cyan-200 mt-2">
                         <strong>Package:</strong> {orderStatus.packageName}
                       </p>
                     )}
                     {orderStatus.customerEmail && (
-                      <p className="text-sm text-blue-800 dark:text-blue-200 mt-2">
+                      <p className="text-sm text-cyan-800 dark:text-cyan-200 mt-2">
                         <strong>Email:</strong> {orderStatus.customerEmail}
                       </p>
                     )}
@@ -106,14 +106,14 @@ function SuccessContent() {
                 <div className="space-y-4">
                   <Link
                     href="/esim"
-                    className="inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+                    className="inline-block rounded-lg bg-cyan-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-cyan-700"
                   >
                     View More Plans
                   </Link>
                   <div>
                     <Link
                       href="/"
-                      className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                      className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400"
                     >
                       Back to Home
                     </Link>
@@ -145,7 +145,7 @@ export default function SuccessPage() {
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-600"></div>
         </main>
         <Footer />
       </div>

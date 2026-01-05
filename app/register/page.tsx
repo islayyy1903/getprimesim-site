@@ -48,12 +48,12 @@ export default function RegisterPage() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 px-4 py-16 text-white sm:px-6 lg:px-8">
+        <section className="bg-gradient-to-br from-cyan-600 to-cyan-700 px-4 py-16 text-white sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               Create Account
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-cyan-100">
               Join PrimeSim and get <span className="font-bold text-yellow-300">25% OFF</span> on your first purchase!
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function RegisterPage() {
                     id="name"
                     name="name"
                     required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     placeholder="John Doe"
                   />
                 </div>
@@ -103,7 +103,7 @@ export default function RegisterPage() {
                     id="email"
                     name="email"
                     required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -118,7 +118,7 @@ export default function RegisterPage() {
                     name="password"
                     required
                     minLength={8}
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     placeholder="Minimum 8 characters"
                   />
                 </div>
@@ -132,7 +132,7 @@ export default function RegisterPage() {
                     id="confirmPassword"
                     name="confirmPassword"
                     required
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     placeholder="Confirm your password"
                   />
                 </div>
@@ -143,15 +143,15 @@ export default function RegisterPage() {
                     name="terms"
                     type="checkbox"
                     required
-                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="h-4 w-4 rounded border-gray-300 text-cyan-600 focus:ring-cyan-500"
                   />
                   <label htmlFor="terms" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                     I agree to the{" "}
-                    <a href="#" className="text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                    <a href="#" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400">
                       Terms of Service
                     </a>{" "}
                     and{" "}
-                    <a href="#" className="text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                    <a href="#" className="text-cyan-600 hover:text-cyan-700 dark:text-cyan-400">
                       Privacy Policy
                     </a>
                   </label>
@@ -159,7 +159,7 @@ export default function RegisterPage() {
 
                 <button
                   type="submit"
-                  className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+                  className="w-full rounded-lg bg-cyan-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-cyan-700"
                 >
                   Create Account & Get 25% OFF
                 </button>
@@ -168,7 +168,7 @@ export default function RegisterPage() {
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Already have an account?{" "}
-                  <Link href="/login" className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                  <Link href="/login" className="font-medium text-cyan-600 hover:text-cyan-700 dark:text-cyan-400">
                     Sign in
                   </Link>
                 </p>

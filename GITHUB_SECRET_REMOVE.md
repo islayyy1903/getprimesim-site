@@ -97,3 +97,8 @@ git push -f origin main
 3. Push'u tekrar dene
 
 
+
+
+
+
+
