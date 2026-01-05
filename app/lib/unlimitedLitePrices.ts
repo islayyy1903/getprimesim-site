@@ -11,8 +11,10 @@ let cachedPrices: UnlimitedLitePrices | null = null;
  * JSON dosyasını yükler (cache'lenmiş)
  */
 async function loadPrices(): Promise<UnlimitedLitePrices> {
-  if (cachedPrices) {
-    return cachedPrices;
+  // Return cached prices if available
+  if (cachedPrices !== null) {
+    const result: UnlimitedLitePrices = cachedPrices;
+    return result;
   }
   
   try {
@@ -20,11 +22,15 @@ async function loadPrices(): Promise<UnlimitedLitePrices> {
     if (!response.ok) {
       throw new Error(`Failed to load prices: ${response.status}`);
     }
-    cachedPrices = await response.json();
-    return cachedPrices;
+    const jsonData: unknown = await response.json();
+    const prices: UnlimitedLitePrices = jsonData as UnlimitedLitePrices;
+    cachedPrices = prices;
+    return prices;
   } catch (error) {
     console.error('Error loading unlimited lite prices:', error);
-    return {};
+    const emptyPrices: UnlimitedLitePrices = {};
+    cachedPrices = emptyPrices;
+    return emptyPrices;
   }
 }
 
