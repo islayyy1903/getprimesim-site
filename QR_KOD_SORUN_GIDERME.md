@@ -141,3 +141,5 @@ Böylece tam olarak neyin yanlış gittiğini görebilirim ve düzeltebilirim! �
 
 
 
+
+

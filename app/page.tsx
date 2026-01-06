@@ -45,7 +45,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 px-4 py-24 text-white sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 px-4 pt-12 pb-24 text-white sm:px-6 lg:px-8">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[length:20px_20px]"></div>
           </div>

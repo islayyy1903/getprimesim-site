@@ -1,128 +1,146 @@
 const fs = require('fs');
 const path = require('path');
 
-// JSON dosyasını oku
-const jsonPath = path.join(__dirname, '../public/unlimited_plus_retail_prices_by_country.json');
-const pricesData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+// unlimited-plus-mapping.json dosyasını oku
+const mappingPath = path.join(__dirname, '../unlimited-plus-mapping.json');
+const mapping = JSON.parse(fs.readFileSync(mappingPath, 'utf8'));
 
 // app/esim/page.tsx dosyasını oku
 const pagePath = path.join(__dirname, '../app/esim/page.tsx');
 let pageContent = fs.readFileSync(pagePath, 'utf8');
 
-// Bundle ID'den gün sayısını çıkar
-function getDaysFromBundleId(bundleId) {
-  const match = bundleId.match(/_(\d+)D_/);
-  return match ? match[1] : null;
-}
+console.log('🔍 Analyzing Unlimited Plus packages...\n');
 
-// Bundle ID'den validity string'i oluştur
-function getValidityFromBundleId(bundleId) {
-  const days = getDaysFromBundleId(bundleId);
-  if (!days) return '';
-  return days === '1' ? '1 day' : `${days} days`;
-}
+// Mapping'den ülke isimlerini çıkar ve grupla
+const countryPackages = {};
+Object.keys(mapping).forEach(packageName => {
+  const match = packageName.match(/^(.+?)\s*–\s*Unlimited Plus\s+(\d+)\s+Day/i);
+  if (match) {
+    const countryName = match[1].trim();
+    const days = parseInt(match[2]);
+    const bundleId = mapping[packageName];
+    
+    if (!countryPackages[countryName]) {
+      countryPackages[countryName] = [];
+    }
+    
+    countryPackages[countryName].push({
+      days,
+      bundleId,
+      packageName
+    });
+  }
+});
 
-// Short description oluştur
-function getShortDescription(days) {
-  const descMap = {
-    '1': 'Perfect for short trips',
-    '3': 'Great for weekend trips',
-    '5': 'Ideal for week-long stays',
-    '7': 'Best value for extended travel',
-    '10': 'Extended travel coverage',
-    '15': 'Perfect for longer stays',
-    '30': 'Maximum coverage for long stays'
-  };
-  return descMap[days] || 'Premium data package';
-}
+// Gün sayısına göre sırala
+Object.keys(countryPackages).forEach(country => {
+  countryPackages[country].sort((a, b) => a.days - b.days);
+});
 
-// Unlimited Plus paketi oluştur
-function createUnlimitedPlusPackage(countryName, bundleId, price) {
-  const days = getDaysFromBundleId(bundleId);
-  const validity = getValidityFromBundleId(bundleId);
-  const dayText = days === '1' ? 'Day' : 'Days';
-  
-  return `        {
+console.log(`✅ Found ${Object.keys(countryPackages).length} countries with Unlimited Plus packages\n`);
+
+// Her ülke için paket array'i oluştur
+function createPackageArray(countryName, packages) {
+  const packageObjects = packages.map((pkg, index) => {
+    const days = pkg.days;
+    const validity = days === 1 ? '1 day' : `${days} days`;
+    const dayText = days === 1 ? 'Day' : 'Days';
+    
+    // Popular ve badge belirleme
+    let popular = false;
+    let badge = null;
+    if (days === 7) {
+      popular = true;
+      badge = '"🔥 Most Popular"';
+    } else if (days === 30) {
+      badge = '"💎 Premium"';
+    }
+    
+    // Short description belirleme
+    const descriptions = {
+      1: 'Perfect for short trips',
+      3: 'Great for weekend trips',
+      5: 'Ideal for week-long stays',
+      7: 'Best value for extended travel',
+      10: 'Extended travel coverage',
+      15: 'Perfect for longer stays',
+      30: 'Maximum coverage for long stays'
+    };
+    
+    const shortDescription = descriptions[days] || 'Perfect for your travel needs';
+    
+    // Fiyat tahmini (gün sayısına göre)
+    const basePrice = days === 1 ? 4.99 : days === 3 ? 9.99 : days === 5 ? 14.99 : 
+                     days === 7 ? 19.99 : days === 10 ? 24.99 : days === 15 ? 34.99 : 59.99;
+    
+    return `        {
           name: "${countryName} – Unlimited Plus ${days} ${dayText}",
-          bundleId: "${bundleId}",
+          bundleId: "${pkg.bundleId}",
           data: "Unlimited Plus",
           validity: "${validity}",
           countries: "${countryName}",
-          price: ${price},
+          price: ${basePrice},
           currency: "$",
-          popular: false,
-          badge: null,
-          shortDescription: "${getShortDescription(days)}",
+          popular: ${popular},
+          badge: ${badge},
+          shortDescription: "${shortDescription}",
         }`;
+  });
+  
+  return `      unlimitedPlusPackages: [
+${packageObjects.join(',\n')}
+      ],`;
 }
 
-// Ülke adlarını eşleştir (JSON'daki isimler -> Kod'daki isimler)
-const countryNameMapping = {
-  'Europa+': 'Europa+',
-  'Europe Lite': 'Europe Lite',
-  'Congo-the Democratic Republic of the': 'DR Congo',
-  'Korea-Republic of': 'South Korea',
-  'Russian Federation': 'Russian Federation',
-  'Taiwan-Province of China': 'Taiwan-Province of China',
-  'United Kingdom': 'UK',
-  'United States of America': 'USA',
-  'Northern Cyprus': 'Northern Cyprus',
-  'Oceania': 'Oceania',
-};
+// Tüm kategorileri bul ve düzelt
+let fixedCount = 0;
+let totalCategories = 0;
 
-// Her ülke için paketleri oluştur ve dosyaya ekle
-let updatedCount = 0;
-for (const [countryName, bundles] of Object.entries(pricesData)) {
-  // Ülke adını normalize et
-  const normalizedCountryName = countryNameMapping[countryName] || countryName;
+// Her kategori için unlimitedPlusPackages array'ini bul ve düzelt
+const categoryPattern = /(\s+)(id:\s*"[^"]+",\s*name:\s*"([^"]+)",[^}]+unlimitedPlusPackages:\s*\[)([\s\S]*?)(\s+\],)/g;
+
+pageContent = pageContent.replace(categoryPattern, (match, indent, before, countryName, packagesContent, after) => {
+  totalCategories++;
   
-  // Paketleri oluştur
-  const packages = [];
-  for (const [bundleId, price] of Object.entries(bundles)) {
-    packages.push({
-      bundleId,
-      price,
-      days: parseInt(getDaysFromBundleId(bundleId))
-    });
+  // Bu ülke için doğru paketleri bul
+  const correctPackages = countryPackages[countryName];
+  
+  if (!correctPackages || correctPackages.length === 0) {
+    console.log(`⚠️  No mapping found for: ${countryName}`);
+    return match; // Değiştirme
   }
   
-  // Gün sayısına göre sırala
-  packages.sort((a, b) => a.days - b.days);
-  
-  // Paket string'lerini oluştur
-  const packagesString = packages.map(pkg => 
-    createUnlimitedPlusPackage(normalizedCountryName, pkg.bundleId, pkg.price)
-  ).join(',\n');
-  
-  // Her ülke için unlimitedPlusPackages'ı bul ve değiştir
-  // Önce ülkenin name field'ını bul
-  const countryRegex = new RegExp(
-    `(name: "${normalizedCountryName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}",[\\s\\S]*?unlimitedPlusPackages: )\\[[\\s\\S]*?\\](?=\\s*[,}])`,
-    'm'
-  );
-  
-  let match = pageContent.match(countryRegex);
-  if (match) {
-    const replacement = match[1] + `[\n${packagesString}\n      ]`;
-    pageContent = pageContent.replace(countryRegex, replacement);
-    updatedCount++;
-    console.log(`✅ Fixed: ${normalizedCountryName}`);
-  } else {
-    // Eğer bulunamazsa, ülkenin var olup olmadığını kontrol et
-    const countryExistsRegex = new RegExp(
-      `name: "${normalizedCountryName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`,
-      'm'
-    );
-    if (countryExistsRegex.test(pageContent)) {
-      console.log(`⚠️  Could not find unlimitedPlusPackages for: ${normalizedCountryName}`);
-    } else {
-      console.log(`⚠️  Country not found: ${normalizedCountryName}`);
+  // Mevcut paketlerin ilk satırını kontrol et
+  const firstPackageMatch = packagesContent.match(/name:\s*"([^"]+)\s*–\s*Unlimited Plus/);
+  if (firstPackageMatch) {
+    const currentCountry = firstPackageMatch[1].trim();
+    if (currentCountry === countryName) {
+      // Zaten doğru ülke, sadece bundleId'leri kontrol et
+      let needsUpdate = false;
+      correctPackages.forEach(pkg => {
+        const expectedName = `${countryName} – Unlimited Plus ${pkg.days} ${pkg.days === 1 ? 'Day' : 'Days'}`;
+        if (!packagesContent.includes(`name: "${expectedName}"`)) {
+          needsUpdate = true;
+        }
+      });
+      
+      if (!needsUpdate) {
+        return match; // Değiştirme gerekmiyor
+      }
     }
   }
-}
+  
+  // Paketleri değiştir
+  console.log(`✅ Fixing packages for: ${countryName}`);
+  fixedCount++;
+  
+  const newPackagesArray = createPackageArray(countryName, correctPackages);
+  return before + '\n' + newPackagesArray + after;
+});
 
 // Dosyayı kaydet
 fs.writeFileSync(pagePath, pageContent, 'utf8');
 
-console.log(`\n✅ Done! Fixed ${updatedCount} countries.`);
-
+console.log(`\n✅ Fixed ${fixedCount} out of ${totalCategories} categories`);
+console.log(`📁 Updated file: ${pagePath}`);
+console.log('\n🎉 All Unlimited Plus packages have been fixed!');

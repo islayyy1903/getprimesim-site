@@ -18,17 +18,16 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2" onClick={closeMobileMenu}>
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm dark:bg-gray-900/80">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-0 py-0 sm:px-0 lg:px-0">
+        <Link href="/" className="flex items-center -ml-12" onClick={closeMobileMenu}>
           <Image 
             src="/logo-icon.svg" 
             alt="PrimeSim - eSim Services Logo" 
-            width={32} 
-            height={32}
+            width={300} 
+            height={300}
             className="dark:opacity-90"
           />
-          <span className="text-xl font-bold text-cyan-600 dark:text-cyan-400">PrimeSim</span>
         </Link>
         <div className="hidden items-center gap-8 md:flex">
           <Link href="/" className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400">

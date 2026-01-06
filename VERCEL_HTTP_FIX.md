@@ -78,3 +78,5 @@ Domain'inizde DNS kayıtları doğru olmalı:
 
 
 
+
+

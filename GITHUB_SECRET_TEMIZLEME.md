@@ -87,3 +87,5 @@ Eğer git history'yi temizlemek istemiyorsan:
 
 
 
+
+

@@ -160,3 +160,5 @@ Eğer hiçbir yöntem çalışmıyorsa:
 
 
 
+
+

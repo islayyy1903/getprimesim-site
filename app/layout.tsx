@@ -60,13 +60,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/logo-icon.svg", sizes: "32x32", type: "image/svg+xml" },
-      { url: "/logo-icon.svg", sizes: "16x16", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png?v=2", sizes: "16x16", type: "image/png" },
+      { url: "/logo-icon.svg?v=2", sizes: "any", type: "image/svg+xml" },
     ],
     apple: [
-      { url: "/logo-icon.svg", sizes: "180x180", type: "image/svg+xml" },
+      { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: "/logo-icon.svg",
+    shortcut: "/favicon.ico?v=2",
   },
 };
 
@@ -80,7 +81,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "PrimeSim",
     "url": "https://getprimesim.com",
-    "logo": "https://getprimesim.com/logo.svg",
+    "logo": "https://getprimesim.com/logo-icon.svg",
     "description": "Premium eSim services for travelers and digital nomads worldwide",
     "email": "info@getprimesim.com",
     "sameAs": [],
