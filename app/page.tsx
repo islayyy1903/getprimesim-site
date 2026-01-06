@@ -45,7 +45,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800 px-4 py-24 text-white sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 px-4 py-24 text-white sm:px-6 lg:px-8">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[length:20px_20px]"></div>
           </div>
@@ -54,15 +54,15 @@ export default function Home() {
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
                 Worldwide
                 <br />
-                <span className="text-cyan-200">Connectivity</span>
+                <span className="text-blue-200">Connectivity</span>
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-cyan-100 sm:text-xl">
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100 sm:text-xl">
                 Stay connected while traveling or in your digital life with premium eSim services.
               </p>
               <div className="mt-10 flex items-center justify-center gap-4">
                 <Link
                   href="/esim"
-                  className="rounded-lg bg-white px-6 py-3 text-base font-semibold text-cyan-600 shadow-lg transition-all hover:bg-cyan-50 hover:shadow-xl"
+                  className="rounded-lg bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-lg transition-all hover:bg-blue-50 hover:shadow-xl"
                 >
                   Explore eSim
                 </Link>
@@ -155,7 +155,7 @@ export default function Home() {
             </div>
             <div className="mt-16 flex justify-center">
               {/* eSim Card */}
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 p-8 text-white shadow-xl transition-transform hover:scale-105 max-w-2xl w-full">
+              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 p-8 text-white shadow-xl transition-transform hover:scale-105 max-w-2xl w-full">
                 <div className="relative z-10">
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
                     <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,10 +163,10 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="mb-4 text-3xl font-bold">eSim Services</h3>
-                  <p className="mb-6 text-lg text-cyan-100">
+                  <p className="mb-6 text-lg text-blue-100">
                     Digital SIM cards that activate instantly with QR code, without physical SIM cards. Fast internet in 150+ countries.
                   </p>
-                  <ul className="mb-8 space-y-2 text-cyan-100">
+                  <ul className="mb-8 space-y-2 text-blue-100">
                     <li className="flex items-center gap-2">
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -188,7 +188,7 @@ export default function Home() {
                   </ul>
                   <Link
                     href="/esim"
-                    className="inline-block rounded-lg bg-white px-6 py-3 font-semibold text-cyan-600 transition-colors hover:bg-cyan-50"
+                    className="inline-block rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-colors hover:bg-blue-50"
                   >
                     View eSim Plans →
                   </Link>
