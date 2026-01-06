@@ -62,13 +62,12 @@ const countryNameMapping = {
   'Europe Lite': 'Europe Lite',
   'Congo-the Democratic Republic of the': 'DR Congo',
   'Korea-Republic of': 'South Korea',
-  'Russian Federation': 'Russian Federation', // Kod'da "Russian Federation" olarak yazılmış
-  'Taiwan-Province of China': 'Taiwan-Province of China', // Kod'da "Taiwan-Province of China" olarak yazılmış
+  'Russian Federation': 'Russian Federation',
+  'Taiwan-Province of China': 'Taiwan-Province of China',
   'United Kingdom': 'UK',
   'United States of America': 'USA',
   'Northern Cyprus': 'Northern Cyprus',
   'Oceania': 'Oceania',
-  // Diğer eşleştirmeler JSON ve kod arasında tam eşleşirse boş bırakılabilir
 };
 
 // Her ülke için paketleri oluştur ve dosyaya ekle
@@ -95,31 +94,29 @@ for (const [countryName, bundles] of Object.entries(pricesData)) {
     createUnlimitedPlusPackage(normalizedCountryName, pkg.bundleId, pkg.price)
   ).join(',\n');
   
-  // Regex ile ülkeyi bul (name: "Country Name" satırını bul)
-  // Sonra unlimitedPlusPackages: [] veya unlimitedPlusPackages: [\n...] kısmını bul
-  // Önce boş array'i kontrol et
-  const emptyArrayRegex = new RegExp(
-    `(name: "${normalizedCountryName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}",[\\s\\S]*?unlimitedPlusPackages: )\\[\\s*\\]`,
+  // Her ülke için unlimitedPlusPackages'ı bul ve değiştir
+  // Önce ülkenin name field'ını bul
+  const countryRegex = new RegExp(
+    `(name: "${normalizedCountryName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}",[\\s\\S]*?unlimitedPlusPackages: )\\[[\\s\\S]*?\\](?=\\s*[,}])`,
     'm'
   );
   
-  // Eğer boş array bulunursa, onu doldur
-  let match = pageContent.match(emptyArrayRegex);
+  let match = pageContent.match(countryRegex);
   if (match) {
     const replacement = match[1] + `[\n${packagesString}\n      ]`;
-    pageContent = pageContent.replace(emptyArrayRegex, replacement);
+    pageContent = pageContent.replace(countryRegex, replacement);
     updatedCount++;
-    console.log(`✅ Updated: ${normalizedCountryName}`);
+    console.log(`✅ Fixed: ${normalizedCountryName}`);
   } else {
-    // Eğer boş array bulunamazsa, ülkenin var olup olmadığını kontrol et
+    // Eğer bulunamazsa, ülkenin var olup olmadığını kontrol et
     const countryExistsRegex = new RegExp(
       `name: "${normalizedCountryName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`,
       'm'
     );
     if (countryExistsRegex.test(pageContent)) {
-      console.log(`⚠️  Already has packages or not empty: ${normalizedCountryName}`);
+      console.log(`⚠️  Could not find unlimitedPlusPackages for: ${normalizedCountryName}`);
     } else {
-      console.log(`⚠️  Not found: ${normalizedCountryName}`);
+      console.log(`⚠️  Country not found: ${normalizedCountryName}`);
     }
   }
 }
@@ -127,6 +124,5 @@ for (const [countryName, bundles] of Object.entries(pricesData)) {
 // Dosyayı kaydet
 fs.writeFileSync(pagePath, pageContent, 'utf8');
 
-console.log(`\n✅ Done! Updated ${updatedCount} countries.`);
-
+console.log(`\n✅ Done! Fixed ${updatedCount} countries.`);
 
