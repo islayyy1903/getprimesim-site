@@ -8472,4 +8472,19 @@ export default function ESimPage() {
           currency: "$",
           popular: true,
           badge: "🔥 Most Popular",
-          shortDescription: "Best value for ext
+          shortDescription: "Best value for extended travel",
+        }
+      ],
+    },
+  ];
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        {/* Component content will be added here */}
+      </main>
+      <Footer />
+    </div>
+  );
+}
