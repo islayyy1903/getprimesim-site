@@ -50971,9 +50971,9 @@ export default function ESimPage() {
 
 
   return (
-    <div className="flex flex-col overflow-hidden" style={{ height: '100vh', maxHeight: '100vh' }}>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1 flex flex-col overflow-hidden" style={{ height: 'calc(100vh - 80px)', maxHeight: 'calc(100vh - 80px)' }}>
+      <main className="flex-1 flex flex-col pb-32">
         {/* Page Title and Search - Centered at top with beautiful design */}
         <div className="w-full bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800 border-b border-gray-200 py-8 flex-shrink-0">
           <div className="max-w-4xl mx-auto px-6">
@@ -51065,11 +51065,11 @@ export default function ESimPage() {
           </div>
         </div>
         
-        <div className="flex-1 flex overflow-hidden" style={{ minHeight: 0 }}>
+        <div className="flex-1 flex" style={{ minHeight: 0 }}>
           {/* Left Sidebar - Continents and Countries */}
-          <div className="w-80 border-r border-gray-200 bg-gray-50 flex flex-col flex-shrink-0" style={{ minHeight: 0 }}>
+          <div className="w-80 border-r border-gray-200 bg-gray-50 flex flex-col flex-shrink-0 sticky top-0" style={{ minHeight: 0, height: 'calc(100vh - 80px)', maxHeight: 'calc(100vh - 80px)' }}>
             {/* Continents and Countries List */}
-            <div ref={sidebarRef} className="flex-1 overflow-y-scroll p-2 scrollbar-thin" style={{ minHeight: 0, scrollbarWidth: 'thin', overflowY: 'scroll' }}>
+            <div ref={sidebarRef} className="flex-1 overflow-y-auto p-2 scrollbar-thin" style={{ minHeight: 0, scrollbarWidth: 'thin', overflowY: 'auto' }}>
             {continents
               .filter(continent => 
                 !searchQuery || 
@@ -51203,8 +51203,8 @@ export default function ESimPage() {
           </div>
 
         {/* Right Content - Packages */}
-        <div className="flex-1 overflow-y-auto bg-white h-full scrollbar-thin" id="packages-section" style={{ scrollbarWidth: 'thin' }}>
-            <div className="p-6">
+        <div className="flex-1 bg-white" id="packages-section">
+            <div className="p-6 pb-24">
             {activeCategoryData ? (
               <>
                 <div className="mb-6">
