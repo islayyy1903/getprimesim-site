@@ -50762,6 +50762,100 @@ export default function ESimPage() {
         {/* Right Content - Packages */}
         <div className="flex-1 bg-white lg:ml-0" id="packages-section">
             <div className="p-4 sm:p-6 pb-24">
+            {/* Mobile: Show all countries list */}
+            <div className="lg:hidden mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">All Countries</h2>
+              <div className="space-y-2">
+                {continents.map((continent) => {
+                  const continentCountries = getCountriesForContinent(continent.name);
+                  const hasPackages = 
+                    (continent.standardPackages && continent.standardPackages.length > 0) ||
+                    (continent.unlimitedLitePackages && continent.unlimitedLitePackages.length > 0) ||
+                    (continent.unlimitedPlusPackages && continent.unlimitedPlusPackages.length > 0);
+
+                  if (!hasPackages && continentCountries.length === 0) return null;
+
+                  return (
+                    <div key={continent.id} className="mb-4">
+                      <div className="flex items-center gap-2 mb-2 px-2">
+                        <GlobeIcon className="w-5 h-5 text-gray-600" />
+                        <h3 className="font-semibold text-gray-800">{continent.name}</h3>
+                      </div>
+                      {continentCountries.length > 0 && (
+                        <div className="space-y-1 pl-4">
+                          {continentCountries
+                            .filter(country => {
+                              const countryHasPackages = 
+                                (country.standardPackages && country.standardPackages.length > 0) ||
+                                (country.unlimitedLitePackages && country.unlimitedLitePackages.length > 0) ||
+                                (country.unlimitedPlusPackages && country.unlimitedPlusPackages.length > 0);
+                              return countryHasPackages;
+                            })
+                            .map((country) => (
+                              <button
+                                key={country.id}
+                                onClick={() => {
+                                  setActiveCategory(country.id);
+                                  setMobileSidebarOpen(false);
+                                }}
+                                className={`w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center gap-2 ${
+                                  activeCategory === country.id
+                                    ? "bg-cyan-500 text-white"
+                                    : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                                }`}
+                              >
+                                <div className="flex-shrink-0">
+                                  {getCountryFlagComponent(country.id) || <span className="text-lg">{country.icon}</span>}
+                                </div>
+                                <div className="flex-1">
+                                  <div className="font-medium text-sm">{country.name}</div>
+                                </div>
+                              </button>
+                            ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+                {/* Standalone countries */}
+                {countries
+                  .filter(country => {
+                    const isUnderContinent = continents.some(continent => 
+                      getCountriesForContinent(continent.name).some(c => c.id === country.id)
+                    );
+                    return !isUnderContinent;
+                  })
+                  .filter(country => {
+                    const hasPackages = 
+                      (country.standardPackages && country.standardPackages.length > 0) ||
+                      (country.unlimitedLitePackages && country.unlimitedLitePackages.length > 0) ||
+                      (country.unlimitedPlusPackages && country.unlimitedPlusPackages.length > 0);
+                    return hasPackages;
+                  })
+                  .map((country) => (
+                    <button
+                      key={country.id}
+                      onClick={() => {
+                        setActiveCategory(country.id);
+                        setMobileSidebarOpen(false);
+                      }}
+                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center gap-2 mb-1 ${
+                        activeCategory === country.id
+                          ? "bg-cyan-500 text-white"
+                          : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                      }`}
+                    >
+                      <div className="flex-shrink-0">
+                        {getCountryFlagComponent(country.id) || <span className="text-lg">{country.icon}</span>}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-sm">{country.name}</div>
+                      </div>
+                    </button>
+                  ))}
+              </div>
+            </div>
+            
             {activeCategoryData ? (
               <>
                 <div className="mb-6">
