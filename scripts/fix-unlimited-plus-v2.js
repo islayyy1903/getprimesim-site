@@ -185,3 +185,5 @@ console.log(`\n✅ Fixed ${fixedCount} categories`);
 console.log(`📁 Updated: ${pagePath}`);
 console.log('\n🎉 Done!');
 
+
+

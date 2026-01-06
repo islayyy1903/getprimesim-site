@@ -72,3 +72,5 @@ powershell -ExecutionPolicy Bypass -File test-esimgo-api-correct.ps1
 
 
 
+
+

@@ -132,3 +132,5 @@ Webhook endpoint oluşturuldu! Şimdi webhook secret'ı alıp Vercel'e eklemeliy
 
 
 
+
+

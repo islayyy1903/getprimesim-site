@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import * as Flags from 'country-flag-icons/react/3x2';
 import { fetchWithTimeout } from "../lib/fetchWithTimeout";
+import countriesData from "../../data/countries.json";
 // import { loadPrices, getUnlimitedLitePriceByCountrySync } from "../lib/unlimitedLitePrices";
 // Stripe initialization removed - not used in component
 
@@ -923,6 +924,20 @@ export default function ESimPage() {
     }
   };
 
+  // Import countries data from JSON
+  const packageCategories = (countriesData as any[]).map((country: any) => ({
+    id: country.id,
+    name: country.name,
+    icon: country.icon || "🌍",
+    color: country.color || "blue",
+    description: country.description || country.name,
+    isContinent: country.isContinent || false,
+    standardPackages: country.standardPackages || [],
+    unlimitedLitePackages: country.unlimitedLitePackages || [],
+    unlimitedPlusPackages: country.unlimitedPlusPackages || [],
+  }));
+  
+  /* Original hardcoded data - replaced with JSON import above
   const packageCategories = [
     // Continents (Kıtalar) - En üstte
     {
@@ -8477,12 +8492,342 @@ export default function ESimPage() {
       ],
     },
   ];
+  */ // End of original hardcoded data
+
+  // Get current category
+  const currentCategory = packageCategories.find(cat => cat.id === activeCategory) || packageCategories[0];
+  
+  // Get current packages based on active package type
+  const getCurrentPackages = () => {
+    if (activePackageType === "standard") {
+      return currentCategory.standardPackages || [];
+    } else if (activePackageType === "unlimited-lite") {
+      return currentCategory.unlimitedLitePackages || [];
+    } else {
+      return currentCategory.unlimitedPlusPackages || [];
+    }
+  };
+
+  const currentPackages = getCurrentPackages();
+
+  // Filter packages by search query
+  const filteredPackages = currentPackages.filter(pkg => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      pkg.name.toLowerCase().includes(query) ||
+      (pkg.countries && pkg.countries.toLowerCase().includes(query)) ||
+      (pkg.data && pkg.data.toLowerCase().includes(query))
+    );
+  });
+
+  // Filter categories by search query
+  const filteredCategories = packageCategories.filter(cat => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      cat.name.toLowerCase().includes(query) ||
+      cat.id.toLowerCase().includes(query) ||
+      (cat.description && cat.description.toLowerCase().includes(query))
+    );
+  });
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node) && 
+          searchInputRef.current && !searchInputRef.current.contains(event.target as Node)) {
+        setMobileSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Close search results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchResultsRef.current && !searchResultsRef.current.contains(event.target as Node) &&
+          searchInputRef.current && !searchInputRef.current.contains(event.target as Node)) {
+        setShowSearchResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        {/* Component content will be added here */}
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 px-4 py-16 text-white sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+              eSim Paketleri
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+              Fiziksel SIM kart olmadan, QR kod ile anında aktif olan dijital SIM kartlar. 
+              Dünya çapında hızlı ve güvenilir internet bağlantısı.
+            </p>
+          </div>
+        </section>
+
+        {/* Search Bar */}
+        <section className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 py-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="relative">
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="Ülke veya kıta ara..."
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowSearchResults(e.target.value.trim().length > 0);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearchAndScroll();
+                    setShowSearchResults(false);
+                  }
+                }}
+                className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
+              />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              {showSearchResults && searchQuery.trim() && (
+                <div
+                  ref={searchResultsRef}
+                  className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
+                >
+                  {filteredCategories.length > 0 ? (
+                    filteredCategories.slice(0, 10).map((cat) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          setActiveCategory(cat.id);
+                          setSearchQuery("");
+                          setShowSearchResults(false);
+                          setTimeout(() => {
+                            const packagesSection = document.getElementById('packages-section');
+                            if (packagesSection) {
+                              packagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                          }, 100);
+                        }}
+                        className="w-full px-4 py-2 text-left text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl">{cat.icon}</span>
+                          <span>{cat.name}</span>
+                        </div>
+                      </button>
+                    ))
+                  ) : (
+                    <div className="px-4 py-2 text-gray-500 dark:text-gray-400">Sonuç bulunamadı</div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <section id="packages-section" className="px-4 py-8 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Sidebar - Country List */}
+              <aside
+                ref={sidebarRef}
+                className={`lg:w-80 ${mobileSidebarOpen ? "block" : "hidden lg:block"} fixed lg:sticky top-20 left-0 z-30 h-[calc(100vh-5rem)] overflow-y-auto bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 p-4 lg:p-0`}
+              >
+                <div className="space-y-2">
+                  <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Ülkeler ve Kıtalar</h2>
+                  {packageCategories.map((category) => {
+                    const FlagComponent = getCountryFlagComponent(category.id);
+                    return (
+                      <button
+                        key={category.id}
+                        onClick={() => {
+                          setActiveCategory(category.id);
+                          setMobileSidebarOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-3 rounded-lg px-4 py-3 text-left transition-colors ${
+                          activeCategory === category.id
+                            ? "bg-blue-100 text-blue-900 dark:bg-blue-900 dark:text-blue-100"
+                            : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                        }`}
+                      >
+                        {FlagComponent || (
+                          <span className="text-2xl">{category.icon}</span>
+                        )}
+                        <span className="font-medium">{category.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </aside>
+
+              {/* Mobile Sidebar Toggle */}
+              <button
+                onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                className="lg:hidden fixed bottom-4 right-4 z-40 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700"
+              >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+
+              {/* Packages Section */}
+              <div className="flex-1">
+                {/* Package Type Selector */}
+                <div className="mb-6 flex gap-2 border-b border-gray-200 dark:border-gray-700">
+                  <button
+                    onClick={() => setActivePackageType("standard")}
+                    className={`px-4 py-2 font-semibold transition-colors ${
+                      activePackageType === "standard"
+                        ? "border-b-2 border-blue-600 text-blue-600 dark:text-blue-400"
+                        : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                    }`}
+                  >
+                    Standard
+                  </button>
+                  <button
+                    onClick={() => setActivePackageType("unlimited-lite")}
+                    className={`px-4 py-2 font-semibold transition-colors ${
+                      activePackageType === "unlimited-lite"
+                        ? "border-b-2 border-blue-600 text-blue-600 dark:text-blue-400"
+                        : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                    }`}
+                  >
+                    Unlimited Lite
+                  </button>
+                  <button
+                    onClick={() => setActivePackageType("unlimited-plus")}
+                    className={`px-4 py-2 font-semibold transition-colors ${
+                      activePackageType === "unlimited-plus"
+                        ? "border-b-2 border-blue-600 text-blue-600 dark:text-blue-400"
+                        : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                    }`}
+                  >
+                    Unlimited Plus
+                  </button>
+                </div>
+
+                {/* Selected Country Info */}
+                <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-800">
+                  <div className="flex items-center gap-4">
+                    {getCountryFlagComponent(currentCategory.id) || (
+                      <span className="text-4xl">{currentCategory.icon}</span>
+                    )}
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{currentCategory.name}</h2>
+                      <p className="text-gray-600 dark:text-gray-400">{currentCategory.description}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Packages Grid */}
+                {filteredPackages.length > 0 ? (
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {filteredPackages.map((pkg, index) => {
+                      const pricing = calculatePrice(pkg.price, pkg.data);
+                      return (
+                        <div
+                          key={index}
+                          className={`relative rounded-2xl border-2 bg-white p-6 shadow-lg transition-all hover:shadow-xl dark:bg-gray-800 ${
+                            pkg.popular
+                              ? "border-blue-500 scale-105"
+                              : "border-gray-200 dark:border-gray-700"
+                          }`}
+                        >
+                          {pkg.popular && (
+                            <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                              <span className="rounded-full bg-blue-500 px-3 py-1 text-xs font-semibold text-white">
+                                {pkg.badge || "🔥 Most Popular"}
+                              </span>
+                            </div>
+                          )}
+                          {pkg.badge && !pkg.popular && (
+                            <div className="absolute -top-3 right-4">
+                              <span className="rounded-full bg-purple-500 px-3 py-1 text-xs font-semibold text-white">
+                                {pkg.badge}
+                              </span>
+                            </div>
+                          )}
+                          <div className="text-center">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">{pkg.name}</h3>
+                            <div className="mt-4">
+                              <div className="flex items-baseline justify-center gap-2">
+                                {pricing.original !== pricing.discounted && (
+                                  <span className="text-lg text-gray-500 line-through dark:text-gray-400">
+                                    ${pricing.original.toFixed(2)}
+                                  </span>
+                                )}
+                                <span className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                                  ${pricing.discounted.toFixed(2)}
+                                </span>
+                              </div>
+                              {pricing.original !== pricing.discounted && (
+                                <p className="mt-1 text-sm text-green-600 dark:text-green-400">
+                                  {isLoggedIn && isFirstPurchase ? "25% İndirim" : "20% İndirim"}
+                                </p>
+                              )}
+                            </div>
+                            <div className="mt-6 space-y-2">
+                              <div className="flex items-center justify-between border-b border-gray-200 pb-2 dark:border-gray-700">
+                                <span className="text-gray-600 dark:text-gray-400">Veri:</span>
+                                <span className="font-semibold text-gray-900 dark:text-white">{pkg.data}</span>
+                              </div>
+                              <div className="flex items-center justify-between border-b border-gray-200 pb-2 dark:border-gray-700">
+                                <span className="text-gray-600 dark:text-gray-400">Geçerlilik:</span>
+                                <span className="font-semibold text-gray-900 dark:text-white">{pkg.validity}</span>
+                              </div>
+                              {pkg.countries && (
+                                <div className="flex items-center justify-between pb-2">
+                                  <span className="text-gray-600 dark:text-gray-400">Ülkeler:</span>
+                                  <span className="font-semibold text-gray-900 dark:text-white">{pkg.countries}</span>
+                                </div>
+                              )}
+                              {pkg.shortDescription && (
+                                <p className="pt-2 text-sm text-gray-500 dark:text-gray-400">{pkg.shortDescription}</p>
+                              )}
+                            </div>
+                            <button
+                              onClick={() => handleCheckout(pkg)}
+                              disabled={loading === pkg.name}
+                              className="mt-6 w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                            >
+                              {loading === pkg.name ? "Yükleniyor..." : "Satın Al"}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="rounded-lg border border-gray-200 bg-white p-12 text-center dark:border-gray-800 dark:bg-gray-800">
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {searchQuery.trim() 
+                        ? `"${searchQuery}" için paket bulunamadı.`
+                        : "Bu kategori için paket bulunamadı."}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
