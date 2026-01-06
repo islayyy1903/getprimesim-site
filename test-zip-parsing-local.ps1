@@ -68,3 +68,7 @@ Write-Host "1. Check the browser window for QR code" -ForegroundColor White
 Write-Host "2. Check terminal logs for ZIP parsing details" -ForegroundColor White
 Write-Host "3. Verify QR code image is visible" -ForegroundColor White
 
+
+
+
+
