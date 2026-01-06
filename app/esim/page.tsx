@@ -50502,7 +50502,7 @@ export default function ESimPage() {
       <Header />
       <main className="flex-1 flex flex-col pb-32">
         {/* Page Title and Search - Centered at top with beautiful design */}
-        <div className="w-full bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800 border-b border-gray-200 py-8 flex-shrink-0">
+        <div className="w-full bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800 border-b border-gray-200 py-12 flex-shrink-0">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-6">
               <h1 className="text-4xl font-bold text-white mb-2">
