@@ -13,6 +13,8 @@ interface SendQRCodeEmailParams {
   errorMessage?: string; // For sending failure notifications
 }
 
+import { fetchWithTimeout } from './fetchWithTimeout';
+
 /**
  * QR code'u müşteriye email ile gönder
  */
@@ -71,13 +73,16 @@ export async function sendQRCodeEmail({
     console.log("📧 From:", fromEmail);
     console.log("📧 To:", to);
     
-    const response = await fetch("https://api.resend.com/emails", {
+    const response = await fetchWithTimeout("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${resendApiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(emailPayload),
+      timeout: 30000, // 30 seconds timeout
+      retries: 3, // Retry 3 times
+      retryDelay: 1000, // 1 second delay
     });
 
     const responseText = await response.text();

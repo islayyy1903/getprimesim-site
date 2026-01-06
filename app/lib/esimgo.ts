@@ -5,6 +5,9 @@
  * eSimGo'dan API bilgilerini aldıktan sonra bu dosyayı güncelleyin.
  */
 
+import { fetchWithTimeout } from './fetchWithTimeout';
+import unlimitedPlusMapping from '../../unlimited-plus-mapping.json';
+
 // ESimGoPurchaseRequest interface removed - not used
 
 interface ESimGoPurchaseResponse {
@@ -112,7 +115,7 @@ export async function purchaseEsim(
     console.log("  - Expected format: esim_{DATA}_{DAYS}_{COUNTRY}_V2");
     console.log("  - ⚠️ If bundle name is wrong, eSIM will assign but data won't work!");
     
-    const response = await fetch(`${apiUrl}/orders`, {
+    const response = await fetchWithTimeout(`${apiUrl}/orders`, {
       method: "POST",
       headers: {
         "X-API-Key": apiKey, // eSimGo API uses X-API-Key header (not Bearer token)
@@ -120,6 +123,9 @@ export async function purchaseEsim(
         "Accept": "application/json", // Hazır prompt'a göre gerekli
       },
       body: JSON.stringify(requestBody),
+      timeout: 30000, // 30 seconds timeout
+      retries: 2, // Retry 2 times (don't retry too many times for API calls)
+      retryDelay: 2000, // 2 seconds delay between retries
     });
 
     if (!response.ok) {
@@ -239,12 +245,15 @@ export async function getQRCodeFromAssignments(
       // Hazır prompt'a göre: Accept: application/json → ICCID, SM-DP+, Matching ID
       // Ama belki QR code base64 de gelebilir, kontrol edelim
       console.log("📥 Trying JSON format first (may contain QR code base64)...");
-      const jsonResponse = await fetch(assignmentsUrl + "&additionalFields=qrCode", {
+      const jsonResponse = await fetchWithTimeout(assignmentsUrl + "&additionalFields=qrCode", {
         method: "GET",
         headers: {
           "X-API-Key": apiKey,
           "Accept": "application/json",
         },
+        timeout: 30000, // 30 seconds timeout
+        retries: 2, // Retry 2 times
+        retryDelay: 2000, // 2 seconds delay
       });
     
     if (jsonResponse.ok) {
@@ -293,12 +302,15 @@ export async function getQRCodeFromAssignments(
     
     // JSON'da QR code yoksa ZIP formatını dene
     console.log("📥 Trying ZIP format...");
-    const response = await fetch(assignmentsUrl, {
+    const response = await fetchWithTimeout(assignmentsUrl, {
       method: "GET",
       headers: {
         "X-API-Key": apiKey,
         "Accept": "application/zip", // ZIP formatında QR code PNG almak için
       },
+      timeout: 30000, // 30 seconds timeout
+      retries: 2, // Retry 2 times
+      retryDelay: 2000, // 2 seconds delay
     });
 
     if (!response.ok) {
@@ -436,12 +448,15 @@ export async function getOrderStatus(
     // O yüzden sadece /orders/{order_id} ekliyoruz
     // Alternatif formatlar: /orders/{order_id}/status veya /orders/{order_id}/qr
     console.log("📥 Fetching order status from:", `${apiUrl}/orders/${orderId}`);
-    const response = await fetch(`${apiUrl}/orders/${orderId}`, {
+    const response = await fetchWithTimeout(`${apiUrl}/orders/${orderId}`, {
       method: "GET",
       headers: {
         "X-API-Key": apiKey, // eSimGo API uses X-API-Key header (not Bearer token)
         "Content-Type": "application/json",
       },
+      timeout: 30000, // 30 seconds timeout
+      retries: 2, // Retry 2 times
+      retryDelay: 2000, // 2 seconds delay
     });
 
     if (!response.ok) {
@@ -601,6 +616,8 @@ export function mapPackageToEsimGo(packageName: string): string {
     "Germany – Unlimited Lite 10 Days": "esim_UL_10D_DE_V2",
     "Germany – Unlimited Lite 15 Days": "esim_UL_15D_DE_V2",
     "Germany – Unlimited Lite 30 Days": "esim_UL_30D_DE_V2",
+    // Unlimited Plus Packages - Imported from unlimited-plus-mapping.json
+    ...unlimitedPlusMapping as Record<string, string>,
   };
 
   const bundleName = bundleMap[packageName];

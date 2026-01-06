@@ -7,6 +7,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useUser } from "../components/UserContext";
+import { fetchWithTimeout } from "../lib/fetchWithTimeout";
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -26,16 +27,27 @@ function SuccessContent() {
         discountAppliedRef.current = true;
       }
       
-      // Fetch order status
-      fetch(`/api/order-status?session_id=${sessionId}`)
-        .then((res) => res.json())
+      // Fetch order status with timeout and retry
+      fetchWithTimeout(`/api/order-status?session_id=${sessionId}`, {
+        timeout: 30000, // 30 seconds timeout
+        retries: 3, // Retry 3 times
+        retryDelay: 1000, // 1 second delay between retries
+      })
+        .then(async (res) => {
+          if (!res.ok) {
+            const errorText = await res.text();
+            throw new Error(`HTTP error! status: ${res.status} - ${errorText}`);
+          }
+          return res.json();
+        })
         .then((data) => {
           setOrderStatus(data);
           setLoading(false);
         })
         .catch((err) => {
           console.error("Error fetching order status:", err);
-          setError("Failed to fetch order status");
+          const errorMessage = err instanceof Error ? err.message : "Failed to fetch order status";
+          setError(errorMessage);
           setLoading(false);
         });
     } else {
