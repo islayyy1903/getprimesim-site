@@ -7,13 +7,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div>
-            <Link href="/" className="flex items-center mb-2 -ml-8">
+            <Link href="/" className="flex items-center mb-4">
               <Image 
                 src="/logo-icon.svg" 
                 alt="PrimeSim - eSim Services Logo" 
-                width={300} 
+                width={600} 
                 height={300}
-                className="dark:opacity-90"
+                className="h-auto"
               />
             </Link>
             <p className="text-sm">
