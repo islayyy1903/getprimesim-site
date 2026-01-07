@@ -186,6 +186,146 @@ export default function ESimPage() {
     setActiveSection("standard");
   };
 
+  const handleCheckout = async (pkg: Package) => {
+    const originalPrice = pkg.price;
+    const discountedPrice = calculateDiscountPrice(originalPrice);
+    
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          packageId: pkg.bundleId,
+          packageName: `${selectedCountry?.name} ${pkg.data} - ${pkg.validity}`,
+          price: discountedPrice, // Use discounted price
+          currency: pkg.currency,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('Checkout error:', data.error);
+        alert('Error initiating checkout. Please try again.');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Error initiating checkout. Please try again.');
+    }
+  };
+
+  // Calculate discounted price (15% off)
+  const calculateDiscountPrice = (originalPrice: number): number => {
+    return Math.round(originalPrice * 0.85 * 100) / 100; // Round to 2 decimal places
+  };
+
+  // Extract GB number from data string (e.g., "5GB" -> 5, "Unlimited" -> Infinity)
+  const getDataGB = (data: string): number => {
+    const match = data.match(/(\d+(?:\.\d+)?)\s*GB/i);
+    if (match) {
+      return parseFloat(match[1]);
+    }
+    // If "Unlimited" or no number found, return Infinity
+    return Infinity;
+  };
+
+  // Determine badge for each package - 1 Most Popular and 1 Premium per section
+  // Most Popular is never the cheapest, varies by country, max 20GB for standard, and not too expensive for unlimited
+  const getBadgeForPackage = (packages: Package[], index: number, countryId?: string, sectionType?: 'standard' | 'unlimited-lite' | 'unlimited-plus'): 'most-popular' | 'premium' | null => {
+    if (packages.length === 0) return null;
+
+    // Sort packages by price
+    const sortedByPrice = packages.map((pkg, idx) => ({ pkg, idx, price: pkg.price }))
+      .sort((a, b) => a.price - b.price);
+
+    // Find cheapest index (we'll never use this for Most Popular)
+    const cheapestIndex = sortedByPrice[0]?.idx;
+
+    // Find most expensive index for Premium
+    const mostExpensiveIndex = sortedByPrice[sortedByPrice.length - 1]?.idx;
+
+    // Calculate average price
+    const avgPrice = sortedByPrice.reduce((sum, { price }) => sum + price, 0) / sortedByPrice.length;
+
+    // Filter packages eligible for Most Popular
+    let eligiblePackages = sortedByPrice;
+    
+    if (sectionType === 'standard') {
+      // For standard: max 20GB
+      eligiblePackages = sortedByPrice.filter(({ pkg }) => {
+        const dataGB = getDataGB(pkg.data);
+        return dataGB <= 20;
+      });
+    } else if (sectionType === 'unlimited-lite' || sectionType === 'unlimited-plus') {
+      // For unlimited: exclude packages that are too expensive (above average + 30%)
+      const maxPriceThreshold = avgPrice * 1.3;
+      eligiblePackages = sortedByPrice.filter(({ price }) => price <= maxPriceThreshold);
+    }
+
+    // Determine Most Popular based on country and package count
+    // Use country ID hash to make it different for each country
+    let mostPopularIndex: number;
+    
+    if (eligiblePackages.length === 0) {
+      // If no eligible packages, don't assign Most Popular
+      mostPopularIndex = -1;
+    } else if (countryId) {
+      // Create a hash from country ID for consistency
+      const hash = countryId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      
+      // Exclude cheapest from eligible packages
+      const availablePackages = eligiblePackages.filter(({ idx }) => idx !== cheapestIndex);
+      
+      if (availablePackages.length === 0) {
+        // If cheapest is the only eligible one, use it
+        mostPopularIndex = eligiblePackages[0]?.idx;
+      } else {
+        // Use hash to select different package for each country
+        const selectedIdx = hash % availablePackages.length;
+        mostPopularIndex = availablePackages[selectedIdx]?.idx || availablePackages[0]?.idx;
+      }
+    } else {
+      // Fallback: choose second cheapest among eligible if available
+      if (eligiblePackages.length > 1) {
+        mostPopularIndex = eligiblePackages[1]?.idx;
+      } else {
+        mostPopularIndex = eligiblePackages[0]?.idx;
+      }
+    }
+
+    // Ensure Most Popular is never the cheapest (if there are other options)
+    if (mostPopularIndex === cheapestIndex && eligiblePackages.length > 1) {
+      const alternatives = eligiblePackages.filter(({ idx }) => idx !== cheapestIndex);
+      if (alternatives.length > 0) {
+        mostPopularIndex = alternatives[0]?.idx;
+      }
+    }
+
+    // Assign badges
+    if (index === mostPopularIndex && mostPopularIndex !== -1) {
+      return 'most-popular';
+    }
+
+    // Premium goes to most expensive (but not if it's also Most Popular)
+    if (index === mostExpensiveIndex && index !== mostPopularIndex) {
+      return 'premium';
+    }
+
+    // If most expensive is also most popular, give premium to second most expensive
+    if (mostExpensiveIndex === mostPopularIndex && sortedByPrice.length > 1) {
+      const secondMostExpensiveIndex = sortedByPrice[sortedByPrice.length - 2]?.idx;
+      if (index === secondMostExpensiveIndex) {
+        return 'premium';
+      }
+    }
+
+    return null;
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -424,46 +564,73 @@ export default function ESimPage() {
                   {activeSection === "standard" && (
                     <div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {selectedCountry.standardPackages.map((pkg, index) => (
-                        <div
-                          key={index}
-                          className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
-                            pkg.popular
-                              ? "border-cyan-500 dark:border-cyan-400 ring-2 ring-cyan-500/20 dark:ring-cyan-400/20"
-                              : "border-gray-200 dark:border-gray-700 hover:border-cyan-300 dark:hover:border-cyan-600"
-                          }`}
-                        >
-                          {pkg.popular && (
-                            <div className="absolute -top-3 right-4 z-10">
-                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                                <span>🔥</span>
-                                {pkg.badge || "Most Popular"}
-                              </span>
+                        {selectedCountry.standardPackages.map((pkg, index) => {
+                          const badgeType = getBadgeForPackage(selectedCountry.standardPackages, index, selectedCountry.id, 'standard');
+                          const originalPrice = pkg.price;
+                          const discountedPrice = calculateDiscountPrice(originalPrice);
+                          const hasBadge = badgeType !== null;
+
+                          return (
+                            <div
+                              key={index}
+                              className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
+                                badgeType === 'most-popular'
+                                  ? "border-blue-900 dark:border-blue-700 ring-2 ring-blue-900/20 dark:ring-blue-700/20"
+                                  : badgeType === 'premium'
+                                  ? "border-purple-500 dark:border-purple-400 ring-2 ring-purple-500/20 dark:ring-purple-400/20"
+                                  : "border-gray-200 dark:border-gray-700 hover:border-cyan-300 dark:hover:border-cyan-600"
+                              }`}
+                            >
+                              {badgeType === 'most-popular' && (
+                                <div className="absolute -top-3 right-4 z-10">
+                                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-blue-900 to-blue-800 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                    <span>🔥</span>
+                                    Most Popular
+                                  </span>
+                                </div>
+                              )}
+                              {badgeType === 'premium' && (
+                                <div className="absolute -top-3 right-4 z-10">
+                                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                    <span>⭐</span>
+                                    Premium
+                                  </span>
+                                </div>
+                              )}
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide font-medium">
+                                {selectedCountry.name}
+                              </p>
+                              <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                                {pkg.data}
+                              </h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {pkg.validity}
+                              </p>
+                              <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+                                <div className="flex items-baseline gap-2">
+                                  <span className="text-xl font-semibold text-gray-400 dark:text-gray-500 line-through">
+                                    {pkg.currency}{originalPrice.toFixed(2)}
+                                  </span>
+                                  <span className="text-3xl font-extrabold text-red-600 dark:text-red-400">
+                                    {pkg.currency}{discountedPrice.toFixed(2)}
+                                  </span>
+                                </div>
+                                <span className="text-sm text-green-600 dark:text-green-400 font-medium">
+                                  15% OFF
+                                </span>
+                              </div>
+                              <button 
+                                onClick={() => handleCheckout(pkg)}
+                                className="mt-auto w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105"
+                              >
+                                Buy Now
+                              </button>
                             </div>
-                          )}
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide font-medium">
-                            {selectedCountry.name}
-                          </p>
-                          <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                            {pkg.data}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            {pkg.validity}
-                          </p>
-                          <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-3xl font-extrabold text-gray-900 dark:text-white">
-                              {pkg.currency}
-                              {pkg.price}
-                            </span>
-                          </div>
-                          <button className="mt-auto w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
-                            Buy Now
-                          </button>
-                        </div>
-                        ))}
+                          );
+                        })}
                       </div>
                       {selectedCountry.standardPackages.length === 0 && (
                         <div className="text-center py-12">
@@ -479,46 +646,71 @@ export default function ESimPage() {
                   {activeSection === "unlimited-lite" && (
                     <div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {selectedCountry.unlimitedLitePackages.map((pkg, index) => (
-                        <div
-                          key={index}
-                          className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
-                            pkg.popular
-                              ? "border-purple-500 dark:border-purple-400 ring-2 ring-purple-500/20 dark:ring-purple-400/20"
-                              : "border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600"
-                          }`}
-                        >
-                          {pkg.popular && (
-                            <div className="absolute -top-3 right-4 z-10">
-                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                                <span>🔥</span>
-                                {pkg.badge || "Most Popular"}
-                              </span>
+                        {selectedCountry.unlimitedLitePackages.map((pkg, index) => {
+                          const badgeType = getBadgeForPackage(selectedCountry.unlimitedLitePackages, index, selectedCountry.id, 'unlimited-lite');
+                          const originalPrice = pkg.price;
+                          const discountedPrice = calculateDiscountPrice(originalPrice);
+                          const hasBadge = badgeType !== null;
+
+                          return (
+                            <div
+                              key={index}
+                              className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
+                                hasBadge
+                                  ? "border-purple-500 dark:border-purple-400 ring-2 ring-purple-500/20 dark:ring-purple-400/20"
+                                  : "border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600"
+                              }`}
+                            >
+                              {badgeType === 'most-popular' && (
+                                <div className="absolute -top-3 right-4 z-10">
+                                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                    <span>🔥</span>
+                                    Most Popular
+                                  </span>
+                                </div>
+                              )}
+                              {badgeType === 'premium' && (
+                                <div className="absolute -top-3 right-4 z-10">
+                                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                    <span>⭐</span>
+                                    Premium
+                                  </span>
+                                </div>
+                              )}
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide font-medium">
+                                {selectedCountry.name}
+                              </p>
+                              <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                                {pkg.data}
+                              </h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {pkg.validity}
+                              </p>
+                              <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+                                <div className="flex items-baseline gap-2">
+                                  <span className="text-xl font-semibold text-gray-400 dark:text-gray-500 line-through">
+                                    {pkg.currency}{originalPrice.toFixed(2)}
+                                  </span>
+                                  <span className="text-3xl font-extrabold text-red-600 dark:text-red-400">
+                                    {pkg.currency}{discountedPrice.toFixed(2)}
+                                  </span>
+                                </div>
+                                <span className="text-sm text-green-600 dark:text-green-400 font-medium">
+                                  15% OFF
+                                </span>
+                              </div>
+                              <button 
+                                onClick={() => handleCheckout(pkg)}
+                                className="mt-auto w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105"
+                              >
+                                Buy Now
+                              </button>
                             </div>
-                          )}
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide font-medium">
-                            {selectedCountry.name}
-                          </p>
-                          <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                            {pkg.data}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            {pkg.validity}
-                          </p>
-                          <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-3xl font-extrabold text-gray-900 dark:text-white">
-                              {pkg.currency}
-                              {pkg.price}
-                            </span>
-                          </div>
-                          <button className="mt-auto w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
-                            Buy Now
-                          </button>
-                        </div>
-                        ))}
+                          );
+                        })}
                       </div>
                       {selectedCountry.unlimitedLitePackages.length === 0 && (
                         <div className="text-center py-12">
@@ -534,46 +726,71 @@ export default function ESimPage() {
                   {activeSection === "unlimited-plus" && (
                     <div>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {selectedCountry.unlimitedPlusPackages.map((pkg, index) => (
-                        <div
-                          key={index}
-                          className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
-                            pkg.popular
-                              ? "border-orange-500 dark:border-orange-400 ring-2 ring-orange-500/20 dark:ring-orange-400/20"
-                              : "border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600"
-                          }`}
-                        >
-                          {pkg.popular && (
-                            <div className="absolute -top-3 right-4 z-10">
-                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                                <span>🔥</span>
-                                {pkg.badge || "Most Popular"}
-                              </span>
+                        {selectedCountry.unlimitedPlusPackages.map((pkg, index) => {
+                          const badgeType = getBadgeForPackage(selectedCountry.unlimitedPlusPackages, index, selectedCountry.id, 'unlimited-plus');
+                          const originalPrice = pkg.price;
+                          const discountedPrice = calculateDiscountPrice(originalPrice);
+                          const hasBadge = badgeType !== null;
+
+                          return (
+                            <div
+                              key={index}
+                              className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
+                                hasBadge
+                                  ? "border-orange-500 dark:border-orange-400 ring-2 ring-orange-500/20 dark:ring-orange-400/20"
+                                  : "border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600"
+                              }`}
+                            >
+                              {badgeType === 'most-popular' && (
+                                <div className="absolute -top-3 right-4 z-10">
+                                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                    <span>🔥</span>
+                                    Most Popular
+                                  </span>
+                                </div>
+                              )}
+                              {badgeType === 'premium' && (
+                                <div className="absolute -top-3 right-4 z-10">
+                                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                                    <span>⭐</span>
+                                    Premium
+                                  </span>
+                                </div>
+                              )}
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide font-medium">
+                                {selectedCountry.name}
+                              </p>
+                              <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                                {pkg.data}
+                              </h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {pkg.validity}
+                              </p>
+                              <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+                                <div className="flex items-baseline gap-2">
+                                  <span className="text-xl font-semibold text-gray-400 dark:text-gray-500 line-through">
+                                    {pkg.currency}{originalPrice.toFixed(2)}
+                                  </span>
+                                  <span className="text-3xl font-extrabold text-red-600 dark:text-red-400">
+                                    {pkg.currency}{discountedPrice.toFixed(2)}
+                                  </span>
+                                </div>
+                                <span className="text-sm text-green-600 dark:text-green-400 font-medium">
+                                  15% OFF
+                                </span>
+                              </div>
+                              <button 
+                                onClick={() => handleCheckout(pkg)}
+                                className="mt-auto w-full bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105"
+                              >
+                                Buy Now
+                              </button>
                             </div>
-                          )}
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide font-medium">
-                            {selectedCountry.name}
-                          </p>
-                          <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                            {pkg.data}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            {pkg.validity}
-                          </p>
-                          <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
-                            <span className="text-3xl font-extrabold text-gray-900 dark:text-white">
-                              {pkg.currency}
-                              {pkg.price}
-                            </span>
-                          </div>
-                          <button className="mt-auto w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
-                            Buy Now
-                          </button>
-                        </div>
-                        ))}
+                          );
+                        })}
                       </div>
                       {selectedCountry.unlimitedPlusPackages.length === 0 && (
                         <div className="text-center py-12">
