@@ -597,11 +597,84 @@ export default function ESimPage() {
                   )}
               </div>
             ) : (
-              <div className="flex items-center justify-center h-full">
-                <div className="text-center">
-                  <p className="text-gray-600 dark:text-gray-400 text-lg">
+              <div className="flex items-center justify-center h-full min-h-[600px]">
+                <div className="text-center max-w-2xl mx-auto px-4">
+                  {/* Animated Globe Icon */}
+                  <div className="mb-8 flex justify-center">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-500 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+                      <div className="relative bg-gradient-to-br from-cyan-500 to-teal-600 rounded-full p-8 shadow-2xl">
+                        <svg 
+                          className="w-24 h-24 text-white animate-spin-slow" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                          style={{ animation: 'spin 20s linear infinite' }}
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Main Message */}
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    Discover Global Connectivity
+                  </h2>
+                  <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">
                     Select a country from the left to view available packages
                   </p>
+
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all hover:-translate-y-1">
+                      <div className="bg-gradient-to-br from-cyan-100 to-cyan-200 dark:from-cyan-900 dark:to-cyan-800 rounded-lg p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <svg className="w-8 h-8 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">150+ Countries</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Stay connected in over 150 countries worldwide with our extensive coverage
+                      </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all hover:-translate-y-1">
+                      <div className="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 rounded-lg p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Instant Activation</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Get connected immediately with instant eSIM activation via QR code
+                      </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all hover:-translate-y-1">
+                      <div className="bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900 dark:to-orange-800 rounded-lg p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <svg className="w-8 h-8 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Secure & Reliable</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Trusted by thousands of travelers with secure payment and reliable service
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Call to Action */}
+                  <div className="mt-10">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
+                      💡 <span className="font-medium">Tip:</span> Use the search bar at the top to quickly find your destination
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
