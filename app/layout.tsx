@@ -60,10 +60,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.png?v=5", sizes: "512x341", type: "image/png" },
+      { url: "/icon.png?v=6", sizes: "512x341", type: "image/png" },
     ],
     apple: [
-      { url: "/icon.png?v=5", sizes: "512x341", type: "image/png" },
+      { url: "/apple-touch-icon.png?v=6", sizes: "180x180", type: "image/png" },
     ],
   },
 };
