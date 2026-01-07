@@ -427,15 +427,15 @@ export default function ESimPage() {
                         {selectedCountry.standardPackages.map((pkg, index) => (
                         <div
                           key={index}
-                          className={`rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all ${
+                          className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
                             pkg.popular
                               ? "border-cyan-500 dark:border-cyan-400 ring-2 ring-cyan-500/20 dark:ring-cyan-400/20"
                               : "border-gray-200 dark:border-gray-700 hover:border-cyan-300 dark:hover:border-cyan-600"
                           }`}
                         >
                           {pkg.popular && (
-                            <div className="mb-3">
-                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                            <div className="absolute -top-3 right-4 z-10">
+                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                                 <span>🔥</span>
                                 {pkg.badge || "Most Popular"}
                               </span>
@@ -459,7 +459,7 @@ export default function ESimPage() {
                               {pkg.price}
                             </span>
                           </div>
-                          <button className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                          <button className="mt-auto w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
                             Buy Now
                           </button>
                         </div>
@@ -482,15 +482,15 @@ export default function ESimPage() {
                         {selectedCountry.unlimitedLitePackages.map((pkg, index) => (
                         <div
                           key={index}
-                          className={`rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all ${
+                          className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
                             pkg.popular
                               ? "border-purple-500 dark:border-purple-400 ring-2 ring-purple-500/20 dark:ring-purple-400/20"
                               : "border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600"
                           }`}
                         >
                           {pkg.popular && (
-                            <div className="mb-3">
-                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                            <div className="absolute -top-3 right-4 z-10">
+                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                                 <span>🔥</span>
                                 {pkg.badge || "Most Popular"}
                               </span>
@@ -514,7 +514,7 @@ export default function ESimPage() {
                               {pkg.price}
                             </span>
                           </div>
-                          <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                          <button className="mt-auto w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
                             Buy Now
                           </button>
                         </div>
@@ -537,15 +537,15 @@ export default function ESimPage() {
                         {selectedCountry.unlimitedPlusPackages.map((pkg, index) => (
                         <div
                           key={index}
-                          className={`rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all ${
+                          className={`relative rounded-xl border-2 bg-white dark:bg-gray-800 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col ${
                             pkg.popular
                               ? "border-orange-500 dark:border-orange-400 ring-2 ring-orange-500/20 dark:ring-orange-400/20"
                               : "border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600"
                           }`}
                         >
                           {pkg.popular && (
-                            <div className="mb-3">
-                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                            <div className="absolute -top-3 right-4 z-10">
+                              <span className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                                 <span>🔥</span>
                                 {pkg.badge || "Most Popular"}
                               </span>
@@ -569,7 +569,7 @@ export default function ESimPage() {
                               {pkg.price}
                             </span>
                           </div>
-                          <button className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                          <button className="mt-auto w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105">
                             Buy Now
                           </button>
                         </div>
