@@ -59,8 +59,12 @@ export const metadata: Metadata = {
     google: "hicGUyJdEwjxF5oH3e6FQ",
   },
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: [
+      { url: "/icon.png?v=5", sizes: "512x341", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon.png?v=5", sizes: "512x341", type: "image/png" },
+    ],
   },
 };
 
