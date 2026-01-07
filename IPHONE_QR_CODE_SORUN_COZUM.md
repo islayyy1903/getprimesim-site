@@ -106,3 +106,4 @@ eSimGo API'den gelen PNG QR code kullanılıyor, ama bu QR code'un içeriği eks
 
 
 
+

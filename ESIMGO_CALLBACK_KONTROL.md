@@ -132,3 +132,4 @@ Eğer callback gelmezse veya QR code gelmezse:
 
 
 
+

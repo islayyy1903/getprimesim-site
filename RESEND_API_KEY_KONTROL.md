@@ -118,3 +118,4 @@ Resend API key'leri genellikle şu formatta olur:
 
 
 
+

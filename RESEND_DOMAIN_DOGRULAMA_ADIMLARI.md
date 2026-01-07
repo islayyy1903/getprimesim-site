@@ -70,3 +70,4 @@ const fromEmail = "PrimeSim <noreply@getprimesim.com>"; // Domain doğrulandıkt
 
 
 
+

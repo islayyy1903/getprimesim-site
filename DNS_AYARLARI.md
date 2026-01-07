@@ -97,3 +97,4 @@ DNS ayarları yapıldıktan sonra:
 
 
 
+

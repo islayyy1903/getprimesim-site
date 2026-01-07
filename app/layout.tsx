@@ -60,11 +60,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.png?v=6", sizes: "512x341", type: "image/png" },
+      { url: "/icon.png?v=7", sizes: "512x341", type: "image/png" },
+      { url: "/favicon.ico?v=7", sizes: "any" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png?v=6", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png?v=7", sizes: "180x180", type: "image/png" },
     ],
+    shortcut: "/favicon.ico?v=7",
   },
 };
 
@@ -92,6 +94,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/png" href="/icon.png?v=7" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=7" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
