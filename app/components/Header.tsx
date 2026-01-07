@@ -22,12 +22,13 @@ export default function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-0 py-0 sm:px-0 lg:px-0">
         <Link href="/" className="flex items-center" onClick={closeMobileMenu}>
           <Image 
-            src="/logo-icon.svg" 
+            src="/logo.png" 
             alt="PrimeSim - eSim Services Logo" 
-            width={600} 
-            height={300}
+            width={384} 
+            height={256}
             className="h-auto"
             style={{ display: 'block' }}
+            priority
           />
         </Link>
         <div className="hidden items-center gap-8 md:flex">

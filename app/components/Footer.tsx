@@ -9,10 +9,10 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center mb-4">
               <Image 
-                src="/logo-icon.svg" 
+                src="/logo.png" 
                 alt="PrimeSim - eSim Services Logo" 
-                width={600} 
-                height={300}
+                width={384} 
+                height={256}
                 className="h-auto"
               />
             </Link>
