@@ -58,18 +58,6 @@ export const metadata: Metadata = {
   verification: {
     google: "hicGUyJdEwjxF5oH3e6FQ",
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico?v=8", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
-      { url: "/icon-16.png?v=8", sizes: "16x16", type: "image/png" },
-      { url: "/icon-32.png?v=8", sizes: "32x32", type: "image/png" },
-      { url: "/icon-48.png?v=8", sizes: "48x48", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png?v=8", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico?v=8",
-  },
 };
 
 export default function RootLayout({
@@ -96,11 +84,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico?v=8" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png?v=8" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png?v=8" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png?v=8" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=8" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
