@@ -26,3 +26,4 @@
 ## Not:
 Next.js public klasöründeki dosyaları otomatik serve eder. Server çalışıyorsa ve dosya varsa çalışmalı.
 
+

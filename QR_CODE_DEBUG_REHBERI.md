@@ -173,3 +173,4 @@ QR Code first 50 chars: Boş veya geçersiz karakterler
 
 
 
+

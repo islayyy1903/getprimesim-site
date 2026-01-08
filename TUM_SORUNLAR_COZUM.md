@@ -169,3 +169,4 @@ Vercel'de şu değişkenler olmalı:
 
 
 
+

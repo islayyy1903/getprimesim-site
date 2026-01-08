@@ -98,3 +98,4 @@ DNS ayarları yapıldıktan sonra:
 
 
 
+
