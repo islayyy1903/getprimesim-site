@@ -173,11 +173,30 @@ export default function ESimPage() {
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setFilteredCountries(countries);
+      // Arama temizlendiğinde seçili ülkeyi temizle
+      if (selectedCountry) {
+        setSelectedCountry(null);
+      }
     } else {
       const filtered = countries.filter((country) =>
         country.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredCountries(filtered);
+      
+      // Eğer arama sonucu tek bir ülkeye eşleşiyorsa, otomatik olarak seç
+      if (filtered.length === 1) {
+        setSelectedCountry(filtered[0]);
+        setActiveSection("standard");
+      } else if (filtered.length > 1) {
+        // Eğer birden fazla sonuç varsa ve tam eşleşme varsa, onu seç
+        const exactMatch = filtered.find(
+          (country) => country.name.toLowerCase() === searchQuery.toLowerCase().trim()
+        );
+        if (exactMatch) {
+          setSelectedCountry(exactMatch);
+          setActiveSection("standard");
+        }
+      }
     }
   }, [searchQuery, countries]);
 
@@ -474,9 +493,22 @@ export default function ESimPage() {
           </div>
 
           {/* Right Content - Packages */}
-          <div className="flex-1 p-6 lg:p-8">
+          {/* Mobilde: Eğer ülke seçiliyse, paketleri tam genişlikte göster */}
+          <div className={`${selectedCountry ? 'w-full' : 'flex-1'} p-6 lg:p-8`}>
             {selectedCountry ? (
               <div className="space-y-8">
+                {/* Mobilde: Geri butonu ekle */}
+                <div className="flex items-center gap-4 mb-4 lg:mb-0">
+                  <button
+                    onClick={() => setSelectedCountry(null)}
+                    className="lg:hidden flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span>Back to Countries</span>
+                  </button>
+                </div>
                 <div>
                   <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                     {selectedCountry.name}
