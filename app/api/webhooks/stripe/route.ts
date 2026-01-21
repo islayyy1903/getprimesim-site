@@ -171,13 +171,37 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         console.error("  - Email:", customerEmail);
         console.error("  - Session ID:", session.id);
         
-        // Not: Stok hatası refund kaldırıldı - her sipariş için yeni eSIM üretiliyor
-        // Inventory'den satış yapmıyoruz, bu yüzden stok hatası beklenmiyor
+        // Herhangi bir hata durumunda otomatik refund yap
+        if (session.payment_intent) {
+          try {
+            console.log("💰 Processing automatic refund due to eSimGo purchase failure...");
+            const refund = await stripe.refunds.create({
+              payment_intent: session.payment_intent as string,
+              reason: 'requested_by_customer',
+              metadata: {
+                reason: 'esimgo_purchase_failed',
+                error: purchaseResult.error || 'Unknown error',
+                package: packageName,
+                session_id: session.id,
+              },
+            });
+            
+            console.log("✅ Automatic refund processed:", refund.id);
+            console.log("  - Refund ID:", refund.id);
+            console.log("  - Refund Amount:", refund.amount);
+            console.log("  - Refund Status:", refund.status);
+          } catch (refundError: unknown) {
+            console.error("❌ Failed to process automatic refund:", refundError);
+            // Refund başarısız olsa bile email gönder
+          }
+        } else {
+          console.warn("⚠️ Payment intent not found, cannot process refund");
+        }
         
         // Müşteriye email gönder
         try {
           const { sendQRCodeEmail } = await import("@/app/lib/email");
-          const errorMessage = `We encountered an issue processing your eSim order: ${purchaseResult.error}. Our team has been notified and will resolve this shortly. Please contact support if you need immediate assistance.`;
+          const errorMessage = `We encountered an issue processing your eSim order: ${purchaseResult.error}. Your payment has been automatically refunded. Our team has been notified and will resolve this shortly. Please contact support if you need immediate assistance.`;
           
           const emailResult = await sendQRCodeEmail({
             to: customerEmail,
@@ -187,7 +211,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           });
 
           if (emailResult.success) {
-            console.log("✅ Notification email sent to customer about eSimGo issue");
+            console.log("✅ Notification email sent to customer about eSimGo issue and refund");
           } else {
             console.error("❌ Failed to send notification email:", emailResult.error);
           }
@@ -195,11 +219,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           console.error("❌ Email send error:", emailError);
         }
         
-        // Log error but don't fail the webhook (payment is already successful)
+        // Log error but don't fail the webhook (payment is already refunded)
         return NextResponse.json({
           received: true,
-          warning: "Payment successful but eSimGo purchase failed",
+          warning: "Payment refunded due to eSimGo purchase failure",
           error: purchaseResult.error,
+          refunded: true,
         });
       }
 
@@ -246,6 +271,69 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         } catch (assignmentsError: unknown) {
           console.error("❌ Assignments check error:", assignmentsError);
           // Devam et, email gönder (QR code olmadan - callback ile gelecek)
+        }
+      }
+
+      // QR code kontrolü - eğer QR code yoksa refund yap
+      if (!finalQrCode && !finalQrCodeUrl) {
+        console.error("❌ QR code not available after all attempts");
+        console.error("  - Order ID:", purchaseResult.orderId);
+        console.error("  - Package:", packageName);
+        console.error("  - Email:", customerEmail);
+        
+        // QR code yoksa otomatik refund yap
+        if (session.payment_intent) {
+          try {
+            console.log("💰 Processing automatic refund - QR code not available...");
+            const refund = await stripe.refunds.create({
+              payment_intent: session.payment_intent as string,
+              reason: 'requested_by_customer',
+              metadata: {
+                reason: 'qr_code_not_available',
+                package: packageName,
+                order_id: purchaseResult.orderId || 'unknown',
+                session_id: session.id,
+              },
+            });
+            
+            console.log("✅ Automatic refund processed (no QR code):", refund.id);
+            console.log("  - Refund ID:", refund.id);
+            console.log("  - Refund Amount:", refund.amount);
+            console.log("  - Refund Status:", refund.status);
+            
+            // Müşteriye refund bilgisi ile email gönder
+            try {
+              const { sendQRCodeEmail } = await import("@/app/lib/email");
+              const errorMessage = "We encountered an issue generating your eSim QR code. Your payment has been automatically refunded. Our team has been notified and will resolve this shortly. Please contact support if you need immediate assistance.";
+              
+              const emailResult = await sendQRCodeEmail({
+                to: customerEmail,
+                packageName: packageName,
+                errorMessage: errorMessage,
+                orderId: purchaseResult.orderId || session.id,
+              });
+
+              if (emailResult.success) {
+                console.log("✅ Refund notification email sent to customer");
+              } else {
+                console.error("❌ Failed to send refund notification email:", emailResult.error);
+              }
+            } catch (emailError: unknown) {
+              console.error("❌ Email send error:", emailError);
+            }
+            
+            return NextResponse.json({
+              received: true,
+              warning: "Payment refunded - QR code not available",
+              orderId: purchaseResult.orderId,
+              refunded: true,
+            });
+          } catch (refundError: unknown) {
+            console.error("❌ Failed to process automatic refund (no QR code):", refundError);
+            // Refund başarısız olsa bile devam et
+          }
+        } else {
+          console.warn("⚠️ Payment intent not found, cannot process refund for missing QR code");
         }
       }
 
