@@ -167,7 +167,7 @@ export default function ESimPage() {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [countries] = useState<Country[]>(countriesData as Country[]);
-  const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
+  const [filteredCountries, setFilteredCountries] = useState<Country[]>(countries);
   const [activeSection, setActiveSection] = useState<"standard" | "unlimited-lite" | "unlimited-plus">("standard");
   
   // Extract selectedCountryId to avoid TypeScript narrowing issues
@@ -176,30 +176,14 @@ export default function ESimPage() {
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setFilteredCountries(countries);
-      // Arama temizlendiğinde seçili ülkeyi temizle
-      if (selectedCountry) {
-        setSelectedCountry(null);
-      }
+      // Arama temizlendiğinde seçili ülkeyi temizleme - kullanıcı manuel temizlesin
     } else {
       const filtered = countries.filter((country) =>
         country.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredCountries(filtered);
       
-      // Eğer arama sonucu tek bir ülkeye eşleşiyorsa, otomatik olarak seç
-      if (filtered.length === 1) {
-        setSelectedCountry(filtered[0]);
-        setActiveSection("standard");
-      } else if (filtered.length > 1) {
-        // Eğer birden fazla sonuç varsa ve tam eşleşme varsa, onu seç
-        const exactMatch = filtered.find(
-          (country) => country.name.toLowerCase() === searchQuery.toLowerCase().trim()
-        );
-        if (exactMatch) {
-          setSelectedCountry(exactMatch);
-          setActiveSection("standard");
-        }
-      }
+      // Otomatik seçimi kaldırdık - kullanıcı dropdown'dan seçsin
     }
   }, [searchQuery, countries]);
 
@@ -390,9 +374,9 @@ export default function ESimPage() {
                   
                   {/* Search Results Dropdown */}
                   {searchQuery.trim() !== "" && filteredCountries.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-96 overflow-y-auto z-[100]">
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-96 overflow-y-auto z-[9999]">
                       <div className="p-2">
-                        {filteredCountries.slice(0, 10).map((country) => (
+                        {filteredCountries.slice(0, 10).map((country: Country) => (
                           <button
                             key={country.id}
                             onClick={() => {
@@ -412,6 +396,13 @@ export default function ESimPage() {
                             +{filteredCountries.length - 10} more results
                           </div>
                         )}
+                      </div>
+                    </div>
+                  )}
+                  {searchQuery.trim() !== "" && filteredCountries.length === 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 z-[9999]">
+                      <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+                        No countries found matching "{searchQuery}"
                       </div>
                     </div>
                   )}
@@ -509,7 +500,7 @@ export default function ESimPage() {
 
           {/* Right Content - Packages */}
           {/* Mobilde: Eğer ülke seçiliyse, paketleri tam genişlikte ve en üstte göster */}
-          <div className={`${selectedCountry ? 'w-full order-first lg:order-none' : 'flex-1'} p-6 lg:p-8`}>
+          <div className={`${selectedCountry ? 'w-full' : 'flex-1'} p-6 lg:p-8`}>
             {selectedCountry ? (
               <div className="space-y-8">
                 {/* Mobilde: Geri butonu ekle */}
