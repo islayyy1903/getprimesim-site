@@ -1,0 +1,1866 @@
+{
+  "Aaland Islands": {
+    "esim_1GB_7D_AX_V2": 3.99,
+    "esim_2GB_15D_AX_V2": 6.99,
+    "esim_3GB_30D_AX_V2": 7.99,
+    "esim_5GB_30D_AX_V2": 9.99,
+    "esim_10GB_30D_AX_V2": 13.99,
+    "esim_20GB_30D_AX_V2": 22.99,
+    "esim_50GB_30D_AX_V2": 44.99,
+    "esim_100GB_30D_AX_V2": 81.99
+  },
+  "Africa": {
+    "esim_1GB_7D_RAF_V2": 14.99,
+    "esim_2GB_15D_RAF_V2": 24.99,
+    "esim_3GB_30D_RAF_V2": 34.99,
+    "esim_5GB_30D_RAF_V2": 51.99,
+    "esim_10GB_30D_RAF_V2": 86.99,
+    "esim_20GB_30D_RAF_V2": 145.99
+  },
+  "Albania": {
+    "esim_1GB_7D_AL_V2": 7.99,
+    "esim_2GB_15D_AL_V2": 10.99,
+    "esim_3GB_30D_AL_V2": 13.99,
+    "esim_5GB_30D_AL_V2": 21.99,
+    "esim_10GB_30D_AL_V2": 34.99,
+    "esim_20GB_30D_AL_V2": 56.99,
+    "esim_50GB_30D_AL_V2": 115.99,
+    "esim_100GB_30D_AL_V2": 183.99
+  },
+  "Algeria": {
+    "esim_1GB_7D_DZ_V2": 14.99,
+    "esim_2GB_15D_DZ_V2": 24.99,
+    "esim_3GB_30D_DZ_V2": 34.99,
+    "esim_5GB_30D_DZ_V2": 51.99,
+    "esim_10GB_30D_DZ_V2": 86.99,
+    "esim_20GB_30D_DZ_V2": 145.99
+  },
+  "Americas": {
+    "esim_1GB_7D_RLA_V2": 7.99,
+    "esim_2GB_15D_RLA_V2": 12.99,
+    "esim_3GB_30D_RLA_V2": 17.99,
+    "esim_5GB_30D_RLA_V2": 25.99,
+    "esim_10GB_30D_RLA_V2": 43.99,
+    "esim_20GB_30D_RLA_V2": 77.99,
+    "esim_50GB_30D_RLA_V2": 148.99
+  },
+  "Andorra": {
+    "esim_1GB_7D_AD_V2": 14.99,
+    "esim_2GB_15D_AD_V2": 24.99,
+    "esim_3GB_30D_AD_V2": 34.99,
+    "esim_5GB_30D_AD_V2": 51.99,
+    "esim_10GB_30D_AD_V2": 86.99,
+    "esim_20GB_30D_AD_V2": 145.99
+  },
+  "Anguilla": {
+    "esim_1GB_7D_AI_V2": 13.99,
+    "esim_2GB_15D_AI_V2": 23.99,
+    "esim_3GB_30D_AI_V2": 30.99,
+    "esim_5GB_30D_AI_V2": 43.99,
+    "esim_10GB_30D_AI_V2": 69.99,
+    "esim_20GB_30D_AI_V2": 106.99
+  },
+  "Antigua And Barbuda": {
+    "esim_1GB_7D_AG_V2": 13.99,
+    "esim_2GB_15D_AG_V2": 23.99,
+    "esim_3GB_30D_AG_V2": 30.99,
+    "esim_5GB_30D_AG_V2": 43.99,
+    "esim_10GB_30D_AG_V2": 69.99,
+    "esim_20GB_30D_AG_V2": 106.99
+  },
+  "Argentina": {
+    "esim_1GB_7D_AR_V2": 7.99,
+    "esim_2GB_15D_AR_V2": 12.99,
+    "esim_3GB_30D_AR_V2": 16.99,
+    "esim_5GB_30D_AR_V2": 22.99,
+    "esim_10GB_30D_AR_V2": 34.99,
+    "esim_20GB_30D_AR_V2": 51.99,
+    "esim_50GB_30D_AR_V2": 102.99
+  },
+  "Armenia": {
+    "esim_1GB_7D_AM_V2": 10.99,
+    "esim_2GB_15D_AM_V2": 15.99,
+    "esim_3GB_30D_AM_V2": 20.99,
+    "esim_5GB_30D_AM_V2": 27.99,
+    "esim_10GB_30D_AM_V2": 42.99,
+    "esim_20GB_30D_AM_V2": 62.99
+  },
+  "Aruba": {
+    "esim_1GB_7D_AW_V2": 13.99,
+    "esim_2GB_15D_AW_V2": 23.99,
+    "esim_3GB_30D_AW_V2": 30.99,
+    "esim_5GB_30D_AW_V2": 43.99,
+    "esim_10GB_30D_AW_V2": 69.99,
+    "esim_20GB_30D_AW_V2": 106.99
+  },
+  "Asia": {
+    "esim_1GB_7D_RAS_V2": 8.99,
+    "esim_2GB_15D_RAS_V2": 12.99,
+    "esim_3GB_30D_RAS_V2": 15.99,
+    "esim_5GB_30D_RAS_V2": 24.99,
+    "esim_10GB_30D_RAS_V2": 39.99,
+    "esim_20GB_30D_RAS_V2": 65.99,
+    "esim_50GB_30D_RAS_V2": 134.99,
+    "esim_100GB_30D_RAS_V2": 245.99
+  },
+  "Australia": {
+    "esim_1GB_7D_AU_V2": 4.99,
+    "esim_2GB_15D_AU_V2": 6.99,
+    "esim_3GB_30D_AU_V2": 7.99,
+    "esim_5GB_30D_AU_V2": 10.99,
+    "esim_10GB_30D_AU_V2": 14.99,
+    "esim_20GB_30D_AU_V2": 22.99,
+    "esim_50GB_30D_AU_V2": 43.99,
+    "esim_100GB_30D_AU_V2": 70.99
+  },
+  "Austria": {
+    "esim_1GB_7D_AT_V2": 3.99,
+    "esim_2GB_15D_AT_V2": 5.99,
+    "esim_3GB_30D_AT_V2": 6.99,
+    "esim_5GB_30D_AT_V2": 8.99,
+    "esim_10GB_30D_AT_V2": 13.99,
+    "esim_20GB_30D_AT_V2": 20.99,
+    "esim_50GB_30D_AT_V2": 41.99,
+    "esim_100GB_30D_AT_V2": 73.99
+  },
+  "Azerbaijan": {
+    "esim_1GB_7D_AZ_V2": 7.99,
+    "esim_2GB_15D_AZ_V2": 11.99,
+    "esim_3GB_30D_AZ_V2": 14.99,
+    "esim_5GB_30D_AZ_V2": 20.99,
+    "esim_10GB_30D_AZ_V2": 28.99
+  },
+  "Bahamas": {
+    "esim_1GB_7D_BS_V2": 13.99,
+    "esim_2GB_15D_BS_V2": 23.99,
+    "esim_3GB_30D_BS_V2": 30.99,
+    "esim_5GB_30D_BS_V2": 43.99,
+    "esim_10GB_30D_BS_V2": 69.99,
+    "esim_20GB_30D_BS_V2": 106.99
+  },
+  "Bahrain": {
+    "esim_1GB_7D_BH_V2": 7.99,
+    "esim_2GB_15D_BH_V2": 9.99,
+    "esim_3GB_30D_BH_V2": 13.99,
+    "esim_5GB_30D_BH_V2": 19.99,
+    "esim_10GB_30D_BH_V2": 29.99,
+    "esim_20GB_30D_BH_V2": 52.99,
+    "esim_50GB_30D_BH_V2": 100.99,
+    "esim_100GB_30D_BH_V2": 163.99
+  },
+  "Balkans": {
+    "esim_1GB_7D_RBK_V2": 17.99,
+    "esim_2GB_15D_RBK_V2": 28.99,
+    "esim_3GB_30D_RBK_V2": 40.99,
+    "esim_5GB_30D_RBK_V2": 57.99,
+    "esim_10GB_30D_RBK_V2": 84.99,
+    "esim_20GB_30D_RBK_V2": 140.99,
+    "esim_50GB_30D_RBK_V2": 294.99
+  },
+  "Bangladesh": {
+    "esim_1GB_7D_BD_V2": 8.99,
+    "esim_2GB_15D_BD_V2": 13.99,
+    "esim_3GB_30D_BD_V2": 18.99,
+    "esim_5GB_30D_BD_V2": 26.99,
+    "esim_10GB_30D_BD_V2": 44.99,
+    "esim_20GB_30D_BD_V2": 80.99,
+    "esim_50GB_30D_BD_V2": 154.99,
+    "esim_100GB_30D_BD_V2": 301.99
+  },
+  "Barbados": {
+    "esim_1GB_7D_BB_V2": 13.99,
+    "esim_2GB_15D_BB_V2": 23.99,
+    "esim_3GB_30D_BB_V2": 30.99,
+    "esim_5GB_30D_BB_V2": 43.99,
+    "esim_10GB_30D_BB_V2": 69.99,
+    "esim_20GB_30D_BB_V2": 106.99
+  },
+  "Belarus": {
+    "esim_1GB_7D_BY_V2": 14.99,
+    "esim_2GB_15D_BY_V2": 24.99,
+    "esim_3GB_30D_BY_V2": 34.99,
+    "esim_5GB_30D_BY_V2": 51.99,
+    "esim_10GB_30D_BY_V2": 86.99,
+    "esim_20GB_30D_BY_V2": 145.99
+  },
+  "Belgium": {
+    "esim_1GB_7D_BE_V2": 3.99,
+    "esim_2GB_15D_BE_V2": 5.99,
+    "esim_3GB_30D_BE_V2": 7.99,
+    "esim_5GB_30D_BE_V2": 9.99,
+    "esim_10GB_30D_BE_V2": 13.99,
+    "esim_20GB_30D_BE_V2": 22.99,
+    "esim_50GB_30D_BE_V2": 43.99,
+    "esim_100GB_30D_BE_V2": 78.99
+  },
+  "Benin": {
+    "esim_1GB_7D_BJ_V2": 34.99,
+    "esim_2GB_15D_BJ_V2": 63.99,
+    "esim_3GB_30D_BJ_V2": 81.99,
+    "esim_5GB_30D_BJ_V2": 135.99
+  },
+  "Bermuda": {
+    "esim_1GB_7D_BM_V2": 13.99,
+    "esim_2GB_15D_BM_V2": 23.99,
+    "esim_3GB_30D_BM_V2": 30.99,
+    "esim_5GB_30D_BM_V2": 43.99,
+    "esim_10GB_30D_BM_V2": 69.99,
+    "esim_20GB_30D_BM_V2": 106.99
+  },
+  "Bolivia": {
+    "esim_1GB_7D_BO_V2": 8.99,
+    "esim_2GB_15D_BO_V2": 13.99,
+    "esim_3GB_30D_BO_V2": 16.99,
+    "esim_5GB_30D_BO_V2": 24.99,
+    "esim_10GB_30D_BO_V2": 37.99,
+    "esim_20GB_30D_BO_V2": 64.99,
+    "esim_50GB_30D_BO_V2": 118.99,
+    "esim_100GB_30D_BO_V2": 216.99
+  },
+  "Bonaire, saint Eustatius and Saba": {
+    "esim_1GB_7D_BQ_V2": 13.99,
+    "esim_2GB_15D_BQ_V2": 23.99,
+    "esim_3GB_30D_BQ_V2": 30.99,
+    "esim_5GB_30D_BQ_V2": 43.99,
+    "esim_10GB_30D_BQ_V2": 69.99,
+    "esim_20GB_30D_BQ_V2": 106.99
+  },
+  "Bosnia And Herzegovina": {
+    "esim_1GB_7D_BA_V2": 7.99,
+    "esim_2GB_15D_BA_V2": 13.99,
+    "esim_3GB_30D_BA_V2": 15.99,
+    "esim_5GB_30D_BA_V2": 23.99,
+    "esim_10GB_30D_BA_V2": 32.99,
+    "esim_20GB_30D_BA_V2": 48.99,
+    "esim_50GB_30D_BA_V2": 96.99,
+    "esim_100GB_30D_BA_V2": 159.99
+  },
+  "Botswana": {
+    "esim_1GB_7D_BW_V2": 16.99,
+    "esim_2GB_15D_BW_V2": 28.99,
+    "esim_3GB_30D_BW_V2": 40.99,
+    "esim_5GB_30D_BW_V2": 61.99,
+    "esim_10GB_30D_BW_V2": 102.99,
+    "esim_20GB_30D_BW_V2": 171.99
+  },
+  "Brazil": {
+    "esim_1GB_7D_BR_V2": 7.99,
+    "esim_2GB_15D_BR_V2": 12.99,
+    "esim_3GB_30D_BR_V2": 17.99,
+    "esim_5GB_30D_BR_V2": 25.99,
+    "esim_10GB_30D_BR_V2": 46.99,
+    "esim_20GB_30D_BR_V2": 75.99,
+    "esim_50GB_30D_BR_V2": 145.99
+  },
+  "Brunei": {
+    "esim_1GB_7D_BN_V2": 16.99,
+    "esim_2GB_15D_BN_V2": 28.99,
+    "esim_3GB_30D_BN_V2": 40.99,
+    "esim_5GB_30D_BN_V2": 61.99,
+    "esim_10GB_30D_BN_V2": 102.99,
+    "esim_20GB_30D_BN_V2": 171.99
+  },
+  "Bulgaria": {
+    "esim_1GB_7D_BG_V2": 3.99,
+    "esim_2GB_15D_BG_V2": 5.99,
+    "esim_3GB_30D_BG_V2": 7.99,
+    "esim_5GB_30D_BG_V2": 9.99,
+    "esim_10GB_30D_BG_V2": 13.99,
+    "esim_20GB_30D_BG_V2": 22.99,
+    "esim_50GB_30D_BG_V2": 43.99,
+    "esim_100GB_30D_BG_V2": 79.99
+  },
+  "Burkina Faso": {
+    "esim_1GB_7D_BF_V2": 25.99,
+    "esim_2GB_15D_BF_V2": 46.99,
+    "esim_3GB_30D_BF_V2": 65.99,
+    "esim_5GB_30D_BF_V2": 98.99,
+    "esim_10GB_30D_BF_V2": 170.99
+  },
+  "Cambodia": {
+    "esim_1GB_7D_KH_V2": 22.99,
+    "esim_2GB_15D_KH_V2": 43.99,
+    "esim_3GB_30D_KH_V2": 56.99,
+    "esim_5GB_30D_KH_V2": 85.99,
+    "esim_10GB_30D_KH_V2": 146.99
+  },
+  "Cameroon": {
+    "esim_1GB_7D_CM_V2": 16.99,
+    "esim_2GB_15D_CM_V2": 28.99,
+    "esim_3GB_30D_CM_V2": 40.99,
+    "esim_5GB_30D_CM_V2": 61.99,
+    "esim_10GB_30D_CM_V2": 102.99,
+    "esim_20GB_30D_CM_V2": 171.99
+  },
+  "Canada": {
+    "esim_1GB_7D_CA_V2": 6.99,
+    "esim_2GB_15D_CA_V2": 10.99,
+    "esim_3GB_30D_CA_V2": 13.99,
+    "esim_5GB_30D_CA_V2": 21.99,
+    "esim_10GB_30D_CA_V2": 33.99,
+    "esim_20GB_30D_CA_V2": 55.99,
+    "esim_50GB_30D_CA_V2": 109.99,
+    "esim_100GB_30D_CA_V2": 200.99
+  },
+  "Canary Islands": {
+    "esim_1GB_7D_IC_V2": 3.99,
+    "esim_2GB_15D_IC_V2": 5.99,
+    "esim_3GB_30D_IC_V2": 7.99,
+    "esim_5GB_30D_IC_V2": 9.99,
+    "esim_10GB_30D_IC_V2": 14.99,
+    "esim_20GB_30D_IC_V2": 22.99,
+    "esim_50GB_30D_IC_V2": 43.99,
+    "esim_100GB_30D_IC_V2": 79.99
+  },
+  "Cape Verde": {
+    "esim_1GB_7D_CV_V2": 15.99,
+    "esim_2GB_15D_CV_V2": 25.99,
+    "esim_3GB_30D_CV_V2": 32.99,
+    "esim_5GB_30D_CV_V2": 45.99,
+    "esim_10GB_30D_CV_V2": 71.99,
+    "esim_20GB_30D_CV_V2": 108.99,
+    "esim_50GB_30D_CV_V2": 225.99
+  },
+  "Caribbean": {
+    "esim_1GB_7D_RCA_V2": 13.99,
+    "esim_2GB_15D_RCA_V2": 23.99,
+    "esim_3GB_30D_RCA_V2": 30.99,
+    "esim_5GB_30D_RCA_V2": 43.99,
+    "esim_10GB_30D_RCA_V2": 69.99,
+    "esim_20GB_30D_RCA_V2": 106.99
+  },
+  "Cayman Islands": {
+    "esim_1GB_7D_KY_V2": 13.99,
+    "esim_2GB_15D_KY_V2": 23.99,
+    "esim_3GB_30D_KY_V2": 30.99,
+    "esim_5GB_30D_KY_V2": 43.99,
+    "esim_10GB_30D_KY_V2": 69.99,
+    "esim_20GB_30D_KY_V2": 106.99
+  },
+  "CENAM": {
+    "esim_1GB_7D_RCE_V2": 9.99,
+    "esim_2GB_15D_RCE_V2": 14.99,
+    "esim_3GB_30D_RCE_V2": 18.99,
+    "esim_5GB_30D_RCE_V2": 25.99,
+    "esim_10GB_30D_RCE_V2": 39.99,
+    "esim_20GB_30D_RCE_V2": 59.99,
+    "esim_50GB_30D_RCE_V2": 120.99,
+    "esim_100GB_30D_RCE_V2": 199.99
+  },
+  "Central African Republic": {
+    "esim_1GB_7D_CF_V2": 21.99,
+    "esim_2GB_15D_CF_V2": 37.99,
+    "esim_3GB_30D_CF_V2": 48.99,
+    "esim_5GB_30D_CF_V2": 79.99,
+    "esim_10GB_30D_CF_V2": 133.99
+  },
+  "Chad": {
+    "esim_1GB_7D_TD_V2": 21.99,
+    "esim_2GB_15D_TD_V2": 37.99,
+    "esim_3GB_30D_TD_V2": 48.99,
+    "esim_5GB_30D_TD_V2": 79.99,
+    "esim_10GB_30D_TD_V2": 133.99
+  },
+  "Chile": {
+    "esim_1GB_7D_CL_V2": 7.99,
+    "esim_2GB_15D_CL_V2": 12.99,
+    "esim_3GB_30D_CL_V2": 15.99,
+    "esim_5GB_30D_CL_V2": 24.99,
+    "esim_10GB_30D_CL_V2": 38.99,
+    "esim_20GB_30D_CL_V2": 61.99,
+    "esim_50GB_30D_CL_V2": 126.99
+  },
+  "China": {
+    "esim_1GB_7D_CN_V2": 11.99,
+    "esim_2GB_15D_CN_V2": 20.99,
+    "esim_3GB_30D_CN_V2": 25.99,
+    "esim_5GB_30D_CN_V2": 41.99,
+    "esim_10GB_30D_CN_V2": 69.99,
+    "esim_20GB_30D_CN_V2": 113.99
+  },
+  "CIS": {
+    "esim_1GB_7D_RCI_V2": 12.99,
+    "esim_2GB_15D_RCI_V2": 19.99,
+    "esim_3GB_30D_RCI_V2": 23.99,
+    "esim_5GB_30D_RCI_V2": 35.99,
+    "esim_10GB_30D_RCI_V2": 51.99,
+    "esim_20GB_30D_RCI_V2": 84.99,
+    "esim_50GB_30D_RCI_V2": 160.99,
+    "esim_100GB_30D_RCI_V2": 284.99
+  },
+  "Colombia": {
+    "esim_1GB_7D_CO_V2": 7.99,
+    "esim_2GB_15D_CO_V2": 10.99,
+    "esim_3GB_30D_CO_V2": 14.99,
+    "esim_5GB_30D_CO_V2": 23.99,
+    "esim_10GB_30D_CO_V2": 34.99,
+    "esim_20GB_30D_CO_V2": 64.99,
+    "esim_50GB_30D_CO_V2": 118.99,
+    "esim_100GB_30D_CO_V2": 216.99
+  },
+  "Congo": {
+    "esim_1GB_7D_CG_V2": 21.99,
+    "esim_2GB_15D_CG_V2": 37.99,
+    "esim_3GB_30D_CG_V2": 48.99,
+    "esim_5GB_30D_CG_V2": 79.99,
+    "esim_10GB_30D_CG_V2": 133.99
+  },
+  "Congo-the Democratic Republic of the": {
+    "esim_1GB_7D_CD_V2": 21.99,
+    "esim_2GB_15D_CD_V2": 37.99,
+    "esim_3GB_30D_CD_V2": 48.99,
+    "esim_5GB_30D_CD_V2": 79.99,
+    "esim_10GB_30D_CD_V2": 133.99
+  },
+  "Costa Rica": {
+    "esim_1GB_7D_CR_V2": 5.99,
+    "esim_2GB_15D_CR_V2": 7.99,
+    "esim_3GB_30D_CR_V2": 9.99,
+    "esim_5GB_30D_CR_V2": 12.99,
+    "esim_10GB_30D_CR_V2": 19.99,
+    "esim_20GB_30D_CR_V2": 28.99,
+    "esim_50GB_30D_CR_V2": 56.99,
+    "esim_100GB_30D_CR_V2": 91.99
+  },
+  "Croatia": {
+    "esim_1GB_7D_HR_V2": 3.99,
+    "esim_2GB_15D_HR_V2": 6.99,
+    "esim_3GB_30D_HR_V2": 7.99,
+    "esim_5GB_30D_HR_V2": 9.99,
+    "esim_10GB_30D_HR_V2": 13.99,
+    "esim_20GB_30D_HR_V2": 22.99,
+    "esim_50GB_30D_HR_V2": 44.99,
+    "esim_100GB_30D_HR_V2": 79.99
+  },
+  "Cuba": {
+    "esim_1GB_7D_CU_V2": 32.99,
+    "esim_2GB_15D_CU_V2": 55.99,
+    "esim_3GB_30D_CU_V2": 77.99,
+    "esim_5GB_30D_CU_V2": 110.99,
+    "esim_10GB_30D_CU_V2": 164.99,
+    "esim_20GB_30D_CU_V2": 272.99
+  },
+  "Curacao": {
+    "esim_1GB_7D_CW_V2": 13.99,
+    "esim_2GB_15D_CW_V2": 23.99,
+    "esim_3GB_30D_CW_V2": 30.99,
+    "esim_5GB_30D_CW_V2": 43.99,
+    "esim_10GB_30D_CW_V2": 69.99,
+    "esim_20GB_30D_CW_V2": 106.99
+  },
+  "Cyprus": {
+    "esim_1GB_7D_CY_V2": 3.99,
+    "esim_2GB_15D_CY_V2": 6.99,
+    "esim_3GB_30D_CY_V2": 7.99,
+    "esim_5GB_30D_CY_V2": 9.99,
+    "esim_10GB_30D_CY_V2": 14.99,
+    "esim_20GB_30D_CY_V2": 23.99,
+    "esim_50GB_30D_CY_V2": 44.99,
+    "esim_100GB_30D_CY_V2": 73.99
+  },
+  "Czech Republic": {
+    "esim_1GB_7D_CZ_V2": 3.99,
+    "esim_2GB_15D_CZ_V2": 5.99,
+    "esim_3GB_30D_CZ_V2": 7.99,
+    "esim_5GB_30D_CZ_V2": 9.99,
+    "esim_10GB_30D_CZ_V2": 13.99,
+    "esim_20GB_30D_CZ_V2": 22.99,
+    "esim_50GB_30D_CZ_V2": 43.99,
+    "esim_100GB_30D_CZ_V2": 78.99
+  },
+  "Denmark": {
+    "esim_1GB_7D_DK_V2": 3.99,
+    "esim_2GB_15D_DK_V2": 5.99,
+    "esim_3GB_30D_DK_V2": 6.99,
+    "esim_5GB_30D_DK_V2": 8.99,
+    "esim_10GB_30D_DK_V2": 13.99,
+    "esim_20GB_30D_DK_V2": 20.99,
+    "esim_50GB_30D_DK_V2": 42.99,
+    "esim_100GB_30D_DK_V2": 74.99
+  },
+  "Dominica": {
+    "esim_1GB_7D_DM_V2": 13.99,
+    "esim_2GB_15D_DM_V2": 23.99,
+    "esim_3GB_30D_DM_V2": 30.99,
+    "esim_5GB_30D_DM_V2": 43.99,
+    "esim_10GB_30D_DM_V2": 69.99,
+    "esim_20GB_30D_DM_V2": 106.99
+  },
+  "Dominican Republic": {
+    "esim_1GB_7D_DO_V2": 22.99,
+    "esim_2GB_15D_DO_V2": 40.99,
+    "esim_3GB_30D_DO_V2": 52.99,
+    "esim_5GB_30D_DO_V2": 78.99,
+    "esim_10GB_30D_DO_V2": 144.99,
+    "esim_20GB_30D_DO_V2": 243.99
+  },
+  "Ecuador": {
+    "esim_1GB_7D_EC_V2": 7.99,
+    "esim_2GB_15D_EC_V2": 12.99,
+    "esim_3GB_30D_EC_V2": 17.99,
+    "esim_5GB_30D_EC_V2": 25.99,
+    "esim_10GB_30D_EC_V2": 46.99,
+    "esim_20GB_30D_EC_V2": 75.99,
+    "esim_50GB_30D_EC_V2": 145.99
+  },
+  "Egypt": {
+    "esim_1GB_7D_EG_V2": 6.99,
+    "esim_2GB_15D_EG_V2": 11.99,
+    "esim_3GB_30D_EG_V2": 13.99,
+    "esim_5GB_30D_EG_V2": 20.99,
+    "esim_10GB_30D_EG_V2": 28.99,
+    "esim_20GB_30D_EG_V2": 45.99,
+    "esim_50GB_30D_EG_V2": 84.99,
+    "esim_100GB_30D_EG_V2": 154.99
+  },
+  "El Salvador": {
+    "esim_1GB_7D_SV_V2": 7.99,
+    "esim_2GB_15D_SV_V2": 10.99,
+    "esim_3GB_30D_SV_V2": 16.99,
+    "esim_5GB_30D_SV_V2": 23.99,
+    "esim_10GB_30D_SV_V2": 34.99,
+    "esim_20GB_30D_SV_V2": 64.99,
+    "esim_50GB_30D_SV_V2": 118.99,
+    "esim_100GB_30D_SV_V2": 216.99
+  },
+  "Estonia": {
+    "esim_1GB_7D_EE_V2": 3.99,
+    "esim_2GB_15D_EE_V2": 6.99,
+    "esim_3GB_30D_EE_V2": 7.99,
+    "esim_5GB_30D_EE_V2": 9.99,
+    "esim_10GB_30D_EE_V2": 13.99,
+    "esim_20GB_30D_EE_V2": 22.99,
+    "esim_50GB_30D_EE_V2": 44.99,
+    "esim_100GB_30D_EE_V2": 81.99
+  },
+  "Ethiopia": {
+    "esim_1GB_7D_ET_V2": 22.99,
+    "esim_2GB_15D_ET_V2": 36.99,
+    "esim_3GB_30D_ET_V2": 47.99,
+    "esim_5GB_30D_ET_V2": 72.99,
+    "esim_10GB_30D_ET_V2": 105.99,
+    "esim_20GB_30D_ET_V2": 164.99
+  },
+  "EU+": {
+    "esim_1GB_7D_REUP_V2": 4.99,
+    "esim_2GB_15D_REUP_V2": 7.99,
+    "esim_3GB_30D_REUP_V2": 8.99,
+    "esim_5GB_30D_REUP_V2": 12.99,
+    "esim_10GB_30D_REUP_V2": 19.99,
+    "esim_20GB_30D_REUP_V2": 31.99,
+    "esim_50GB_30D_REUP_V2": 64.99,
+    "esim_100GB_30D_REUP_V2": 113.99
+  },
+  "Europe Lite": {
+    "esim_1GB_7D_REUL_V2": 3.99,
+    "esim_2GB_15D_REUL_V2": 6.99,
+    "esim_3GB_30D_REUL_V2": 6.99,
+    "esim_5GB_30D_REUL_V2": 10.99,
+    "esim_10GB_30D_REUL_V2": 15.99,
+    "esim_20GB_30D_REUL_V2": 24.99,
+    "esim_50GB_30D_REUL_V2": 51.99,
+    "esim_100GB_30D_REUL_V2": 92.99
+  },
+  "Faroe Islands": {
+    "esim_1GB_7D_FO_V2": 14.99,
+    "esim_2GB_15D_FO_V2": 24.99,
+    "esim_3GB_30D_FO_V2": 34.99,
+    "esim_5GB_30D_FO_V2": 51.99,
+    "esim_10GB_30D_FO_V2": 86.99,
+    "esim_20GB_30D_FO_V2": 145.99
+  },
+  "Fiji": {
+    "esim_1GB_7D_FJ_V2": 28.99,
+    "esim_2GB_15D_FJ_V2": 51.99,
+    "esim_3GB_30D_FJ_V2": 73.99,
+    "esim_5GB_30D_FJ_V2": 110.99,
+    "esim_10GB_30D_FJ_V2": 190.99
+  },
+  "Finland": {
+    "esim_1GB_7D_FI_V2": 3.99,
+    "esim_2GB_15D_FI_V2": 6.99,
+    "esim_3GB_30D_FI_V2": 7.99,
+    "esim_5GB_30D_FI_V2": 9.99,
+    "esim_10GB_30D_FI_V2": 13.99,
+    "esim_20GB_30D_FI_V2": 22.99,
+    "esim_50GB_30D_FI_V2": 44.99,
+    "esim_100GB_30D_FI_V2": 81.99
+  },
+  "France": {
+    "esim_1GB_7D_FR_V2": 3.99,
+    "esim_2GB_15D_FR_V2": 5.99,
+    "esim_3GB_30D_FR_V2": 6.99,
+    "esim_5GB_30D_FR_V2": 8.99,
+    "esim_10GB_30D_FR_V2": 13.99,
+    "esim_20GB_30D_FR_V2": 20.99,
+    "esim_50GB_30D_FR_V2": 41.99,
+    "esim_100GB_30D_FR_V2": 49.99
+  },
+  "French Guiana": {
+    "esim_1GB_7D_GF_V2": 7.99,
+    "esim_2GB_15D_GF_V2": 11.99,
+    "esim_3GB_30D_GF_V2": 14.99,
+    "esim_5GB_30D_GF_V2": 23.99,
+    "esim_10GB_30D_GF_V2": 38.99,
+    "esim_20GB_30D_GF_V2": 62.99,
+    "esim_50GB_30D_GF_V2": 128.99,
+    "esim_100GB_30D_GF_V2": 234.99
+  },
+  "Gabon": {
+    "esim_1GB_7D_GA_V2": 21.99,
+    "esim_2GB_15D_GA_V2": 37.99,
+    "esim_3GB_30D_GA_V2": 48.99,
+    "esim_5GB_30D_GA_V2": 79.99,
+    "esim_10GB_30D_GA_V2": 133.99
+  },
+  "Georgia": {
+    "esim_1GB_7D_GE_V2": 8.99,
+    "esim_2GB_15D_GE_V2": 13.99,
+    "esim_3GB_30D_GE_V2": 18.99,
+    "esim_5GB_30D_GE_V2": 27.99,
+    "esim_10GB_30D_GE_V2": 45.99,
+    "esim_20GB_30D_GE_V2": 81.99,
+    "esim_50GB_30D_GE_V2": 156.99
+  },
+  "Germany": {
+    "esim_1GB_7D_DE_V2": 3.99,
+    "esim_2GB_15D_DE_V2": 5.99,
+    "esim_3GB_30D_DE_V2": 7.99,
+    "esim_5GB_30D_DE_V2": 9.99,
+    "esim_10GB_30D_DE_V2": 13.99,
+    "esim_20GB_30D_DE_V2": 22.99,
+    "esim_50GB_30D_DE_V2": 43.99,
+    "esim_100GB_30D_DE_V2": 78.99
+  },
+  "Ghana": {
+    "esim_1GB_7D_GH_V2": 12.99,
+    "esim_2GB_15D_GH_V2": 19.99,
+    "esim_3GB_30D_GH_V2": 23.99,
+    "esim_5GB_30D_GH_V2": 35.99,
+    "esim_10GB_30D_GH_V2": 51.99,
+    "esim_20GB_30D_GH_V2": 84.99,
+    "esim_50GB_30D_GH_V2": 160.99,
+    "esim_100GB_30D_GH_V2": 284.99
+  },
+  "Gibraltar": {
+    "esim_1GB_7D_GI_V2": 8.99,
+    "esim_2GB_15D_GI_V2": 13.99,
+    "esim_3GB_30D_GI_V2": 19.99,
+    "esim_5GB_30D_GI_V2": 28.99,
+    "esim_10GB_30D_GI_V2": 45.99,
+    "esim_20GB_30D_GI_V2": 79.99,
+    "esim_50GB_30D_GI_V2": 150.99
+  },
+  "Global": {
+    "esim_1GB_7D_RGB_V2": 16.99,
+    "esim_2GB_15D_RGB_V2": 28.99,
+    "esim_3GB_30D_RGB_V2": 40.99,
+    "esim_5GB_30D_RGB_V2": 61.99,
+    "esim_10GB_30D_RGB_V2": 102.99,
+    "esim_20GB_30D_RGB_V2": 171.99
+  },
+  "Greece": {
+    "esim_1GB_7D_GR_V2": 3.99,
+    "esim_2GB_15D_GR_V2": 5.99,
+    "esim_3GB_30D_GR_V2": 7.99,
+    "esim_5GB_30D_GR_V2": 9.99,
+    "esim_10GB_30D_GR_V2": 13.99,
+    "esim_20GB_30D_GR_V2": 22.99,
+    "esim_50GB_30D_GR_V2": 43.99,
+    "esim_100GB_30D_GR_V2": 79.99
+  },
+  "Greenland": {
+    "esim_1GB_7D_GL_V2": 21.99,
+    "esim_2GB_15D_GL_V2": 37.99,
+    "esim_3GB_30D_GL_V2": 48.99,
+    "esim_5GB_30D_GL_V2": 79.99,
+    "esim_10GB_30D_GL_V2": 133.99
+  },
+  "Grenada": {
+    "esim_1GB_7D_GD_V2": 13.99,
+    "esim_2GB_15D_GD_V2": 23.99,
+    "esim_3GB_30D_GD_V2": 30.99,
+    "esim_5GB_30D_GD_V2": 43.99,
+    "esim_10GB_30D_GD_V2": 69.99,
+    "esim_20GB_30D_GD_V2": 106.99
+  },
+  "Guadeloupe": {
+    "esim_1GB_7D_GP_V2": 8.99,
+    "esim_2GB_15D_GP_V2": 13.99,
+    "esim_3GB_30D_GP_V2": 18.99,
+    "esim_5GB_30D_GP_V2": 27.99,
+    "esim_10GB_30D_GP_V2": 45.99,
+    "esim_20GB_30D_GP_V2": 81.99,
+    "esim_50GB_30D_GP_V2": 156.99
+  },
+  "Guam": {
+    "esim_1GB_7D_GU_V2": 11.99,
+    "esim_2GB_15D_GU_V2": 20.99,
+    "esim_3GB_30D_GU_V2": 25.99,
+    "esim_5GB_30D_GU_V2": 41.99,
+    "esim_10GB_30D_GU_V2": 69.99,
+    "esim_20GB_30D_GU_V2": 113.99
+  },
+  "Guatemala": {
+    "esim_1GB_7D_GT_V2": 8.99,
+    "esim_2GB_15D_GT_V2": 13.99,
+    "esim_3GB_30D_GT_V2": 16.99,
+    "esim_5GB_30D_GT_V2": 24.99,
+    "esim_10GB_30D_GT_V2": 37.99,
+    "esim_20GB_30D_GT_V2": 64.99,
+    "esim_50GB_30D_GT_V2": 118.99,
+    "esim_100GB_30D_GT_V2": 216.99
+  },
+  "Guernsey": {
+    "esim_1GB_7D_GG_V2": 6.99,
+    "esim_2GB_15D_GG_V2": 10.99,
+    "esim_3GB_30D_GG_V2": 13.99,
+    "esim_5GB_30D_GG_V2": 21.99,
+    "esim_10GB_30D_GG_V2": 32.99,
+    "esim_20GB_30D_GG_V2": 52.99,
+    "esim_50GB_30D_GG_V2": 106.99,
+    "esim_100GB_30D_GG_V2": 169.99
+  },
+  "Guinea": {
+    "esim_1GB_7D_GN_V2": 22.99,
+    "esim_2GB_15D_GN_V2": 44.99,
+    "esim_3GB_30D_GN_V2": 57.99,
+    "esim_5GB_30D_GN_V2": 86.99,
+    "esim_10GB_30D_GN_V2": 148.99
+  },
+  "Guinea-Bissau": {
+    "esim_1GB_7D_GW_V2": 14.99,
+    "esim_2GB_15D_GW_V2": 24.99,
+    "esim_3GB_30D_GW_V2": 34.99,
+    "esim_5GB_30D_GW_V2": 51.99,
+    "esim_10GB_30D_GW_V2": 86.99,
+    "esim_20GB_30D_GW_V2": 145.99
+  },
+  "Guyana": {
+    "esim_1GB_7D_GY_V2": 13.99,
+    "esim_2GB_15D_GY_V2": 23.99,
+    "esim_3GB_30D_GY_V2": 30.99,
+    "esim_5GB_30D_GY_V2": 43.99,
+    "esim_10GB_30D_GY_V2": 69.99,
+    "esim_20GB_30D_GY_V2": 106.99
+  },
+  "Haiti": {
+    "esim_1GB_7D_HT_V2": 13.99,
+    "esim_2GB_15D_HT_V2": 23.99,
+    "esim_3GB_30D_HT_V2": 30.99,
+    "esim_5GB_30D_HT_V2": 43.99,
+    "esim_10GB_30D_HT_V2": 69.99,
+    "esim_20GB_30D_HT_V2": 106.99
+  },
+  "Hawaii": {
+    "esim_1GB_7D_US-HI_V2": 4.99,
+    "esim_2GB_15D_US-HI_V2": 8.99,
+    "esim_3GB_30D_US-HI_V2": 9.99,
+    "esim_5GB_30D_US-HI_V2": 13.99,
+    "esim_10GB_30D_US-HI_V2": 22.99,
+    "esim_20GB_30D_US-HI_V2": 36.99,
+    "esim_50GB_30D_US-HI_V2": 76.99,
+    "esim_100GB_30D_US-HI_V2": 132.99
+  },
+  "Honduras": {
+    "esim_1GB_7D_HN_V2": 8.99,
+    "esim_2GB_15D_HN_V2": 13.99,
+    "esim_3GB_30D_HN_V2": 16.99,
+    "esim_5GB_30D_HN_V2": 24.99,
+    "esim_10GB_30D_HN_V2": 37.99,
+    "esim_20GB_30D_HN_V2": 64.99,
+    "esim_50GB_30D_HN_V2": 118.99,
+    "esim_100GB_30D_HN_V2": 216.99
+  },
+  "Hong Kong": {
+    "esim_1GB_7D_HK_V2": 5.99,
+    "esim_2GB_15D_HK_V2": 8.99,
+    "esim_3GB_30D_HK_V2": 11.99,
+    "esim_5GB_30D_HK_V2": 15.99,
+    "esim_10GB_30D_HK_V2": 25.99,
+    "esim_20GB_30D_HK_V2": 44.99,
+    "esim_50GB_30D_HK_V2": 83.99,
+    "esim_100GB_30D_HK_V2": 142.99
+  },
+  "Hungary": {
+    "esim_1GB_7D_HU_V2": 3.99,
+    "esim_2GB_15D_HU_V2": 5.99,
+    "esim_3GB_30D_HU_V2": 7.99,
+    "esim_5GB_30D_HU_V2": 9.99,
+    "esim_10GB_30D_HU_V2": 13.99,
+    "esim_20GB_30D_HU_V2": 22.99,
+    "esim_50GB_30D_HU_V2": 43.99,
+    "esim_100GB_30D_HU_V2": 79.99
+  },
+  "Iceland": {
+    "esim_1GB_7D_IS_V2": 3.99,
+    "esim_2GB_15D_IS_V2": 6.99,
+    "esim_3GB_30D_IS_V2": 7.99,
+    "esim_5GB_30D_IS_V2": 9.99,
+    "esim_10GB_30D_IS_V2": 13.99,
+    "esim_20GB_30D_IS_V2": 22.99,
+    "esim_50GB_30D_IS_V2": 44.99,
+    "esim_100GB_30D_IS_V2": 81.99
+  },
+  "India": {
+    "esim_1GB_7D_IN_V2": 7.99,
+    "esim_2GB_15D_IN_V2": 11.99,
+    "esim_3GB_30D_IN_V2": 14.99,
+    "esim_5GB_30D_IN_V2": 23.99,
+    "esim_10GB_30D_IN_V2": 32.99,
+    "esim_20GB_30D_IN_V2": 53.99,
+    "esim_50GB_30D_IN_V2": 115.99,
+    "esim_100GB_30D_IN_V2": 194.99
+  },
+  "Indonesia": {
+    "esim_1GB_7D_ID_V2": 5.99,
+    "esim_2GB_15D_ID_V2": 8.99,
+    "esim_3GB_30D_ID_V2": 11.99,
+    "esim_5GB_30D_ID_V2": 15.99,
+    "esim_10GB_30D_ID_V2": 25.99,
+    "esim_20GB_30D_ID_V2": 44.99,
+    "esim_50GB_30D_ID_V2": 83.99,
+    "esim_100GB_30D_ID_V2": 142.99
+  },
+  "Iran-Islamic Republic of": {
+    "esim_1GB_7D_IR_V2": 43.99,
+    "esim_2GB_15D_IR_V2": 78.99,
+    "esim_3GB_30D_IR_V2": 110.99,
+    "esim_5GB_30D_IR_V2": 172.99
+  },
+  "Iraq": {
+    "esim_1GB_7D_IQ_V2": 14.99,
+    "esim_2GB_15D_IQ_V2": 24.99,
+    "esim_3GB_30D_IQ_V2": 34.99,
+    "esim_5GB_30D_IQ_V2": 51.99,
+    "esim_10GB_30D_IQ_V2": 86.99,
+    "esim_20GB_30D_IQ_V2": 145.99
+  },
+  "Ireland": {
+    "esim_1GB_7D_IE_V2": 3.99,
+    "esim_2GB_15D_IE_V2": 5.99,
+    "esim_3GB_30D_IE_V2": 6.99,
+    "esim_5GB_30D_IE_V2": 8.99,
+    "esim_10GB_30D_IE_V2": 13.99,
+    "esim_20GB_30D_IE_V2": 20.99,
+    "esim_50GB_30D_IE_V2": 42.99,
+    "esim_100GB_30D_IE_V2": 74.99
+  },
+  "Isle of Man": {
+    "esim_1GB_7D_IM_V2": 7.99,
+    "esim_2GB_15D_IM_V2": 11.99,
+    "esim_3GB_30D_IM_V2": 14.99,
+    "esim_5GB_30D_IM_V2": 23.99,
+    "esim_10GB_30D_IM_V2": 38.99,
+    "esim_20GB_30D_IM_V2": 62.99,
+    "esim_50GB_30D_IM_V2": 128.99,
+    "esim_100GB_30D_IM_V2": 194.99
+  },
+  "Israel": {
+    "esim_1GB_7D_IL_V2": 6.99,
+    "esim_2GB_15D_IL_V2": 9.99,
+    "esim_3GB_30D_IL_V2": 12.99,
+    "esim_5GB_30D_IL_V2": 17.99,
+    "esim_10GB_30D_IL_V2": 28.99,
+    "esim_20GB_30D_IL_V2": 47.99,
+    "esim_50GB_30D_IL_V2": 96.99,
+    "esim_100GB_30D_IL_V2": 153.99
+  },
+  "Italy": {
+    "esim_1GB_7D_IT_V2": 3.99,
+    "esim_2GB_15D_IT_V2": 5.99,
+    "esim_3GB_30D_IT_V2": 6.99,
+    "esim_5GB_30D_IT_V2": 8.99,
+    "esim_10GB_30D_IT_V2": 13.99,
+    "esim_20GB_30D_IT_V2": 20.99,
+    "esim_50GB_30D_IT_V2": 41.99,
+    "esim_100GB_30D_IT_V2": 73.99
+  },
+  "Ivory Coast": {
+    "esim_1GB_7D_CI_V2": 21.99,
+    "esim_2GB_15D_CI_V2": 37.99,
+    "esim_3GB_30D_CI_V2": 48.99,
+    "esim_5GB_30D_CI_V2": 79.99,
+    "esim_10GB_30D_CI_V2": 133.99
+  },
+  "Jamaica": {
+    "esim_1GB_7D_JM_V2": 13.99,
+    "esim_2GB_15D_JM_V2": 23.99,
+    "esim_3GB_30D_JM_V2": 30.99,
+    "esim_5GB_30D_JM_V2": 43.99,
+    "esim_10GB_30D_JM_V2": 69.99,
+    "esim_20GB_30D_JM_V2": 106.99
+  },
+  "Japan": {
+    "esim_1GB_7D_JP_V2": 5.99,
+    "esim_2GB_15D_JP_V2": 7.99,
+    "esim_3GB_30D_JP_V2": 10.99,
+    "esim_5GB_30D_JP_V2": 13.99,
+    "esim_10GB_30D_JP_V2": 21.99,
+    "esim_20GB_30D_JP_V2": 30.99
+  },
+  "Jersey": {
+    "esim_1GB_7D_JE_V2": 6.99,
+    "esim_2GB_15D_JE_V2": 10.99,
+    "esim_3GB_30D_JE_V2": 13.99,
+    "esim_5GB_30D_JE_V2": 21.99,
+    "esim_10GB_30D_JE_V2": 32.99,
+    "esim_20GB_30D_JE_V2": 52.99,
+    "esim_50GB_30D_JE_V2": 106.99,
+    "esim_100GB_30D_JE_V2": 169.99
+  },
+  "Jordan": {
+    "esim_1GB_7D_JO_V2": 4.99,
+    "esim_2GB_15D_JO_V2": 7.99,
+    "esim_3GB_30D_JO_V2": 8.99,
+    "esim_5GB_30D_JO_V2": 13.99,
+    "esim_10GB_30D_JO_V2": 23.99,
+    "esim_20GB_30D_JO_V2": 37.99,
+    "esim_50GB_30D_JO_V2": 70.99,
+    "esim_100GB_30D_JO_V2": 109.99
+  },
+  "Kazakhstan": {
+    "esim_1GB_7D_KZ_V2": 5.99,
+    "esim_2GB_15D_KZ_V2": 9.99,
+    "esim_3GB_30D_KZ_V2": 12.99,
+    "esim_5GB_30D_KZ_V2": 16.99,
+    "esim_10GB_30D_KZ_V2": 24.99,
+    "esim_20GB_30D_KZ_V2": 35.99,
+    "esim_50GB_30D_KZ_V2": 73.99,
+    "esim_100GB_30D_KZ_V2": 116.99
+  },
+  "Kenya": {
+    "esim_1GB_7D_KE_V2": 14.99,
+    "esim_2GB_15D_KE_V2": 24.99,
+    "esim_3GB_30D_KE_V2": 34.99,
+    "esim_5GB_30D_KE_V2": 51.99,
+    "esim_10GB_30D_KE_V2": 86.99,
+    "esim_20GB_30D_KE_V2": 145.99
+  },
+  "Korea-Republic of": {
+    "esim_1GB_7D_KR_V2": 7.99,
+    "esim_2GB_15D_KR_V2": 11.99,
+    "esim_3GB_30D_KR_V2": 14.99,
+    "esim_5GB_30D_KR_V2": 23.99,
+    "esim_10GB_30D_KR_V2": 38.99,
+    "esim_20GB_30D_KR_V2": 62.99,
+    "esim_50GB_30D_KR_V2": 128.99,
+    "esim_100GB_30D_KR_V2": 204.99
+  },
+  "Kosovo": {
+    "esim_1GB_7D_XK_V2": 8.99,
+    "esim_2GB_15D_XK_V2": 11.99,
+    "esim_3GB_30D_XK_V2": 13.99,
+    "esim_5GB_30D_XK_V2": 19.99,
+    "esim_10GB_30D_XK_V2": 26.99,
+    "esim_20GB_30D_XK_V2": 43.99,
+    "esim_50GB_30D_XK_V2": 79.99,
+    "esim_100GB_30D_XK_V2": 140.99
+  },
+  "Kuwait": {
+    "esim_1GB_7D_KW_V2": 7.99,
+    "esim_2GB_15D_KW_V2": 9.99,
+    "esim_3GB_30D_KW_V2": 13.99,
+    "esim_5GB_30D_KW_V2": 19.99,
+    "esim_10GB_30D_KW_V2": 29.99,
+    "esim_20GB_30D_KW_V2": 52.99,
+    "esim_50GB_30D_KW_V2": 100.99,
+    "esim_100GB_30D_KW_V2": 163.99
+  },
+  "Kyrgyzstan": {
+    "esim_1GB_7D_KG_V2": 5.99,
+    "esim_2GB_15D_KG_V2": 9.99,
+    "esim_3GB_30D_KG_V2": 12.99,
+    "esim_5GB_30D_KG_V2": 16.99,
+    "esim_10GB_30D_KG_V2": 24.99,
+    "esim_20GB_30D_KG_V2": 35.99,
+    "esim_50GB_30D_KG_V2": 73.99,
+    "esim_100GB_30D_KG_V2": 116.99
+  },
+  "Laos": {
+    "esim_1GB_7D_LA_V2": 27.99,
+    "esim_2GB_15D_LA_V2": 50.99,
+    "esim_3GB_30D_LA_V2": 70.99,
+    "esim_5GB_30D_LA_V2": 106.99,
+    "esim_10GB_30D_LA_V2": 183.99
+  },
+  "Latvia": {
+    "esim_1GB_7D_LV_V2": 3.99,
+    "esim_2GB_15D_LV_V2": 6.99,
+    "esim_3GB_30D_LV_V2": 7.99,
+    "esim_5GB_30D_LV_V2": 9.99,
+    "esim_10GB_30D_LV_V2": 13.99,
+    "esim_20GB_30D_LV_V2": 22.99,
+    "esim_50GB_30D_LV_V2": 44.99,
+    "esim_100GB_30D_LV_V2": 81.99
+  },
+  "Lesotho": {
+    "esim_1GB_7D_LS_V2": 7.99,
+    "esim_2GB_15D_LS_V2": 10.99,
+    "esim_3GB_30D_LS_V2": 13.99,
+    "esim_5GB_30D_LS_V2": 21.99,
+    "esim_10GB_30D_LS_V2": 34.99,
+    "esim_20GB_30D_LS_V2": 56.99,
+    "esim_50GB_30D_LS_V2": 115.99,
+    "esim_100GB_30D_LS_V2": 173.99
+  },
+  "Liberia": {
+    "esim_1GB_7D_LR_V2": 21.99,
+    "esim_2GB_15D_LR_V2": 37.99,
+    "esim_3GB_30D_LR_V2": 48.99,
+    "esim_5GB_30D_LR_V2": 79.99,
+    "esim_10GB_30D_LR_V2": 133.99
+  },
+  "Liechtenstein": {
+    "esim_1GB_7D_LI_V2": 3.99,
+    "esim_2GB_15D_LI_V2": 6.99,
+    "esim_3GB_30D_LI_V2": 7.99,
+    "esim_5GB_30D_LI_V2": 9.99,
+    "esim_10GB_30D_LI_V2": 13.99,
+    "esim_20GB_30D_LI_V2": 22.99,
+    "esim_50GB_30D_LI_V2": 44.99,
+    "esim_100GB_30D_LI_V2": 81.99
+  },
+  "Lithuania": {
+    "esim_1GB_7D_LT_V2": 3.99,
+    "esim_2GB_15D_LT_V2": 6.99,
+    "esim_3GB_30D_LT_V2": 7.99,
+    "esim_5GB_30D_LT_V2": 9.99,
+    "esim_10GB_30D_LT_V2": 13.99,
+    "esim_20GB_30D_LT_V2": 22.99,
+    "esim_50GB_30D_LT_V2": 44.99,
+    "esim_100GB_30D_LT_V2": 81.99
+  },
+  "Luxembourg": {
+    "esim_1GB_7D_LU_V2": 3.99,
+    "esim_2GB_15D_LU_V2": 6.99,
+    "esim_3GB_30D_LU_V2": 7.99,
+    "esim_5GB_30D_LU_V2": 9.99,
+    "esim_10GB_30D_LU_V2": 13.99,
+    "esim_20GB_30D_LU_V2": 22.99,
+    "esim_50GB_30D_LU_V2": 44.99,
+    "esim_100GB_30D_LU_V2": 81.99
+  },
+  "Macao": {
+    "esim_1GB_7D_MO_V2": 5.99,
+    "esim_2GB_15D_MO_V2": 8.99,
+    "esim_3GB_30D_MO_V2": 11.99,
+    "esim_5GB_30D_MO_V2": 15.99,
+    "esim_10GB_30D_MO_V2": 25.99,
+    "esim_20GB_30D_MO_V2": 44.99,
+    "esim_50GB_30D_MO_V2": 83.99,
+    "esim_100GB_30D_MO_V2": 142.99
+  },
+  "Macedonia": {
+    "esim_1GB_7D_MK_V2": 8.99,
+    "esim_2GB_15D_MK_V2": 13.99,
+    "esim_3GB_30D_MK_V2": 18.99,
+    "esim_5GB_30D_MK_V2": 27.99,
+    "esim_10GB_30D_MK_V2": 45.99,
+    "esim_20GB_30D_MK_V2": 81.99,
+    "esim_50GB_30D_MK_V2": 156.99
+  },
+  "Madagascar": {
+    "esim_1GB_7D_MG_V2": 14.99,
+    "esim_2GB_15D_MG_V2": 24.99,
+    "esim_3GB_30D_MG_V2": 34.99,
+    "esim_5GB_30D_MG_V2": 51.99,
+    "esim_10GB_30D_MG_V2": 86.99,
+    "esim_20GB_30D_MG_V2": 145.99
+  },
+  "Malawi": {
+    "esim_1GB_7D_MW_V2": 21.99,
+    "esim_2GB_15D_MW_V2": 37.99,
+    "esim_3GB_30D_MW_V2": 48.99,
+    "esim_5GB_30D_MW_V2": 79.99,
+    "esim_10GB_30D_MW_V2": 133.99
+  },
+  "Malaysia": {
+    "esim_1GB_7D_MY_V2": 7.99,
+    "esim_2GB_15D_MY_V2": 10.99,
+    "esim_3GB_30D_MY_V2": 13.99,
+    "esim_5GB_30D_MY_V2": 20.99,
+    "esim_10GB_30D_MY_V2": 32.99,
+    "esim_20GB_30D_MY_V2": 51.99,
+    "esim_50GB_30D_MY_V2": 104.99,
+    "esim_100GB_30D_MY_V2": 168.99
+  },
+  "Mali": {
+    "esim_1GB_7D_ML_V2": 14.99,
+    "esim_2GB_15D_ML_V2": 24.99,
+    "esim_3GB_30D_ML_V2": 34.99,
+    "esim_5GB_30D_ML_V2": 51.99,
+    "esim_10GB_30D_ML_V2": 86.99,
+    "esim_20GB_30D_ML_V2": 145.99
+  },
+  "Malta": {
+    "esim_1GB_7D_MT_V2": 3.99,
+    "esim_2GB_15D_MT_V2": 5.99,
+    "esim_3GB_30D_MT_V2": 7.99,
+    "esim_5GB_30D_MT_V2": 9.99,
+    "esim_10GB_30D_MT_V2": 13.99,
+    "esim_20GB_30D_MT_V2": 22.99,
+    "esim_50GB_30D_MT_V2": 43.99,
+    "esim_100GB_30D_MT_V2": 79.99
+  },
+  "Martinique": {
+    "esim_1GB_7D_MQ_V2": 11.99,
+    "esim_2GB_15D_MQ_V2": 20.99,
+    "esim_3GB_30D_MQ_V2": 25.99,
+    "esim_5GB_30D_MQ_V2": 41.99,
+    "esim_10GB_30D_MQ_V2": 69.99,
+    "esim_20GB_30D_MQ_V2": 113.99
+  },
+  "Mauritania": {
+    "esim_1GB_7D_MR_V2": 24.99,
+    "esim_2GB_15D_MR_V2": 44.99,
+    "esim_3GB_30D_MR_V2": 62.99,
+    "esim_5GB_30D_MR_V2": 93.99,
+    "esim_10GB_30D_MR_V2": 161.99
+  },
+  "Mauritius": {
+    "esim_1GB_7D_MU_V2": 8.99,
+    "esim_2GB_15D_MU_V2": 13.99,
+    "esim_3GB_30D_MU_V2": 18.99,
+    "esim_5GB_30D_MU_V2": 25.99,
+    "esim_10GB_30D_MU_V2": 40.99,
+    "esim_20GB_30D_MU_V2": 61.99,
+    "esim_50GB_30D_MU_V2": 125.99,
+    "esim_100GB_30D_MU_V2": 207.99
+  },
+  "Mayotte": {
+    "esim_1GB_7D_YT_V2": 7.99,
+    "esim_2GB_15D_YT_V2": 11.99,
+    "esim_3GB_30D_YT_V2": 14.99,
+    "esim_5GB_30D_YT_V2": 23.99,
+    "esim_10GB_30D_YT_V2": 38.99,
+    "esim_20GB_30D_YT_V2": 62.99,
+    "esim_50GB_30D_YT_V2": 128.99,
+    "esim_100GB_30D_YT_V2": 204.99
+  },
+  "Mexico": {
+    "esim_1GB_7D_MX_V2": 6.99,
+    "esim_2GB_15D_MX_V2": 8.99,
+    "esim_3GB_30D_MX_V2": 11.99,
+    "esim_5GB_30D_MX_V2": 14.99,
+    "esim_10GB_30D_MX_V2": 22.99,
+    "esim_20GB_30D_MX_V2": 32.99,
+    "esim_50GB_30D_MX_V2": 65.99,
+    "esim_100GB_30D_MX_V2": 105.99
+  },
+  "Middle East & Africa": {
+    "esim_1GB_7D_RME_V2": 9.99,
+    "esim_2GB_15D_RME_V2": 15.99,
+    "esim_3GB_30D_RME_V2": 21.99,
+    "esim_5GB_30D_RME_V2": 31.99,
+    "esim_10GB_30D_RME_V2": 53.99,
+    "esim_20GB_30D_RME_V2": 86.99,
+    "esim_50GB_30D_RME_V2": 183.99
+  },
+  "Middle East and North Africa": {
+    "esim_1GB_7D_RMENA_V2": 7.99,
+    "esim_2GB_15D_RMENA_V2": 11.99,
+    "esim_3GB_30D_RMENA_V2": 14.99,
+    "esim_5GB_30D_RMENA_V2": 20.99,
+    "esim_10GB_30D_RMENA_V2": 34.99,
+    "esim_20GB_30D_RMENA_V2": 56.99,
+    "esim_50GB_30D_RMENA_V2": 109.99,
+    "esim_100GB_30D_RMENA_V2": 196.99
+  },
+  "Moldova": {
+    "esim_1GB_7D_MD_V2": 5.99,
+    "esim_2GB_15D_MD_V2": 7.99,
+    "esim_3GB_30D_MD_V2": 7.99,
+    "esim_5GB_30D_MD_V2": 9.99,
+    "esim_10GB_30D_MD_V2": 12.99,
+    "esim_20GB_30D_MD_V2": 19.99,
+    "esim_50GB_30D_MD_V2": 37.99
+  },
+  "Monaco": {
+    "esim_1GB_7D_MC_V2": 21.99,
+    "esim_2GB_15D_MC_V2": 37.99,
+    "esim_3GB_30D_MC_V2": 48.99,
+    "esim_5GB_30D_MC_V2": 79.99,
+    "esim_10GB_30D_MC_V2": 133.99
+  },
+  "Mongolia": {
+    "esim_1GB_7D_MN_V2": 27.99,
+    "esim_2GB_15D_MN_V2": 50.99,
+    "esim_3GB_30D_MN_V2": 70.99,
+    "esim_5GB_30D_MN_V2": 106.99,
+    "esim_10GB_30D_MN_V2": 183.99
+  },
+  "Montenegro": {
+    "esim_1GB_7D_ME_V2": 6.99,
+    "esim_2GB_15D_ME_V2": 8.99,
+    "esim_3GB_30D_ME_V2": 10.99,
+    "esim_5GB_30D_ME_V2": 14.99,
+    "esim_10GB_30D_ME_V2": 21.99,
+    "esim_20GB_30D_ME_V2": 30.99
+  },
+  "Montserrat": {
+    "esim_1GB_7D_MS_V2": 13.99,
+    "esim_2GB_15D_MS_V2": 23.99,
+    "esim_3GB_30D_MS_V2": 30.99,
+    "esim_5GB_30D_MS_V2": 43.99,
+    "esim_10GB_30D_MS_V2": 69.99,
+    "esim_20GB_30D_MS_V2": 106.99
+  },
+  "Morocco": {
+    "esim_1GB_7D_MA_V2": 5.99,
+    "esim_2GB_15D_MA_V2": 7.99,
+    "esim_3GB_30D_MA_V2": 8.99,
+    "esim_5GB_30D_MA_V2": 12.99,
+    "esim_10GB_30D_MA_V2": 16.99,
+    "esim_20GB_30D_MA_V2": 24.99,
+    "esim_50GB_30D_MA_V2": 48.99,
+    "esim_100GB_30D_MA_V2": 84.99
+  },
+  "Mozambique": {
+    "esim_1GB_7D_MZ_V2": 51.99,
+    "esim_2GB_15D_MZ_V2": 92.99,
+    "esim_3GB_30D_MZ_V2": 129.99
+  },
+  "Namibia": {
+    "esim_1GB_7D_NA_V2": 40.99,
+    "esim_2GB_15D_NA_V2": 74.99,
+    "esim_3GB_30D_NA_V2": 95.99,
+    "esim_5GB_30D_NA_V2": 148.99
+  },
+  "Nauru": {
+    "esim_1GB_7D_NR_V2": 31.99,
+    "esim_2GB_15D_NR_V2": 57.99,
+    "esim_3GB_30D_NR_V2": 80.99,
+    "esim_5GB_30D_NR_V2": 121.99
+  },
+  "Netherlands": {
+    "esim_1GB_7D_NL_V2": 3.99,
+    "esim_2GB_15D_NL_V2": 6.99,
+    "esim_3GB_30D_NL_V2": 7.99,
+    "esim_5GB_30D_NL_V2": 9.99,
+    "esim_10GB_30D_NL_V2": 13.99,
+    "esim_20GB_30D_NL_V2": 22.99,
+    "esim_50GB_30D_NL_V2": 44.99,
+    "esim_100GB_30D_NL_V2": 81.99
+  },
+  "Netherlands Antilles": {
+    "esim_1GB_7D_AN_V2": 13.99,
+    "esim_2GB_15D_AN_V2": 23.99,
+    "esim_3GB_30D_AN_V2": 30.99,
+    "esim_5GB_30D_AN_V2": 43.99,
+    "esim_10GB_30D_AN_V2": 69.99,
+    "esim_20GB_30D_AN_V2": 106.99
+  },
+  "New Zealand": {
+    "esim_1GB_7D_NZ_V2": 4.99,
+    "esim_2GB_15D_NZ_V2": 7.99,
+    "esim_3GB_30D_NZ_V2": 8.99,
+    "esim_5GB_30D_NZ_V2": 12.99,
+    "esim_10GB_30D_NZ_V2": 17.99,
+    "esim_20GB_30D_NZ_V2": 26.99,
+    "esim_50GB_30D_NZ_V2": 54.99,
+    "esim_100GB_30D_NZ_V2": 96.99
+  },
+  "Nicaragua": {
+    "esim_1GB_7D_NI_V2": 8.99,
+    "esim_2GB_15D_NI_V2": 13.99,
+    "esim_3GB_30D_NI_V2": 16.99,
+    "esim_5GB_30D_NI_V2": 24.99,
+    "esim_10GB_30D_NI_V2": 37.99,
+    "esim_20GB_30D_NI_V2": 64.99,
+    "esim_50GB_30D_NI_V2": 118.99,
+    "esim_100GB_30D_NI_V2": 216.99
+  },
+  "Niger": {
+    "esim_1GB_7D_NE_V2": 21.99,
+    "esim_2GB_15D_NE_V2": 37.99,
+    "esim_3GB_30D_NE_V2": 48.99,
+    "esim_5GB_30D_NE_V2": 79.99,
+    "esim_10GB_30D_NE_V2": 133.99
+  },
+  "Nigeria": {
+    "esim_1GB_7D_NG_V2": 7.99,
+    "esim_2GB_15D_NG_V2": 12.99,
+    "esim_3GB_30D_NG_V2": 17.99,
+    "esim_5GB_30D_NG_V2": 25.99,
+    "esim_10GB_30D_NG_V2": 46.99,
+    "esim_20GB_30D_NG_V2": 75.99,
+    "esim_50GB_30D_NG_V2": 145.99
+  },
+  "North America": {
+    "esim_1GB_7D_RNA_V2": 7.99,
+    "esim_2GB_15D_RNA_V2": 10.99,
+    "esim_3GB_30D_RNA_V2": 13.99,
+    "esim_5GB_30D_RNA_V2": 22.99,
+    "esim_10GB_30D_RNA_V2": 36.99,
+    "esim_20GB_30D_RNA_V2": 57.99,
+    "esim_50GB_30D_RNA_V2": 114.99,
+    "esim_100GB_30D_RNA_V2": 209.99
+  },
+  "Northern Cyprus": {
+    "esim_1GB_7D_CYP_V2": 3.99,
+    "esim_2GB_15D_CYP_V2": 6.99,
+    "esim_3GB_30D_CYP_V2": 7.99,
+    "esim_5GB_30D_CYP_V2": 12.99,
+    "esim_10GB_30D_CYP_V2": 17.99,
+    "esim_20GB_30D_CYP_V2": 26.99,
+    "esim_50GB_30D_CYP_V2": 54.99,
+    "esim_100GB_30D_CYP_V2": 98.99
+  },
+  "Norway": {
+    "esim_1GB_7D_NO_V2": 3.99,
+    "esim_2GB_15D_NO_V2": 5.99,
+    "esim_3GB_30D_NO_V2": 7.99,
+    "esim_5GB_30D_NO_V2": 9.99,
+    "esim_10GB_30D_NO_V2": 13.99,
+    "esim_20GB_30D_NO_V2": 22.99,
+    "esim_50GB_30D_NO_V2": 43.99,
+    "esim_100GB_30D_NO_V2": 79.99
+  },
+  "Oceania": {
+    "esim_1GB_7D_ROC_V2": 4.99,
+    "esim_2GB_15D_ROC_V2": 6.99,
+    "esim_3GB_30D_ROC_V2": 7.99,
+    "esim_5GB_30D_ROC_V2": 10.99,
+    "esim_10GB_30D_ROC_V2": 14.99,
+    "esim_20GB_30D_ROC_V2": 22.99,
+    "esim_50GB_30D_ROC_V2": 43.99,
+    "esim_100GB_30D_ROC_V2": 70.99
+  },
+  "Oman": {
+    "esim_1GB_7D_OM_V2": 10.99,
+    "esim_2GB_15D_OM_V2": 17.99,
+    "esim_3GB_30D_OM_V2": 24.99,
+    "esim_5GB_30D_OM_V2": 36.99,
+    "esim_10GB_30D_OM_V2": 60.99,
+    "esim_20GB_30D_OM_V2": 99.99,
+    "esim_50GB_30D_OM_V2": 210.99
+  },
+  "Pakistan": {
+    "esim_1GB_7D_PK_V2": 7.99,
+    "esim_2GB_15D_PK_V2": 10.99,
+    "esim_3GB_30D_PK_V2": 14.99,
+    "esim_5GB_30D_PK_V2": 23.99,
+    "esim_10GB_30D_PK_V2": 37.99,
+    "esim_20GB_30D_PK_V2": 62.99,
+    "esim_50GB_30D_PK_V2": 127.99,
+    "esim_100GB_30D_PK_V2": 199.99
+  },
+  "Palestine": {
+    "esim_1GB_7D_PS_V2": 37.99,
+    "esim_2GB_15D_PS_V2": 67.99,
+    "esim_3GB_30D_PS_V2": 86.99,
+    "esim_5GB_30D_PS_V2": 143.99
+  },
+  "Panama": {
+    "esim_1GB_7D_PA_V2": 6.99,
+    "esim_2GB_15D_PA_V2": 11.99,
+    "esim_3GB_30D_PA_V2": 14.99,
+    "esim_5GB_30D_PA_V2": 21.99,
+    "esim_10GB_30D_PA_V2": 29.99,
+    "esim_20GB_30D_PA_V2": 44.99,
+    "esim_50GB_30D_PA_V2": 89.99,
+    "esim_100GB_30D_PA_V2": 148.99
+  },
+  "Papua New Guinea": {
+    "esim_1GB_7D_PG_V2": 28.99,
+    "esim_2GB_15D_PG_V2": 51.99,
+    "esim_3GB_30D_PG_V2": 73.99,
+    "esim_5GB_30D_PG_V2": 110.99,
+    "esim_10GB_30D_PG_V2": 190.99
+  },
+  "Paraguay": {
+    "esim_1GB_7D_PY_V2": 8.99,
+    "esim_2GB_15D_PY_V2": 13.99,
+    "esim_3GB_30D_PY_V2": 16.99,
+    "esim_5GB_30D_PY_V2": 24.99,
+    "esim_10GB_30D_PY_V2": 37.99,
+    "esim_20GB_30D_PY_V2": 64.99,
+    "esim_50GB_30D_PY_V2": 118.99,
+    "esim_100GB_30D_PY_V2": 216.99
+  },
+  "Peru": {
+    "esim_1GB_7D_PE_V2": 7.99,
+    "esim_2GB_15D_PE_V2": 11.99,
+    "esim_3GB_30D_PE_V2": 13.99,
+    "esim_5GB_30D_PE_V2": 20.99,
+    "esim_10GB_30D_PE_V2": 27.99,
+    "esim_20GB_30D_PE_V2": 45.99,
+    "esim_50GB_30D_PE_V2": 83.99,
+    "esim_100GB_30D_PE_V2": 147.99
+  },
+  "Philippines": {
+    "esim_1GB_7D_PH_V2": 10.99,
+    "esim_2GB_15D_PH_V2": 17.99,
+    "esim_3GB_30D_PH_V2": 24.99,
+    "esim_5GB_30D_PH_V2": 36.99,
+    "esim_10GB_30D_PH_V2": 60.99,
+    "esim_20GB_30D_PH_V2": 99.99
+  },
+  "Poland": {
+    "esim_1GB_7D_PL_V2": 3.99,
+    "esim_2GB_15D_PL_V2": 5.99,
+    "esim_3GB_30D_PL_V2": 7.99,
+    "esim_5GB_30D_PL_V2": 9.99,
+    "esim_10GB_30D_PL_V2": 13.99,
+    "esim_20GB_30D_PL_V2": 22.99,
+    "esim_50GB_30D_PL_V2": 43.99,
+    "esim_100GB_30D_PL_V2": 79.99
+  },
+  "Portugal": {
+    "esim_1GB_7D_PT_V2": 3.99,
+    "esim_2GB_15D_PT_V2": 5.99,
+    "esim_3GB_30D_PT_V2": 7.99,
+    "esim_5GB_30D_PT_V2": 9.99,
+    "esim_10GB_30D_PT_V2": 13.99,
+    "esim_20GB_30D_PT_V2": 22.99,
+    "esim_50GB_30D_PT_V2": 43.99,
+    "esim_100GB_30D_PT_V2": 78.99
+  },
+  "Puerto Rico": {
+    "esim_1GB_7D_PR_V2": 4.99,
+    "esim_2GB_15D_PR_V2": 7.99,
+    "esim_3GB_30D_PR_V2": 9.99,
+    "esim_5GB_30D_PR_V2": 13.99,
+    "esim_10GB_30D_PR_V2": 23.99,
+    "esim_20GB_30D_PR_V2": 37.99,
+    "esim_50GB_30D_PR_V2": 78.99,
+    "esim_100GB_30D_PR_V2": 132.99
+  },
+  "Qatar": {
+    "esim_1GB_7D_QA_V2": 5.99,
+    "esim_2GB_15D_QA_V2": 9.99,
+    "esim_3GB_30D_QA_V2": 12.99,
+    "esim_5GB_30D_QA_V2": 16.99,
+    "esim_10GB_30D_QA_V2": 24.99,
+    "esim_20GB_30D_QA_V2": 35.99,
+    "esim_50GB_30D_QA_V2": 73.99,
+    "esim_100GB_30D_QA_V2": 116.99
+  },
+  "Reunion": {
+    "esim_1GB_7D_RE_V2": 4.99,
+    "esim_2GB_15D_RE_V2": 7.99,
+    "esim_3GB_30D_RE_V2": 9.99,
+    "esim_5GB_30D_RE_V2": 13.99,
+    "esim_10GB_30D_RE_V2": 23.99,
+    "esim_20GB_30D_RE_V2": 37.99,
+    "esim_50GB_30D_RE_V2": 78.99,
+    "esim_100GB_30D_RE_V2": 98.99
+  },
+  "Romania": {
+    "esim_1GB_7D_RO_V2": 3.99,
+    "esim_2GB_15D_RO_V2": 6.99,
+    "esim_3GB_30D_RO_V2": 7.99,
+    "esim_5GB_30D_RO_V2": 9.99,
+    "esim_10GB_30D_RO_V2": 13.99,
+    "esim_20GB_30D_RO_V2": 22.99,
+    "esim_50GB_30D_RO_V2": 44.99,
+    "esim_100GB_30D_RO_V2": 81.99
+  },
+  "Russian Federation": {
+    "esim_1GB_7D_RU_V2": 7.99,
+    "esim_2GB_15D_RU_V2": 10.99,
+    "esim_3GB_30D_RU_V2": 13.99,
+    "esim_5GB_30D_RU_V2": 21.99,
+    "esim_10GB_30D_RU_V2": 34.99,
+    "esim_20GB_30D_RU_V2": 56.99,
+    "esim_50GB_30D_RU_V2": 115.99,
+    "esim_100GB_30D_RU_V2": 194.99
+  },
+  "Rwanda": {
+    "esim_1GB_7D_RW_V2": 21.99,
+    "esim_2GB_15D_RW_V2": 37.99,
+    "esim_3GB_30D_RW_V2": 48.99,
+    "esim_5GB_30D_RW_V2": 79.99,
+    "esim_10GB_30D_RW_V2": 133.99
+  },
+  "Saint Barthelemy": {
+    "esim_1GB_7D_BL_V2": 8.99,
+    "esim_2GB_15D_BL_V2": 13.99,
+    "esim_3GB_30D_BL_V2": 18.99,
+    "esim_5GB_30D_BL_V2": 27.99,
+    "esim_10GB_30D_BL_V2": 45.99,
+    "esim_20GB_30D_BL_V2": 81.99,
+    "esim_50GB_30D_BL_V2": 156.99
+  },
+  "Saint Kitts And Nevis": {
+    "esim_1GB_7D_KN_V2": 13.99,
+    "esim_2GB_15D_KN_V2": 23.99,
+    "esim_3GB_30D_KN_V2": 30.99,
+    "esim_5GB_30D_KN_V2": 43.99,
+    "esim_10GB_30D_KN_V2": 69.99,
+    "esim_20GB_30D_KN_V2": 106.99
+  },
+  "Saint Lucia": {
+    "esim_1GB_7D_LC_V2": 13.99,
+    "esim_2GB_15D_LC_V2": 23.99,
+    "esim_3GB_30D_LC_V2": 30.99,
+    "esim_5GB_30D_LC_V2": 43.99,
+    "esim_10GB_30D_LC_V2": 69.99,
+    "esim_20GB_30D_LC_V2": 106.99
+  },
+  "Saint Martin": {
+    "esim_1GB_7D_MF_V2": 8.99,
+    "esim_2GB_15D_MF_V2": 13.99,
+    "esim_3GB_30D_MF_V2": 18.99,
+    "esim_5GB_30D_MF_V2": 27.99,
+    "esim_10GB_30D_MF_V2": 45.99,
+    "esim_20GB_30D_MF_V2": 81.99,
+    "esim_50GB_30D_MF_V2": 156.99
+  },
+  "Saint Vincent And The Grenadines": {
+    "esim_1GB_7D_VC_V2": 13.99,
+    "esim_2GB_15D_VC_V2": 23.99,
+    "esim_3GB_30D_VC_V2": 30.99,
+    "esim_5GB_30D_VC_V2": 43.99,
+    "esim_10GB_30D_VC_V2": 69.99,
+    "esim_20GB_30D_VC_V2": 106.99
+  },
+  "Samoa": {
+    "esim_1GB_7D_WS_V2": 28.99,
+    "esim_2GB_15D_WS_V2": 51.99,
+    "esim_3GB_30D_WS_V2": 73.99,
+    "esim_5GB_30D_WS_V2": 110.99,
+    "esim_10GB_30D_WS_V2": 190.99
+  },
+  "Saudi Arabia": {
+    "esim_1GB_7D_SA_V2": 5.99,
+    "esim_2GB_15D_SA_V2": 8.99,
+    "esim_3GB_30D_SA_V2": 11.99,
+    "esim_5GB_30D_SA_V2": 14.99,
+    "esim_10GB_30D_SA_V2": 23.99,
+    "esim_20GB_30D_SA_V2": 38.99,
+    "esim_50GB_30D_SA_V2": 79.99,
+    "esim_100GB_30D_SA_V2": 154.99
+  },
+  "Senegal": {
+    "esim_1GB_7D_SN_V2": 16.99,
+    "esim_2GB_15D_SN_V2": 28.99,
+    "esim_3GB_30D_SN_V2": 40.99,
+    "esim_5GB_30D_SN_V2": 61.99,
+    "esim_10GB_30D_SN_V2": 102.99,
+    "esim_20GB_30D_SN_V2": 171.99
+  },
+  "Serbia": {
+    "esim_1GB_7D_RS_V2": 5.99,
+    "esim_2GB_15D_RS_V2": 7.99,
+    "esim_3GB_30D_RS_V2": 10.99,
+    "esim_5GB_30D_RS_V2": 13.99,
+    "esim_10GB_30D_RS_V2": 20.99,
+    "esim_20GB_30D_RS_V2": 30.99,
+    "esim_50GB_30D_RS_V2": 61.99,
+    "esim_100GB_30D_RS_V2": 99.99
+  },
+  "Seychelles": {
+    "esim_1GB_7D_SC_V2": 16.99,
+    "esim_2GB_15D_SC_V2": 28.99,
+    "esim_3GB_30D_SC_V2": 40.99,
+    "esim_5GB_30D_SC_V2": 61.99,
+    "esim_10GB_30D_SC_V2": 102.99,
+    "esim_20GB_30D_SC_V2": 171.99
+  },
+  "Singapore": {
+    "esim_1GB_7D_SG_V2": 5.99,
+    "esim_2GB_15D_SG_V2": 8.99,
+    "esim_3GB_30D_SG_V2": 11.99,
+    "esim_5GB_30D_SG_V2": 15.99,
+    "esim_10GB_30D_SG_V2": 25.99,
+    "esim_20GB_30D_SG_V2": 44.99,
+    "esim_50GB_30D_SG_V2": 83.99,
+    "esim_100GB_30D_SG_V2": 142.99
+  },
+  "Slovakia": {
+    "esim_1GB_7D_SK_V2": 3.99,
+    "esim_2GB_15D_SK_V2": 6.99,
+    "esim_3GB_30D_SK_V2": 7.99,
+    "esim_5GB_30D_SK_V2": 9.99,
+    "esim_10GB_30D_SK_V2": 13.99,
+    "esim_20GB_30D_SK_V2": 22.99,
+    "esim_50GB_30D_SK_V2": 44.99,
+    "esim_100GB_30D_SK_V2": 81.99
+  },
+  "Slovenia": {
+    "esim_1GB_7D_SI_V2": 3.99,
+    "esim_2GB_15D_SI_V2": 6.99,
+    "esim_3GB_30D_SI_V2": 7.99,
+    "esim_5GB_30D_SI_V2": 9.99,
+    "esim_10GB_30D_SI_V2": 13.99,
+    "esim_20GB_30D_SI_V2": 22.99,
+    "esim_50GB_30D_SI_V2": 44.99,
+    "esim_100GB_30D_SI_V2": 81.99
+  },
+  "South Africa": {
+    "esim_1GB_7D_ZA_V2": 7.99,
+    "esim_2GB_15D_ZA_V2": 13.99,
+    "esim_3GB_30D_ZA_V2": 15.99,
+    "esim_5GB_30D_ZA_V2": 23.99,
+    "esim_10GB_30D_ZA_V2": 33.99,
+    "esim_20GB_30D_ZA_V2": 50.99,
+    "esim_50GB_30D_ZA_V2": 102.99,
+    "esim_100GB_30D_ZA_V2": 169.99
+  },
+  "Spain": {
+    "esim_1GB_7D_ES_V2": 3.99,
+    "esim_2GB_15D_ES_V2": 5.99,
+    "esim_3GB_30D_ES_V2": 7.99,
+    "esim_5GB_30D_ES_V2": 9.99,
+    "esim_10GB_30D_ES_V2": 14.99,
+    "esim_20GB_30D_ES_V2": 22.99,
+    "esim_50GB_30D_ES_V2": 43.99,
+    "esim_100GB_30D_ES_V2": 79.99
+  },
+  "Sri Lanka": {
+    "esim_1GB_7D_LK_V2": 6.99,
+    "esim_2GB_15D_LK_V2": 9.99,
+    "esim_3GB_30D_LK_V2": 12.99,
+    "esim_5GB_30D_LK_V2": 17.99,
+    "esim_10GB_30D_LK_V2": 28.99,
+    "esim_20GB_30D_LK_V2": 47.99,
+    "esim_50GB_30D_LK_V2": 96.99,
+    "esim_100GB_30D_LK_V2": 176.99
+  },
+  "Sudan": {
+    "esim_1GB_7D_SD_V2": 16.99,
+    "esim_2GB_15D_SD_V2": 28.99,
+    "esim_3GB_30D_SD_V2": 40.99,
+    "esim_5GB_30D_SD_V2": 61.99,
+    "esim_10GB_30D_SD_V2": 102.99,
+    "esim_20GB_30D_SD_V2": 171.99
+  },
+  "Suriname": {
+    "esim_1GB_7D_SR_V2": 13.99,
+    "esim_2GB_15D_SR_V2": 23.99,
+    "esim_3GB_30D_SR_V2": 30.99,
+    "esim_5GB_30D_SR_V2": 43.99,
+    "esim_10GB_30D_SR_V2": 69.99,
+    "esim_20GB_30D_SR_V2": 106.99
+  },
+  "Swaziland": {
+    "esim_1GB_7D_SZ_V2": 21.99,
+    "esim_2GB_15D_SZ_V2": 37.99,
+    "esim_3GB_30D_SZ_V2": 48.99,
+    "esim_5GB_30D_SZ_V2": 79.99,
+    "esim_10GB_30D_SZ_V2": 133.99
+  },
+  "Sweden": {
+    "esim_1GB_7D_SE_V2": 3.99,
+    "esim_2GB_15D_SE_V2": 5.99,
+    "esim_3GB_30D_SE_V2": 6.99,
+    "esim_5GB_30D_SE_V2": 8.99,
+    "esim_10GB_30D_SE_V2": 13.99,
+    "esim_20GB_30D_SE_V2": 20.99,
+    "esim_50GB_30D_SE_V2": 42.99,
+    "esim_100GB_30D_SE_V2": 74.99
+  },
+  "Switzerland": {
+    "esim_1GB_7D_CH_V2": 3.99,
+    "esim_2GB_15D_CH_V2": 5.99,
+    "esim_3GB_30D_CH_V2": 7.99,
+    "esim_5GB_30D_CH_V2": 9.99,
+    "esim_10GB_30D_CH_V2": 13.99,
+    "esim_20GB_30D_CH_V2": 23.99,
+    "esim_50GB_30D_CH_V2": 42.99,
+    "esim_100GB_30D_CH_V2": 83.99
+  },
+  "Taiwan-Province of China": {
+    "esim_1GB_7D_TW_V2": 6.99,
+    "esim_2GB_15D_TW_V2": 9.99,
+    "esim_3GB_30D_TW_V2": 12.99,
+    "esim_5GB_30D_TW_V2": 17.99,
+    "esim_10GB_30D_TW_V2": 28.99,
+    "esim_20GB_30D_TW_V2": 47.99,
+    "esim_50GB_30D_TW_V2": 96.99,
+    "esim_100GB_30D_TW_V2": 163.99
+  },
+  "Tajikistan": {
+    "esim_1GB_7D_TJ_V2": 33.99,
+    "esim_2GB_15D_TJ_V2": 59.99,
+    "esim_3GB_30D_TJ_V2": 84.99,
+    "esim_5GB_30D_TJ_V2": 127.99
+  },
+  "Tanzania, United Republic of": {
+    "esim_1GB_7D_TZ_V2": 11.99,
+    "esim_2GB_15D_TZ_V2": 20.99,
+    "esim_3GB_30D_TZ_V2": 25.99,
+    "esim_5GB_30D_TZ_V2": 41.99,
+    "esim_10GB_30D_TZ_V2": 69.99,
+    "esim_20GB_30D_TZ_V2": 113.99
+  },
+  "Thailand": {
+    "esim_1GB_7D_TH_V2": 5.99,
+    "esim_2GB_15D_TH_V2": 8.99,
+    "esim_3GB_30D_TH_V2": 10.99,
+    "esim_5GB_30D_TH_V2": 15.99,
+    "esim_10GB_30D_TH_V2": 23.99,
+    "esim_20GB_30D_TH_V2": 41.99,
+    "esim_50GB_30D_TH_V2": 77.99,
+    "esim_100GB_30D_TH_V2": 134.99
+  },
+  "Togo": {
+    "esim_1GB_7D_TG_V2": 44.99,
+    "esim_2GB_15D_TG_V2": 81.99,
+    "esim_3GB_30D_TG_V2": 114.99,
+    "esim_5GB_30D_TG_V2": 177.99
+  },
+  "Tonga": {
+    "esim_1GB_7D_TO_V2": 35.99,
+    "esim_2GB_15D_TO_V2": 63.99,
+    "esim_3GB_30D_TO_V2": 81.99,
+    "esim_5GB_30D_TO_V2": 135.99
+  },
+  "Trinidad And Tobago": {
+    "esim_1GB_7D_TT_V2": 13.99,
+    "esim_2GB_15D_TT_V2": 23.99,
+    "esim_3GB_30D_TT_V2": 30.99,
+    "esim_5GB_30D_TT_V2": 43.99,
+    "esim_10GB_30D_TT_V2": 69.99,
+    "esim_20GB_30D_TT_V2": 106.99
+  },
+  "Tunisia": {
+    "esim_1GB_7D_TN_V2": 4.99,
+    "esim_2GB_15D_TN_V2": 7.99,
+    "esim_3GB_30D_TN_V2": 8.99,
+    "esim_5GB_30D_TN_V2": 13.99,
+    "esim_10GB_30D_TN_V2": 23.99,
+    "esim_20GB_30D_TN_V2": 37.99,
+    "esim_50GB_30D_TN_V2": 70.99,
+    "esim_100GB_30D_TN_V2": 109.99
+  },
+  "Turkey": {
+    "esim_1GB_7D_TR_V2": 3.99,
+    "esim_2GB_15D_TR_V2": 5.99,
+    "esim_3GB_30D_TR_V2": 7.99,
+    "esim_5GB_30D_TR_V2": 8.99,
+    "esim_10GB_30D_TR_V2": 12.99,
+    "esim_20GB_30D_TR_V2": 17.99,
+    "esim_50GB_30D_TR_V2": 34.99,
+    "esim_100GB_30D_TR_V2": 56.99
+  },
+  "Turks And Caicos Islands": {
+    "esim_1GB_7D_TC_V2": 13.99,
+    "esim_2GB_15D_TC_V2": 23.99,
+    "esim_3GB_30D_TC_V2": 30.99,
+    "esim_5GB_30D_TC_V2": 43.99,
+    "esim_10GB_30D_TC_V2": 69.99,
+    "esim_20GB_30D_TC_V2": 106.99
+  },
+  "Uganda": {
+    "esim_1GB_7D_UG_V2": 11.99,
+    "esim_2GB_15D_UG_V2": 20.99,
+    "esim_3GB_30D_UG_V2": 25.99,
+    "esim_5GB_30D_UG_V2": 41.99,
+    "esim_10GB_30D_UG_V2": 69.99,
+    "esim_20GB_30D_UG_V2": 113.99
+  },
+  "Ukraine": {
+    "esim_1GB_7D_UA_V2": 4.99,
+    "esim_2GB_15D_UA_V2": 7.99,
+    "esim_3GB_30D_UA_V2": 9.99,
+    "esim_5GB_30D_UA_V2": 13.99,
+    "esim_10GB_30D_UA_V2": 23.99,
+    "esim_20GB_30D_UA_V2": 37.99,
+    "esim_50GB_30D_UA_V2": 78.99,
+    "esim_100GB_30D_UA_V2": 98.99
+  },
+  "United Arab Emirates": {
+    "esim_1GB_7D_AE_V2": 6.99,
+    "esim_2GB_15D_AE_V2": 9.99,
+    "esim_3GB_30D_AE_V2": 12.99,
+    "esim_5GB_30D_AE_V2": 17.99,
+    "esim_10GB_30D_AE_V2": 27.99,
+    "esim_20GB_30D_AE_V2": 45.99,
+    "esim_50GB_30D_AE_V2": 92.99,
+    "esim_100GB_30D_AE_V2": 120.99
+  },
+  "United Kingdom": {
+    "esim_1GB_7D_GB_V2": 3.99,
+    "esim_2GB_15D_GB_V2": 5.99,
+    "esim_3GB_30D_GB_V2": 7.99,
+    "esim_5GB_30D_GB_V2": 10.99,
+    "esim_10GB_30D_GB_V2": 15.99,
+    "esim_20GB_30D_GB_V2": 24.99,
+    "esim_50GB_30D_GB_V2": 50.99,
+    "esim_100GB_30D_GB_V2": 88.99
+  },
+  "United States of America": {
+    "esim_1GB_7D_US_V2": 4.99,
+    "esim_2GB_15D_US_V2": 8.99,
+    "esim_3GB_30D_US_V2": 9.99,
+    "esim_5GB_30D_US_V2": 13.99,
+    "esim_10GB_30D_US_V2": 22.99,
+    "esim_20GB_30D_US_V2": 36.99,
+    "esim_50GB_30D_US_V2": 76.99,
+    "esim_100GB_30D_US_V2": 132.99
+  },
+  "Uruguay": {
+    "esim_1GB_7D_UY_V2": 7.99,
+    "esim_2GB_15D_UY_V2": 12.99,
+    "esim_3GB_30D_UY_V2": 17.99,
+    "esim_5GB_30D_UY_V2": 25.99,
+    "esim_10GB_30D_UY_V2": 46.99,
+    "esim_20GB_30D_UY_V2": 75.99,
+    "esim_50GB_30D_UY_V2": 145.99
+  },
+  "Uzbekistan": {
+    "esim_1GB_7D_UZ_V2": 7.99,
+    "esim_2GB_15D_UZ_V2": 11.99,
+    "esim_3GB_30D_UZ_V2": 14.99,
+    "esim_5GB_30D_UZ_V2": 23.99,
+    "esim_10GB_30D_UZ_V2": 32.99,
+    "esim_20GB_30D_UZ_V2": 53.99,
+    "esim_50GB_30D_UZ_V2": 115.99,
+    "esim_100GB_30D_UZ_V2": 204.99
+  },
+  "Vanuatu": {
+    "esim_1GB_7D_VU_V2": 28.99,
+    "esim_2GB_15D_VU_V2": 51.99,
+    "esim_3GB_30D_VU_V2": 73.99,
+    "esim_5GB_30D_VU_V2": 110.99,
+    "esim_10GB_30D_VU_V2": 190.99
+  },
+  "Vatican City": {
+    "esim_1GB_7D_VA_V2": 3.99,
+    "esim_2GB_15D_VA_V2": 5.99,
+    "esim_3GB_30D_VA_V2": 6.99,
+    "esim_5GB_30D_VA_V2": 8.99,
+    "esim_10GB_30D_VA_V2": 13.99,
+    "esim_20GB_30D_VA_V2": 20.99,
+    "esim_50GB_30D_VA_V2": 41.99,
+    "esim_100GB_30D_VA_V2": 73.99
+  },
+  "VietNam": {
+    "esim_1GB_7D_VN_V2": 5.99,
+    "esim_2GB_15D_VN_V2": 7.99,
+    "esim_3GB_30D_VN_V2": 9.99,
+    "esim_5GB_30D_VN_V2": 13.99,
+    "esim_10GB_30D_VN_V2": 18.99,
+    "esim_20GB_30D_VN_V2": 26.99,
+    "esim_50GB_30D_VN_V2": 53.99,
+    "esim_100GB_30D_VN_V2": 86.99
+  },
+  "Virgin Islands - British": {
+    "esim_1GB_7D_VG_V2": 13.99,
+    "esim_2GB_15D_VG_V2": 23.99,
+    "esim_3GB_30D_VG_V2": 30.99,
+    "esim_5GB_30D_VG_V2": 43.99,
+    "esim_10GB_30D_VG_V2": 69.99,
+    "esim_20GB_30D_VG_V2": 106.99
+  },
+  "Virgin Islands - United States": {
+    "esim_1GB_7D_VI_V2": 7.99,
+    "esim_2GB_15D_VI_V2": 12.99,
+    "esim_3GB_30D_VI_V2": 17.99,
+    "esim_5GB_30D_VI_V2": 25.99,
+    "esim_10GB_30D_VI_V2": 46.99,
+    "esim_20GB_30D_VI_V2": 75.99,
+    "esim_50GB_30D_VI_V2": 145.99
+  },
+  "Zambia": {
+    "esim_1GB_7D_ZM_V2": 14.99,
+    "esim_2GB_15D_ZM_V2": 24.99,
+    "esim_3GB_30D_ZM_V2": 34.99,
+    "esim_5GB_30D_ZM_V2": 51.99,
+    "esim_10GB_30D_ZM_V2": 86.99,
+    "esim_20GB_30D_ZM_V2": 145.99
+  }
+}

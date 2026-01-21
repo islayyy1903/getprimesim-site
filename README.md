@@ -1,12 +1,18 @@
 # PrimeSim Site - Profile ID Validation Fix
 
-## Problem
+GetPrimeSIM official website (eSIM & VPN services)
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Problem Fixed
+
 The system was encountering an error where email addresses (like `islamyavuz09@gmail.com`) were being incorrectly parsed as profile IDs/UUIDs, causing the error:
 ```
 failed to parse profile id: islamyavuz09@gmail.com: invalid UUID length: 22
 ```
 
 ## Solution
+
 Added proper validation to ensure:
 1. Profile IDs are valid UUIDs before parsing
 2. Email addresses are detected and rejected as profile IDs
@@ -27,9 +33,28 @@ Updated order creation service with:
 - Proper separation of email and profileId fields
 - Better error handling for validation failures
 - Prevents payments when validation fails
+- Base URL configuration for esim-go.com API (v2.4 and v2.5 support)
 
 ### `src/utils/profileIdValidator.test.ts`
 Comprehensive tests covering all edge cases including the specific error scenario.
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Usage
 
@@ -54,6 +79,7 @@ const order = await createOrder({
 ```
 
 ## Environment Variables
+
 Make sure to set:
 ```
 ESIM_GO_API_KEY=your_api_key_here
@@ -65,9 +91,29 @@ ESIM_GO_API_VERSION=2.5  # Optional: 2.4 or 2.5
 You can override it with the `ESIM_GO_BASE_URL` environment variable.
 
 ## Testing
+
 Run tests with:
 ```bash
 npm test
 # or
 yarn test
 ```
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Live Site
+
+🌐 **Production:** [getprimesim-site.vercel.app](https://getprimesim-site.vercel.app)

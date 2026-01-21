@@ -1,0 +1,1683 @@
+{
+  "Aaland Islands": {
+    "esim_UL_1D_AX_V2": 3.99,
+    "esim_UL_3D_AX_V2": 7.99,
+    "esim_UL_5D_AX_V2": 12.99,
+    "esim_UL_7D_AX_V2": 15.99,
+    "esim_UL_10D_AX_V2": 21.99,
+    "esim_UL_15D_AX_V2": 28.99,
+    "esim_UL_30D_AX_V2": 51.99
+  },
+  "Africa": {
+    "esim_UL_1D_RAF_V2": 19.99,
+    "esim_UL_3D_RAF_V2": 45.99,
+    "esim_UL_5D_RAF_V2": 75.99,
+    "esim_UL_7D_RAF_V2": 96.99,
+    "esim_UL_10D_RAF_V2": 136.99
+  },
+  "Albania": {
+    "esim_UL_1D_AL_V2": 7.99,
+    "esim_UL_3D_AL_V2": 18.99,
+    "esim_UL_5D_AL_V2": 27.99,
+    "esim_UL_7D_AL_V2": 38.99,
+    "esim_UL_10D_AL_V2": 49.99,
+    "esim_UL_15D_AL_V2": 74.99,
+    "esim_UL_30D_AL_V2": 134.99
+  },
+  "Algeria": {
+    "esim_UL_1D_DZ_V2": 19.99,
+    "esim_UL_3D_DZ_V2": 45.99,
+    "esim_UL_5D_DZ_V2": 75.99,
+    "esim_UL_7D_DZ_V2": 96.99,
+    "esim_UL_10D_DZ_V2": 136.99
+  },
+  "Americas": {
+    "esim_UL_1D_RLA_V2": 10.99,
+    "esim_UL_3D_RLA_V2": 23.99,
+    "esim_UL_5D_RLA_V2": 37.99,
+    "esim_UL_7D_RLA_V2": 48.99,
+    "esim_UL_10D_RLA_V2": 68.99,
+    "esim_UL_15D_RLA_V2": 92.99,
+    "esim_UL_30D_RLA_V2": 172.99
+  },
+  "Andorra": {
+    "esim_UL_1D_AD_V2": 19.99,
+    "esim_UL_3D_AD_V2": 45.99,
+    "esim_UL_5D_AD_V2": 75.99,
+    "esim_UL_7D_AD_V2": 96.99,
+    "esim_UL_10D_AD_V2": 136.99
+  },
+  "Anguilla": {
+    "esim_UL_1D_AI_V2": 18.99,
+    "esim_UL_3D_AI_V2": 43.99,
+    "esim_UL_5D_AI_V2": 72.99,
+    "esim_UL_7D_AI_V2": 91.99,
+    "esim_UL_10D_AI_V2": 130.99,
+    "esim_UL_15D_AI_V2": 182.99
+  },
+  "Antigua And Barbuda": {
+    "esim_UL_1D_AG_V2": 18.99,
+    "esim_UL_3D_AG_V2": 43.99,
+    "esim_UL_5D_AG_V2": 72.99,
+    "esim_UL_7D_AG_V2": 91.99,
+    "esim_UL_10D_AG_V2": 130.99,
+    "esim_UL_15D_AG_V2": 182.99
+  },
+  "Argentina": {
+    "esim_UL_1D_AR_V2": 9.99,
+    "esim_UL_3D_AR_V2": 23.99,
+    "esim_UL_5D_AR_V2": 33.99,
+    "esim_UL_7D_AR_V2": 42.99,
+    "esim_UL_10D_AR_V2": 59.99,
+    "esim_UL_15D_AR_V2": 80.99,
+    "esim_UL_30D_AR_V2": 148.99
+  },
+  "Armenia": {
+    "esim_UL_1D_AM_V2": 10.99,
+    "esim_UL_3D_AM_V2": 21.99,
+    "esim_UL_5D_AM_V2": 34.99,
+    "esim_UL_7D_AM_V2": 43.99,
+    "esim_UL_10D_AM_V2": 61.99,
+    "esim_UL_15D_AM_V2": 82.99
+  },
+  "Aruba": {
+    "esim_UL_1D_AW_V2": 18.99,
+    "esim_UL_3D_AW_V2": 43.99,
+    "esim_UL_5D_AW_V2": 72.99,
+    "esim_UL_7D_AW_V2": 91.99,
+    "esim_UL_10D_AW_V2": 130.99,
+    "esim_UL_15D_AW_V2": 182.99
+  },
+  "Asia": {
+    "esim_UL_1D_RAS_V2": 8.99,
+    "esim_UL_3D_RAS_V2": 21.99,
+    "esim_UL_5D_RAS_V2": 32.99,
+    "esim_UL_7D_RAS_V2": 44.99,
+    "esim_UL_10D_RAS_V2": 57.99,
+    "esim_UL_15D_RAS_V2": 78.99,
+    "esim_UL_30D_RAS_V2": 145.99
+  },
+  "Australia": {
+    "esim_UL_1D_AU_V2": 4.99,
+    "esim_UL_3D_AU_V2": 8.99,
+    "esim_UL_5D_AU_V2": 12.99,
+    "esim_UL_7D_AU_V2": 15.99,
+    "esim_UL_10D_AU_V2": 21.99,
+    "esim_UL_15D_AU_V2": 28.99,
+    "esim_UL_30D_AU_V2": 51.99
+  },
+  "Austria": {
+    "esim_UL_1D_AT_V2": 3.99,
+    "esim_UL_3D_AT_V2": 7.99,
+    "esim_UL_5D_AT_V2": 12.99,
+    "esim_UL_7D_AT_V2": 15.99,
+    "esim_UL_10D_AT_V2": 21.99,
+    "esim_UL_15D_AT_V2": 28.99,
+    "esim_UL_30D_AT_V2": 49.99
+  },
+  "Azerbaijan": {
+    "esim_UL_1D_AZ_V2": 7.99,
+    "esim_UL_3D_AZ_V2": 16.99,
+    "esim_UL_5D_AZ_V2": 23.99,
+    "esim_UL_7D_AZ_V2": 31.99
+  },
+  "Bahamas": {
+    "esim_UL_1D_BS_V2": 18.99,
+    "esim_UL_3D_BS_V2": 43.99,
+    "esim_UL_5D_BS_V2": 72.99,
+    "esim_UL_7D_BS_V2": 91.99,
+    "esim_UL_10D_BS_V2": 130.99,
+    "esim_UL_15D_BS_V2": 182.99
+  },
+  "Bahrain": {
+    "esim_UL_1D_BH_V2": 7.99,
+    "esim_UL_3D_BH_V2": 18.99,
+    "esim_UL_5D_BH_V2": 25.99,
+    "esim_UL_7D_BH_V2": 35.99,
+    "esim_UL_10D_BH_V2": 42.99
+  },
+  "Balkans": {
+    "esim_UL_1D_RBK_V2": 18.99,
+    "esim_UL_3D_RBK_V2": 45.99,
+    "esim_UL_5D_RBK_V2": 74.99,
+    "esim_UL_7D_RBK_V2": 95.99,
+    "esim_UL_10D_RBK_V2": 135.99,
+    "esim_UL_15D_RBK_V2": 189.99
+  },
+  "Bangladesh": {
+    "esim_UL_1D_BD_V2": 10.99,
+    "esim_UL_3D_BD_V2": 23.99,
+    "esim_UL_5D_BD_V2": 39.99,
+    "esim_UL_7D_BD_V2": 49.99,
+    "esim_UL_10D_BD_V2": 70.99,
+    "esim_UL_15D_BD_V2": 96.99,
+    "esim_UL_30D_BD_V2": 179.99
+  },
+  "Barbados": {
+    "esim_UL_1D_BB_V2": 18.99,
+    "esim_UL_3D_BB_V2": 43.99,
+    "esim_UL_5D_BB_V2": 72.99,
+    "esim_UL_7D_BB_V2": 91.99,
+    "esim_UL_10D_BB_V2": 130.99,
+    "esim_UL_15D_BB_V2": 182.99
+  },
+  "Belarus": {
+    "esim_UL_1D_BY_V2": 19.99,
+    "esim_UL_3D_BY_V2": 45.99,
+    "esim_UL_5D_BY_V2": 75.99,
+    "esim_UL_7D_BY_V2": 96.99,
+    "esim_UL_10D_BY_V2": 136.99
+  },
+  "Belgium": {
+    "esim_UL_1D_BE_V2": 3.99,
+    "esim_UL_3D_BE_V2": 7.99,
+    "esim_UL_5D_BE_V2": 11.99,
+    "esim_UL_7D_BE_V2": 15.99,
+    "esim_UL_10D_BE_V2": 21.99,
+    "esim_UL_15D_BE_V2": 28.99,
+    "esim_UL_30D_BE_V2": 51.99
+  },
+  "Benin": {
+    "esim_UL_1D_BJ_V2": 44.99,
+    "esim_UL_3D_BJ_V2": 118.99,
+    "esim_UL_5D_BJ_V2": 184.99
+  },
+  "Bermuda": {
+    "esim_UL_1D_BM_V2": 18.99,
+    "esim_UL_3D_BM_V2": 43.99,
+    "esim_UL_5D_BM_V2": 72.99,
+    "esim_UL_7D_BM_V2": 91.99,
+    "esim_UL_10D_BM_V2": 130.99,
+    "esim_UL_15D_BM_V2": 182.99
+  },
+  "Bolivia": {
+    "esim_UL_1D_BO_V2": 8.99,
+    "esim_UL_3D_BO_V2": 22.99,
+    "esim_UL_5D_BO_V2": 31.99,
+    "esim_UL_7D_BO_V2": 43.99,
+    "esim_UL_10D_BO_V2": 49.99
+  },
+  "Bonaire, saint Eustatius and Saba": {
+    "esim_UL_1D_BQ_V2": 18.99,
+    "esim_UL_3D_BQ_V2": 43.99,
+    "esim_UL_5D_BQ_V2": 72.99,
+    "esim_UL_7D_BQ_V2": 91.99,
+    "esim_UL_10D_BQ_V2": 130.99,
+    "esim_UL_15D_BQ_V2": 182.99
+  },
+  "Bosnia And Herzegovina": {
+    "esim_UL_1D_BA_V2": 6.99,
+    "esim_UL_3D_BA_V2": 15.99,
+    "esim_UL_5D_BA_V2": 23.99,
+    "esim_UL_7D_BA_V2": 32.99,
+    "esim_UL_10D_BA_V2": 41.99,
+    "esim_UL_15D_BA_V2": 62.99,
+    "esim_UL_30D_BA_V2": 112.99
+  },
+  "Botswana": {
+    "esim_UL_1D_BW_V2": 22.99,
+    "esim_UL_3D_BW_V2": 53.99,
+    "esim_UL_5D_BW_V2": 81.99,
+    "esim_UL_7D_BW_V2": 113.99,
+    "esim_UL_10D_BW_V2": 150.99
+  },
+  "Brazil": {
+    "esim_UL_1D_BR_V2": 9.99,
+    "esim_UL_3D_BR_V2": 22.99,
+    "esim_UL_5D_BR_V2": 36.99,
+    "esim_UL_7D_BR_V2": 47.99,
+    "esim_UL_10D_BR_V2": 66.99,
+    "esim_UL_15D_BR_V2": 90.99,
+    "esim_UL_30D_BR_V2": 168.99
+  },
+  "Brunei": {
+    "esim_UL_1D_BN_V2": 22.99,
+    "esim_UL_3D_BN_V2": 53.99,
+    "esim_UL_5D_BN_V2": 81.99,
+    "esim_UL_7D_BN_V2": 113.99,
+    "esim_UL_10D_BN_V2": 150.99
+  },
+  "Bulgaria": {
+    "esim_UL_1D_BG_V2": 3.99,
+    "esim_UL_3D_BG_V2": 7.99,
+    "esim_UL_5D_BG_V2": 11.99,
+    "esim_UL_7D_BG_V2": 15.99,
+    "esim_UL_10D_BG_V2": 21.99,
+    "esim_UL_15D_BG_V2": 28.99,
+    "esim_UL_30D_BG_V2": 51.99
+  },
+  "Burkina Faso": {
+    "esim_UL_1D_BF_V2": 35.99,
+    "esim_UL_3D_BF_V2": 86.99,
+    "esim_UL_5D_BF_V2": 144.99,
+    "esim_UL_7D_BF_V2": 188.99
+  },
+  "Cambodia": {
+    "esim_UL_1D_KH_V2": 30.99,
+    "esim_UL_3D_KH_V2": 75.99,
+    "esim_UL_5D_KH_V2": 124.99,
+    "esim_UL_7D_KH_V2": 162.99
+  },
+  "Cameroon": {
+    "esim_UL_1D_CM_V2": 22.99,
+    "esim_UL_3D_CM_V2": 53.99,
+    "esim_UL_5D_CM_V2": 81.99,
+    "esim_UL_7D_CM_V2": 113.99,
+    "esim_UL_10D_CM_V2": 150.99
+  },
+  "Canada": {
+    "esim_UL_1D_CA_V2": 8.99,
+    "esim_UL_3D_CA_V2": 20.99,
+    "esim_UL_5D_CA_V2": 29.99,
+    "esim_UL_7D_CA_V2": 40.99,
+    "esim_UL_10D_CA_V2": 51.99,
+    "esim_UL_15D_CA_V2": 77.99,
+    "esim_UL_30D_CA_V2": 144.99
+  },
+  "Canary Islands": {
+    "esim_UL_1D_IC_V2": 3.99,
+    "esim_UL_3D_IC_V2": 7.99,
+    "esim_UL_5D_IC_V2": 11.99,
+    "esim_UL_7D_IC_V2": 14.99,
+    "esim_UL_10D_IC_V2": 20.99,
+    "esim_UL_15D_IC_V2": 27.99,
+    "esim_UL_30D_IC_V2": 49.99
+  },
+  "Cape Verde": {
+    "esim_UL_1D_CV_V2": 16.99,
+    "esim_UL_3D_CV_V2": 39.99,
+    "esim_UL_5D_CV_V2": 58.99,
+    "esim_UL_7D_CV_V2": 81.99,
+    "esim_UL_10D_CV_V2": 104.99,
+    "esim_UL_15D_CV_V2": 145.99,
+    "esim_UL_30D_CV_V2": 289.99
+  },
+  "Caribbean": {
+    "esim_UL_1D_RCA_V2": 19.99,
+    "esim_UL_3D_RCA_V2": 45.99,
+    "esim_UL_5D_RCA_V2": 75.99,
+    "esim_UL_7D_RCA_V2": 96.99,
+    "esim_UL_10D_RCA_V2": 137.99,
+    "esim_UL_15D_RCA_V2": 191.99
+  },
+  "Cayman Islands": {
+    "esim_UL_1D_KY_V2": 18.99,
+    "esim_UL_3D_KY_V2": 43.99,
+    "esim_UL_5D_KY_V2": 72.99,
+    "esim_UL_7D_KY_V2": 91.99,
+    "esim_UL_10D_KY_V2": 130.99,
+    "esim_UL_15D_KY_V2": 182.99
+  },
+  "CENAM": {
+    "esim_UL_1D_RCE_V2": 9.99,
+    "esim_UL_3D_RCE_V2": 22.99,
+    "esim_UL_5D_RCE_V2": 32.99,
+    "esim_UL_7D_RCE_V2": 44.99,
+    "esim_UL_10D_RCE_V2": 58.99,
+    "esim_UL_15D_RCE_V2": 78.99,
+    "esim_UL_30D_RCE_V2": 144.99
+  },
+  "Central African Republic": {
+    "esim_UL_1D_CF_V2": 26.99,
+    "esim_UL_3D_CF_V2": 70.99,
+    "esim_UL_5D_CF_V2": 106.99,
+    "esim_UL_7D_CF_V2": 148.99
+  },
+  "Chad": {
+    "esim_UL_1D_TD_V2": 26.99,
+    "esim_UL_3D_TD_V2": 70.99,
+    "esim_UL_5D_TD_V2": 106.99,
+    "esim_UL_7D_TD_V2": 148.99
+  },
+  "Chile": {
+    "esim_UL_1D_CL_V2": 9.99,
+    "esim_UL_3D_CL_V2": 21.99,
+    "esim_UL_5D_CL_V2": 31.99,
+    "esim_UL_7D_CL_V2": 43.99,
+    "esim_UL_10D_CL_V2": 56.99,
+    "esim_UL_15D_CL_V2": 76.99,
+    "esim_UL_30D_CL_V2": 141.99
+  },
+  "China": {
+    "esim_UL_1D_CN_V2": 14.99,
+    "esim_UL_3D_CN_V2": 36.99,
+    "esim_UL_5D_CN_V2": 55.99,
+    "esim_UL_7D_CN_V2": 77.99,
+    "esim_UL_10D_CN_V2": 99.99,
+    "esim_UL_15D_CN_V2": 149.99
+  },
+  "CIS": {
+    "esim_UL_1D_RCI_V2": 13.99,
+    "esim_UL_3D_RCI_V2": 28.99,
+    "esim_UL_5D_RCI_V2": 41.99,
+    "esim_UL_7D_RCI_V2": 58.99,
+    "esim_UL_10D_RCI_V2": 82.99,
+    "esim_UL_15D_RCI_V2": 111.99,
+    "esim_UL_30D_RCI_V2": 206.99
+  },
+  "Colombia": {
+    "esim_UL_1D_CO_V2": 7.99,
+    "esim_UL_3D_CO_V2": 22.99,
+    "esim_UL_5D_CO_V2": 30.99,
+    "esim_UL_7D_CO_V2": 42.99,
+    "esim_UL_10D_CO_V2": 49.99,
+    "esim_UL_15D_CO_V2": 74.99,
+    "esim_UL_30D_CO_V2": 142.99
+  },
+  "Congo": {
+    "esim_UL_1D_CG_V2": 26.99,
+    "esim_UL_3D_CG_V2": 70.99,
+    "esim_UL_5D_CG_V2": 106.99,
+    "esim_UL_7D_CG_V2": 148.99
+  },
+  "Congo-the Democratic Republic of the": {
+    "esim_UL_1D_CD_V2": 26.99,
+    "esim_UL_3D_CD_V2": 70.99,
+    "esim_UL_5D_CD_V2": 106.99,
+    "esim_UL_7D_CD_V2": 148.99
+  },
+  "Costa Rica": {
+    "esim_UL_1D_CR_V2": 5.99,
+    "esim_UL_3D_CR_V2": 11.99,
+    "esim_UL_5D_CR_V2": 16.99,
+    "esim_UL_7D_CR_V2": 21.99,
+    "esim_UL_10D_CR_V2": 27.99,
+    "esim_UL_15D_CR_V2": 40.99,
+    "esim_UL_30D_CR_V2": 73.99
+  },
+  "Croatia": {
+    "esim_UL_1D_HR_V2": 3.99,
+    "esim_UL_3D_HR_V2": 7.99,
+    "esim_UL_5D_HR_V2": 12.99,
+    "esim_UL_7D_HR_V2": 15.99,
+    "esim_UL_10D_HR_V2": 21.99,
+    "esim_UL_15D_HR_V2": 28.99,
+    "esim_UL_30D_HR_V2": 51.99
+  },
+  "Cuba": {
+    "esim_UL_1D_CU_V2": 35.99,
+    "esim_UL_3D_CU_V2": 85.99,
+    "esim_UL_5D_CU_V2": 141.99,
+    "esim_UL_7D_CU_V2": 184.99,
+    "esim_UL_10D_CU_V2": 263.99
+  },
+  "Curacao": {
+    "esim_UL_1D_CW_V2": 18.99,
+    "esim_UL_3D_CW_V2": 43.99,
+    "esim_UL_5D_CW_V2": 72.99,
+    "esim_UL_7D_CW_V2": 91.99,
+    "esim_UL_10D_CW_V2": 130.99,
+    "esim_UL_15D_CW_V2": 182.99
+  },
+  "Cyprus": {
+    "esim_UL_1D_CY_V2": 3.99,
+    "esim_UL_3D_CY_V2": 7.99,
+    "esim_UL_5D_CY_V2": 12.99,
+    "esim_UL_7D_CY_V2": 15.99,
+    "esim_UL_10D_CY_V2": 22.99,
+    "esim_UL_15D_CY_V2": 30.99,
+    "esim_UL_30D_CY_V2": 55.99
+  },
+  "Czech Republic": {
+    "esim_UL_1D_CZ_V2": 3.99,
+    "esim_UL_3D_CZ_V2": 7.99,
+    "esim_UL_5D_CZ_V2": 11.99,
+    "esim_UL_7D_CZ_V2": 15.99,
+    "esim_UL_10D_CZ_V2": 21.99,
+    "esim_UL_15D_CZ_V2": 28.99,
+    "esim_UL_30D_CZ_V2": 51.99
+  },
+  "Denmark": {
+    "esim_UL_1D_DK_V2": 3.99,
+    "esim_UL_3D_DK_V2": 7.99,
+    "esim_UL_5D_DK_V2": 12.99,
+    "esim_UL_7D_DK_V2": 15.99,
+    "esim_UL_10D_DK_V2": 21.99,
+    "esim_UL_15D_DK_V2": 28.99,
+    "esim_UL_30D_DK_V2": 49.99
+  },
+  "Dominica": {
+    "esim_UL_1D_DM_V2": 18.99,
+    "esim_UL_3D_DM_V2": 43.99,
+    "esim_UL_5D_DM_V2": 72.99,
+    "esim_UL_7D_DM_V2": 91.99,
+    "esim_UL_10D_DM_V2": 130.99,
+    "esim_UL_15D_DM_V2": 182.99
+  },
+  "Dominican Republic": {
+    "esim_UL_1D_DO_V2": 28.99,
+    "esim_UL_3D_DO_V2": 76.99,
+    "esim_UL_5D_DO_V2": 114.99,
+    "esim_UL_7D_DO_V2": 149.99
+  },
+  "Ecuador": {
+    "esim_UL_1D_EC_V2": 9.99,
+    "esim_UL_3D_EC_V2": 22.99,
+    "esim_UL_5D_EC_V2": 36.99,
+    "esim_UL_7D_EC_V2": 47.99,
+    "esim_UL_10D_EC_V2": 66.99,
+    "esim_UL_15D_EC_V2": 90.99,
+    "esim_UL_30D_EC_V2": 168.99
+  },
+  "Egypt": {
+    "esim_UL_1D_EG_V2": 7.99,
+    "esim_UL_3D_EG_V2": 16.99,
+    "esim_UL_5D_EG_V2": 23.99,
+    "esim_UL_7D_EG_V2": 31.99,
+    "esim_UL_10D_EG_V2": 44.99,
+    "esim_UL_15D_EG_V2": 60.99,
+    "esim_UL_30D_EG_V2": 109.99
+  },
+  "El Salvador": {
+    "esim_UL_1D_SV_V2": 7.99,
+    "esim_UL_3D_SV_V2": 22.99,
+    "esim_UL_5D_SV_V2": 30.99,
+    "esim_UL_7D_SV_V2": 42.99,
+    "esim_UL_10D_SV_V2": 49.99,
+    "esim_UL_15D_SV_V2": 74.99,
+    "esim_UL_30D_SV_V2": 142.99
+  },
+  "Estonia": {
+    "esim_UL_1D_EE_V2": 3.99,
+    "esim_UL_3D_EE_V2": 7.99,
+    "esim_UL_5D_EE_V2": 12.99,
+    "esim_UL_7D_EE_V2": 15.99,
+    "esim_UL_10D_EE_V2": 21.99,
+    "esim_UL_15D_EE_V2": 28.99,
+    "esim_UL_30D_EE_V2": 51.99
+  },
+  "Ethiopia": {
+    "esim_UL_1D_ET_V2": 23.99,
+    "esim_UL_3D_ET_V2": 56.99,
+    "esim_UL_5D_ET_V2": 85.99,
+    "esim_UL_7D_ET_V2": 119.99,
+    "esim_UL_10D_ET_V2": 158.99,
+    "esim_UL_15D_ET_V2": 237.99
+  },
+  "EU+": {
+    "esim_UL_1D_REUP_V2": 4.99,
+    "esim_UL_3D_REUP_V2": 9.99,
+    "esim_UL_5D_REUP_V2": 13.99,
+    "esim_UL_7D_REUP_V2": 18.99,
+    "esim_UL_10D_REUP_V2": 24.99,
+    "esim_UL_15D_REUP_V2": 35.99,
+    "esim_UL_30D_REUP_V2": 63.99
+  },
+  "Europe Lite": {
+    "esim_UL_1D_REUL_V2": 3.99,
+    "esim_UL_3D_REUL_V2": 8.99,
+    "esim_UL_5D_REUL_V2": 13.99,
+    "esim_UL_7D_REUL_V2": 16.99,
+    "esim_UL_10D_REUL_V2": 22.99,
+    "esim_UL_15D_REUL_V2": 28.99,
+    "esim_UL_30D_REUL_V2": 53.99
+  },
+  "Faroe Islands": {
+    "esim_UL_1D_FO_V2": 19.99,
+    "esim_UL_3D_FO_V2": 45.99,
+    "esim_UL_5D_FO_V2": 75.99,
+    "esim_UL_7D_FO_V2": 96.99,
+    "esim_UL_10D_FO_V2": 136.99
+  },
+  "Fiji": {
+    "esim_UL_1D_FJ_V2": 39.99,
+    "esim_UL_3D_FJ_V2": 97.99,
+    "esim_UL_5D_FJ_V2": 150.99
+  },
+  "Finland": {
+    "esim_UL_1D_FI_V2": 3.99,
+    "esim_UL_3D_FI_V2": 7.99,
+    "esim_UL_5D_FI_V2": 12.99,
+    "esim_UL_7D_FI_V2": 15.99,
+    "esim_UL_10D_FI_V2": 21.99,
+    "esim_UL_15D_FI_V2": 28.99,
+    "esim_UL_30D_FI_V2": 51.99
+  },
+  "France": {
+    "esim_UL_1D_FR_V2": 3.99,
+    "esim_UL_3D_FR_V2": 7.99,
+    "esim_UL_5D_FR_V2": 12.99,
+    "esim_UL_7D_FR_V2": 15.99,
+    "esim_UL_10D_FR_V2": 21.99,
+    "esim_UL_15D_FR_V2": 28.99,
+    "esim_UL_30D_FR_V2": 49.99
+  },
+  "French Guiana": {
+    "esim_UL_1D_GF_V2": 8.99,
+    "esim_UL_3D_GF_V2": 20.99,
+    "esim_UL_5D_GF_V2": 30.99,
+    "esim_UL_7D_GF_V2": 42.99,
+    "esim_UL_10D_GF_V2": 55.99,
+    "esim_UL_15D_GF_V2": 75.99,
+    "esim_UL_30D_GF_V2": 149.99
+  },
+  "Gabon": {
+    "esim_UL_1D_GA_V2": 26.99,
+    "esim_UL_3D_GA_V2": 70.99,
+    "esim_UL_5D_GA_V2": 106.99,
+    "esim_UL_7D_GA_V2": 148.99
+  },
+  "Georgia": {
+    "esim_UL_1D_GE_V2": 10.99,
+    "esim_UL_3D_GE_V2": 24.99,
+    "esim_UL_5D_GE_V2": 39.99,
+    "esim_UL_7D_GE_V2": 50.99,
+    "esim_UL_10D_GE_V2": 71.99,
+    "esim_UL_15D_GE_V2": 97.99,
+    "esim_UL_30D_GE_V2": 180.99
+  },
+  "Germany": {
+    "esim_UL_1D_DE_V2": 3.99,
+    "esim_UL_3D_DE_V2": 7.99,
+    "esim_UL_5D_DE_V2": 11.99,
+    "esim_UL_7D_DE_V2": 15.99,
+    "esim_UL_10D_DE_V2": 21.99,
+    "esim_UL_15D_DE_V2": 28.99,
+    "esim_UL_30D_DE_V2": 51.99
+  },
+  "Ghana": {
+    "esim_UL_1D_GH_V2": 13.99,
+    "esim_UL_3D_GH_V2": 28.99,
+    "esim_UL_5D_GH_V2": 41.99,
+    "esim_UL_7D_GH_V2": 58.99,
+    "esim_UL_10D_GH_V2": 82.99,
+    "esim_UL_15D_GH_V2": 111.99,
+    "esim_UL_30D_GH_V2": 206.99
+  },
+  "Gibraltar": {
+    "esim_UL_1D_GI_V2": 10.99,
+    "esim_UL_3D_GI_V2": 25.99,
+    "esim_UL_5D_GI_V2": 41.99,
+    "esim_UL_7D_GI_V2": 52.99,
+    "esim_UL_10D_GI_V2": 71.99,
+    "esim_UL_15D_GI_V2": 97.99
+  },
+  "Global": {
+    "esim_UL_1D_RGB_V2": 22.99,
+    "esim_UL_3D_RGB_V2": 53.99,
+    "esim_UL_5D_RGB_V2": 81.99,
+    "esim_UL_7D_RGB_V2": 113.99,
+    "esim_UL_10D_RGB_V2": 150.99
+  },
+  "Greece": {
+    "esim_UL_1D_GR_V2": 3.99,
+    "esim_UL_3D_GR_V2": 7.99,
+    "esim_UL_5D_GR_V2": 11.99,
+    "esim_UL_7D_GR_V2": 15.99,
+    "esim_UL_10D_GR_V2": 21.99,
+    "esim_UL_15D_GR_V2": 28.99,
+    "esim_UL_30D_GR_V2": 51.99
+  },
+  "Greenland": {
+    "esim_UL_1D_GL_V2": 26.99,
+    "esim_UL_3D_GL_V2": 70.99,
+    "esim_UL_5D_GL_V2": 106.99,
+    "esim_UL_7D_GL_V2": 148.99
+  },
+  "Grenada": {
+    "esim_UL_1D_GD_V2": 18.99,
+    "esim_UL_3D_GD_V2": 43.99,
+    "esim_UL_5D_GD_V2": 72.99,
+    "esim_UL_7D_GD_V2": 91.99,
+    "esim_UL_10D_GD_V2": 130.99,
+    "esim_UL_15D_GD_V2": 182.99
+  },
+  "Guadeloupe": {
+    "esim_UL_1D_GP_V2": 10.99,
+    "esim_UL_3D_GP_V2": 24.99,
+    "esim_UL_5D_GP_V2": 39.99,
+    "esim_UL_7D_GP_V2": 50.99,
+    "esim_UL_10D_GP_V2": 71.99,
+    "esim_UL_15D_GP_V2": 97.99,
+    "esim_UL_30D_GP_V2": 180.99
+  },
+  "Guam": {
+    "esim_UL_1D_GU_V2": 14.99,
+    "esim_UL_3D_GU_V2": 36.99,
+    "esim_UL_5D_GU_V2": 55.99,
+    "esim_UL_7D_GU_V2": 77.99,
+    "esim_UL_10D_GU_V2": 99.99,
+    "esim_UL_15D_GU_V2": 149.99
+  },
+  "Guatemala": {
+    "esim_UL_1D_GT_V2": 8.99,
+    "esim_UL_3D_GT_V2": 22.99,
+    "esim_UL_5D_GT_V2": 31.99,
+    "esim_UL_7D_GT_V2": 43.99,
+    "esim_UL_10D_GT_V2": 49.99
+  },
+  "Guernsey": {
+    "esim_UL_1D_GG_V2": 7.99,
+    "esim_UL_3D_GG_V2": 18.99,
+    "esim_UL_5D_GG_V2": 27.99,
+    "esim_UL_7D_GG_V2": 38.99,
+    "esim_UL_10D_GG_V2": 47.99,
+    "esim_UL_15D_GG_V2": 70.99,
+    "esim_UL_30D_GG_V2": 124.99
+  },
+  "Guinea": {
+    "esim_UL_1D_GN_V2": 30.99,
+    "esim_UL_3D_GN_V2": 75.99,
+    "esim_UL_5D_GN_V2": 125.99,
+    "esim_UL_7D_GN_V2": 164.99
+  },
+  "Guinea-Bissau": {
+    "esim_UL_1D_GW_V2": 19.99,
+    "esim_UL_3D_GW_V2": 45.99,
+    "esim_UL_5D_GW_V2": 75.99,
+    "esim_UL_7D_GW_V2": 96.99,
+    "esim_UL_10D_GW_V2": 136.99
+  },
+  "Guyana": {
+    "esim_UL_1D_GY_V2": 18.99,
+    "esim_UL_3D_GY_V2": 43.99,
+    "esim_UL_5D_GY_V2": 72.99,
+    "esim_UL_7D_GY_V2": 91.99,
+    "esim_UL_10D_GY_V2": 130.99,
+    "esim_UL_15D_GY_V2": 182.99
+  },
+  "Haiti": {
+    "esim_UL_1D_HT_V2": 18.99,
+    "esim_UL_3D_HT_V2": 43.99,
+    "esim_UL_5D_HT_V2": 72.99,
+    "esim_UL_7D_HT_V2": 91.99,
+    "esim_UL_10D_HT_V2": 130.99,
+    "esim_UL_15D_HT_V2": 182.99
+  },
+  "Hawaii": {
+    "esim_UL_1D_US-HI_V2": 5.99,
+    "esim_UL_3D_US-HI_V2": 13.99,
+    "esim_UL_5D_US-HI_V2": 19.99,
+    "esim_UL_7D_US-HI_V2": 23.99,
+    "esim_UL_10D_US-HI_V2": 32.99,
+    "esim_UL_15D_US-HI_V2": 44.99,
+    "esim_UL_30D_US-HI_V2": 80.99
+  },
+  "Honduras": {
+    "esim_UL_1D_HN_V2": 8.99,
+    "esim_UL_3D_HN_V2": 22.99,
+    "esim_UL_5D_HN_V2": 31.99,
+    "esim_UL_7D_HN_V2": 43.99,
+    "esim_UL_10D_HN_V2": 49.99,
+    "esim_UL_15D_HN_V2": 74.99
+  },
+  "Hong Kong": {
+    "esim_UL_1D_HK_V2": 6.99,
+    "esim_UL_3D_HK_V2": 13.99,
+    "esim_UL_5D_HK_V2": 22.99,
+    "esim_UL_7D_HK_V2": 28.99,
+    "esim_UL_10D_HK_V2": 39.99,
+    "esim_UL_15D_HK_V2": 53.99,
+    "esim_UL_30D_HK_V2": 97.99
+  },
+  "Hungary": {
+    "esim_UL_1D_HU_V2": 3.99,
+    "esim_UL_3D_HU_V2": 7.99,
+    "esim_UL_5D_HU_V2": 11.99,
+    "esim_UL_7D_HU_V2": 15.99,
+    "esim_UL_10D_HU_V2": 21.99,
+    "esim_UL_15D_HU_V2": 28.99,
+    "esim_UL_30D_HU_V2": 51.99
+  },
+  "Iceland": {
+    "esim_UL_1D_IS_V2": 3.99,
+    "esim_UL_3D_IS_V2": 7.99,
+    "esim_UL_5D_IS_V2": 12.99,
+    "esim_UL_7D_IS_V2": 15.99,
+    "esim_UL_10D_IS_V2": 21.99,
+    "esim_UL_15D_IS_V2": 28.99,
+    "esim_UL_30D_IS_V2": 51.99
+  },
+  "India": {
+    "esim_UL_1D_IN_V2": 7.99,
+    "esim_UL_3D_IN_V2": 19.99,
+    "esim_UL_5D_IN_V2": 27.99,
+    "esim_UL_7D_IN_V2": 39.99,
+    "esim_UL_10D_IN_V2": 54.99,
+    "esim_UL_15D_IN_V2": 80.99,
+    "esim_UL_30D_IN_V2": 144.99
+  },
+  "Indonesia": {
+    "esim_UL_1D_ID_V2": 6.99,
+    "esim_UL_3D_ID_V2": 13.99,
+    "esim_UL_5D_ID_V2": 22.99,
+    "esim_UL_7D_ID_V2": 28.99,
+    "esim_UL_10D_ID_V2": 39.99,
+    "esim_UL_15D_ID_V2": 53.99,
+    "esim_UL_30D_ID_V2": 97.99
+  },
+  "Iran-Islamic Republic of": {
+    "esim_UL_1D_IR_V2": 59.99,
+    "esim_UL_3D_IR_V2": 151.99
+  },
+  "Iraq": {
+    "esim_UL_1D_IQ_V2": 19.99,
+    "esim_UL_3D_IQ_V2": 45.99,
+    "esim_UL_5D_IQ_V2": 75.99,
+    "esim_UL_7D_IQ_V2": 96.99,
+    "esim_UL_10D_IQ_V2": 136.99
+  },
+  "Ireland": {
+    "esim_UL_1D_IE_V2": 3.99,
+    "esim_UL_3D_IE_V2": 7.99,
+    "esim_UL_5D_IE_V2": 12.99,
+    "esim_UL_7D_IE_V2": 15.99,
+    "esim_UL_10D_IE_V2": 21.99,
+    "esim_UL_15D_IE_V2": 28.99,
+    "esim_UL_30D_IE_V2": 49.99
+  },
+  "Isle of Man": {
+    "esim_UL_1D_IM_V2": 8.99,
+    "esim_UL_3D_IM_V2": 20.99,
+    "esim_UL_5D_IM_V2": 30.99,
+    "esim_UL_7D_IM_V2": 42.99,
+    "esim_UL_10D_IM_V2": 55.99,
+    "esim_UL_15D_IM_V2": 75.99,
+    "esim_UL_30D_IM_V2": 149.99
+  },
+  "Israel": {
+    "esim_UL_1D_IL_V2": 6.99,
+    "esim_UL_3D_IL_V2": 15.99,
+    "esim_UL_5D_IL_V2": 23.99,
+    "esim_UL_7D_IL_V2": 32.99,
+    "esim_UL_10D_IL_V2": 41.99,
+    "esim_UL_15D_IL_V2": 62.99,
+    "esim_UL_30D_IL_V2": 112.99
+  },
+  "Italy": {
+    "esim_UL_1D_IT_V2": 3.99,
+    "esim_UL_3D_IT_V2": 7.99,
+    "esim_UL_5D_IT_V2": 12.99,
+    "esim_UL_7D_IT_V2": 15.99,
+    "esim_UL_10D_IT_V2": 21.99,
+    "esim_UL_15D_IT_V2": 28.99,
+    "esim_UL_30D_IT_V2": 49.99
+  },
+  "Ivory Coast": {
+    "esim_UL_1D_CI_V2": 26.99,
+    "esim_UL_3D_CI_V2": 70.99,
+    "esim_UL_5D_CI_V2": 106.99,
+    "esim_UL_7D_CI_V2": 148.99
+  },
+  "Jamaica": {
+    "esim_UL_1D_JM_V2": 18.99,
+    "esim_UL_3D_JM_V2": 43.99,
+    "esim_UL_5D_JM_V2": 72.99,
+    "esim_UL_7D_JM_V2": 91.99,
+    "esim_UL_10D_JM_V2": 130.99,
+    "esim_UL_15D_JM_V2": 182.99
+  },
+  "Japan": {
+    "esim_UL_1D_JP_V2": 5.99,
+    "esim_UL_3D_JP_V2": 11.99,
+    "esim_UL_5D_JP_V2": 17.99,
+    "esim_UL_7D_JP_V2": 23.99,
+    "esim_UL_10D_JP_V2": 30.99,
+    "esim_UL_15D_JP_V2": 44.99
+  },
+  "Jersey": {
+    "esim_UL_1D_JE_V2": 7.99,
+    "esim_UL_3D_JE_V2": 18.99,
+    "esim_UL_5D_JE_V2": 27.99,
+    "esim_UL_7D_JE_V2": 38.99,
+    "esim_UL_10D_JE_V2": 47.99,
+    "esim_UL_15D_JE_V2": 70.99,
+    "esim_UL_30D_JE_V2": 124.99
+  },
+  "Jordan": {
+    "esim_UL_1D_JO_V2": 6.99,
+    "esim_UL_3D_JO_V2": 15.99,
+    "esim_UL_5D_JO_V2": 23.99,
+    "esim_UL_7D_JO_V2": 32.99,
+    "esim_UL_10D_JO_V2": 41.99,
+    "esim_UL_15D_JO_V2": 62.99,
+    "esim_UL_30D_JO_V2": 112.99
+  },
+  "Kazakhstan": {
+    "esim_UL_1D_KZ_V2": 7.99,
+    "esim_UL_3D_KZ_V2": 16.99,
+    "esim_UL_5D_KZ_V2": 23.99,
+    "esim_UL_7D_KZ_V2": 29.99,
+    "esim_UL_10D_KZ_V2": 42.99,
+    "esim_UL_15D_KZ_V2": 53.99,
+    "esim_UL_30D_KZ_V2": 96.99
+  },
+  "Kenya": {
+    "esim_UL_1D_KE_V2": 19.99,
+    "esim_UL_3D_KE_V2": 45.99,
+    "esim_UL_5D_KE_V2": 75.99,
+    "esim_UL_7D_KE_V2": 96.99,
+    "esim_UL_10D_KE_V2": 136.99
+  },
+  "Korea-Republic of": {
+    "esim_UL_1D_KR_V2": 8.99,
+    "esim_UL_3D_KR_V2": 20.99,
+    "esim_UL_5D_KR_V2": 30.99,
+    "esim_UL_7D_KR_V2": 42.99,
+    "esim_UL_10D_KR_V2": 55.99,
+    "esim_UL_15D_KR_V2": 75.99,
+    "esim_UL_30D_KR_V2": 149.99
+  },
+  "Kosovo": {
+    "esim_UL_1D_XK_V2": 7.99,
+    "esim_UL_3D_XK_V2": 15.99,
+    "esim_UL_5D_XK_V2": 21.99,
+    "esim_UL_7D_XK_V2": 30.99,
+    "esim_UL_10D_XK_V2": 42.99,
+    "esim_UL_15D_XK_V2": 57.99,
+    "esim_UL_30D_XK_V2": 102.99
+  },
+  "Kuwait": {
+    "esim_UL_1D_KW_V2": 7.99,
+    "esim_UL_3D_KW_V2": 18.99,
+    "esim_UL_5D_KW_V2": 25.99,
+    "esim_UL_7D_KW_V2": 35.99,
+    "esim_UL_10D_KW_V2": 42.99,
+    "esim_UL_15D_KW_V2": 63.99,
+    "esim_UL_30D_KW_V2": 113.99
+  },
+  "Kyrgyzstan": {
+    "esim_UL_1D_KG_V2": 7.99,
+    "esim_UL_3D_KG_V2": 16.99,
+    "esim_UL_5D_KG_V2": 23.99,
+    "esim_UL_7D_KG_V2": 29.99,
+    "esim_UL_10D_KG_V2": 42.99,
+    "esim_UL_15D_KG_V2": 53.99,
+    "esim_UL_30D_KG_V2": 96.99
+  },
+  "Laos": {
+    "esim_UL_1D_LA_V2": 38.99,
+    "esim_UL_3D_LA_V2": 93.99,
+    "esim_UL_5D_LA_V2": 145.99
+  },
+  "Latvia": {
+    "esim_UL_1D_LV_V2": 3.99,
+    "esim_UL_3D_LV_V2": 7.99,
+    "esim_UL_5D_LV_V2": 12.99,
+    "esim_UL_7D_LV_V2": 15.99,
+    "esim_UL_10D_LV_V2": 21.99,
+    "esim_UL_15D_LV_V2": 28.99,
+    "esim_UL_30D_LV_V2": 51.99
+  },
+  "Lesotho": {
+    "esim_UL_1D_LS_V2": 7.99,
+    "esim_UL_3D_LS_V2": 18.99,
+    "esim_UL_5D_LS_V2": 27.99,
+    "esim_UL_7D_LS_V2": 38.99,
+    "esim_UL_10D_LS_V2": 49.99,
+    "esim_UL_15D_LS_V2": 74.99,
+    "esim_UL_30D_LS_V2": 134.99
+  },
+  "Liberia": {
+    "esim_UL_1D_LR_V2": 26.99,
+    "esim_UL_3D_LR_V2": 70.99,
+    "esim_UL_5D_LR_V2": 106.99,
+    "esim_UL_7D_LR_V2": 148.99
+  },
+  "Liechtenstein": {
+    "esim_UL_1D_LI_V2": 3.99,
+    "esim_UL_3D_LI_V2": 7.99,
+    "esim_UL_5D_LI_V2": 12.99,
+    "esim_UL_7D_LI_V2": 15.99,
+    "esim_UL_10D_LI_V2": 21.99,
+    "esim_UL_15D_LI_V2": 28.99,
+    "esim_UL_30D_LI_V2": 51.99
+  },
+  "Lithuania": {
+    "esim_UL_1D_LT_V2": 3.99,
+    "esim_UL_3D_LT_V2": 7.99,
+    "esim_UL_5D_LT_V2": 12.99,
+    "esim_UL_7D_LT_V2": 15.99,
+    "esim_UL_10D_LT_V2": 21.99,
+    "esim_UL_15D_LT_V2": 28.99,
+    "esim_UL_30D_LT_V2": 51.99
+  },
+  "Luxembourg": {
+    "esim_UL_1D_LU_V2": 3.99,
+    "esim_UL_3D_LU_V2": 7.99,
+    "esim_UL_5D_LU_V2": 12.99,
+    "esim_UL_7D_LU_V2": 15.99,
+    "esim_UL_10D_LU_V2": 21.99,
+    "esim_UL_15D_LU_V2": 28.99,
+    "esim_UL_30D_LU_V2": 51.99
+  },
+  "Macao": {
+    "esim_UL_1D_MO_V2": 6.99,
+    "esim_UL_3D_MO_V2": 13.99,
+    "esim_UL_5D_MO_V2": 22.99,
+    "esim_UL_7D_MO_V2": 28.99,
+    "esim_UL_10D_MO_V2": 39.99,
+    "esim_UL_15D_MO_V2": 53.99,
+    "esim_UL_30D_MO_V2": 97.99
+  },
+  "Macedonia": {
+    "esim_UL_1D_MK_V2": 10.99,
+    "esim_UL_3D_MK_V2": 24.99,
+    "esim_UL_5D_MK_V2": 39.99,
+    "esim_UL_7D_MK_V2": 50.99,
+    "esim_UL_10D_MK_V2": 71.99,
+    "esim_UL_15D_MK_V2": 97.99,
+    "esim_UL_30D_MK_V2": 180.99
+  },
+  "Madagascar": {
+    "esim_UL_1D_MG_V2": 19.99,
+    "esim_UL_3D_MG_V2": 45.99,
+    "esim_UL_5D_MG_V2": 75.99,
+    "esim_UL_7D_MG_V2": 96.99,
+    "esim_UL_10D_MG_V2": 136.99
+  },
+  "Malawi": {
+    "esim_UL_1D_MW_V2": 26.99,
+    "esim_UL_3D_MW_V2": 70.99,
+    "esim_UL_5D_MW_V2": 106.99,
+    "esim_UL_7D_MW_V2": 148.99
+  },
+  "Malaysia": {
+    "esim_UL_1D_MY_V2": 7.99,
+    "esim_UL_3D_MY_V2": 17.99,
+    "esim_UL_5D_MY_V2": 26.99,
+    "esim_UL_7D_MY_V2": 35.99,
+    "esim_UL_10D_MY_V2": 46.99,
+    "esim_UL_15D_MY_V2": 69.99,
+    "esim_UL_30D_MY_V2": 125.99
+  },
+  "Mali": {
+    "esim_UL_1D_ML_V2": 19.99,
+    "esim_UL_3D_ML_V2": 45.99,
+    "esim_UL_5D_ML_V2": 75.99,
+    "esim_UL_7D_ML_V2": 96.99,
+    "esim_UL_10D_ML_V2": 136.99
+  },
+  "Malta": {
+    "esim_UL_1D_MT_V2": 3.99,
+    "esim_UL_3D_MT_V2": 7.99,
+    "esim_UL_5D_MT_V2": 11.99,
+    "esim_UL_7D_MT_V2": 15.99,
+    "esim_UL_10D_MT_V2": 21.99,
+    "esim_UL_15D_MT_V2": 28.99,
+    "esim_UL_30D_MT_V2": 51.99
+  },
+  "Martinique": {
+    "esim_UL_1D_MQ_V2": 14.99,
+    "esim_UL_3D_MQ_V2": 36.99,
+    "esim_UL_5D_MQ_V2": 55.99,
+    "esim_UL_7D_MQ_V2": 77.99,
+    "esim_UL_10D_MQ_V2": 99.99,
+    "esim_UL_15D_MQ_V2": 149.99
+  },
+  "Mauritania": {
+    "esim_UL_1D_MR_V2": 33.99,
+    "esim_UL_3D_MR_V2": 82.99,
+    "esim_UL_5D_MR_V2": 136.99,
+    "esim_UL_7D_MR_V2": 178.99
+  },
+  "Mauritius": {
+    "esim_UL_1D_MU_V2": 9.99,
+    "esim_UL_3D_MU_V2": 22.99,
+    "esim_UL_5D_MU_V2": 33.99,
+    "esim_UL_7D_MU_V2": 42.99,
+    "esim_UL_10D_MU_V2": 59.99,
+    "esim_UL_15D_MU_V2": 81.99,
+    "esim_UL_30D_MU_V2": 150.99
+  },
+  "Mayotte": {
+    "esim_UL_1D_YT_V2": 8.99,
+    "esim_UL_3D_YT_V2": 20.99,
+    "esim_UL_5D_YT_V2": 30.99,
+    "esim_UL_7D_YT_V2": 42.99,
+    "esim_UL_10D_YT_V2": 55.99,
+    "esim_UL_15D_YT_V2": 75.99,
+    "esim_UL_30D_YT_V2": 149.99
+  },
+  "Mexico": {
+    "esim_UL_1D_MX_V2": 6.99,
+    "esim_UL_3D_MX_V2": 12.99,
+    "esim_UL_5D_MX_V2": 18.99,
+    "esim_UL_7D_MX_V2": 22.99,
+    "esim_UL_10D_MX_V2": 31.99,
+    "esim_UL_15D_MX_V2": 42.99,
+    "esim_UL_30D_MX_V2": 76.99
+  },
+  "Middle East & Africa": {
+    "esim_UL_1D_RME_V2": 12.99,
+    "esim_UL_3D_RME_V2": 28.99,
+    "esim_UL_5D_RME_V2": 42.99,
+    "esim_UL_7D_RME_V2": 59.99,
+    "esim_UL_10D_RME_V2": 76.99,
+    "esim_UL_15D_RME_V2": 114.99,
+    "esim_UL_30D_RME_V2": 212.99
+  },
+  "Middle East and North Africa": {
+    "esim_UL_1D_RMENA_V2": 9.99,
+    "esim_UL_3D_RMENA_V2": 23.99,
+    "esim_UL_5D_RMENA_V2": 33.99,
+    "esim_UL_7D_RMENA_V2": 43.99,
+    "esim_UL_10D_RMENA_V2": 58.99,
+    "esim_UL_15D_RMENA_V2": 77.99,
+    "esim_UL_30D_RMENA_V2": 149.99
+  },
+  "Moldova": {
+    "esim_UL_1D_MD_V2": 5.99,
+    "esim_UL_3D_MD_V2": 8.99,
+    "esim_UL_5D_MD_V2": 12.99,
+    "esim_UL_7D_MD_V2": 15.99,
+    "esim_UL_10D_MD_V2": 21.99,
+    "esim_UL_15D_MD_V2": 27.99,
+    "esim_UL_30D_MD_V2": 49.99
+  },
+  "Monaco": {
+    "esim_UL_1D_MC_V2": 26.99,
+    "esim_UL_3D_MC_V2": 70.99,
+    "esim_UL_5D_MC_V2": 106.99,
+    "esim_UL_7D_MC_V2": 148.99
+  },
+  "Mongolia": {
+    "esim_UL_1D_MN_V2": 38.99,
+    "esim_UL_3D_MN_V2": 93.99,
+    "esim_UL_5D_MN_V2": 145.99
+  },
+  "Montenegro": {
+    "esim_UL_1D_ME_V2": 6.99,
+    "esim_UL_3D_ME_V2": 12.99,
+    "esim_UL_5D_ME_V2": 17.99,
+    "esim_UL_7D_ME_V2": 23.99,
+    "esim_UL_10D_ME_V2": 29.99,
+    "esim_UL_15D_ME_V2": 43.99
+  },
+  "Montserrat": {
+    "esim_UL_1D_MS_V2": 18.99,
+    "esim_UL_3D_MS_V2": 43.99,
+    "esim_UL_5D_MS_V2": 72.99,
+    "esim_UL_7D_MS_V2": 91.99,
+    "esim_UL_10D_MS_V2": 130.99,
+    "esim_UL_15D_MS_V2": 182.99
+  },
+  "Morocco": {
+    "esim_UL_1D_MA_V2": 6.99,
+    "esim_UL_3D_MA_V2": 15.99,
+    "esim_UL_5D_MA_V2": 23.99,
+    "esim_UL_7D_MA_V2": 32.99,
+    "esim_UL_10D_MA_V2": 41.99,
+    "esim_UL_15D_MA_V2": 62.99,
+    "esim_UL_30D_MA_V2": 112.99
+  },
+  "Mozambique": {
+    "esim_UL_1D_MZ_V2": 70.99,
+    "esim_UL_3D_MZ_V2": 177.99
+  },
+  "Namibia": {
+    "esim_UL_1D_NA_V2": 51.99,
+    "esim_UL_3D_NA_V2": 139.99
+  },
+  "Nauru": {
+    "esim_UL_1D_NR_V2": 43.99,
+    "esim_UL_3D_NR_V2": 107.99,
+    "esim_UL_5D_NR_V2": 165.99
+  },
+  "Netherlands": {
+    "esim_UL_1D_NL_V2": 3.99,
+    "esim_UL_3D_NL_V2": 7.99,
+    "esim_UL_5D_NL_V2": 12.99,
+    "esim_UL_7D_NL_V2": 15.99,
+    "esim_UL_10D_NL_V2": 21.99,
+    "esim_UL_15D_NL_V2": 28.99,
+    "esim_UL_30D_NL_V2": 51.99
+  },
+  "Netherlands Antilles": {
+    "esim_UL_1D_AN_V2": 18.99,
+    "esim_UL_3D_AN_V2": 43.99,
+    "esim_UL_5D_AN_V2": 72.99,
+    "esim_UL_7D_AN_V2": 91.99,
+    "esim_UL_10D_AN_V2": 130.99,
+    "esim_UL_15D_AN_V2": 182.99
+  },
+  "New Zealand": {
+    "esim_UL_1D_NZ_V2": 4.99,
+    "esim_UL_3D_NZ_V2": 9.99,
+    "esim_UL_5D_NZ_V2": 14.99,
+    "esim_UL_7D_NZ_V2": 20.99,
+    "esim_UL_10D_NZ_V2": 25.99,
+    "esim_UL_15D_NZ_V2": 38.99,
+    "esim_UL_30D_NZ_V2": 69.99
+  },
+  "Nicaragua": {
+    "esim_UL_1D_NI_V2": 8.99,
+    "esim_UL_3D_NI_V2": 22.99,
+    "esim_UL_5D_NI_V2": 31.99,
+    "esim_UL_7D_NI_V2": 43.99,
+    "esim_UL_10D_NI_V2": 49.99
+  },
+  "Niger": {
+    "esim_UL_1D_NE_V2": 26.99,
+    "esim_UL_3D_NE_V2": 70.99,
+    "esim_UL_5D_NE_V2": 106.99,
+    "esim_UL_7D_NE_V2": 148.99
+  },
+  "Nigeria": {
+    "esim_UL_1D_NG_V2": 9.99,
+    "esim_UL_3D_NG_V2": 22.99,
+    "esim_UL_5D_NG_V2": 36.99,
+    "esim_UL_7D_NG_V2": 47.99,
+    "esim_UL_10D_NG_V2": 66.99,
+    "esim_UL_15D_NG_V2": 90.99,
+    "esim_UL_30D_NG_V2": 168.99
+  },
+  "North America": {
+    "esim_UL_1D_RNA_V2": 8.99,
+    "esim_UL_3D_RNA_V2": 21.99,
+    "esim_UL_5D_RNA_V2": 30.99,
+    "esim_UL_7D_RNA_V2": 42.99,
+    "esim_UL_10D_RNA_V2": 55.99,
+    "esim_UL_15D_RNA_V2": 75.99,
+    "esim_UL_30D_RNA_V2": 149.99
+  },
+  "Northern Cyprus": {
+    "esim_UL_1D_CYP_V2": 4.99,
+    "esim_UL_3D_CYP_V2": 8.99,
+    "esim_UL_5D_CYP_V2": 12.99,
+    "esim_UL_7D_CYP_V2": 17.99,
+    "esim_UL_10D_CYP_V2": 22.99,
+    "esim_UL_15D_CYP_V2": 33.99,
+    "esim_UL_30D_CYP_V2": 61.99
+  },
+  "Norway": {
+    "esim_UL_1D_NO_V2": 3.99,
+    "esim_UL_3D_NO_V2": 7.99,
+    "esim_UL_5D_NO_V2": 11.99,
+    "esim_UL_7D_NO_V2": 15.99,
+    "esim_UL_10D_NO_V2": 21.99,
+    "esim_UL_15D_NO_V2": 28.99,
+    "esim_UL_30D_NO_V2": 51.99
+  },
+  "Oceania": {
+    "esim_UL_1D_ROC_V2": 4.99,
+    "esim_UL_3D_ROC_V2": 8.99,
+    "esim_UL_5D_ROC_V2": 12.99,
+    "esim_UL_7D_ROC_V2": 15.99,
+    "esim_UL_10D_ROC_V2": 21.99,
+    "esim_UL_15D_ROC_V2": 28.99,
+    "esim_UL_30D_ROC_V2": 51.99
+  },
+  "Oman": {
+    "esim_UL_1D_OM_V2": 12.99,
+    "esim_UL_3D_OM_V2": 32.99,
+    "esim_UL_5D_OM_V2": 48.99,
+    "esim_UL_7D_OM_V2": 67.99,
+    "esim_UL_10D_OM_V2": 87.99,
+    "esim_UL_15D_OM_V2": 130.99,
+    "esim_UL_30D_OM_V2": 243.99
+  },
+  "Pakistan": {
+    "esim_UL_1D_PK_V2": 7.99,
+    "esim_UL_3D_PK_V2": 20.99,
+    "esim_UL_5D_PK_V2": 30.99,
+    "esim_UL_7D_PK_V2": 42.99,
+    "esim_UL_10D_PK_V2": 54.99,
+    "esim_UL_15D_PK_V2": 81.99,
+    "esim_UL_30D_PK_V2": 147.99
+  },
+  "Palestine": {
+    "esim_UL_1D_PS_V2": 46.99,
+    "esim_UL_3D_PS_V2": 126.99
+  },
+  "Panama": {
+    "esim_UL_1D_PA_V2": 7.99,
+    "esim_UL_3D_PA_V2": 16.99,
+    "esim_UL_5D_PA_V2": 24.99,
+    "esim_UL_7D_PA_V2": 33.99,
+    "esim_UL_10D_PA_V2": 43.99
+  },
+  "Papua New Guinea": {
+    "esim_UL_1D_PG_V2": 39.99,
+    "esim_UL_3D_PG_V2": 97.99,
+    "esim_UL_5D_PG_V2": 150.99
+  },
+  "Paraguay": {
+    "esim_UL_1D_PY_V2": 8.99,
+    "esim_UL_3D_PY_V2": 22.99,
+    "esim_UL_5D_PY_V2": 31.99,
+    "esim_UL_7D_PY_V2": 43.99,
+    "esim_UL_10D_PY_V2": 49.99
+  },
+  "Peru": {
+    "esim_UL_1D_PE_V2": 7.99,
+    "esim_UL_3D_PE_V2": 16.99,
+    "esim_UL_5D_PE_V2": 22.99,
+    "esim_UL_7D_PE_V2": 31.99,
+    "esim_UL_10D_PE_V2": 44.99,
+    "esim_UL_15D_PE_V2": 59.99,
+    "esim_UL_30D_PE_V2": 107.99
+  },
+  "Philippines": {
+    "esim_UL_1D_PH_V2": 12.99,
+    "esim_UL_3D_PH_V2": 32.99,
+    "esim_UL_5D_PH_V2": 48.99,
+    "esim_UL_7D_PH_V2": 67.99,
+    "esim_UL_10D_PH_V2": 87.99,
+    "esim_UL_15D_PH_V2": 130.99
+  },
+  "Poland": {
+    "esim_UL_1D_PL_V2": 3.99,
+    "esim_UL_3D_PL_V2": 7.99,
+    "esim_UL_5D_PL_V2": 11.99,
+    "esim_UL_7D_PL_V2": 15.99,
+    "esim_UL_10D_PL_V2": 21.99,
+    "esim_UL_15D_PL_V2": 28.99,
+    "esim_UL_30D_PL_V2": 51.99
+  },
+  "Portugal": {
+    "esim_UL_1D_PT_V2": 3.99,
+    "esim_UL_3D_PT_V2": 7.99,
+    "esim_UL_5D_PT_V2": 11.99,
+    "esim_UL_7D_PT_V2": 15.99,
+    "esim_UL_10D_PT_V2": 21.99,
+    "esim_UL_15D_PT_V2": 28.99,
+    "esim_UL_30D_PT_V2": 51.99
+  },
+  "Puerto Rico": {
+    "esim_UL_1D_PR_V2": 5.99,
+    "esim_UL_3D_PR_V2": 13.99,
+    "esim_UL_5D_PR_V2": 19.99,
+    "esim_UL_7D_PR_V2": 23.99,
+    "esim_UL_10D_PR_V2": 33.99,
+    "esim_UL_15D_PR_V2": 45.99,
+    "esim_UL_30D_PR_V2": 82.99
+  },
+  "Qatar": {
+    "esim_UL_1D_QA_V2": 7.99,
+    "esim_UL_3D_QA_V2": 16.99,
+    "esim_UL_5D_QA_V2": 23.99,
+    "esim_UL_7D_QA_V2": 29.99,
+    "esim_UL_10D_QA_V2": 42.99,
+    "esim_UL_15D_QA_V2": 53.99,
+    "esim_UL_30D_QA_V2": 96.99
+  },
+  "Reunion": {
+    "esim_UL_1D_RE_V2": 5.99,
+    "esim_UL_3D_RE_V2": 13.99,
+    "esim_UL_5D_RE_V2": 19.99,
+    "esim_UL_7D_RE_V2": 23.99,
+    "esim_UL_10D_RE_V2": 33.99,
+    "esim_UL_15D_RE_V2": 45.99,
+    "esim_UL_30D_RE_V2": 82.99
+  },
+  "Romania": {
+    "esim_UL_1D_RO_V2": 3.99,
+    "esim_UL_3D_RO_V2": 7.99,
+    "esim_UL_5D_RO_V2": 12.99,
+    "esim_UL_7D_RO_V2": 15.99,
+    "esim_UL_10D_RO_V2": 21.99,
+    "esim_UL_15D_RO_V2": 28.99,
+    "esim_UL_30D_RO_V2": 51.99
+  },
+  "Russian Federation": {
+    "esim_UL_1D_RU_V2": 7.99,
+    "esim_UL_3D_RU_V2": 18.99,
+    "esim_UL_5D_RU_V2": 27.99,
+    "esim_UL_7D_RU_V2": 38.99,
+    "esim_UL_10D_RU_V2": 49.99,
+    "esim_UL_15D_RU_V2": 74.99,
+    "esim_UL_30D_RU_V2": 134.99
+  },
+  "Rwanda": {
+    "esim_UL_1D_RW_V2": 26.99,
+    "esim_UL_3D_RW_V2": 70.99,
+    "esim_UL_5D_RW_V2": 106.99,
+    "esim_UL_7D_RW_V2": 148.99
+  },
+  "Saint Barthelemy": {
+    "esim_UL_1D_BL_V2": 10.99,
+    "esim_UL_3D_BL_V2": 24.99,
+    "esim_UL_5D_BL_V2": 39.99,
+    "esim_UL_7D_BL_V2": 50.99,
+    "esim_UL_10D_BL_V2": 71.99,
+    "esim_UL_15D_BL_V2": 97.99,
+    "esim_UL_30D_BL_V2": 180.99
+  },
+  "Saint Kitts And Nevis": {
+    "esim_UL_1D_KN_V2": 18.99,
+    "esim_UL_3D_KN_V2": 43.99,
+    "esim_UL_5D_KN_V2": 72.99,
+    "esim_UL_7D_KN_V2": 91.99,
+    "esim_UL_10D_KN_V2": 130.99,
+    "esim_UL_15D_KN_V2": 182.99
+  },
+  "Saint Lucia": {
+    "esim_UL_1D_LC_V2": 18.99,
+    "esim_UL_3D_LC_V2": 43.99,
+    "esim_UL_5D_LC_V2": 72.99,
+    "esim_UL_7D_LC_V2": 91.99,
+    "esim_UL_10D_LC_V2": 130.99,
+    "esim_UL_15D_LC_V2": 182.99
+  },
+  "Saint Martin": {
+    "esim_UL_1D_MF_V2": 10.99,
+    "esim_UL_3D_MF_V2": 24.99,
+    "esim_UL_5D_MF_V2": 39.99,
+    "esim_UL_7D_MF_V2": 50.99,
+    "esim_UL_10D_MF_V2": 71.99,
+    "esim_UL_15D_MF_V2": 97.99,
+    "esim_UL_30D_MF_V2": 180.99
+  },
+  "Saint Vincent And The Grenadines": {
+    "esim_UL_1D_VC_V2": 18.99,
+    "esim_UL_3D_VC_V2": 43.99,
+    "esim_UL_5D_VC_V2": 72.99,
+    "esim_UL_7D_VC_V2": 91.99,
+    "esim_UL_10D_VC_V2": 130.99,
+    "esim_UL_15D_VC_V2": 182.99
+  },
+  "Samoa": {
+    "esim_UL_1D_WS_V2": 39.99,
+    "esim_UL_3D_WS_V2": 97.99,
+    "esim_UL_5D_WS_V2": 150.99
+  },
+  "Saudi Arabia": {
+    "esim_UL_1D_SA_V2": 4.99,
+    "esim_UL_3D_SA_V2": 12.99,
+    "esim_UL_5D_SA_V2": 14.99,
+    "esim_UL_7D_SA_V2": 19.99,
+    "esim_UL_10D_SA_V2": 24.99,
+    "esim_UL_15D_SA_V2": 35.99,
+    "esim_UL_30D_SA_V2": 65.99
+  },
+  "Senegal": {
+    "esim_UL_1D_SN_V2": 22.99,
+    "esim_UL_3D_SN_V2": 53.99,
+    "esim_UL_5D_SN_V2": 81.99,
+    "esim_UL_7D_SN_V2": 113.99,
+    "esim_UL_10D_SN_V2": 150.99
+  },
+  "Serbia": {
+    "esim_UL_1D_RS_V2": 5.99,
+    "esim_UL_3D_RS_V2": 11.99,
+    "esim_UL_5D_RS_V2": 16.99,
+    "esim_UL_7D_RS_V2": 23.99,
+    "esim_UL_10D_RS_V2": 29.99,
+    "esim_UL_15D_RS_V2": 43.99,
+    "esim_UL_30D_RS_V2": 79.99
+  },
+  "Seychelles": {
+    "esim_UL_1D_SC_V2": 22.99,
+    "esim_UL_3D_SC_V2": 53.99,
+    "esim_UL_5D_SC_V2": 81.99,
+    "esim_UL_7D_SC_V2": 113.99,
+    "esim_UL_10D_SC_V2": 150.99
+  },
+  "Singapore": {
+    "esim_UL_1D_SG_V2": 6.99,
+    "esim_UL_3D_SG_V2": 13.99,
+    "esim_UL_5D_SG_V2": 22.99,
+    "esim_UL_7D_SG_V2": 28.99,
+    "esim_UL_10D_SG_V2": 39.99,
+    "esim_UL_15D_SG_V2": 53.99,
+    "esim_UL_30D_SG_V2": 97.99
+  },
+  "Slovakia": {
+    "esim_UL_1D_SK_V2": 3.99,
+    "esim_UL_3D_SK_V2": 7.99,
+    "esim_UL_5D_SK_V2": 12.99,
+    "esim_UL_7D_SK_V2": 15.99,
+    "esim_UL_10D_SK_V2": 21.99,
+    "esim_UL_15D_SK_V2": 28.99,
+    "esim_UL_30D_SK_V2": 51.99
+  },
+  "Slovenia": {
+    "esim_UL_1D_SI_V2": 3.99,
+    "esim_UL_3D_SI_V2": 7.99,
+    "esim_UL_5D_SI_V2": 12.99,
+    "esim_UL_7D_SI_V2": 15.99,
+    "esim_UL_10D_SI_V2": 21.99,
+    "esim_UL_15D_SI_V2": 28.99,
+    "esim_UL_30D_SI_V2": 51.99
+  },
+  "South Africa": {
+    "esim_UL_1D_ZA_V2": 8.99,
+    "esim_UL_3D_ZA_V2": 18.99,
+    "esim_UL_5D_ZA_V2": 27.99,
+    "esim_UL_7D_ZA_V2": 37.99,
+    "esim_UL_10D_ZA_V2": 49.99,
+    "esim_UL_15D_ZA_V2": 73.99,
+    "esim_UL_30D_ZA_V2": 131.99
+  },
+  "Spain": {
+    "esim_UL_1D_ES_V2": 3.99,
+    "esim_UL_3D_ES_V2": 7.99,
+    "esim_UL_5D_ES_V2": 11.99,
+    "esim_UL_7D_ES_V2": 14.99,
+    "esim_UL_10D_ES_V2": 20.99,
+    "esim_UL_15D_ES_V2": 27.99,
+    "esim_UL_30D_ES_V2": 49.99
+  },
+  "Sri Lanka": {
+    "esim_UL_1D_LK_V2": 6.99,
+    "esim_UL_3D_LK_V2": 15.99,
+    "esim_UL_5D_LK_V2": 23.99,
+    "esim_UL_7D_LK_V2": 32.99,
+    "esim_UL_10D_LK_V2": 41.99,
+    "esim_UL_15D_LK_V2": 62.99,
+    "esim_UL_30D_LK_V2": 112.99
+  },
+  "Sudan": {
+    "esim_UL_1D_SD_V2": 22.99,
+    "esim_UL_3D_SD_V2": 53.99,
+    "esim_UL_5D_SD_V2": 81.99,
+    "esim_UL_7D_SD_V2": 113.99,
+    "esim_UL_10D_SD_V2": 150.99
+  },
+  "Suriname": {
+    "esim_UL_1D_SR_V2": 18.99,
+    "esim_UL_3D_SR_V2": 43.99,
+    "esim_UL_5D_SR_V2": 72.99,
+    "esim_UL_7D_SR_V2": 91.99,
+    "esim_UL_10D_SR_V2": 130.99,
+    "esim_UL_15D_SR_V2": 182.99
+  },
+  "Swaziland": {
+    "esim_UL_1D_SZ_V2": 26.99,
+    "esim_UL_3D_SZ_V2": 70.99,
+    "esim_UL_5D_SZ_V2": 106.99,
+    "esim_UL_7D_SZ_V2": 148.99
+  },
+  "Sweden": {
+    "esim_UL_1D_SE_V2": 3.99,
+    "esim_UL_3D_SE_V2": 7.99,
+    "esim_UL_5D_SE_V2": 12.99,
+    "esim_UL_7D_SE_V2": 15.99,
+    "esim_UL_10D_SE_V2": 21.99,
+    "esim_UL_15D_SE_V2": 28.99,
+    "esim_UL_30D_SE_V2": 49.99
+  },
+  "Switzerland": {
+    "esim_UL_1D_CH_V2": 4.99,
+    "esim_UL_3D_CH_V2": 8.99,
+    "esim_UL_5D_CH_V2": 12.99,
+    "esim_UL_7D_CH_V2": 17.99,
+    "esim_UL_10D_CH_V2": 23.99,
+    "esim_UL_15D_CH_V2": 31.99,
+    "esim_UL_30D_CH_V2": 55.99
+  },
+  "Taiwan-Province of China": {
+    "esim_UL_1D_TW_V2": 6.99,
+    "esim_UL_3D_TW_V2": 15.99,
+    "esim_UL_5D_TW_V2": 23.99,
+    "esim_UL_7D_TW_V2": 32.99,
+    "esim_UL_10D_TW_V2": 41.99,
+    "esim_UL_15D_TW_V2": 62.99,
+    "esim_UL_30D_TW_V2": 112.99
+  },
+  "Tajikistan": {
+    "esim_UL_1D_TJ_V2": 41.99,
+    "esim_UL_3D_TJ_V2": 112.99,
+    "esim_UL_5D_TJ_V2": 174.99
+  },
+  "Tanzania, United Republic of": {
+    "esim_UL_1D_TZ_V2": 14.99,
+    "esim_UL_3D_TZ_V2": 36.99,
+    "esim_UL_5D_TZ_V2": 55.99,
+    "esim_UL_7D_TZ_V2": 77.99,
+    "esim_UL_10D_TZ_V2": 99.99,
+    "esim_UL_15D_TZ_V2": 149.99
+  },
+  "Thailand": {
+    "esim_UL_1D_TH_V2": 6.99,
+    "esim_UL_3D_TH_V2": 13.99,
+    "esim_UL_5D_TH_V2": 21.99,
+    "esim_UL_7D_TH_V2": 27.99,
+    "esim_UL_10D_TH_V2": 37.99,
+    "esim_UL_15D_TH_V2": 50.99,
+    "esim_UL_30D_TH_V2": 89.99
+  },
+  "Togo": {
+    "esim_UL_1D_TG_V2": 61.99,
+    "esim_UL_3D_TG_V2": 156.99
+  },
+  "Tonga": {
+    "esim_UL_1D_TO_V2": 44.99,
+    "esim_UL_3D_TO_V2": 119.99,
+    "esim_UL_5D_TO_V2": 185.99
+  },
+  "Trinidad And Tobago": {
+    "esim_UL_1D_TT_V2": 18.99,
+    "esim_UL_3D_TT_V2": 43.99,
+    "esim_UL_5D_TT_V2": 72.99,
+    "esim_UL_7D_TT_V2": 91.99,
+    "esim_UL_10D_TT_V2": 130.99,
+    "esim_UL_15D_TT_V2": 182.99
+  },
+  "Tunisia": {
+    "esim_UL_1D_TN_V2": 5.99,
+    "esim_UL_3D_TN_V2": 13.99,
+    "esim_UL_5D_TN_V2": 19.99,
+    "esim_UL_7D_TN_V2": 23.99,
+    "esim_UL_10D_TN_V2": 33.99,
+    "esim_UL_15D_TN_V2": 45.99,
+    "esim_UL_30D_TN_V2": 82.99
+  },
+  "Turkey": {
+    "esim_UL_1D_TR_V2": 4.99,
+    "esim_UL_3D_TR_V2": 8.99,
+    "esim_UL_5D_TR_V2": 12.99,
+    "esim_UL_7D_TR_V2": 17.99,
+    "esim_UL_10D_TR_V2": 21.99,
+    "esim_UL_15D_TR_V2": 32.99,
+    "esim_UL_30D_TR_V2": 58.99
+  },
+  "Turks And Caicos Islands": {
+    "esim_UL_1D_TC_V2": 18.99,
+    "esim_UL_3D_TC_V2": 43.99,
+    "esim_UL_5D_TC_V2": 72.99,
+    "esim_UL_7D_TC_V2": 91.99,
+    "esim_UL_10D_TC_V2": 130.99,
+    "esim_UL_15D_TC_V2": 182.99
+  },
+  "Uganda": {
+    "esim_UL_1D_UG_V2": 14.99,
+    "esim_UL_3D_UG_V2": 36.99,
+    "esim_UL_5D_UG_V2": 55.99,
+    "esim_UL_7D_UG_V2": 77.99,
+    "esim_UL_10D_UG_V2": 99.99,
+    "esim_UL_15D_UG_V2": 149.99
+  },
+  "Ukraine": {
+    "esim_UL_1D_UA_V2": 5.99,
+    "esim_UL_3D_UA_V2": 13.99,
+    "esim_UL_5D_UA_V2": 19.99,
+    "esim_UL_7D_UA_V2": 23.99,
+    "esim_UL_10D_UA_V2": 33.99,
+    "esim_UL_15D_UA_V2": 45.99,
+    "esim_UL_30D_UA_V2": 82.99
+  },
+  "United Arab Emirates": {
+    "esim_UL_1D_AE_V2": 7.99,
+    "esim_UL_3D_AE_V2": 15.99,
+    "esim_UL_5D_AE_V2": 22.99,
+    "esim_UL_7D_AE_V2": 30.99,
+    "esim_UL_10D_AE_V2": 43.99,
+    "esim_UL_15D_AE_V2": 59.99,
+    "esim_UL_30D_AE_V2": 107.99
+  },
+  "United Kingdom": {
+    "esim_UL_1D_GB_V2": 4.99,
+    "esim_UL_3D_GB_V2": 8.99,
+    "esim_UL_5D_GB_V2": 12.99,
+    "esim_UL_7D_GB_V2": 17.99,
+    "esim_UL_10D_GB_V2": 21.99,
+    "esim_UL_15D_GB_V2": 32.99,
+    "esim_UL_30D_GB_V2": 58.99
+  },
+  "United States of America": {
+    "esim_UL_1D_US_V2": 5.99,
+    "esim_UL_3D_US_V2": 13.99,
+    "esim_UL_5D_US_V2": 19.99,
+    "esim_UL_7D_US_V2": 23.99,
+    "esim_UL_10D_US_V2": 32.99,
+    "esim_UL_15D_US_V2": 44.99,
+    "esim_UL_30D_US_V2": 80.99
+  },
+  "Uruguay": {
+    "esim_UL_1D_UY_V2": 9.99,
+    "esim_UL_3D_UY_V2": 22.99,
+    "esim_UL_5D_UY_V2": 36.99,
+    "esim_UL_7D_UY_V2": 47.99,
+    "esim_UL_10D_UY_V2": 66.99,
+    "esim_UL_15D_UY_V2": 90.99,
+    "esim_UL_30D_UY_V2": 168.99
+  },
+  "Uzbekistan": {
+    "esim_UL_1D_UZ_V2": 7.99,
+    "esim_UL_3D_UZ_V2": 19.99,
+    "esim_UL_5D_UZ_V2": 27.99,
+    "esim_UL_7D_UZ_V2": 39.99,
+    "esim_UL_10D_UZ_V2": 54.99,
+    "esim_UL_15D_UZ_V2": 80.99,
+    "esim_UL_30D_UZ_V2": 144.99
+  },
+  "Vanuatu": {
+    "esim_UL_1D_VU_V2": 39.99,
+    "esim_UL_3D_VU_V2": 97.99,
+    "esim_UL_5D_VU_V2": 150.99
+  },
+  "Vatican City": {
+    "esim_UL_1D_VA_V2": 3.99,
+    "esim_UL_3D_VA_V2": 7.99,
+    "esim_UL_5D_VA_V2": 12.99,
+    "esim_UL_7D_VA_V2": 15.99,
+    "esim_UL_10D_VA_V2": 21.99,
+    "esim_UL_15D_VA_V2": 28.99,
+    "esim_UL_30D_VA_V2": 49.99
+  },
+  "VietNam": {
+    "esim_UL_1D_VN_V2": 5.99,
+    "esim_UL_3D_VN_V2": 10.99,
+    "esim_UL_5D_VN_V2": 15.99,
+    "esim_UL_7D_VN_V2": 20.99,
+    "esim_UL_10D_VN_V2": 26.99,
+    "esim_UL_15D_VN_V2": 38.99,
+    "esim_UL_30D_VN_V2": 69.99
+  },
+  "Virgin Islands - British": {
+    "esim_UL_1D_VG_V2": 18.99,
+    "esim_UL_3D_VG_V2": 43.99,
+    "esim_UL_5D_VG_V2": 72.99,
+    "esim_UL_7D_VG_V2": 91.99,
+    "esim_UL_10D_VG_V2": 130.99,
+    "esim_UL_15D_VG_V2": 182.99
+  },
+  "Virgin Islands - United States": {
+    "esim_UL_1D_VI_V2": 9.99,
+    "esim_UL_3D_VI_V2": 22.99,
+    "esim_UL_5D_VI_V2": 36.99,
+    "esim_UL_7D_VI_V2": 47.99,
+    "esim_UL_10D_VI_V2": 66.99,
+    "esim_UL_15D_VI_V2": 90.99,
+    "esim_UL_30D_VI_V2": 168.99
+  },
+  "Zambia": {
+    "esim_UL_1D_ZM_V2": 19.99,
+    "esim_UL_3D_ZM_V2": 45.99,
+    "esim_UL_5D_ZM_V2": 75.99,
+    "esim_UL_7D_ZM_V2": 96.99,
+    "esim_UL_10D_ZM_V2": 136.99
+  }
+}
