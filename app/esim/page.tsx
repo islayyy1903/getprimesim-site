@@ -438,28 +438,31 @@ export default function ESimPage() {
                       </h4>
                     </div>
                     <div className="space-y-1">
-                      {countries
+                      {(countries as Country[])
                         .filter((country: Country) =>
                           continent.countries.some((c) =>
                             country.name.toLowerCase().includes(c.toLowerCase())
                           )
                         )
-                        .map((country: Country) => (
-                          <button
-                            key={country.id}
-                            onClick={() => handleCountrySelect(country)}
-                            className={`w-full text-left px-4 py-2.5 text-sm hover:bg-cyan-50 dark:hover:bg-gray-700 transition-colors rounded-md flex items-center ${
-                              selectedCountry?.id === country.id
-                                ? "bg-cyan-100 dark:bg-gray-700 border-l-4 border-cyan-600 dark:border-cyan-400 font-semibold"
-                                : "text-gray-700 dark:text-gray-300"
-                            }`}
-                          >
-                            <span className="mr-2 flex-shrink-0">
-                              {getCountryFlag(country) || <span>{country.icon}</span>}
-                            </span>
-                            {country.name}
-                          </button>
-                        ))}
+                        .map((country: Country) => {
+                          const isSelected = selectedCountry?.id === country.id;
+                          return (
+                            <button
+                              key={country.id}
+                              onClick={() => handleCountrySelect(country)}
+                              className={`w-full text-left px-4 py-2.5 text-sm hover:bg-cyan-50 dark:hover:bg-gray-700 transition-colors rounded-md flex items-center ${
+                                isSelected
+                                  ? "bg-cyan-100 dark:bg-gray-700 border-l-4 border-cyan-600 dark:border-cyan-400 font-semibold"
+                                  : "text-gray-700 dark:text-gray-300"
+                              }`}
+                            >
+                              <span className="mr-2 flex-shrink-0">
+                                {getCountryFlag(country) || <span>{country.icon}</span>}
+                              </span>
+                              {country.name}
+                            </button>
+                          );
+                        })}
                     </div>
                   </div>
                 ))}
@@ -472,22 +475,25 @@ export default function ESimPage() {
                     </h4>
                   </div>
                   <div className="space-y-1">
-                    {filteredCountries.map((country: Country) => (
-                      <button
-                        key={country.id}
-                        onClick={() => handleCountrySelect(country)}
-                        className={`w-full text-left px-4 py-2.5 text-sm hover:bg-cyan-50 dark:hover:bg-gray-700 transition-colors rounded-md flex items-center ${
-                          selectedCountry?.id === country.id
-                            ? "bg-cyan-100 dark:bg-gray-700 border-l-4 border-cyan-600 dark:border-cyan-400 font-semibold"
-                            : "text-gray-700 dark:text-gray-300"
-                        }`}
-                      >
-                        <span className="mr-2 flex-shrink-0">
-                          {getCountryFlag(country) || <span>{country.icon}</span>}
-                        </span>
-                        {country.name}
-                      </button>
-                    ))}
+                    {filteredCountries.map((country: Country) => {
+                      const isSelected = selectedCountry?.id === country.id;
+                      return (
+                        <button
+                          key={country.id}
+                          onClick={() => handleCountrySelect(country)}
+                          className={`w-full text-left px-4 py-2.5 text-sm hover:bg-cyan-50 dark:hover:bg-gray-700 transition-colors rounded-md flex items-center ${
+                            isSelected
+                              ? "bg-cyan-100 dark:bg-gray-700 border-l-4 border-cyan-600 dark:border-cyan-400 font-semibold"
+                              : "text-gray-700 dark:text-gray-300"
+                          }`}
+                        >
+                          <span className="mr-2 flex-shrink-0">
+                            {getCountryFlag(country) || <span>{country.icon}</span>}
+                          </span>
+                          {country.name}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
