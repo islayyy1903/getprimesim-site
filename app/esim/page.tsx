@@ -420,8 +420,10 @@ export default function ESimPage() {
 
         {/* Main Content - Sidebar + Packages */}
         <section className="flex flex-col lg:flex-row bg-gray-50 dark:bg-gray-900 min-h-screen p-4 lg:p-6 gap-4 lg:gap-6">
-          {/* Left Sidebar - Countries and Continents Box */}
-          <div className="w-full lg:w-80">
+          {/* Mobilde: Eğer ülke seçiliyse, sidebar'ı tamamen gizle */}
+          {/* Desktop'ta: Her zaman göster */}
+          {!selectedCountry && (
+            <div className="w-full lg:w-80">
             <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col h-[calc(100vh-250px)] lg:h-[calc(100vh-150px)]">
               <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Countries & Regions</h3>
@@ -491,10 +493,11 @@ export default function ESimPage() {
               </div>
             </div>
           </div>
+          )}
 
           {/* Right Content - Packages */}
-          {/* Mobilde: Eğer ülke seçiliyse, paketleri tam genişlikte göster */}
-          <div className={`${selectedCountry ? 'w-full' : 'flex-1'} p-6 lg:p-8`}>
+          {/* Mobilde: Eğer ülke seçiliyse, paketleri tam genişlikte ve en üstte göster */}
+          <div className={`${selectedCountry ? 'w-full order-first lg:order-none' : 'flex-1'} p-6 lg:p-8`}>
             {selectedCountry ? (
               <div className="space-y-8">
                 {/* Mobilde: Geri butonu ekle */}
