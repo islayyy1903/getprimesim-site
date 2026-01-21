@@ -86,21 +86,16 @@ export async function purchaseEsim(
       ? `${process.env.NEXT_PUBLIC_BASE_URL}/api/esimgo/webhook`
       : "https://getprimesim.com/api/esimgo/webhook";
     
-    // Unique profileID oluştur
-    const profileID = generateProfileID(email);
-    
-    console.log("📝 Generated profileID:", profileID);
-    
     // eSimGo API v3 endpoint
     // ESIMGO_API_URL zaten /v3 içeriyor (örn: https://api.esimgo.io/v3)
     // O yüzden sadece /orders ekliyoruz
     
-    // eSimGo API v2.3 formatına göre request body (hazır prompt'a göre)
-    // Manuel assign edince çalışıyorsa, assign: true yeterli olmayabilir
-    // profileID'yi email olarak kullanıyoruz (eSimGo genelde bunu tercih eder)
-    const requestBody = {
-      type: "transaction", // Hazır prompt'a göre "transaction" kullanılmalı
-      assign: true, // Hazır prompt'a göre true olmalı - otomatik assign için
+    // eSimGo API formatına göre request body
+    // profileID opsiyonel - eğer gönderilirse eSimGo sisteminde kayıtlı olmalı
+    // "unable to find esim profile" hatası alındığı için profileID'yi kaldırıyoruz
+    const requestBody: any = {
+      type: "transaction",
+      assign: true, // Otomatik assign için
       order: [
         {
           type: "bundle",
@@ -109,17 +104,19 @@ export async function purchaseEsim(
           allowReassign: false,
         },
       ],
-      // profileID: Artık UUID v4 formatında (email kullanmak hataya neden oluyordu)
-      profileID: profileID, // UUID v4 formatında (generateProfileID artık UUID döndürüyor)
-      email: email, // Email ayrı field olarak (bazı API versiyonlarında gerekli)
+      email: email, // Email zorunlu field
       callback_url: callbackUrl, // Callback URL (assignment tamamlandığında bildirim için)
     };
+    
+    // profileID opsiyonel - sadece eSimGo sisteminde kayıtlı profileID varsa gönder
+    // "unable to find esim profile" hatası alındığı için profileID'yi göndermiyoruz
+    // Eğer eSimGo API profileID gerektiriyorsa, önce eSimGo dashboard'dan profile oluşturulmalı
     
     console.log("📡 Network selection: eSimGo will automatically select the best network for the country");
     
     console.log("🔍 eSimGo Assignment Debug:");
     console.log("  - assign: true (otomatik assign aktif)");
-    console.log("  - profileID:", profileID, "(UUID v4 formatında)");
+    console.log("  - profileID: (not sent - to avoid 'unable to find esim profile' error)");
     console.log("  - email:", email);
     console.log("  - callback_url:", callbackUrl);
     
