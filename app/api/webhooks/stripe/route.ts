@@ -372,11 +372,60 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     } catch (error: unknown) {
       console.error("❌ Error processing eSimGo purchase:", error);
       const err = error as Error;
-      // Log error but don't fail the webhook
+      
+      // Herhangi bir hata durumunda otomatik refund yap
+      if (session.payment_intent) {
+        try {
+          console.log("💰 Processing automatic refund due to processing error...");
+          const refund = await stripe.refunds.create({
+            payment_intent: session.payment_intent as string,
+            reason: 'requested_by_customer',
+            metadata: {
+              reason: 'processing_error',
+              error: err.message || 'Unknown error',
+              package: packageName || 'unknown',
+              session_id: session.id,
+            },
+          });
+          
+          console.log("✅ Automatic refund processed (processing error):", refund.id);
+          console.log("  - Refund ID:", refund.id);
+          console.log("  - Refund Amount:", refund.amount);
+          console.log("  - Refund Status:", refund.status);
+          
+          // Müşteriye refund bilgisi ile email gönder
+          if (customerEmail) {
+            try {
+              const { sendQRCodeEmail } = await import("@/app/lib/email");
+              const errorMessage = `We encountered an error processing your eSim order: ${err.message || 'Unknown error'}. Your payment has been automatically refunded. Our team has been notified and will resolve this shortly. Please contact support if you need immediate assistance.`;
+              
+              const emailResult = await sendQRCodeEmail({
+                to: customerEmail,
+                packageName: packageName || "eSim Package",
+                errorMessage: errorMessage,
+                orderId: session.id,
+              });
+
+              if (emailResult.success) {
+                console.log("✅ Refund notification email sent to customer");
+              } else {
+                console.error("❌ Failed to send refund notification email:", emailResult.error);
+              }
+            } catch (emailError: unknown) {
+              console.error("❌ Email send error:", emailError);
+            }
+          }
+        } catch (refundError: unknown) {
+          console.error("❌ Failed to process automatic refund (processing error):", refundError);
+        }
+      }
+      
+      // Log error but don't fail the webhook (payment is already refunded)
       return NextResponse.json({
         received: true,
-        warning: "Payment successful but eSimGo purchase error",
+        warning: "Payment refunded due to processing error",
         error: err.message,
+        refunded: true,
       });
     }
   }
