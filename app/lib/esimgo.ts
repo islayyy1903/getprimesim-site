@@ -81,18 +81,18 @@ export async function purchaseEsim(
   console.log("  - API Key starts with:", apiKey.substring(0, 10) + "...");
 
   try {
-    // eSimGo API v2.3 - Callback URL (callback version v3)
-    // Dokümantasyona göre: https://api.esim-go.com/v2.3/...
-    // Callback version: v3 (eSimGo dashboard'da ayarlanmış)
+    // eSimGo API v2.5 - Dokümantasyona göre: https://api.esim-go.com/v2.5
+    // Authentication: X-API-Key header
+    // Endpoints: POST /orders, GET /esims/assignments
     const callbackUrl = process.env.NEXT_PUBLIC_BASE_URL 
       ? `${process.env.NEXT_PUBLIC_BASE_URL}/api/esimgo/webhook`
       : "https://getprimesim.com/api/esimgo/webhook";
     
-    // eSimGo API v2.3 endpoint formatı
-    // ESIMGO_API_URL: https://api.esim-go.com/v2.3 (base URL + version)
-    // Endpoint: /orders
+    // eSimGo API v2.5 endpoint formatı
+    // ESIMGO_API_URL: https://api.esim-go.com/v2.5 (base URL + version)
+    // Endpoint: POST /orders
     
-    // eSimGo API v2.3 formatına göre request body
+    // eSimGo API v2.5 formatına göre request body
     // Her sipariş için eSimGo otomatik olarak yeni eSIM üretecek
     // Inventory'den satış yapmıyoruz, direkt üretim yapılıyor
     const requestBody: any = {
@@ -110,7 +110,7 @@ export async function purchaseEsim(
       callback_url: callbackUrl, // Callback URL (callback version v3)
     };
     
-    // profileID göndermiyoruz - eSimGo API v2.3'te opsiyonel
+    // profileID göndermiyoruz - eSimGo API v2.5'te opsiyonel
     // Email yeterli - eSimGo otomatik olarak profile oluşturur ve yeni eSIM üretir
     // assign: true ile eSimGo her sipariş için yeni eSIM üretecek (inventory'den değil)
     
@@ -118,13 +118,16 @@ export async function purchaseEsim(
     
     console.log("🔍 eSimGo Assignment Debug:");
     console.log("  - assign: true (otomatik assign aktif)");
-    console.log("  - profileID: (not sent - optional in v2.3)");
+    console.log("  - profileID: (not sent - optional in v2.5)");
     console.log("  - email:", email);
     console.log("  - callback_url:", callbackUrl);
     
     console.log("📤 eSimGo API Request Body:");
     console.log(JSON.stringify(requestBody, null, 2));
+    // API URL formatı: https://api.esim-go.com/v2.5
+    // Endpoint: POST /orders
     console.log("📤 eSimGo API URL:", `${apiUrl}/orders`);
+    console.log("📤 eSimGo API Version: v2.5 (per documentation)");
     console.log("🔍 Bundle ID Debug:");
     console.log("  - Input packageId:", packageId);
     console.log("  - Bundle name sent to API:", requestBody.order[0].item);
@@ -227,8 +230,8 @@ export async function purchaseEsim(
 
 /**
  * eSimGo'dan QR code'u /esims/assignments endpoint'inden al
- * Hazır prompt'a göre: QR codes are NOT returned from /orders
- * They are retrieved using: GET /v2.3/esims/assignments?reference=ORDER_REFERENCE
+ * Dokümantasyona göre: QR codes are NOT returned from /orders
+ * They are retrieved using: GET /v2.5/esims/assignments?reference=ORDER_REFERENCE
  * 
  * @param orderReference - eSimGo order reference (from /orders response)
  * @returns QR code bilgileri
@@ -247,7 +250,7 @@ export async function getQRCodeFromAssignments(
   }
 
   try {
-    // Hazır prompt'a göre: GET /v2.3/esims/assignments?reference=ORDER_REFERENCE
+    // Dokümantasyona göre: GET /v2.5/esims/assignments?reference=ORDER_REFERENCE
     // Accept: application/json → ICCID, SM-DP+, Matching ID (QR code base64 de gelebilir)
     // Accept: application/zip → ZIP file containing QR code PNG
     const assignmentsUrl = `${apiUrl}/esims/assignments?reference=${encodeURIComponent(orderReference)}`;
@@ -458,10 +461,9 @@ export async function getOrderStatus(
   }
 
   try {
-    // eSimGo v3 order status endpoint
-    // ESIMGO_API_URL zaten /v3 içeriyor (örn: https://api.esimgo.io/v3)
-    // O yüzden sadece /orders/{order_id} ekliyoruz
-    // Alternatif formatlar: /orders/{order_id}/status veya /orders/{order_id}/qr
+    // eSimGo API v2.5 order status endpoint
+    // ESIMGO_API_URL: https://api.esim-go.com/v2.5
+    // Endpoint: GET /orders/{order_id}
     console.log("📥 Fetching order status from:", `${apiUrl}/orders/${orderId}`);
     const response = await fetchWithTimeout(`${apiUrl}/orders/${orderId}`, {
       method: "GET",
@@ -539,8 +541,8 @@ export async function checkBundleStock(bundleId: string): Promise<{ available: b
   }
 
   try {
-    // eSimGo API v2.3 catalogue endpoint
-    // GET /v2.3/catalogue veya /v2.3/bundles/{bundleId}
+    // eSimGo API v2.5 catalogue endpoint
+    // GET /v2.5/catalogue veya /v2.5/bundles/{bundleId}
     const catalogueUrl = `${apiUrl}/catalogue`;
     
     console.log("🔍 Checking bundle stock availability:");

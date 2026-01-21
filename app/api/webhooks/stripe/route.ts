@@ -235,8 +235,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       console.log("  - Package:", packageName);
       console.log("  - Email:", customerEmail);
 
-      // Hazır prompt'a göre: QR codes are NOT returned from /orders
-      // They are retrieved using: GET /v2.3/esims/assignments?reference=ORDER_REFERENCE
+      // Dokümantasyona göre: QR codes are NOT returned from /orders
+      // They are retrieved using: GET /v2.5/esims/assignments?reference=ORDER_REFERENCE
       let finalQrCode = purchaseResult.qrCode;
       let finalQrCodeUrl = purchaseResult.qrCodeUrl;
       
