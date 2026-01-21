@@ -527,6 +527,94 @@ export async function getOrderStatus(
 }
 
 /**
+ * eSimGo'dan bundle stok durumunu kontrol et
+ * 
+ * @param bundleId - Bundle ID (örn: "esim_1GB_7D_US_V2")
+ * @returns Stok durumu (true = stokta var, false = stokta yok)
+ */
+export async function checkBundleStock(bundleId: string): Promise<{ available: boolean; error?: string }> {
+  const apiKey = process.env.ESIMGO_API_KEY;
+  const apiUrl = process.env.ESIMGO_API_URL;
+
+  if (!apiKey || !apiUrl) {
+    return {
+      available: false,
+      error: "eSimGo API bilgileri yapılandırılmamış",
+    };
+  }
+
+  try {
+    // eSimGo API v2.3 catalogue endpoint
+    // GET /v2.3/catalogue veya /v2.3/bundles/{bundleId}
+    const catalogueUrl = `${apiUrl}/catalogue`;
+    
+    console.log("🔍 Checking bundle stock availability:");
+    console.log("  - Bundle ID:", bundleId);
+    console.log("  - Catalogue URL:", catalogueUrl);
+    
+    const response = await fetchWithTimeout(catalogueUrl, {
+      method: "GET",
+      headers: {
+        "X-API-Key": apiKey,
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      timeout: 10000, // 10 seconds timeout
+      retries: 1,
+      retryDelay: 1000,
+    });
+
+    if (!response.ok) {
+      console.warn("⚠️ Catalogue endpoint not available or error:", response.status);
+      // Catalogue endpoint yoksa veya hata varsa, stok kontrolü yapamıyoruz
+      // Bu durumda sipariş oluşturmayı deneyeceğiz (eski davranış)
+      return { available: true }; // Bilinmiyor, sipariş oluşturmayı dene
+    }
+
+    const catalogueData = await response.json();
+    console.log("📦 Catalogue response:", JSON.stringify(catalogueData, null, 2));
+
+    // Catalogue response formatına göre bundle'ı ara
+    // Format değişebilir, bu yüzden esnek kontrol yapıyoruz
+    const bundles = catalogueData.bundles || catalogueData.items || catalogueData.data || [];
+    
+    const bundle = bundles.find((b: any) => 
+      b.id === bundleId || 
+      b.bundle_id === bundleId || 
+      b.item === bundleId ||
+      b.name === bundleId
+    );
+
+    if (!bundle) {
+      console.warn("⚠️ Bundle not found in catalogue:", bundleId);
+      // Bundle catalogue'de yoksa, stok kontrolü yapamıyoruz
+      return { available: true }; // Bilinmiyor, sipariş oluşturmayı dene
+    }
+
+    // Stok bilgisi kontrolü
+    const stock = bundle.stock || bundle.quantity || bundle.available || bundle.inventory;
+    const isAvailable = bundle.available !== false && 
+                        bundle.in_stock !== false &&
+                        (stock === undefined || stock === null || stock > 0);
+
+    console.log("📊 Bundle stock status:");
+    console.log("  - Bundle:", bundleId);
+    console.log("  - Available:", isAvailable);
+    console.log("  - Stock:", stock);
+
+    return {
+      available: isAvailable,
+    };
+  } catch (error: unknown) {
+    console.error("❌ Error checking bundle stock:", error);
+    const err = error as Error;
+    // Hata durumunda, stok kontrolü yapamıyoruz
+    // Bu durumda sipariş oluşturmayı deneyeceğiz (eski davranış)
+    return { available: true }; // Bilinmiyor, sipariş oluşturmayı dene
+  }
+}
+
+/**
  * Paket ID mapping - Website paketlerini eSimGo Bundle isimlerine çevirir
  * 
  * Format: esim_{DATA}_{DAYS}_{COUNTRY}_V2
