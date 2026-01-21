@@ -93,11 +93,11 @@ export async function purchaseEsim(
     // Endpoint: /orders
     
     // eSimGo API v2.3 formatına göre request body
-    // Dokümantasyona göre profileID opsiyonel - göndermiyoruz
-    // Email zorunlu field
+    // Her sipariş için eSimGo otomatik olarak yeni eSIM üretecek
+    // Inventory'den satış yapmıyoruz, direkt üretim yapılıyor
     const requestBody: any = {
       type: "transaction",
-      assign: true, // Otomatik assign için
+      assign: true, // Otomatik assign - eSimGo yeni eSIM üretecek ve assign edecek
       order: [
         {
           type: "bundle",
@@ -111,8 +111,8 @@ export async function purchaseEsim(
     };
     
     // profileID göndermiyoruz - eSimGo API v2.3'te opsiyonel
-    // "unable to find esim profile" hatası profileID gönderildiğinde oluşuyor
-    // Email yeterli - eSimGo otomatik olarak profile oluşturur
+    // Email yeterli - eSimGo otomatik olarak profile oluşturur ve yeni eSIM üretir
+    // assign: true ile eSimGo her sipariş için yeni eSIM üretecek (inventory'den değil)
     
     console.log("📡 Network selection: eSimGo will automatically select the best network for the country");
     
@@ -159,21 +159,16 @@ export async function purchaseEsim(
       console.error("  - Error response:", JSON.stringify(errorData, null, 2));
       console.error("  - Full error text:", errorText);
       
-      // Stok hatası kontrolü - daha spesifik kontrol
+      // Hata mesajını al
       const errorMessage = errorData.error || errorData.message || errorText || `HTTP error! status: ${response.status}`;
-      const errorLower = errorMessage.toLowerCase();
-      const isStockError = errorLower.includes("stock") || 
-                          errorLower.includes("out of stock") ||
-                          errorLower.includes("insufficient") ||
-                          errorLower.includes("not available") ||
-                          errorLower.includes("unavailable") ||
-                          (response.status === 422 && errorLower.includes("bundle")) ||
-                          (response.status === 400 && (errorLower.includes("bundle") || errorLower.includes("item")));
+      
+      // Not: Stok hatası kontrolü kaldırıldı - her sipariş için yeni eSIM üretiliyor
+      // Inventory'den satış yapmıyoruz, bu yüzden stok hatası beklenmiyor
       
       return {
         success: false,
         error: errorMessage,
-        isStockError: isStockError,
+        isStockError: false, // Artık stok hatası yok - her sipariş için yeni üretim
       };
     }
 

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { mapPackageToEsimGo, checkBundleStock } from "@/app/lib/esimgo";
 
 export async function POST(
   request: NextRequest
@@ -50,27 +49,9 @@ export async function POST(
       );
     }
 
-    // Map package name to eSimGo bundle ID
-    const esimGoPackageId = mapPackageToEsimGo(packageName);
-    console.log("📦 Checking stock before payment:");
-    console.log("  - Package:", packageName);
-    console.log("  - eSimGo Bundle ID:", esimGoPackageId);
-
-    // Check stock availability before creating payment
-    const stockCheck = await checkBundleStock(esimGoPackageId);
-    
-    if (!stockCheck.available) {
-      console.error("❌ Bundle out of stock:", esimGoPackageId);
-      return NextResponse.json(
-        { 
-          error: "This eSim package is currently out of stock. Please try another package or check back later.",
-          outOfStock: true
-        },
-        { status: 400 }
-      );
-    }
-
-    console.log("✅ Bundle is available, proceeding with payment");
+    // Stok kontrolü yapmıyoruz - eSimGo her sipariş için otomatik yeni eSIM üretecek
+    // Inventory'den satış yapmıyoruz, direkt üretim yapılıyor
+    console.log("📦 Proceeding with payment - eSimGo will generate new eSIM on order");
 
     // Price is already calculated with %20 discount + sign-up bonus (if applicable) from frontend
     // Use the price directly
