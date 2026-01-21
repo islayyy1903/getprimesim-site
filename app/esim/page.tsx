@@ -443,26 +443,26 @@ export default function ESimPage() {
                             const countryTyped: Country = country;
                             const countryId = countryTyped.id;
                             const isSelected = selectedCountryId === countryId;
-                          return (
-                            <button
-                              key={countryTyped.id}
-                              onClick={() => handleCountrySelect(countryTyped)}
-                              className={`w-full text-left px-4 py-2.5 text-sm hover:bg-cyan-50 dark:hover:bg-gray-700 transition-colors rounded-md flex items-center ${
-                                isSelected
-                                  ? "bg-cyan-100 dark:bg-gray-700 border-l-4 border-cyan-600 dark:border-cyan-400 font-semibold"
-                                  : "text-gray-700 dark:text-gray-300"
-                              }`}
-                            >
-                              <span className="mr-2 flex-shrink-0">
-                                {getCountryFlag(countryTyped) || <span>{countryTyped.icon}</span>}
-                              </span>
-                              {countryTyped.name}
-                            </button>
-                          );
-                        })}
+                            return (
+                              <button
+                                key={countryTyped.id}
+                                onClick={() => handleCountrySelect(countryTyped)}
+                                className={`w-full text-left px-4 py-2.5 text-sm hover:bg-cyan-50 dark:hover:bg-gray-700 transition-colors rounded-md flex items-center ${
+                                  isSelected
+                                    ? "bg-cyan-100 dark:bg-gray-700 border-l-4 border-cyan-600 dark:border-cyan-400 font-semibold"
+                                    : "text-gray-700 dark:text-gray-300"
+                                }`}
+                              >
+                                <span className="mr-2 flex-shrink-0">
+                                  {getCountryFlag(countryTyped) || <span>{countryTyped.icon}</span>}
+                                </span>
+                                {countryTyped.name}
+                              </button>
+                            );
+                          })}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
                 {/* All Countries List */}
                 <div className="mb-4">
