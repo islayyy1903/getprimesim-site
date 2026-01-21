@@ -172,12 +172,35 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         console.error("  - Email:", customerEmail);
         console.error("  - Session ID:", session.id);
         
-        // Even if eSimGo purchase fails, send email to customer to inform them
-        // Payment is successful, so customer should be notified
+        // Stok hatası durumunda otomatik refund yap
+        if (purchaseResult.isStockError && session.payment_intent) {
+          try {
+            console.log("💰 Processing automatic refund due to stock error...");
+            const refund = await stripe.refunds.create({
+              payment_intent: session.payment_intent as string,
+              reason: 'requested_by_customer',
+              metadata: {
+                reason: 'out_of_stock',
+                package: packageName,
+                session_id: session.id,
+              },
+            });
+            
+            console.log("✅ Automatic refund processed:", refund.id);
+            console.log("  - Refund ID:", refund.id);
+            console.log("  - Refund Amount:", refund.amount);
+            console.log("  - Refund Status:", refund.status);
+          } catch (refundError: unknown) {
+            console.error("❌ Failed to process automatic refund:", refundError);
+            // Refund başarısız olsa bile email gönder
+          }
+        }
+        
+        // Müşteriye email gönder
         try {
           const { sendQRCodeEmail } = await import("@/app/lib/email");
           const errorMessage = purchaseResult.isStockError
-            ? "We apologize, but this eSim package is currently out of stock. Our team is working to restock it. We will send you the QR code as soon as it becomes available. If you have any questions, please contact support."
+            ? "We apologize, but this eSim package is currently out of stock. Your payment has been automatically refunded. We will send you the QR code as soon as it becomes available. If you have any questions, please contact support."
             : `We encountered an issue processing your eSim order: ${purchaseResult.error}. Our team has been notified and will resolve this shortly. Please contact support if you need immediate assistance.`;
           
           const emailResult = await sendQRCodeEmail({
@@ -196,12 +219,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           console.error("❌ Email send error:", emailError);
         }
         
-        // Log error but don't fail the webhook (payment is already successful)
+        // Log error but don't fail the webhook (payment is already successful, or refunded)
         return NextResponse.json({
           received: true,
-          warning: "Payment successful but eSimGo purchase failed",
+          warning: purchaseResult.isStockError 
+            ? "Payment refunded due to stock error" 
+            : "Payment successful but eSimGo purchase failed",
           error: purchaseResult.error,
           isStockError: purchaseResult.isStockError,
+          refunded: purchaseResult.isStockError,
         });
       }
 

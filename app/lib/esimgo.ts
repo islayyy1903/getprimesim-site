@@ -159,12 +159,16 @@ export async function purchaseEsim(
       console.error("  - Error response:", JSON.stringify(errorData, null, 2));
       console.error("  - Full error text:", errorText);
       
-      // Stok hatası kontrolü
+      // Stok hatası kontrolü - daha spesifik kontrol
       const errorMessage = errorData.error || errorData.message || errorText || `HTTP error! status: ${response.status}`;
-      const isStockError = errorMessage.toLowerCase().includes("stock") || 
-                          errorMessage.toLowerCase().includes("out of stock") ||
-                          errorMessage.toLowerCase().includes("insufficient") ||
-                          response.status === 400 || response.status === 422;
+      const errorLower = errorMessage.toLowerCase();
+      const isStockError = errorLower.includes("stock") || 
+                          errorLower.includes("out of stock") ||
+                          errorLower.includes("insufficient") ||
+                          errorLower.includes("not available") ||
+                          errorLower.includes("unavailable") ||
+                          (response.status === 422 && errorLower.includes("bundle")) ||
+                          (response.status === 400 && (errorLower.includes("bundle") || errorLower.includes("item")));
       
       return {
         success: false,
