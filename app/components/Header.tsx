@@ -19,14 +19,14 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm dark:bg-gray-900/80">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-0 py-0 sm:px-0 lg:px-0">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center" onClick={closeMobileMenu}>
           <Image 
             src="/logo.png" 
             alt="PrimeSim - eSim Services Logo" 
             width={384} 
             height={256}
-            className="h-auto"
+            className="h-12 w-auto md:h-16 lg:h-20"
             style={{ display: 'block' }}
             priority
           />
