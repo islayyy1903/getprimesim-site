@@ -7,6 +7,7 @@
 
 import { fetchWithTimeout } from './fetchWithTimeout';
 import unlimitedPlusMapping from '../../unlimited-plus-mapping.json';
+import { randomUUID } from 'crypto';
 
 // ESimGoPurchaseRequest interface removed - not used
 
@@ -33,11 +34,27 @@ interface ESimGoPurchaseResponse {
  * Örnek: 9c7f2a01-8b4d-4c11-9a22-abcdef123456
  * 
  * Format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
+ * 
+ * ÖNEMLİ: Email'i profileID olarak kullanmak hataya neden oluyor!
+ * eSimGo API profileID'yi UUID olarak parse etmeye çalışıyor.
+ * Email (22 karakter) UUID formatında değil, bu yüzden "invalid UUID length: 22" hatası veriyor.
  */
 function generateProfileID(email: string): string {
-  // eSimGo API'de profileID genelde email olarak kullanılır
-  // Email'i profileID olarak kullan (eSimGo genelde bunu tercih eder)
-  return email;
+  // Email'i profileID olarak kullanmak hataya neden oluyor
+  // eSimGo API profileID'yi UUID olarak parse etmeye çalışıyor
+  // Email (22 karakter) UUID formatında değil, bu yüzden "invalid UUID length: 22" hatası veriyor
+  // Bu yüzden gerçek bir UUID v4 oluşturuyoruz
+  try {
+    // Node.js crypto modülü ile UUID v4 oluştur
+    return randomUUID();
+  } catch (error) {
+    // Fallback: UUID v4 manuel oluşturma (eğer crypto.randomUUID yoksa)
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 }
 
 export async function purchaseEsim(
@@ -92,8 +109,8 @@ export async function purchaseEsim(
           allowReassign: false,
         },
       ],
-      // profileID: email olarak kullanıyoruz (eSimGo genelde email'i profileID olarak kabul eder)
-      profileID: profileID, // Email formatında (generateProfileID artık email döndürüyor)
+      // profileID: Artık UUID v4 formatında (email kullanmak hataya neden oluyordu)
+      profileID: profileID, // UUID v4 formatında (generateProfileID artık UUID döndürüyor)
       email: email, // Email ayrı field olarak (bazı API versiyonlarında gerekli)
       callback_url: callbackUrl, // Callback URL (assignment tamamlandığında bildirim için)
     };
@@ -102,7 +119,7 @@ export async function purchaseEsim(
     
     console.log("🔍 eSimGo Assignment Debug:");
     console.log("  - assign: true (otomatik assign aktif)");
-    console.log("  - profileID:", profileID, "(email formatında)");
+    console.log("  - profileID:", profileID, "(UUID v4 formatında)");
     console.log("  - email:", email);
     console.log("  - callback_url:", callbackUrl);
     
