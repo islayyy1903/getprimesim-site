@@ -173,8 +173,12 @@ function generateEmailHTML({
     
     <div style="background: #dbeafe; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #3b82f6;">
       <h3 style="color: #1e40af; margin-top: 0;">What's Next?</h3>
-      <p style="color: #1f2937;">Our team has been notified and is working to resolve this issue. We will send you the QR code as soon as it becomes available.</p>
-      <p style="color: #1f2937;">If you need immediate assistance, please contact our support team.</p>
+      ${errorMessage.toLowerCase().includes('refund') || errorMessage.toLowerCase().includes('refunded') 
+        ? `<p style="color: #1f2937;">Your payment has been automatically refunded to your original payment method. The refund may take 5-10 business days to appear in your account.</p>
+           <p style="color: #1f2937;">We apologize for any inconvenience. If you need immediate assistance, please contact our support team.</p>`
+        : `<p style="color: #1f2937;">Our team has been notified and is working to resolve this issue. We will send you the QR code as soon as it becomes available.</p>
+           <p style="color: #1f2937;">If you need immediate assistance, please contact our support team.</p>`
+      }
     </div>
     
     <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
