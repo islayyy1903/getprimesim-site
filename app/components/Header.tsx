@@ -26,7 +26,7 @@ export default function Header() {
             alt="PrimeSim - eSim Services Logo" 
             width={384} 
             height={256}
-            className="h-16 w-auto md:h-20 lg:h-24"
+            className="h-48 w-auto md:h-60 lg:h-72"
             style={{ display: 'block' }}
             priority
           />
