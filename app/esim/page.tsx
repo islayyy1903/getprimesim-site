@@ -422,34 +422,35 @@ export default function ESimPage() {
         <section className="flex flex-col lg:flex-row bg-gray-50 dark:bg-gray-900 min-h-screen p-4 lg:p-6 gap-4 lg:gap-6">
           {/* Mobilde: Eğer ülke seçiliyse, sidebar'ı tamamen gizle */}
           {/* Desktop'ta: Her zaman göster */}
-          {!selectedCountry && (
-            <div className="w-full lg:w-80">
-            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col h-[calc(100vh-250px)] lg:h-[calc(100vh-150px)]">
-              <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Countries & Regions</h3>
-              </div>
-              <div className="flex-1 overflow-y-auto scrollbar-thin">
-                {/* Continents */}
-                {continents.map((continent) => (
-                  <div key={continent.name} className="mb-4">
-                    <div className="px-4 py-2 bg-gray-100 dark:bg-gray-700">
-                      <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
-                        {continent.name}
-                      </h4>
-                    </div>
-                    <div className="space-y-1">
-                      {countries
-                        .filter((country) => {
-                          const countryTyped: Country = country;
-                          return continent.countries.some((c) =>
-                            countryTyped.name.toLowerCase().includes(c.toLowerCase())
-                          );
-                        })
-                        .map((country) => {
-                          const countryTyped: Country = country;
-                          const selectedId = selectedCountry?.id;
-                          const countryId = countryTyped.id;
-                          const isSelected = selectedId === countryId;
+          {(() => {
+            const selectedCountryId = selectedCountry?.id ?? null;
+            return !selectedCountry && (
+              <div className="w-full lg:w-80">
+              <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col h-[calc(100vh-250px)] lg:h-[calc(100vh-150px)]">
+                <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Countries & Regions</h3>
+                </div>
+                <div className="flex-1 overflow-y-auto scrollbar-thin">
+                  {/* Continents */}
+                  {continents.map((continent) => (
+                    <div key={continent.name} className="mb-4">
+                      <div className="px-4 py-2 bg-gray-100 dark:bg-gray-700">
+                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
+                          {continent.name}
+                        </h4>
+                      </div>
+                      <div className="space-y-1">
+                        {countries
+                          .filter((country) => {
+                            const countryTyped: Country = country;
+                            return continent.countries.some((c) =>
+                              countryTyped.name.toLowerCase().includes(c.toLowerCase())
+                            );
+                          })
+                          .map((country) => {
+                            const countryTyped: Country = country;
+                            const countryId = countryTyped.id;
+                            const isSelected = selectedCountryId === countryId;
                           return (
                             <button
                               key={countryTyped.id}
