@@ -169,6 +169,9 @@ export default function ESimPage() {
   const [countries] = useState<Country[]>(countriesData as Country[]);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
   const [activeSection, setActiveSection] = useState<"standard" | "unlimited-lite" | "unlimited-plus">("standard");
+  
+  // Extract selectedCountryId to avoid TypeScript narrowing issues
+  const selectedCountryId = selectedCountry?.id ?? null;
 
   useEffect(() => {
     if (searchQuery.trim() === "") {
@@ -422,10 +425,8 @@ export default function ESimPage() {
         <section className="flex flex-col lg:flex-row bg-gray-50 dark:bg-gray-900 min-h-screen p-4 lg:p-6 gap-4 lg:gap-6">
           {/* Mobilde: Eğer ülke seçiliyse, sidebar'ı tamamen gizle */}
           {/* Desktop'ta: Her zaman göster */}
-          {(() => {
-            const selectedCountryId = selectedCountry?.id ?? null;
-            return !selectedCountry && (
-              <div className="w-full lg:w-80">
+          {!selectedCountry && (
+            <div className="w-full lg:w-80">
               <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col h-[calc(100vh-250px)] lg:h-[calc(100vh-150px)]">
                 <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Countries & Regions</h3>
@@ -481,7 +482,7 @@ export default function ESimPage() {
                   </div>
                   <div className="space-y-1">
                     {filteredCountries.map((country: Country) => {
-                      const isSelected = selectedCountry?.id === country.id;
+                      const isSelected = selectedCountryId === country.id;
                       return (
                         <button
                           key={country.id}
