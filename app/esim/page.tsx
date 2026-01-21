@@ -439,12 +439,12 @@ export default function ESimPage() {
                     </div>
                     <div className="space-y-1">
                       {countries
-                        .filter((country) =>
+                        .filter((country: Country) =>
                           continent.countries.some((c) =>
                             country.name.toLowerCase().includes(c.toLowerCase())
                           )
                         )
-                        .map((country) => (
+                        .map((country: Country) => (
                           <button
                             key={country.id}
                             onClick={() => handleCountrySelect(country)}
@@ -472,7 +472,7 @@ export default function ESimPage() {
                     </h4>
                   </div>
                   <div className="space-y-1">
-                    {filteredCountries.map((country) => (
+                    {filteredCountries.map((country: Country) => (
                       <button
                         key={country.id}
                         onClick={() => handleCountrySelect(country)}
