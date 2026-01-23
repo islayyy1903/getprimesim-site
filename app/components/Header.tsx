@@ -74,15 +74,8 @@ export default function Header() {
               <Link href="/login" className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400">
                 Sign In
               </Link>
-              <Link href="/register" className="group relative inline-flex items-center gap-2 rounded-lg bg-cyan-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-cyan-700">
-                <span>Sign Up</span>
-                <span className="relative inline-flex items-center gap-0.5 bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md" style={{
-                  clipPath: 'polygon(0% 0%, calc(100% - 4px) 0%, 100% 50%, calc(100% - 4px) 100%, 0% 100%, 4px 50%)'
-                }}>
-                  <span className="animate-pulse">🔥</span>
-                  <span>25%</span>
-                  <span className="text-[10px]">OFF</span>
-                </span>
+              <Link href="/register" className="rounded-lg bg-cyan-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-cyan-700">
+                Sign Up
               </Link>
             </>
           )}
@@ -162,17 +155,10 @@ export default function Header() {
                   </Link>
                   <Link 
                     href="/register" 
-                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-cyan-700"
+                    className="block w-full text-center rounded-lg bg-cyan-600 px-3 py-1.5 font-semibold text-white transition-all hover:bg-cyan-700"
                     onClick={closeMobileMenu}
                   >
-                    <span>Sign Up</span>
-                    <span className="relative inline-flex items-center gap-0.5 bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 text-xs font-bold text-white shadow-md" style={{
-                      clipPath: 'polygon(0% 0%, calc(100% - 4px) 0%, 100% 50%, calc(100% - 4px) 100%, 0% 100%, 4px 50%)'
-                    }}>
-                      <span className="animate-pulse">🔥</span>
-                      <span>50%</span>
-                      <span className="text-[10px]">OFF</span>
-                    </span>
+                    Sign Up
                   </Link>
                 </div>
               </>
