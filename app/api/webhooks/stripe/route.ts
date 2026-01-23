@@ -224,7 +224,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           
           const emailResult = await sendQRCodeEmail({
             to: customerEmail,
-            packageName: packageName,
+            packageName: packageName || "eSim Package",
             errorMessage: errorMessage,
             orderId: session.id,
           });
@@ -328,7 +328,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
               
               const emailResult = await sendQRCodeEmail({
                 to: customerEmail,
-                packageName: packageName,
+                packageName: packageName || "eSim Package",
                 errorMessage: errorMessage,
                 orderId: purchaseResult.orderId || session.id,
               });
@@ -362,7 +362,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         const { sendQRCodeEmail } = await import("@/app/lib/email");
         const emailResult = await sendQRCodeEmail({
           to: customerEmail,
-          packageName: packageName,
+          packageName: packageName || "eSim Package",
           qrCode: finalQrCode,
           qrCodeUrl: finalQrCodeUrl,
           orderId: purchaseResult.orderId,
