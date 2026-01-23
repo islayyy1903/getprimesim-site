@@ -9,6 +9,8 @@ import { useUser } from "./UserContext";
 export default function Header() {
   const { user, logout } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -16,6 +18,15 @@ export default function Header() {
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
+  };
+
+  const handleEsimClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/esim") {
+      e.preventDefault();
+      router.refresh();
+      // Force page reload to reset state
+      window.location.href = "/esim";
+    }
   };
 
   return (
