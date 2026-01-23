@@ -177,12 +177,11 @@ export default function ESimPage() {
 
   // Sayfa yüklendiğinde veya eSim sayfasına geldiğinde state'i sıfırla
   useEffect(() => {
-    if (pathname === "/esim") {
-      setSelectedCountry(null);
-      setSearchQuery("");
-      setActiveSection("standard");
-      setFilteredCountries(countries);
-    }
+    // Her zaman state'i sıfırla (sayfa her yüklendiğinde)
+    setSelectedCountry(null);
+    setSearchQuery("");
+    setActiveSection("standard");
+    setFilteredCountries(countries);
   }, [pathname, countries]);
 
   useEffect(() => {

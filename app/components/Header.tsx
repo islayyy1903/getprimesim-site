@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "./UserContext";
 
 export default function Header() {
@@ -35,7 +36,11 @@ export default function Header() {
           <Link href="/" className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400">
             Home
           </Link>
-          <Link href="/esim" className="rounded-lg bg-cyan-600 px-3 py-1.5 text-white transition-colors hover:bg-cyan-700 dark:bg-cyan-600 dark:text-white dark:hover:bg-cyan-700">
+          <Link 
+            href="/esim" 
+            onClick={handleEsimClick}
+            className="rounded-lg bg-cyan-600 px-3 py-1.5 text-white transition-colors hover:bg-cyan-700 dark:bg-cyan-600 dark:text-white dark:hover:bg-cyan-700"
+          >
             eSim
           </Link>
           <Link href="/contact" className="text-gray-700 transition-colors hover:text-cyan-600 dark:text-gray-300 dark:hover:text-cyan-400">
@@ -103,7 +108,10 @@ export default function Header() {
             <Link 
               href="/esim" 
               className="block rounded-lg bg-cyan-600 px-3 py-1.5 text-white transition-colors hover:bg-cyan-700 dark:bg-cyan-600 dark:text-white dark:hover:bg-cyan-700"
-              onClick={closeMobileMenu}
+              onClick={(e) => {
+                handleEsimClick(e);
+                closeMobileMenu();
+              }}
             >
               eSim
             </Link>
