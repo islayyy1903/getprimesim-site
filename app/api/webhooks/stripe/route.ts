@@ -190,16 +190,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         console.error("  - Session ID:", session.id);
         
         // Herhangi bir hata durumunda otomatik refund yap
-        if (session.payment_intent) {
+        const paymentIntent = typeof session.payment_intent === 'string' ? session.payment_intent : null;
+        if (paymentIntent) {
           try {
             console.log("💰 Processing automatic refund due to eSimGo purchase failure...");
             const refund = await stripe.refunds.create({
-              payment_intent: session.payment_intent as string,
+              payment_intent: paymentIntent,
               reason: 'requested_by_customer',
               metadata: {
                 reason: 'esimgo_purchase_failed',
                 error: purchaseResult.error || 'Unknown error',
-                package: packageName,
+                package: packageName || 'unknown',
                 session_id: session.id,
               },
             });
@@ -300,15 +301,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         console.error("  - Email:", customerEmail);
         
         // QR code yoksa otomatik refund yap
-        if (session.payment_intent) {
+        const paymentIntentForRefund = typeof session.payment_intent === 'string' ? session.payment_intent : null;
+        if (paymentIntentForRefund) {
           try {
             console.log("💰 Processing automatic refund - QR code not available...");
             const refund = await stripe.refunds.create({
-              payment_intent: session.payment_intent as string,
+              payment_intent: paymentIntentForRefund,
               reason: 'requested_by_customer',
               metadata: {
                 reason: 'qr_code_not_available',
-                package: packageName,
+                package: packageName || 'unknown',
                 order_id: purchaseResult.orderId || 'unknown',
                 session_id: session.id,
               },
@@ -392,11 +394,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       const err = error as Error;
       
       // Herhangi bir hata durumunda otomatik refund yap
-      if (session.payment_intent) {
+      const paymentIntentForError = typeof session.payment_intent === 'string' ? session.payment_intent : null;
+      if (paymentIntentForError) {
         try {
           console.log("💰 Processing automatic refund due to processing error...");
           const refund = await stripe.refunds.create({
-            payment_intent: session.payment_intent as string,
+            payment_intent: paymentIntentForError,
             reason: 'requested_by_customer',
             metadata: {
               reason: 'processing_error',
