@@ -134,23 +134,41 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Get package information from metadata
     const packageName = session.metadata?.packageName;
+    const packageId = session.metadata?.packageId; // bundleId from frontend
     const customerEmail = session.customer_email || session.customer_details?.email;
 
-    if (!packageName || !customerEmail) {
-      console.error("❌ Missing package name or email");
+    if (!customerEmail) {
+      console.error("❌ Missing email");
       return NextResponse.json(
-        { error: "Missing package name or email" },
+        { error: "Missing email" },
+        { status: 400 }
+      );
+    }
+
+    // packageId (bundleId) varsa direkt kullan, yoksa packageName'den map et
+    let esimGoPackageId: string;
+    if (packageId) {
+      // packageId zaten doğru format (örn: esim_1GB_7D_US_V2)
+      esimGoPackageId = packageId;
+      console.log("📦 Using packageId (bundleId) directly:", esimGoPackageId);
+    } else if (packageName) {
+      // Fallback: packageName'den map et (eski davranış)
+      esimGoPackageId = mapPackageToEsimGo(packageName);
+      console.log("⚠️ packageId not found, mapping from packageName:", packageName, "→", esimGoPackageId);
+    } else {
+      console.error("❌ Missing both packageId and packageName");
+      return NextResponse.json(
+        { error: "Missing packageId or packageName" },
         { status: 400 }
       );
     }
 
     try {
-      // Map package name to eSimGo package ID
-      const esimGoPackageId = mapPackageToEsimGo(packageName);
       
       console.log("📦 Purchasing eSim from eSimGo...");
-      console.log("Package:", packageName);
-      console.log("eSimGo Package ID:", esimGoPackageId);
+      console.log("Package Name:", packageName || "N/A");
+      console.log("Package ID (bundleId):", packageId || "N/A");
+      console.log("eSimGo Package ID (final):", esimGoPackageId);
       console.log("Email:", customerEmail);
 
       // Purchase eSim from eSimGo
