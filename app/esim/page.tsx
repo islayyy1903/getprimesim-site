@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import countriesData from "../../data/countries.json";
@@ -169,9 +170,20 @@ export default function ESimPage() {
   const [countries] = useState<Country[]>(countriesData as Country[]);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>(countries);
   const [activeSection, setActiveSection] = useState<"standard" | "unlimited-lite" | "unlimited-plus">("standard");
+  const pathname = usePathname();
   
   // Extract selectedCountryId to avoid TypeScript narrowing issues
   const selectedCountryId = selectedCountry?.id ?? null;
+
+  // Sayfa yüklendiğinde veya eSim sayfasına geldiğinde state'i sıfırla
+  useEffect(() => {
+    if (pathname === "/esim") {
+      setSelectedCountry(null);
+      setSearchQuery("");
+      setActiveSection("standard");
+      setFilteredCountries(countries);
+    }
+  }, [pathname, countries]);
 
   useEffect(() => {
     if (searchQuery.trim() === "") {
