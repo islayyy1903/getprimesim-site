@@ -41,10 +41,12 @@ export async function sendQRCodeEmail({
     console.log("📧 Attempting to send email to:", to);
     console.log("📦 Package:", packageName);
     console.log("🔑 Resend API key exists:", !!resendApiKey);
-    console.log("🆔 Order ID:", orderId || "Not provided");
+    console.log("🆔 Order ID:", orderId || "Not provided - WILL SHOW GENERAL LINK");
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://getprimesim.com';
     if (orderId) {
       console.log("🔗 QR Code Link:", `${baseUrl}/api/test-qrcode?orderReference=${orderId}`);
+    } else {
+      console.log("🔗 QR Code Link: GENERAL LINK (no orderId)");
     }
     console.log("🚨 Error Message (if any):", errorMessage || "None");
     
@@ -56,17 +58,21 @@ export async function sendQRCodeEmail({
       ? `PrimeSim eSim Order Issue: ${packageName}`
       : `Your eSim QR Code - ${packageName}`;
     
-    const emailPayload = {
+    const html = generateEmailHTML({
+      packageName,
+      orderId,
+      errorMessage,
+      qrCode,
+      qrCodeUrl,
+    });
+    const text = generateEmailText({ packageName, orderId, errorMessage });
+    
+    const emailPayload: Record<string, unknown> = {
       from: fromEmail,
       to: [to],
       subject: subject,
-      html: generateEmailHTML({
-        packageName,
-        orderId,
-        errorMessage,
-        qrCode,
-        qrCodeUrl,
-      }),
+      html,
+      text,
     };
     
     console.log("📤 Sending email via Resend API...");
@@ -123,6 +129,30 @@ export async function sendQRCodeEmail({
       error: err.message || "Failed to send email",
     };
   }
+}
+
+/**
+ * Plain-text email body (HTML strip edilse bile link görünsün)
+ */
+function generateEmailText({
+  packageName,
+  orderId,
+  errorMessage,
+}: {
+  packageName: string;
+  orderId?: string;
+  errorMessage?: string;
+}): string {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://getprimesim.com';
+  const qrLink = orderId
+    ? `${baseUrl}/api/test-qrcode?orderReference=${encodeURIComponent(orderId)}`
+    : `${baseUrl}/esim`;
+
+  if (errorMessage) {
+    return `PrimeSim - eSim Order Issue\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\n${errorMessage}\n\nContact: info@getprimesim.com`;
+  }
+
+  return `PrimeSim - Your eSim is Ready!\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\nVIEW YOUR QR CODE (copy this link into your browser):\n${qrLink}\n\nOpen the link above to view and scan your eSim QR code.\n\nContact: info@getprimesim.com\nhttps://getprimesim.com`;
 }
 
 /**
@@ -195,61 +225,32 @@ function generateEmailHTML({
     `;
   }
   
-  // QR code display oluştur
+  // QR code link - orderId varsa kullan, yoksa genel link
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://getprimesim.com';
-  
-  let qrCodeDisplay = '';
-  
-  // Eğer base64 QR code varsa, direkt email'e ekle
-  if (qrCode) {
-    // Base64 QR code'u img tag olarak ekle
-    const qrCodeDataUrl = qrCode.startsWith('data:image') 
-      ? qrCode 
-      : `data:image/png;base64,${qrCode}`;
-    
-    qrCodeDisplay = `
-      <div style="text-align: center; margin: 30px 0;">
-        <img src="${qrCodeDataUrl}" alt="QR Code" style="max-width: 300px; width: 100%; height: auto; border: 2px solid #e5e7eb; border-radius: 8px; padding: 10px; background: white;">
-      </div>
-      <p style="text-align: center; color: #6b7280; margin-top: 15px; font-size: 14px;">
-        Scan this QR code with your phone to activate your eSim.
-      </p>
-    `;
-  } 
-  // Eğer QR code URL varsa, URL'den göster
-  else if (qrCodeUrl) {
-    qrCodeDisplay = `
-      <div style="text-align: center; margin: 30px 0;">
-        <img src="${qrCodeUrl}" alt="QR Code" style="max-width: 300px; width: 100%; height: auto; border: 2px solid #e5e7eb; border-radius: 8px; padding: 10px; background: white;">
-      </div>
-      <p style="text-align: center; color: #6b7280; margin-top: 15px; font-size: 14px;">
-        Scan this QR code with your phone to activate your eSim.
-      </p>
-    `;
-  }
-  // Eğer orderId varsa, test endpoint linki ver
-  else if (orderId) {
-    const qrCodeLink = `${baseUrl}/api/test-qrcode?orderReference=${encodeURIComponent(orderId)}`;
-    qrCodeDisplay = `
-      <div style="text-align: center; margin: 30px 0;">
-        <a href="${qrCodeLink}" 
-           style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-          View Your QR Code 📱
-        </a>
-      </div>
-      <p style="text-align: center; color: #6b7280; margin-top: 15px; font-size: 14px;">
-        Click the button above to view and download your QR code.
-      </p>
-    `;
-  }
-  // Hiçbiri yoksa, işlem devam ediyor mesajı
-  else {
-    qrCodeDisplay = `
-      <p style="color: #6b7280; text-align: center; padding: 20px; background: #f9fafb; border-radius: 8px;">
-        Your QR code is being processed. Please check back in a few minutes or contact our support team.
-      </p>
-    `;
-  }
+  const qrCodeLink = orderId
+    ? `${baseUrl}/api/test-qrcode?orderReference=${encodeURIComponent(orderId)}`
+    : `${baseUrl}/esim`;
+
+  // Package Details içinde hemen link göster (bu kutu her zaman render ediliyor)
+  const packageDetailsQrRow = `
+    <p style="margin: 12px 0 0 0;"><strong>QR Code Link:</strong><br>
+      <a href="${qrCodeLink}" style="color: #2563eb; text-decoration: underline; word-break: break-all;">${qrCodeLink}</a>
+    </p>
+    <p style="margin: 8px 0 0 0; font-size: 13px; color: #6b7280;">Tap the link above or copy-paste it into your browser to view your QR code.</p>
+  `;
+
+  // Buton: gradient yerine solid renk (mobil istemci uyumluluğu)
+  const qrCodeDisplay = `
+    <p style="margin: 0 0 16px 0; font-size: 15px; color: #1f2937;">View and scan your eSim QR code:</p>
+    <div style="text-align: center; margin: 20px 0;">
+      <a href="${qrCodeLink}" style="display: inline-block; background: #4f46e5; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px;">
+        View Your QR Code
+      </a>
+    </div>
+    <p style="text-align: center; margin: 12px 0 0 0; font-size: 14px; color: #6b7280;">
+      Or copy this link: <a href="${qrCodeLink}" style="color: #2563eb; text-decoration: underline; word-break: break-all;">${qrCodeLink}</a>
+    </p>
+  `;
 
   return `
 <!DOCTYPE html>
@@ -265,7 +266,7 @@ function generateEmailHTML({
   </div>
   
   <div style="background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px;">
-    <h2 style="color: #1f2937; margin-top: 0;">Your eSim is Ready! 📱</h2>
+    <h2 style="color: #1f2937; margin-top: 0;">Your eSim is Ready!</h2>
     
     <p>Thank you for your purchase. Your eSim QR code is ready to use.</p>
     
@@ -273,9 +274,10 @@ function generateEmailHTML({
       <h3 style="color: #1f2937; margin-top: 0;">Package Details</h3>
       <p><strong>Package:</strong> ${packageName}</p>
       ${orderId ? `<p><strong>Order ID:</strong> ${orderId}</p>` : ""}
+      ${packageDetailsQrRow}
     </div>
     
-    <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e5e7eb; text-align: center;">
+    <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e5e7eb;">
       <h3 style="color: #1f2937; margin-top: 0;">Your QR Code</h3>
       ${qrCodeDisplay}
     </div>
@@ -283,11 +285,11 @@ function generateEmailHTML({
     <div style="background: #dbeafe; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #3b82f6;">
       <h3 style="color: #1e40af; margin-top: 0;">How to Activate</h3>
       <ol style="color: #1f2937; padding-left: 20px;">
-        <li>Click the button above to view your QR code</li>
-        <li>Open your phone's Settings</li>
+        <li>Open the QR Code link above</li>
+        <li>Open your phone&apos;s Settings</li>
         <li>Go to Cellular / Mobile Data</li>
-        <li>Tap "Add Cellular Plan" or "Add eSIM"</li>
-        <li>Scan the QR code from the link</li>
+        <li>Tap &quot;Add Cellular Plan&quot; or &quot;Add eSIM&quot;</li>
+        <li>Scan the QR code</li>
         <li>Follow the on-screen instructions</li>
       </ol>
     </div>

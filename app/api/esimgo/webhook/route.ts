@@ -72,20 +72,49 @@ export async function POST(request: NextRequest) {
     if (isCompletedEvent) {
       // Sipariş tamamlandı, QR code hazır
       console.log("✅ Order completed event detected, QR code ready");
+      
+      // QR code callback'te yoksa assignments'ten çek
+      let finalQrCode = qrCode;
+      let finalQrCodeUrl = qrCodeUrl;
+      
+      if (!finalQrCode && !finalQrCodeUrl && orderId) {
+        console.log("⚠️ QR code not in callback, fetching from /esims/assignments...");
+        console.log("  - Order Reference:", orderId);
+        
+        try {
+          const { getQRCodeFromAssignments } = await import("@/app/lib/esimgo");
+          console.log("📥 Fetching QR code from /esims/assignments endpoint...");
+          const assignmentsResult = await getQRCodeFromAssignments(orderId);
+          
+          if (assignmentsResult.success && (assignmentsResult.qrCode || assignmentsResult.qrCodeUrl)) {
+            console.log("✅ QR code found in assignments!");
+            finalQrCode = assignmentsResult.qrCode;
+            finalQrCodeUrl = assignmentsResult.qrCodeUrl;
+          } else {
+            console.log("⚠️ QR code still not available in assignments");
+            console.log("  - Error:", assignmentsResult.error || "Unknown error");
+          }
+        } catch (assignmentsError: unknown) {
+          console.error("❌ Assignments check error:", assignmentsError);
+          // Devam et, email gönder (orderId ile link gösterilecek)
+        }
+      }
         
         // Send QR code email to customer (always send if email is available)
         if (email) {
           try {
             const { sendQRCodeEmail } = await import("@/app/lib/email");
             console.log("📧 Sending QR code email to:", email);
-            console.log("📦 QR Code:", qrCode ? "Base64 provided" : qrCodeUrl || "Not provided");
+            console.log("📦 QR Code:", finalQrCode ? "Base64 provided" : finalQrCodeUrl || "Not provided (will show link)");
+            console.log("🆔 Order ID for link:", orderId || "NOT PROVIDED - WILL USE GENERAL LINK");
             
+            // orderId yoksa bile email gönder (genel link ile)
             const emailResult = await sendQRCodeEmail({
               to: email,
               packageName: packageName,
-              qrCode: qrCode,
-              qrCodeUrl: qrCodeUrl,
-              orderId: orderId,
+              qrCode: finalQrCode,
+              qrCodeUrl: finalQrCodeUrl,
+              orderId: orderId || undefined, // orderId varsa kullan, yoksa undefined (template genel link gösterecek)
             });
 
             if (emailResult.success) {
@@ -141,18 +170,40 @@ export async function POST(request: NextRequest) {
     
     // Default: Herhangi bir event geldi, QR code varsa email gönder
     console.log("ℹ️ Unknown event type, but checking for QR code:", eventType);
-    if (qrCode || qrCodeUrl) {
-      console.log("✅ QR code found in callback, sending email...");
-      if (email) {
-        try {
-          const { sendQRCodeEmail } = await import("@/app/lib/email");
-          const emailResult = await sendQRCodeEmail({
-            to: email,
-            packageName: packageName,
-            qrCode: qrCode,
-            qrCodeUrl: qrCodeUrl,
-            orderId: orderId,
-          });
+    
+    // QR code callback'te yoksa assignments'ten çek
+    let finalQrCode = qrCode;
+    let finalQrCodeUrl = qrCodeUrl;
+    
+    if (!finalQrCode && !finalQrCodeUrl && orderId) {
+      console.log("⚠️ QR code not in callback, fetching from /esims/assignments...");
+      try {
+        const { getQRCodeFromAssignments } = await import("@/app/lib/esimgo");
+        const assignmentsResult = await getQRCodeFromAssignments(orderId);
+        
+        if (assignmentsResult.success && (assignmentsResult.qrCode || assignmentsResult.qrCodeUrl)) {
+          console.log("✅ QR code found in assignments!");
+          finalQrCode = assignmentsResult.qrCode;
+          finalQrCodeUrl = assignmentsResult.qrCodeUrl;
+        }
+      } catch (assignmentsError: unknown) {
+        console.error("❌ Assignments check error:", assignmentsError);
+      }
+    }
+    
+    // Her zaman email gönder (orderId olsun ya da olmasın)
+    if (email) {
+      console.log("✅ Sending email (with or without orderId)...");
+      console.log("🆔 Order ID:", orderId || "NOT PROVIDED - WILL USE GENERAL LINK");
+      try {
+        const { sendQRCodeEmail } = await import("@/app/lib/email");
+        const emailResult = await sendQRCodeEmail({
+          to: email,
+          packageName: packageName,
+          qrCode: finalQrCode,
+          qrCodeUrl: finalQrCodeUrl,
+          orderId: orderId || undefined, // orderId varsa kullan, yoksa undefined
+        });
           
           if (emailResult.success) {
             console.log("✅ QR code email sent successfully to:", email);

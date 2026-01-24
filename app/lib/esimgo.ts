@@ -88,6 +88,15 @@ export async function purchaseEsim(
       ? `${process.env.NEXT_PUBLIC_BASE_URL}/api/esimgo/webhook`
       : "https://getprimesim.com/api/esimgo/webhook";
     
+    // Unlimited paketler için bundleId'yi düzelt
+    // Frontend: esim_unlimited_lite_7D_US_V2 → eSimGo: esim_UL_7D_US_V2
+    // Frontend: esim_unlimited_plus_7D_US_V2 → eSimGo: esim_ULP_7D_US_V2
+    const fixedPackageId = fixUnlimitedBundleId(packageId);
+    
+    if (fixedPackageId !== packageId) {
+      console.log("🔧 Fixed unlimited bundle ID:", packageId, "→", fixedPackageId);
+    }
+    
     // eSimGo API v2.5 endpoint formatı
     // ESIMGO_API_URL: https://api.esim-go.com/v2.5 (base URL + version)
     // Endpoint: POST /orders
@@ -102,7 +111,7 @@ export async function purchaseEsim(
         {
           type: "bundle",
           quantity: 1,
-          item: packageId, // Bundle ismi (örn: esim_1GB_7D_US_V2)
+          item: fixedPackageId, // Düzeltilmiş bundle ID (örn: esim_UL_7D_US_V2)
           allowReassign: false,
         },
       ],
@@ -609,6 +618,30 @@ export async function checkBundleStock(bundleId: string): Promise<{ available: b
     // Bu durumda sipariş oluşturmayı deneyeceğiz (eski davranış)
     return { available: true }; // Bilinmiyor, sipariş oluşturmayı dene
   }
+}
+
+/**
+ * Bundle ID'yi eSimGo formatına çevir (unlimited paketler için)
+ * 
+ * Frontend'de: esim_unlimited_lite_7D_US_V2
+ * eSimGo'da: esim_UL_7D_US_V2 (UL = Unlimited Lite)
+ * 
+ * Frontend'de: esim_unlimited_plus_7D_US_V2  
+ * eSimGo'da: esim_ULP_7D_US_V2 (ULP = Unlimited Plus)
+ */
+export function fixUnlimitedBundleId(bundleId: string): string {
+  // Unlimited Lite: esim_unlimited_lite_XD_YY_V2 → esim_UL_XD_YY_V2
+  if (bundleId.includes('unlimited_lite_')) {
+    return bundleId.replace('unlimited_lite_', 'UL_');
+  }
+  
+  // Unlimited Plus: esim_unlimited_plus_XD_YY_V2 → esim_ULP_XD_YY_V2
+  if (bundleId.includes('unlimited_plus_')) {
+    return bundleId.replace('unlimited_plus_', 'ULP_');
+  }
+  
+  // Değişiklik yoksa aynen döndür
+  return bundleId;
 }
 
 /**

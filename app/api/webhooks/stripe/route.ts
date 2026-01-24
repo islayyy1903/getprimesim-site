@@ -148,9 +148,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // packageId (bundleId) varsa direkt kullan, yoksa packageName'den map et
     let esimGoPackageId: string;
     if (packageId) {
-      // packageId zaten doğru format (örn: esim_1GB_7D_US_V2)
-      esimGoPackageId = packageId;
-      console.log("📦 Using packageId (bundleId) directly:", esimGoPackageId);
+      // packageId'yi kontrol et ve unlimited paketler için düzelt
+      const { fixUnlimitedBundleId } = await import("@/app/lib/esimgo");
+      esimGoPackageId = fixUnlimitedBundleId(packageId);
+      
+      if (esimGoPackageId !== packageId) {
+        console.log("🔧 Fixed unlimited bundle ID:", packageId, "→", esimGoPackageId);
+      } else {
+        console.log("📦 Using packageId (bundleId) directly:", esimGoPackageId);
+      }
     } else if (packageName) {
       // Fallback: packageName'den map et (eski davranış)
       esimGoPackageId = mapPackageToEsimGo(packageName);
