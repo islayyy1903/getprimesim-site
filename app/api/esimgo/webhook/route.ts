@@ -202,20 +202,18 @@ export async function POST(request: NextRequest) {
           packageName: packageName,
           qrCode: finalQrCode,
           qrCodeUrl: finalQrCodeUrl,
-          orderId: orderId || undefined, // orderId varsa kullan, yoksa undefined
+          orderId: orderId || undefined,
         });
-          
-          if (emailResult.success) {
-            console.log("✅ QR code email sent successfully to:", email);
-          } else {
-            console.error("❌ Failed to send QR code email:", emailResult.error);
-          }
-        } catch (emailError: unknown) {
-          console.error("❌ Email send error:", emailError);
+        if (emailResult.success) {
+          console.log("✅ QR code email sent successfully to:", email);
+        } else {
+          console.error("❌ Failed to send QR code email:", emailResult.error);
         }
+      } catch (emailError: unknown) {
+        console.error("❌ Email send error:", emailError);
       }
     }
-    
+
     return NextResponse.json({ received: true, message: "Event received" });
   } catch (error: unknown) {
     console.error("❌ eSimGo webhook error:", error);
