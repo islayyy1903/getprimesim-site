@@ -131,6 +131,13 @@ function SuccessContent() {
                     </Link>
                   </div>
                 </div>
+                {orderStatus?.customerEmail && /@(hotmail|outlook|live|msn|yahoo)\./i.test(orderStatus.customerEmail) && (
+                  <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/20">
+                    <p className="text-sm text-amber-800 dark:text-amber-200">
+                      <strong>Outlook / Hotmail / Yahoo kullanıyorsanız:</strong> E-postayı göremiyorsanız <strong>Gereksiz (Junk)</strong> klasörüne bakın. PrimeSim&apos;i &quot;Güvenilir gönderenler&quot;e ekleyin.
+                    </p>
+                  </div>
+                )}
                 <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-800">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                     What&apos;s Next?

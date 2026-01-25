@@ -1,24 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import Script from "next/script";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-export const metadata: Metadata = {
-  title: "Contact Us - PrimeSim | Get Support & Help",
-  description: "Get in touch with PrimeSim for questions, support, or inquiries about our eSim services. We're here to help you stay connected worldwide. Email us at info@getprimesim.com",
-  keywords: ["contact primesim", "esim support", "esim help", "customer service", "esim questions"],
-  openGraph: {
-    title: "Contact Us - PrimeSim | Get Support & Help",
-    description: "Get in touch with PrimeSim for questions, support, or inquiries about our eSim services. We're here to help you stay connected worldwide.",
-    url: "https://getprimesim.com/contact",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Contact Us - PrimeSim",
-    description: "Get in touch with PrimeSim for questions, support, or inquiries about our eSim services.",
-  },
-};
 
 export default function ContactPage() {
   const contactPageSchema = {
@@ -33,6 +17,19 @@ export default function ContactPage() {
       "email": "info@getprimesim.com",
       "url": "https://getprimesim.com",
     },
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const subject = formData.get("subject") as string;
+    const message = formData.get("message") as string;
+    
+    // Open email client with pre-filled information
+    const mailtoLink = `mailto:info@getprimesim.com?subject=${encodeURIComponent(subject || "Contact from PrimeSim Website")}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -65,7 +62,7 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                   Get In Touch
                 </h2>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Your Name

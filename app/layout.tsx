@@ -84,14 +84,26 @@ export default function RootLayout({
     "name": "PrimeSim",
     "url": "https://getprimesim.com",
     "logo": "https://getprimesim.com/logo.png",
-    "description": "Premium eSim services for travelers and digital nomads worldwide",
+    "description": "Premium eSim services for travelers and digital nomads worldwide. Instant activation, 150+ country coverage.",
     "email": "info@getprimesim.com",
     "sameAs": [],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Service",
       "email": "info@getprimesim.com",
+      "availableLanguage": ["en"],
     },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Worldwide",
+    },
+    "knowsAbout": [
+      "eSim",
+      "Digital SIM Card",
+      "International Roaming",
+      "Travel Connectivity",
+      "Mobile Data Plans",
+    ],
   };
 
   return (

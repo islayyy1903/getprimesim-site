@@ -203,6 +203,11 @@ export default function ESimPage() {
     setActiveSection("standard");
   };
 
+  // Calculate discounted price (15% off)
+  const calculateDiscountPrice = (originalPrice: number): number => {
+    return Math.round(originalPrice * 0.85 * 100) / 100; // Round to 2 decimal places
+  };
+
   const handleCheckout = async (pkg: Package) => {
     const originalPrice = pkg.price;
     const discountedPrice = calculateDiscountPrice(originalPrice);
@@ -233,11 +238,6 @@ export default function ESimPage() {
       console.error('Checkout error:', error);
       alert('Error initiating checkout. Please try again.');
     }
-  };
-
-  // Calculate discounted price (15% off)
-  const calculateDiscountPrice = (originalPrice: number): number => {
-    return Math.round(originalPrice * 0.85 * 100) / 100; // Round to 2 decimal places
   };
 
   // Extract GB number from data string (e.g., "5GB" -> 5, "Unlimited" -> Infinity)

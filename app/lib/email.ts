@@ -73,6 +73,11 @@ export async function sendQRCodeEmail({
       subject: subject,
       html,
       text,
+      reply_to: "PrimeSim <info@getprimesim.com>",
+      headers: {
+        "Precedence": "auto",
+        "X-Entity-Ref-ID": `primesim-${orderId || "order"}-${Date.now()}`,
+      },
     };
     
     console.log("📤 Sending email via Resend API...");
@@ -152,7 +157,7 @@ function generateEmailText({
     return `PrimeSim - eSim Order Issue\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\n${errorMessage}\n\nContact: info@getprimesim.com`;
   }
 
-  return `PrimeSim - Your eSim is Ready!\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\nVIEW YOUR QR CODE (copy this link into your browser):\n${qrLink}\n\nOpen the link above to view and scan your eSim QR code.\n\nContact: info@getprimesim.com\nhttps://getprimesim.com`;
+  return `PrimeSim - Your eSim is Ready!\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\nVIEW YOUR QR CODE (copy this link into your browser):\n${qrLink}\n\nOpen the link above to view and scan your eSim QR code.\n\niPhone + Safari: QR koda basılı tutunca "Add eSIM" çıkar; oradan da aktif edebilirsiniz.\n\nUsing Outlook / Hotmail / Live? If you don't see this email, check your Junk (Spam) folder and add PrimeSim to Safe senders.\n\nContact: info@getprimesim.com\nhttps://getprimesim.com`;
 }
 
 /**
@@ -231,14 +236,6 @@ function generateEmailHTML({
     ? `${baseUrl}/api/test-qrcode?orderReference=${encodeURIComponent(orderId)}`
     : `${baseUrl}/esim`;
 
-  // Package Details içinde hemen link göster (bu kutu her zaman render ediliyor)
-  const packageDetailsQrRow = `
-    <p style="margin: 12px 0 0 0;"><strong>QR Code Link:</strong><br>
-      <a href="${qrCodeLink}" style="color: #2563eb; text-decoration: underline; word-break: break-all;">${qrCodeLink}</a>
-    </p>
-    <p style="margin: 8px 0 0 0; font-size: 13px; color: #6b7280;">Tap the link above or copy-paste it into your browser to view your QR code.</p>
-  `;
-
   // Buton: gradient yerine solid renk (mobil istemci uyumluluğu)
   const qrCodeDisplay = `
     <p style="margin: 0 0 16px 0; font-size: 15px; color: #1f2937;">View and scan your eSim QR code:</p>
@@ -274,7 +271,6 @@ function generateEmailHTML({
       <h3 style="color: #1f2937; margin-top: 0;">Package Details</h3>
       <p><strong>Package:</strong> ${packageName}</p>
       ${orderId ? `<p><strong>Order ID:</strong> ${orderId}</p>` : ""}
-      ${packageDetailsQrRow}
     </div>
     
     <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e5e7eb;">
@@ -285,16 +281,22 @@ function generateEmailHTML({
     <div style="background: #dbeafe; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #3b82f6;">
       <h3 style="color: #1e40af; margin-top: 0;">How to Activate</h3>
       <ol style="color: #1f2937; padding-left: 20px;">
-        <li>Open the QR Code link above</li>
+        <li>Tap &quot;View Your QR Code&quot; above</li>
         <li>Open your phone&apos;s Settings</li>
         <li>Go to Cellular / Mobile Data</li>
         <li>Tap &quot;Add Cellular Plan&quot; or &quot;Add eSIM&quot;</li>
         <li>Scan the QR code</li>
         <li>Follow the on-screen instructions</li>
       </ol>
+      <p style="margin: 16px 0 0 0; font-size: 14px; color: #1e40af; background: #eff6ff; padding: 12px; border-radius: 6px;">
+        <strong>iPhone + Safari:</strong> QR koda basılı tutunca &quot;Add eSIM&quot; çıkar; oradan da aktif edebilirsiniz.
+      </p>
     </div>
     
     <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+      <p style="color: #6b7280; font-size: 13px; margin: 0 0 10px 0; background: #fffbeb; padding: 10px; border-radius: 6px; border-left: 3px solid #f59e0b;">
+        <strong>Using Outlook / Hotmail / Live?</strong> If you don&apos;t see this email, check your <strong>Junk (Spam)</strong> folder and add PrimeSim to &quot;Safe senders&quot;.
+      </p>
       <p style="color: #6b7280; font-size: 14px; margin: 0;">
         Need help? Contact us at <a href="mailto:info@getprimesim.com" style="color: #3b82f6;">info@getprimesim.com</a>
       </p>
