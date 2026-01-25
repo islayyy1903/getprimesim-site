@@ -134,7 +134,7 @@ function SuccessContent() {
                 {orderStatus?.customerEmail && /@(hotmail|outlook|live|msn|yahoo)\./i.test(orderStatus.customerEmail) && (
                   <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/20">
                     <p className="text-sm text-amber-800 dark:text-amber-200">
-                      <strong>Outlook / Hotmail / Yahoo kullanıyorsanız:</strong> E-postayı göremiyorsanız <strong>Gereksiz (Junk)</strong> klasörüne bakın. PrimeSim&apos;i &quot;Güvenilir gönderenler&quot;e ekleyin.
+                      <strong>Using Outlook / Hotmail / Yahoo?</strong> If you don&apos;t see the email, check your <strong>Junk (Spam)</strong> folder and add PrimeSim to &quot;Safe senders&quot;.
                     </p>
                   </div>
                 )}

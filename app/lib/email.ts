@@ -157,7 +157,7 @@ function generateEmailText({
     return `PrimeSim - eSim Order Issue\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\n${errorMessage}\n\nContact: info@getprimesim.com`;
   }
 
-  return `PrimeSim - Your eSim is Ready!\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\nVIEW YOUR QR CODE (copy this link into your browser):\n${qrLink}\n\nOpen the link above to view and scan your eSim QR code.\n\niPhone + Safari: QR koda basılı tutunca "Add eSIM" çıkar; oradan da aktif edebilirsiniz.\n\nUsing Outlook / Hotmail / Live? If you don't see this email, check your Junk (Spam) folder and add PrimeSim to Safe senders.\n\nContact: info@getprimesim.com\nhttps://getprimesim.com`;
+  return `PrimeSim - Your eSim is Ready!\n\nPackage: ${packageName}${orderId ? `\nOrder ID: ${orderId}` : ''}\n\nVIEW YOUR QR CODE (copy this link into your browser):\n${qrLink}\n\nOpen the link above to view and scan your eSim QR code.\n\niPhone + Safari: Long-press the QR code and "Add eSIM" will appear; you can activate from there.\n\nUsing Outlook / Hotmail / Live? If you don't see this email, check your Junk (Spam) folder and add PrimeSim to Safe senders.\n\nContact: info@getprimesim.com\nhttps://getprimesim.com`;
 }
 
 /**
@@ -289,7 +289,7 @@ function generateEmailHTML({
         <li>Follow the on-screen instructions</li>
       </ol>
       <p style="margin: 16px 0 0 0; font-size: 14px; color: #1e40af; background: #eff6ff; padding: 12px; border-radius: 6px;">
-        <strong>iPhone + Safari:</strong> QR koda basılı tutunca &quot;Add eSIM&quot; çıkar; oradan da aktif edebilirsiniz.
+        <strong>iPhone + Safari:</strong> Long-press the QR code and &quot;Add eSIM&quot; will appear; you can activate from there.
       </p>
     </div>
     
