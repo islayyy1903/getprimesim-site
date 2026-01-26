@@ -66,11 +66,14 @@ function getRedisClient(): Redis | null {
     return redisClient;
   }
 
-  const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+  // Vercel Redis Integration kullanıyoruz
+  // Vercel dashboard'dan Redis eklediğinizde bu variable'lar otomatik eklenir
+  const redisUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const redisToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
   if (!redisUrl || !redisToken) {
-    console.warn('⚠️ Upstash Redis not configured. Using in-memory database (data will be lost on restart).');
+    console.warn('⚠️ Redis not configured. Using in-memory database (data will be lost on restart).');
+    console.warn('💡 To fix: Add Redis integration from Vercel dashboard > Integrations > Redis');
     return null;
   }
 
@@ -79,7 +82,7 @@ function getRedisClient(): Redis | null {
       url: redisUrl,
       token: redisToken,
     });
-    console.log('✅ Upstash Redis initialized for admin database');
+    console.log('✅ Redis initialized for admin database');
     return redisClient;
   } catch (error) {
     console.error('❌ Failed to initialize Redis:', error);

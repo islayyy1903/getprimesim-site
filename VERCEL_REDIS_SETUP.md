@@ -1,9 +1,14 @@
-# Vercel'de Upstash Redis Kurulumu
+# Vercel'de Redis Kurulumu
 
-## Sorun
-Admin panelde kullanıcılar görünmüyor çünkü Redis environment variable'ları Vercel'de ayarlanmamış. Bu yüzden veriler memory'ye kaydediliyor ve serverless function restart olduğunda kayboluyor.
+## ⚠️ ÖNEMLİ: Vercel Redis Integration Kullanın!
 
-## Çözüm: Vercel'de Environment Variables Ekleme
+**En kolay yöntem:** Vercel dashboard'dan direkt Redis integration ekleyin. Ayrı bir Upstash hesabı açmanıza gerek yok!
+
+👉 **Detaylı rehber için:** `VERCEL_REDIS_INTEGRATION.md` dosyasına bakın.
+
+## Eski Yöntem: Manuel Environment Variables (Alternatif)
+
+Eğer Vercel integration kullanmak istemiyorsanız, manuel olarak da ekleyebilirsiniz:
 
 ### Adım 1: Upstash Redis Hesabı Oluşturma (Eğer yoksa)
 

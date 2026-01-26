@@ -30,9 +30,9 @@ export async function GET(request: NextRequest) {
     const refundedOrders = orders.filter(o => o.refunded).length;
     const failedOrders = orders.filter(o => o.status === 'failed').length;
 
-    // Check Redis configuration
-    const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-    const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+    // Check Redis configuration (Vercel Redis Integration veya Upstash)
+    const redisUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+    const redisToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
     const redisConfigured = !!(redisUrl && redisToken);
 
     const stats = {

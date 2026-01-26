@@ -305,13 +305,19 @@ export default function AdminPage() {
                 </h3>
                 <div className="mt-2 text-sm text-yellow-700 dark:text-yellow-300">
                   <p>
-                    Redis environment variables are not set in Vercel. Data is being stored in memory and will be lost on server restart.
+                    Redis is not configured. Data is being stored in memory and will be lost on server restart.
                   </p>
                   <p className="mt-2">
-                    <strong>To fix:</strong> Add <code className="bg-yellow-100 dark:bg-yellow-900 px-1 rounded">UPSTASH_REDIS_REST_URL</code> and <code className="bg-yellow-100 dark:bg-yellow-900 px-1 rounded">UPSTASH_REDIS_REST_TOKEN</code> to Vercel environment variables.
+                    <strong>✅ En Kolay Yöntem:</strong> Vercel dashboard'dan Redis integration ekleyin:
                   </p>
+                  <ol className="mt-2 ml-4 list-decimal space-y-1">
+                    <li>Vercel Dashboard → Projeniz → Settings</li>
+                    <li>Integrations → "Redis" ara ve ekle</li>
+                    <li>Environment variables otomatik eklenir</li>
+                    <li>Redeploy yapın</li>
+                  </ol>
                   <p className="mt-2">
-                    See <code className="bg-yellow-100 dark:bg-yellow-900 px-1 rounded">VERCEL_REDIS_SETUP.md</code> for detailed instructions.
+                    Detaylı rehber: <code className="bg-yellow-100 dark:bg-yellow-900 px-1 rounded">VERCEL_REDIS_INTEGRATION.md</code>
                   </p>
                   <a
                     href="/api/admin/test-redis"

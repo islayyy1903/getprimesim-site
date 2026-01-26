@@ -9,20 +9,31 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-    const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+    // Vercel Redis Integration kullanıyoruz (KV_REST_API_URL ve KV_REST_API_TOKEN)
+    // Veya eski Upstash variable'ları da destekliyoruz
+    const redisUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+    const redisToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
     const status = {
       redisUrl: redisUrl ? `${redisUrl.substring(0, 20)}...` : 'NOT SET',
       redisToken: redisToken ? `${redisToken.substring(0, 10)}...` : 'NOT SET',
       redisConfigured: !!(redisUrl && redisToken),
+      usingVercelKV: !!process.env.KV_REST_API_URL,
+      usingUpstash: !!process.env.UPSTASH_REDIS_REST_URL,
     };
 
     if (!redisUrl || !redisToken) {
       return NextResponse.json({
         status: 'Redis not configured',
         details: status,
-        message: 'Please add UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to Vercel environment variables',
+        message: 'Please add Redis integration from Vercel dashboard: Settings > Integrations > Redis',
+        instructions: [
+          '1. Go to Vercel Dashboard > Your Project > Settings',
+          '2. Click on "Integrations" in the left menu',
+          '3. Search for "Redis" and click "Add"',
+          '4. Follow the setup wizard',
+          '5. Environment variables will be added automatically',
+        ],
       });
     }
 
