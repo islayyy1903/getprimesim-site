@@ -146,11 +146,22 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Get package information from metadata
     const packageName = session.metadata?.packageName;
     const packageId = session.metadata?.packageId; // bundleId from frontend
-    const customerEmail = session.customer_email || session.customer_details?.email;
+    const customerEmailRaw = session.customer_email || session.customer_details?.email;
     const customerName = session.customer_details?.name || undefined;
     const amountCents = session.amount_total ?? 0;
     const currency = session.currency?.toUpperCase() || 'USD';
     const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
+
+    // Validate customer email early
+    if (!customerEmailRaw) {
+      console.error("❌ Missing email");
+      return NextResponse.json(
+        { error: "Missing email" },
+        { status: 400 }
+      );
+    }
+
+    const customerEmail: string = customerEmailRaw;
 
     if (amountCents < 300) {
       console.warn("⚠️ Min amount $3 – blocked (low-amount fraud):", amountCents, "cents");
@@ -174,7 +185,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         id: session.id,
         sessionId: session.id,
         paymentIntentId: piId || undefined,
-        customerEmail: customerEmail || 'unknown',
+        customerEmail: customerEmail,
         amount: amountCents,
         currency: currency,
         status: session.payment_status === 'paid' ? 'succeeded' : 
@@ -184,14 +195,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       });
     } catch (error) {
       console.error("❌ Failed to save payment log:", error);
-    }
-
-    if (!customerEmail) {
-      console.error("❌ Missing email");
-      return NextResponse.json(
-        { error: "Missing email" },
-        { status: 400 }
-      );
     }
 
     if (isDisposableEmail(customerEmail)) {
@@ -542,7 +545,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       try {
         await saveOrder({
           id: session.id,
-          customerEmail: customerEmail || 'unknown',
+          customerEmail: customerEmail,
           customerName: customerName,
           packageId: packageId || 'unknown',
           packageName: packageName || 'eSim Package',
@@ -580,26 +583,24 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           console.log("  - Refund Status:", refund.status);
           
           // Müşteriye refund bilgisi ile email gönder
-          if (customerEmail) {
-            try {
-              const { sendQRCodeEmail } = await import("@/app/lib/email");
-              const errorMessage = `We encountered an error processing your eSim order: ${err.message || 'Unknown error'}. Your payment has been automatically refunded. Our team has been notified and will resolve this shortly. Please contact support if you need immediate assistance.`;
-              
-              const emailResult = await sendQRCodeEmail({
-                to: customerEmail,
-                packageName: packageName || "eSim Package",
-                errorMessage: errorMessage,
-                orderId: session.id,
-              });
+          try {
+            const { sendQRCodeEmail } = await import("@/app/lib/email");
+            const errorMessage = `We encountered an error processing your eSim order: ${err.message || 'Unknown error'}. Your payment has been automatically refunded. Our team has been notified and will resolve this shortly. Please contact support if you need immediate assistance.`;
+            
+            const emailResult = await sendQRCodeEmail({
+              to: customerEmail,
+              packageName: packageName || "eSim Package",
+              errorMessage: errorMessage,
+              orderId: session.id,
+            });
 
-              if (emailResult.success) {
-                console.log("✅ Refund notification email sent to customer");
-              } else {
-                console.error("❌ Failed to send refund notification email:", emailResult.error);
-              }
-            } catch (emailError: unknown) {
-              console.error("❌ Email send error:", emailError);
+            if (emailResult.success) {
+              console.log("✅ Refund notification email sent to customer");
+            } else {
+              console.error("❌ Failed to send refund notification email:", emailResult.error);
             }
+          } catch (emailError: unknown) {
+            console.error("❌ Email send error:", emailError);
           }
         } catch (refundError: unknown) {
           console.error("❌ Failed to process automatic refund (processing error):", refundError);

@@ -608,7 +608,7 @@ export default function ESimPage() {
                         {selectedCountry.standardPackages.map((pkg, index) => {
                           const badgeType = getBadgeForPackage(selectedCountry.standardPackages, index, selectedCountry.id, 'standard');
                           const originalPrice = pkg.price;
-                          const discountedPrice = calculateDiscountPrice(originalPrice);
+                          const discountedPrice = originalPrice * 0.85; // 15% discount
                           const hasBadge = badgeType !== null;
 
                           return (
@@ -690,7 +690,7 @@ export default function ESimPage() {
                         {selectedCountry.unlimitedLitePackages.map((pkg, index) => {
                           const badgeType = getBadgeForPackage(selectedCountry.unlimitedLitePackages, index, selectedCountry.id, 'unlimited-lite');
                           const originalPrice = pkg.price;
-                          const discountedPrice = calculateDiscountPrice(originalPrice);
+                          const discountedPrice = originalPrice * 0.85; // 15% discount
                           const hasBadge = badgeType !== null;
 
                           return (
@@ -770,7 +770,7 @@ export default function ESimPage() {
                         {selectedCountry.unlimitedPlusPackages.map((pkg, index) => {
                           const badgeType = getBadgeForPackage(selectedCountry.unlimitedPlusPackages, index, selectedCountry.id, 'unlimited-plus');
                           const originalPrice = pkg.price;
-                          const discountedPrice = calculateDiscountPrice(originalPrice);
+                          const discountedPrice = originalPrice * 0.85; // 15% discount
                           const hasBadge = badgeType !== null;
 
                           return (
