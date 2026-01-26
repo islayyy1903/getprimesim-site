@@ -77,14 +77,17 @@ export default function AdminPage() {
       // Check if we have a session cookie
       const response = await fetch('/api/admin/stats', {
         credentials: 'include',
+        cache: 'no-store',
       });
       if (response.ok) {
         setAuthenticated(true);
         loadData();
       } else {
+        console.error('Auth check failed:', response.status, await response.text().catch(() => ''));
         setAuthenticated(false);
       }
     } catch (error) {
+      console.error('Auth check error:', error);
       setAuthenticated(false);
     } finally {
       setLoading(false);
@@ -138,21 +141,33 @@ export default function AdminPage() {
       if (statsRes.ok) {
         const statsData = await statsRes.json();
         setStats(statsData.stats);
+      } else {
+        console.error('Stats API error:', statsRes.status, await statsRes.text());
+        if (statsRes.status === 401) {
+          setAuthenticated(false);
+          return;
+        }
       }
 
       if (usersRes.ok) {
         const usersData = await usersRes.json();
-        setUsers(usersData.users);
+        setUsers(usersData.users || []);
+      } else {
+        console.error('Users API error:', usersRes.status, await usersRes.text());
       }
 
       if (ordersRes.ok) {
         const ordersData = await ordersRes.json();
-        setOrders(ordersData.orders);
+        setOrders(ordersData.orders || []);
+      } else {
+        console.error('Orders API error:', ordersRes.status, await ordersRes.text());
       }
 
       if (paymentsRes.ok) {
         const paymentsData = await paymentsRes.json();
-        setPaymentLogs(paymentsData.paymentLogs);
+        setPaymentLogs(paymentsData.paymentLogs || []);
+      } else {
+        console.error('Payments API error:', paymentsRes.status, await paymentsRes.text());
       }
     } catch (error) {
       console.error('Error loading data:', error);

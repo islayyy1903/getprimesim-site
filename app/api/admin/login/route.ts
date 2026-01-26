@@ -25,15 +25,18 @@ export async function POST(request: NextRequest) {
 
     // Create session
     const sessionData = await createAdminSession(email);
-    const cookieStore = await cookies();
     
-    cookieStore.set('admin_session', sessionData, {
+    // Create response and set cookie
+    const response = NextResponse.json({ success: true });
+    response.cookies.set('admin_session', sessionData, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: 24 * 60 * 60, // 24 hours
       path: '/',
     });
+    
+    return response;
 
     return NextResponse.json({ success: true });
   } catch (error) {
