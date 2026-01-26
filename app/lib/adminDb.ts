@@ -68,29 +68,31 @@ if (typeof globalThis.__adminDbMemory === 'undefined') {
 
 // Initialize database if it doesn't exist
 async function initDatabase(): Promise<AdminDatabase> {
-  // Try file system first (for local development)
+  // Always check memory first (for faster access)
+  if (globalThis.__adminDbMemory) {
+    console.log('✅ Using in-memory database, users:', globalThis.__adminDbMemory.users?.length || 0);
+    return globalThis.__adminDbMemory;
+  }
+
+  // Try file system (for local development)
   try {
     const data = await fs.readFile(DB_PATH, 'utf-8');
     const db = JSON.parse(data) as AdminDatabase;
     console.log('✅ Data loaded from file system, users:', db.users?.length || 0);
     // Sync to memory for faster access
-    if (!globalThis.__adminDbMemory) {
-      globalThis.__adminDbMemory = db;
-    }
+    globalThis.__adminDbMemory = db;
     return db;
   } catch (error) {
-    // If file doesn't exist or can't be read, use in-memory
-    if (!globalThis.__adminDbMemory) {
-      const initialDb: AdminDatabase = {
-        users: [],
-        orders: [],
-        paymentLogs: [],
-        lastUpdated: new Date().toISOString(),
-      };
-      globalThis.__adminDbMemory = initialDb;
-      console.log('✅ Initialized in-memory database');
-    }
-    return globalThis.__adminDbMemory!;
+    // If file doesn't exist or can't be read, create new in-memory database
+    const initialDb: AdminDatabase = {
+      users: [],
+      orders: [],
+      paymentLogs: [],
+      lastUpdated: new Date().toISOString(),
+    };
+    globalThis.__adminDbMemory = initialDb;
+    console.log('✅ Initialized new in-memory database');
+    return initialDb;
   }
 }
 
