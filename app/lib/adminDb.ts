@@ -68,8 +68,9 @@ declare global {
 
 // Use globalThis to persist across hot reloads in development
 // In production, this will reset on each cold start
+// Initialize as undefined if not already set
 if (typeof globalThis.__adminDbMemory === 'undefined') {
-  globalThis.__adminDbMemory = null;
+  globalThis.__adminDbMemory = undefined;
 }
 
 // Initialize database if it doesn't exist
@@ -100,7 +101,7 @@ async function initDatabase(): Promise<AdminDatabase> {
           lastUpdated: new Date().toISOString(),
         };
       }
-      return globalThis.__adminDbMemory;
+      return globalThis.__adminDbMemory!;
     }
   }
 }
