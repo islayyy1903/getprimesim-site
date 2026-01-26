@@ -131,7 +131,7 @@ function initUpstashRatelimit(): Ratelimit | null {
       redis: redis,
       limiter: Ratelimit.slidingWindow(
         CHECKOUT_RATE_LIMIT.requests,
-        CHECKOUT_RATE_LIMIT.window
+        CHECKOUT_RATE_LIMIT.window as any
       ),
       analytics: true,
     });
