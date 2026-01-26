@@ -143,10 +143,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       return NextResponse.json({ received: true, skipped: "payment_not_paid" });
     }
 
+    // Get package information from metadata
+    const packageName = session.metadata?.packageName;
+    const packageId = session.metadata?.packageId; // bundleId from frontend
+    const customerEmail = session.customer_email || session.customer_details?.email;
+    const customerName = session.customer_details?.name;
     const amountCents = session.amount_total ?? 0;
+    const currency = session.currency?.toUpperCase() || 'USD';
+    const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
+
     if (amountCents < 300) {
       console.warn("⚠️ Min amount $3 – blocked (low-amount fraud):", amountCents, "cents");
-      const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
       if (piId) {
         try {
           await stripe.refunds.create({
@@ -160,15 +167,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
       return NextResponse.json({ received: true, skipped: "min_amount" });
     }
-
-    // Get package information from metadata
-    const packageName = session.metadata?.packageName;
-    const packageId = session.metadata?.packageId; // bundleId from frontend
-    const customerEmail = session.customer_email || session.customer_details?.email;
-    const customerName = session.customer_details?.name;
-    const amountCents = session.amount_total ?? 0;
-    const currency = session.currency?.toUpperCase() || 'USD';
-    const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
 
     // Save payment log
     try {
@@ -198,7 +196,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     if (isDisposableEmail(customerEmail)) {
       console.warn("⚠️ Disposable email blocked:", customerEmail);
-      const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
       if (piId) {
         try {
           await stripe.refunds.create({
@@ -214,7 +211,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Idempotency: avoid double provision on webhook retries
-    const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
     if (piId) {
       try {
         const pi = await stripe.paymentIntents.retrieve(piId);
