@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { purchaseEsim, mapPackageToEsimGo } from "@/app/lib/esimgo";
 import { isDisposableEmail } from "@/app/lib/disposableEmail";
+import { saveOrder, savePaymentLog, saveUser } from "@/app/lib/adminDb";
 
 const AUDIT_PREFIX = "AUDIT_PROVISION";
 
@@ -164,6 +165,28 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const packageName = session.metadata?.packageName;
     const packageId = session.metadata?.packageId; // bundleId from frontend
     const customerEmail = session.customer_email || session.customer_details?.email;
+    const customerName = session.customer_details?.name;
+    const amountCents = session.amount_total ?? 0;
+    const currency = session.currency?.toUpperCase() || 'USD';
+    const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
+
+    // Save payment log
+    try {
+      await savePaymentLog({
+        id: session.id,
+        sessionId: session.id,
+        paymentIntentId: piId || undefined,
+        customerEmail: customerEmail || 'unknown',
+        amount: amountCents,
+        currency: currency,
+        status: session.payment_status === 'paid' ? 'succeeded' : 
+                session.payment_status === 'unpaid' ? 'pending' : 'failed',
+        createdAt: new Date().toISOString(),
+        metadata: session.metadata || {},
+      });
+    } catch (error) {
+      console.error("❌ Failed to save payment log:", error);
+    }
 
     if (!customerEmail) {
       console.error("❌ Missing email");
@@ -266,6 +289,27 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         console.error("  - eSimGo Package ID:", esimGoPackageId);
         console.error("  - Email:", customerEmail);
         console.error("  - Session ID:", session.id);
+        
+        // Save failed order to database
+        try {
+          await saveOrder({
+            id: session.id,
+            customerEmail: customerEmail,
+            customerName: customerName,
+            packageId: packageId || 'unknown',
+            packageName: packageName || 'eSim Package',
+            amount: amountCents,
+            currency: currency,
+            status: 'failed',
+            paymentIntentId: piId || undefined,
+            esimgoOrderId: purchaseResult.orderId,
+            createdAt: new Date(session.created * 1000).toISOString(),
+            refunded: false,
+          });
+          console.log("✅ Failed order saved to database");
+        } catch (error) {
+          console.error("❌ Failed to save failed order:", error);
+        }
         
         // Herhangi bir hata durumunda otomatik refund yap
         const paymentIntent = typeof session.payment_intent === 'string' ? session.payment_intent : null;
@@ -466,6 +510,29 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         // Don't fail the webhook, email can be sent later
       }
 
+      // Save order to database
+      try {
+        await saveOrder({
+          id: session.id,
+          customerEmail: customerEmail,
+          customerName: customerName,
+          packageId: packageId || 'unknown',
+          packageName: packageName || 'eSim Package',
+          amount: amountCents,
+          currency: currency,
+          status: 'paid',
+          paymentIntentId: piId || undefined,
+          esimgoOrderId: purchaseResult.orderId,
+          createdAt: new Date(session.created * 1000).toISOString(),
+          paidAt: new Date().toISOString(),
+          qrCodeSent: true,
+          refunded: false,
+        });
+        console.log("✅ Order saved to database");
+      } catch (error) {
+        console.error("❌ Failed to save order:", error);
+      }
+
       return NextResponse.json({
         received: true,
         message: "Payment processed and eSim purchased",
@@ -474,6 +541,26 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     } catch (error: unknown) {
       console.error("❌ Error processing eSimGo purchase:", error);
       const err = error as Error;
+      
+      // Save failed order to database
+      try {
+        await saveOrder({
+          id: session.id,
+          customerEmail: customerEmail || 'unknown',
+          customerName: customerName,
+          packageId: packageId || 'unknown',
+          packageName: packageName || 'eSim Package',
+          amount: amountCents,
+          currency: currency,
+          status: 'failed',
+          paymentIntentId: piId || undefined,
+          createdAt: new Date(session.created * 1000).toISOString(),
+          refunded: false,
+        });
+        console.log("✅ Error order saved to database");
+      } catch (dbError) {
+        console.error("❌ Failed to save error order:", dbError);
+      }
       
       // Herhangi bir hata durumunda otomatik refund yap
       const paymentIntentForError = typeof session.payment_intent === 'string' ? session.payment_intent : null;
@@ -530,6 +617,53 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         error: err.message,
         refunded: true,
       });
+    }
+  }
+
+  // Handle refund events
+  if (event.type === "charge.refunded" || event.type === "refund.created") {
+    const refund = event.data.object as Stripe.Refund;
+    const paymentIntentId = typeof refund.payment_intent === 'string' 
+      ? refund.payment_intent 
+      : refund.payment_intent?.id;
+
+    if (paymentIntentId) {
+      try {
+        // Find the order by payment intent ID
+        const { getAllOrders, saveOrder, savePaymentLog } = await import("@/app/lib/adminDb");
+        const orders = await getAllOrders();
+        const order = orders.find(o => o.paymentIntentId === paymentIntentId);
+
+        if (order) {
+          // Update order with refund information
+          await saveOrder({
+            ...order,
+            status: 'refunded',
+            refunded: true,
+            refundReason: refund.reason || 'unknown',
+          });
+
+          // Update payment log
+          await savePaymentLog({
+            id: `refund_${refund.id}`,
+            sessionId: order.id,
+            paymentIntentId: paymentIntentId,
+            customerEmail: order.customerEmail,
+            amount: refund.amount,
+            currency: refund.currency.toUpperCase(),
+            status: 'refunded',
+            createdAt: new Date(refund.created * 1000).toISOString(),
+            metadata: {
+              refund_id: refund.id,
+              reason: refund.reason || 'unknown',
+            },
+          });
+
+          console.log("✅ Refund saved to database:", refund.id);
+        }
+      } catch (error) {
+        console.error("❌ Failed to save refund:", error);
+      }
     }
   }
 

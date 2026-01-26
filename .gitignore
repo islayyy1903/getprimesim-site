@@ -48,3 +48,10 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+
+# Admin database (created at runtime)
+data/admin.json
+
+# Test scripts
+test-*.ps1
+test-*.sh

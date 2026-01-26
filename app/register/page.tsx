@@ -37,6 +37,19 @@ export default function RegisterPage() {
       isFirstPurchase: true,
     };
     localStorage.setItem("primesim_user", JSON.stringify(userData));
+    
+    // Save user to database
+    try {
+      await fetch('/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name }),
+      });
+    } catch (error) {
+      console.error('Failed to save user to database:', error);
+      // Continue anyway - user is saved in localStorage
+    }
+    
     login(email, name);
 
     // Redirect to eSim page

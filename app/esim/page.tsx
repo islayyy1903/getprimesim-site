@@ -203,15 +203,9 @@ export default function ESimPage() {
     setActiveSection("standard");
   };
 
-  // Calculate discounted price (15% off)
-  const calculateDiscountPrice = (originalPrice: number): number => {
-    return Math.round(originalPrice * 0.85 * 100) / 100; // Round to 2 decimal places
-  };
-
   const handleCheckout = async (pkg: Package) => {
-    const originalPrice = pkg.price;
-    const discountedPrice = calculateDiscountPrice(originalPrice);
-    
+    // 🔒 SECURITY: Only send packageId to backend
+    // Backend will validate and calculate price server-side to prevent manipulation
     try {
       const response = await fetch('/api/checkout', {
         method: 'POST',
@@ -220,9 +214,7 @@ export default function ESimPage() {
         },
         body: JSON.stringify({
           packageId: pkg.bundleId,
-          packageName: `${selectedCountry?.name} ${pkg.data} - ${pkg.validity}`,
-          price: discountedPrice, // Use discounted price
-          currency: pkg.currency,
+          // Price and currency are now calculated server-side for security
         }),
       });
 

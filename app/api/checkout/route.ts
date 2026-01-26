@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { isDisposableEmail } from "@/app/lib/disposableEmail";
+import {
+  findPackageById,
+  calculateDiscountedPrice,
+  validatePrice,
+  normalizeCurrency,
+} from "@/app/lib/packageValidation";
+import { checkRateLimit, getClientIP } from "@/app/lib/rateLimit";
 
 export async function POST(
   request: NextRequest
@@ -32,40 +39,105 @@ export async function POST(
   }
 
   try {
+    // 🔒 SECURITY: Rate limiting - check before processing request
+    const clientIP = getClientIP(request);
+    const rateLimitResult = await checkRateLimit(clientIP);
+
+    if (!rateLimitResult.success) {
+      console.warn("⚠️ Rate limit exceeded:", {
+        clientIP,
+        limit: rateLimitResult.limit,
+        remaining: rateLimitResult.remaining,
+        reset: new Date(rateLimitResult.reset).toISOString(),
+      });
+      return NextResponse.json(
+        {
+          error: rateLimitResult.message || "Too many requests. Please try again later.",
+        },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": Math.ceil((rateLimitResult.reset - Date.now()) / 1000).toString(),
+            "X-RateLimit-Limit": rateLimitResult.limit.toString(),
+            "X-RateLimit-Remaining": rateLimitResult.remaining.toString(),
+            "X-RateLimit-Reset": rateLimitResult.reset.toString(),
+          },
+        }
+      );
+    }
+
+    console.log("✅ Rate limit check passed:", {
+      clientIP,
+      remaining: rateLimitResult.remaining,
+      limit: rateLimitResult.limit,
+    });
+
     // Use latest API version
     const stripe = new Stripe(secretKey, {
       apiVersion: "2025-12-15.clover",
     });
 
     const body = await request.json();
-    console.log("Checkout request body:", { packageId: body.packageId, packageName: body.packageName, price: body.price, currency: body.currency });
-    const { packageId, packageName, price, email, isFirstPurchase, currency } = body;
+    
+    console.log("Checkout request body:", { packageId: body.packageId });
+    const { packageId, email, isFirstPurchase } = body;
 
-    // Validate inputs
-    if (!packageName || !price) {
-      console.error("❌ Missing package name or price");
+    // Validate inputs - only packageId is required now
+    if (!packageId) {
+      console.error("❌ Missing packageId:", { packageId: !!packageId, clientIP });
       return NextResponse.json(
-        { error: "Missing package name or price" },
+        { error: "Missing packageId. Please select a package." },
         { status: 400 }
       );
     }
 
+    // 🔒 SECURITY: Server-side package validation
+    // Find the actual package from countries.json
+    const actualPackage = findPackageById(packageId);
+    if (!actualPackage) {
+      console.error("❌ Invalid package ID:", { packageId, clientIP });
+      return NextResponse.json(
+        { error: "Invalid package. Please select a valid package." },
+        { status: 400 }
+      );
+    }
+
+    // 🔒 SECURITY: Get currency from package data (not from frontend)
+    const packageCurrency = normalizeCurrency(actualPackage.currency);
+
+    // 🔒 SECURITY: Calculate discounted price on server-side
+    // This prevents discount manipulation from frontend
+    const DISCOUNT_RATE = 0.15; // 15% discount
+    const finalPrice = calculateDiscountedPrice(
+      actualPackage.price,
+      DISCOUNT_RATE
+    );
+
+    // Minimum amount check (after validation)
+    if (finalPrice < 3) {
+      console.warn("⚠️ Min amount $3 – blocked:", { finalPrice, packageId, clientIP });
+      return NextResponse.json(
+        { error: "Minimum order amount is $3. Fraudsters often test with $0.50–$2; we block these." },
+        { status: 400 }
+      );
+    }
+
+    // Disposable email check
     if (email && isDisposableEmail(email)) {
-      console.warn("⚠️ Disposable email blocked at checkout:", email);
+      console.warn("⚠️ Disposable email blocked at checkout:", { email, packageId, clientIP });
       return NextResponse.json(
         { error: "Temporary or disposable email addresses are not allowed. Please use a permanent email." },
         { status: 400 }
       );
     }
 
-    const finalPrice = price;
-    if (finalPrice < 3) {
-      console.warn("⚠️ Min amount $3 – blocked:", finalPrice);
-      return NextResponse.json(
-        { error: "Minimum order amount is $3. Fraudsters often test with $0.50–$2; we block these." },
-        { status: 400 }
-      );
-    }
+    console.log("✅ Package validation passed:", {
+      packageId,
+      packageName: actualPackage.name,
+      originalPrice: actualPackage.price,
+      discountedPrice: finalPrice,
+      currency: packageCurrency,
+    });
 
     // Stok kontrolü yapmıyoruz - eSimGo her sipariş için otomatik yeni eSIM üretecek
     // Inventory'den satış yapmıyoruz, direkt üretim yapılıyor
@@ -75,7 +147,7 @@ export async function POST(
     // Use the price directly (finalPrice set above after min-amount check)
 
     // Map currency symbol to Stripe currency code
-    // € → eur, £ → gbp, $ → usd
+    // Use currency from package data (not from frontend)
     const currencyMap: { [key: string]: string } = {
       "€": "eur",
       "£": "gbp",
@@ -88,8 +160,8 @@ export async function POST(
       "usd": "usd",
     };
     
-    const stripeCurrency = currencyMap[currency || "$"] || "usd";
-    console.log("Currency mapping:", { input: currency, output: stripeCurrency });
+    const stripeCurrency = currencyMap[packageCurrency] || "usd";
+    console.log("Currency mapping:", { packageCurrency, stripeCurrency });
 
     // Create Stripe Checkout Session (3DS requested for fraud prevention)
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
@@ -115,10 +187,10 @@ export async function POST(
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || "https://getprimesim.com"}/esim?canceled=true`,
       metadata: {
         packageId: packageId,
-        packageName: packageName,
-        originalPrice: price.toString(),
+        packageName: actualPackage.name, // Use validated package name
+        originalPrice: actualPackage.price.toString(), // Use actual package price
         discountedPrice: finalPrice.toString(),
-        discountApplied: isFirstPurchase ? "true" : "false",
+        discountApplied: "true", // Always true since we apply 15% discount
         currency: stripeCurrency,
       },
     };

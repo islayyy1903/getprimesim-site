@@ -24,6 +24,17 @@ export default function LoginPage() {
     if (savedUser) {
       const userData = JSON.parse(savedUser);
       if (userData.email === email) {
+        // Update user in database (last login)
+        try {
+          await fetch('/api/users/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, name: userData.name }),
+          });
+        } catch (error) {
+          console.error('Failed to update user in database:', error);
+        }
+        
         login(userData.email, userData.name);
         router.push("/esim");
         return;
