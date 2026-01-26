@@ -149,8 +149,13 @@ export async function saveUser(email: string, name: string): Promise<void> {
 }
 
 export async function getAllUsers(): Promise<AdminUser[]> {
-  const db = await initDatabase();
-  return db.users;
+  try {
+    const db = await initDatabase();
+    return db.users || [];
+  } catch (error) {
+    console.error('Error getting all users:', error);
+    return [];
+  }
 }
 
 export async function getUserByEmail(email: string): Promise<AdminUser | null> {
@@ -197,10 +202,15 @@ export async function saveOrder(order: Order): Promise<void> {
 }
 
 export async function getAllOrders(): Promise<Order[]> {
-  const db = await initDatabase();
-  return db.orders.sort((a, b) => 
-    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+  try {
+    const db = await initDatabase();
+    return (db.orders || []).sort((a, b) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  } catch (error) {
+    console.error('Error getting all orders:', error);
+    return [];
+  }
 }
 
 export async function getOrdersByEmail(email: string): Promise<Order[]> {
@@ -239,10 +249,15 @@ export async function savePaymentLog(log: PaymentLog): Promise<void> {
 }
 
 export async function getAllPaymentLogs(): Promise<PaymentLog[]> {
-  const db = await initDatabase();
-  return db.paymentLogs.sort((a, b) => 
-    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+  try {
+    const db = await initDatabase();
+    return (db.paymentLogs || []).sort((a, b) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  } catch (error) {
+    console.error('Error getting all payment logs:', error);
+    return [];
+  }
 }
 
 export async function getPaymentLogsByEmail(email: string): Promise<PaymentLog[]> {
