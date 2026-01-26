@@ -75,7 +75,9 @@ export default function AdminPage() {
   const checkAuth = async () => {
     try {
       // Check if we have a session cookie
-      const response = await fetch('/api/admin/stats');
+      const response = await fetch('/api/admin/stats', {
+        credentials: 'include',
+      });
       if (response.ok) {
         setAuthenticated(true);
         loadData();
@@ -97,6 +99,7 @@ export default function AdminPage() {
       const response = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
@@ -112,7 +115,10 @@ export default function AdminPage() {
   };
 
   const handleLogout = async () => {
-    await fetch('/api/admin/logout', { method: 'POST' });
+    await fetch('/api/admin/logout', { 
+      method: 'POST',
+      credentials: 'include',
+    });
     setAuthenticated(false);
     setStats(null);
     setUsers([]);
@@ -123,10 +129,10 @@ export default function AdminPage() {
   const loadData = async () => {
     try {
       const [statsRes, usersRes, ordersRes, paymentsRes] = await Promise.all([
-        fetch('/api/admin/stats'),
-        fetch('/api/admin/users'),
-        fetch('/api/admin/orders'),
-        fetch('/api/admin/payments'),
+        fetch('/api/admin/stats', { credentials: 'include' }),
+        fetch('/api/admin/users', { credentials: 'include' }),
+        fetch('/api/admin/orders', { credentials: 'include' }),
+        fetch('/api/admin/payments', { credentials: 'include' }),
       ]);
 
       if (statsRes.ok) {
