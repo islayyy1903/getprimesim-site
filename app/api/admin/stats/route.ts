@@ -44,8 +44,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ stats });
   } catch (error) {
     console.error('Error fetching stats:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Error details:', errorMessage, error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: process.env.NODE_ENV === 'development' ? errorMessage : undefined },
       { status: 500 }
     );
   }

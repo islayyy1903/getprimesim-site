@@ -55,28 +55,53 @@ interface AdminDatabase {
 
 const DB_PATH = path.join(process.cwd(), 'data', 'admin.json');
 
+// In-memory database fallback for Vercel (read-only filesystem)
+let memoryDatabase: AdminDatabase | null = null;
+
 // Initialize database if it doesn't exist
 async function initDatabase(): Promise<AdminDatabase> {
+  // Try to use file system first
   try {
     const data = await fs.readFile(DB_PATH, 'utf-8');
     return JSON.parse(data) as AdminDatabase;
   } catch (error) {
-    // Database doesn't exist, create it
-    const initialDb: AdminDatabase = {
-      users: [],
-      orders: [],
-      paymentLogs: [],
-      lastUpdated: new Date().toISOString(),
-    };
-    await saveDatabase(initialDb);
-    return initialDb;
+    // If file doesn't exist or can't be read, try to create it
+    try {
+      const initialDb: AdminDatabase = {
+        users: [],
+        orders: [],
+        paymentLogs: [],
+        lastUpdated: new Date().toISOString(),
+      };
+      await saveDatabase(initialDb);
+      return initialDb;
+    } catch (writeError) {
+      // If write fails (e.g., Vercel read-only filesystem), use in-memory
+      console.warn('⚠️ Cannot write to filesystem, using in-memory database:', writeError);
+      if (!memoryDatabase) {
+        memoryDatabase = {
+          users: [],
+          orders: [],
+          paymentLogs: [],
+          lastUpdated: new Date().toISOString(),
+        };
+      }
+      return memoryDatabase;
+    }
   }
 }
 
 async function saveDatabase(db: AdminDatabase): Promise<void> {
   db.lastUpdated = new Date().toISOString();
-  await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
-  await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
+  try {
+    await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
+    await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
+  } catch (error) {
+    // If write fails, save to memory instead
+    console.warn('⚠️ Cannot write to filesystem, saving to memory:', error);
+    memoryDatabase = db;
+    throw error; // Re-throw to trigger in-memory fallback in initDatabase
+  }
 }
 
 // User operations
