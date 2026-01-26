@@ -174,8 +174,8 @@ export async function POST(
           price_data: {
             currency: stripeCurrency,
             product_data: {
-              name: packageName,
-              description: `eSim Plan: ${packageName}`,
+              name: actualPackage.name,
+              description: `eSim Plan: ${actualPackage.name}`,
             },
             unit_amount: Math.round(finalPrice * 100), // Convert to cents (or smallest unit for other currencies)
           },
