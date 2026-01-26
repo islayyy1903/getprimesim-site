@@ -40,11 +40,18 @@ export default function RegisterPage() {
     
     // Save user to database
     try {
-      await fetch('/api/users/register', {
+      const response = await fetch('/api/users/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, name }),
       });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Failed to save user to database:', response.status, errorText);
+      } else {
+        console.log('✅ User saved to database successfully');
+      }
     } catch (error) {
       console.error('Failed to save user to database:', error);
       // Continue anyway - user is saved in localStorage

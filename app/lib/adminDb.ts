@@ -167,21 +167,27 @@ async function saveDatabase(db: AdminDatabase): Promise<void> {
   // Try Redis first (preferred for Vercel)
   if (redis) {
     try {
+      console.log('💾 Saving to Redis...');
       await redis.set(REDIS_KEY, db);
+      console.log('✅ Successfully saved to Redis');
       return; // Successfully saved to Redis
     } catch (error) {
       console.warn('⚠️ Redis write error, falling back to file:', error);
     }
+  } else {
+    console.warn('⚠️ Redis not available, using fallback');
   }
   
   // Fallback to file system
   try {
     await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
     await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
+    console.log('✅ Saved to file system');
   } catch (error) {
     // If write fails, save to memory instead (Vercel read-only filesystem)
     console.warn('⚠️ Cannot write to filesystem, saving to memory:', error);
     globalThis.__adminDbMemory = db;
+    console.log('💾 Saved to memory (will be lost on restart)');
     // Don't throw - just use memory database
   }
 }
@@ -189,15 +195,19 @@ async function saveDatabase(db: AdminDatabase): Promise<void> {
 // User operations
 export async function saveUser(email: string, name: string): Promise<void> {
   try {
+    console.log('📦 Initializing database for user save...');
     const db = await initDatabase();
+    console.log('📦 Database initialized, current users:', db.users.length);
     
     const existingUser = db.users.find(u => u.email === email);
     if (existingUser) {
       // Update existing user
+      console.log('🔄 Updating existing user:', email);
       existingUser.name = name;
       existingUser.lastLoginAt = new Date().toISOString();
     } else {
       // Create new user
+      console.log('➕ Creating new user:', email, name);
       db.users.push({
         email,
         name,
@@ -208,9 +218,11 @@ export async function saveUser(email: string, name: string): Promise<void> {
       });
     }
     
+    console.log('💾 Saving database, total users:', db.users.length);
     await saveDatabase(db);
+    console.log('✅ Database saved successfully');
   } catch (error) {
-    console.error('Error saving user:', error);
+    console.error('❌ Error saving user:', error);
     // Continue anyway - data is saved to memory
   }
 }

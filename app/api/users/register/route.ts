@@ -13,7 +13,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log('📝 Saving user to database:', { email, name });
     await saveUser(email, name);
+    console.log('✅ User saved successfully');
     
     return NextResponse.json({ success: true });
   } catch (error) {
