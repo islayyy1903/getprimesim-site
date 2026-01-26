@@ -1,13 +1,12 @@
 /**
- * Admin Database - Uses Upstash Redis for persistence
- * Falls back to in-memory if Redis is not configured
- * 
+ * Admin Database - In-memory database
  * Stores users, orders, and payment logs
+ * 
+ * Note: Data will be lost on server restart (serverless functions)
  */
 
 import { promises as fs } from 'fs';
 import path from 'path';
-import { Redis } from '@upstash/redis';
 
 export interface AdminUser {
   email: string;
@@ -56,41 +55,8 @@ interface AdminDatabase {
 }
 
 const DB_PATH = path.join(process.cwd(), 'data', 'admin.json');
-const REDIS_KEY = 'admin_database';
 
-// Initialize Upstash Redis client
-let redisClient: Redis | null = null;
-
-function getRedisClient(): Redis | null {
-  if (redisClient) {
-    return redisClient;
-  }
-
-  // Vercel Redis Integration kullanıyoruz
-  // Vercel dashboard'dan Redis eklediğinizde bu variable'lar otomatik eklenir
-  const redisUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-  const redisToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-
-  if (!redisUrl || !redisToken) {
-    console.warn('⚠️ Redis not configured. Using in-memory database (data will be lost on restart).');
-    console.warn('💡 To fix: Add Redis integration from Vercel dashboard > Integrations > Redis');
-    return null;
-  }
-
-  try {
-    redisClient = new Redis({
-      url: redisUrl,
-      token: redisToken,
-    });
-    console.log('✅ Redis initialized for admin database');
-    return redisClient;
-  } catch (error) {
-    console.error('❌ Failed to initialize Redis:', error);
-    return null;
-  }
-}
-
-// In-memory database fallback (only used if Redis is not available)
+// In-memory database
 declare global {
   // eslint-disable-next-line no-var
   var __adminDbMemory: AdminDatabase | undefined;
@@ -102,101 +68,47 @@ if (typeof globalThis.__adminDbMemory === 'undefined') {
 
 // Initialize database if it doesn't exist
 async function initDatabase(): Promise<AdminDatabase> {
-  const redis = getRedisClient();
-  
-  // Try Redis first (preferred for Vercel)
-  if (redis) {
-    try {
-      console.log('📖 Reading from Redis...');
-      const data = await redis.get<AdminDatabase>(REDIS_KEY);
-      if (data) {
-        console.log('✅ Data loaded from Redis, users:', data.users?.length || 0);
-        return data;
-      } else {
-        console.log('ℹ️ No data in Redis, will create new database');
-      }
-    } catch (error) {
-      console.warn('⚠️ Redis read error, falling back:', error);
-    }
-  } else {
-    console.log('ℹ️ Redis not available, using fallback');
-  }
-
-  // Fallback to file system
+  // Try file system first (for local development)
   try {
     const data = await fs.readFile(DB_PATH, 'utf-8');
     const db = JSON.parse(data) as AdminDatabase;
-    // If we have Redis, sync file data to Redis
-    if (redis) {
-      try {
-        await redis.set(REDIS_KEY, db);
-      } catch (error) {
-        console.warn('⚠️ Failed to sync to Redis:', error);
-      }
+    console.log('✅ Data loaded from file system, users:', db.users?.length || 0);
+    // Sync to memory for faster access
+    if (!globalThis.__adminDbMemory) {
+      globalThis.__adminDbMemory = db;
     }
     return db;
   } catch (error) {
-    // If file doesn't exist or can't be read, create initial database
-    const initialDb: AdminDatabase = {
-      users: [],
-      orders: [],
-      paymentLogs: [],
-      lastUpdated: new Date().toISOString(),
-    };
-    
-    // Try to save to Redis first
-    if (redis) {
-      try {
-        await redis.set(REDIS_KEY, initialDb);
-        return initialDb;
-      } catch (error) {
-        console.warn('⚠️ Redis write error:', error);
-      }
+    // If file doesn't exist or can't be read, use in-memory
+    if (!globalThis.__adminDbMemory) {
+      const initialDb: AdminDatabase = {
+        users: [],
+        orders: [],
+        paymentLogs: [],
+        lastUpdated: new Date().toISOString(),
+      };
+      globalThis.__adminDbMemory = initialDb;
+      console.log('✅ Initialized in-memory database');
     }
-    
-    // Fallback to file system
-    try {
-      await saveDatabase(initialDb);
-      return initialDb;
-    } catch (writeError) {
-      // If write fails (e.g., Vercel read-only filesystem), use in-memory
-      console.warn('⚠️ Cannot write to filesystem, using in-memory database:', writeError);
-      if (!globalThis.__adminDbMemory) {
-        globalThis.__adminDbMemory = initialDb;
-      }
-      return globalThis.__adminDbMemory!;
-    }
+    return globalThis.__adminDbMemory!;
   }
 }
 
 async function saveDatabase(db: AdminDatabase): Promise<void> {
   db.lastUpdated = new Date().toISOString();
-  const redis = getRedisClient();
   
-  // Try Redis first (preferred for Vercel)
-  if (redis) {
-    try {
-      console.log('💾 Saving to Redis...');
-      await redis.set(REDIS_KEY, db);
-      console.log('✅ Successfully saved to Redis');
-      return; // Successfully saved to Redis
-    } catch (error) {
-      console.warn('⚠️ Redis write error, falling back to file:', error);
-    }
-  } else {
-    console.warn('⚠️ Redis not available, using fallback');
-  }
+  // Always update memory first
+  globalThis.__adminDbMemory = db;
   
-  // Fallback to file system
+  // Try to save to file system (for local development)
   try {
     await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
     await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
     console.log('✅ Saved to file system');
   } catch (error) {
-    // If write fails, save to memory instead (Vercel read-only filesystem)
-    console.warn('⚠️ Cannot write to filesystem, saving to memory:', error);
-    globalThis.__adminDbMemory = db;
-    console.log('💾 Saved to memory (will be lost on restart)');
+    // If write fails (e.g., Vercel read-only filesystem), only use memory
+    console.warn('⚠️ Cannot write to filesystem, using in-memory only:', error);
+    console.log('💾 Data saved to memory (will be lost on server restart)');
     // Don't throw - just use memory database
   }
 }

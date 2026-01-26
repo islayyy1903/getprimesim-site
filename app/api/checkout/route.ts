@@ -7,7 +7,6 @@ import {
   validatePrice,
   normalizeCurrency,
 } from "@/app/lib/packageValidation";
-import { checkRateLimit, getClientIP } from "@/app/lib/rateLimit";
 
 export async function POST(
   request: NextRequest
@@ -39,38 +38,6 @@ export async function POST(
   }
 
   try {
-    // 🔒 SECURITY: Rate limiting - check before processing request
-    const clientIP = getClientIP(request);
-    const rateLimitResult = await checkRateLimit(clientIP);
-
-    if (!rateLimitResult.success) {
-      console.warn("⚠️ Rate limit exceeded:", {
-        clientIP,
-        limit: rateLimitResult.limit,
-        remaining: rateLimitResult.remaining,
-        reset: new Date(rateLimitResult.reset).toISOString(),
-      });
-      return NextResponse.json(
-        {
-          error: rateLimitResult.message || "Too many requests. Please try again later.",
-        },
-        {
-          status: 429,
-          headers: {
-            "Retry-After": Math.ceil((rateLimitResult.reset - Date.now()) / 1000).toString(),
-            "X-RateLimit-Limit": rateLimitResult.limit.toString(),
-            "X-RateLimit-Remaining": rateLimitResult.remaining.toString(),
-            "X-RateLimit-Reset": rateLimitResult.reset.toString(),
-          },
-        }
-      );
-    }
-
-    console.log("✅ Rate limit check passed:", {
-      clientIP,
-      remaining: rateLimitResult.remaining,
-      limit: rateLimitResult.limit,
-    });
 
     // Use latest API version
     const stripe = new Stripe(secretKey, {
@@ -84,7 +51,7 @@ export async function POST(
 
     // Validate inputs - only packageId is required now
     if (!packageId) {
-      console.error("❌ Missing packageId:", { packageId: !!packageId, clientIP });
+      console.error("❌ Missing packageId:", { packageId: !!packageId });
       return NextResponse.json(
         { error: "Missing packageId. Please select a package." },
         { status: 400 }
@@ -95,7 +62,7 @@ export async function POST(
     // Find the actual package from countries.json
     const actualPackage = findPackageById(packageId);
     if (!actualPackage) {
-      console.error("❌ Invalid package ID:", { packageId, clientIP });
+      console.error("❌ Invalid package ID:", { packageId });
       return NextResponse.json(
         { error: "Invalid package. Please select a valid package." },
         { status: 400 }
@@ -115,7 +82,7 @@ export async function POST(
 
     // Minimum amount check (after validation)
     if (finalPrice < 3) {
-      console.warn("⚠️ Min amount $3 – blocked:", { finalPrice, packageId, clientIP });
+      console.warn("⚠️ Min amount $3 – blocked:", { finalPrice, packageId });
       return NextResponse.json(
         { error: "Minimum order amount is $3. Fraudsters often test with $0.50–$2; we block these." },
         { status: 400 }
@@ -124,7 +91,7 @@ export async function POST(
 
     // Disposable email check
     if (email && isDisposableEmail(email)) {
-      console.warn("⚠️ Disposable email blocked at checkout:", { email, packageId, clientIP });
+      console.warn("⚠️ Disposable email blocked at checkout:", { email, packageId });
       return NextResponse.json(
         { error: "Temporary or disposable email addresses are not allowed. Please use a permanent email." },
         { status: 400 }
