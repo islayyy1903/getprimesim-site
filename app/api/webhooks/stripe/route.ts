@@ -147,7 +147,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const packageName = session.metadata?.packageName;
     const packageId = session.metadata?.packageId; // bundleId from frontend
     const customerEmail = session.customer_email || session.customer_details?.email;
-    const customerName = session.customer_details?.name;
+    const customerName = session.customer_details?.name || undefined;
     const amountCents = session.amount_total ?? 0;
     const currency = session.currency?.toUpperCase() || 'USD';
     const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
