@@ -113,6 +113,7 @@ async function saveDatabase(db: AdminDatabase): Promise<void> {
   } catch (error) {
     // If write fails, save to memory instead (Vercel read-only filesystem)
     console.warn('⚠️ Cannot write to filesystem, saving to memory:', error);
+    globalThis.__adminDbMemory = db;
     memoryDatabase = db;
     // Don't throw - just use memory database
   }
