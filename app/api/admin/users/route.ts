@@ -14,7 +14,8 @@ export async function GET(request: NextRequest) {
     }
 
     const users = await getAllUsers();
-    return NextResponse.json({ users });
+    console.log('Fetched users:', users.length);
+    return NextResponse.json({ users: users || [] });
   } catch (error) {
     console.error('Error fetching users:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';

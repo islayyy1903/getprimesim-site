@@ -160,8 +160,13 @@ export async function getAllUsers(): Promise<AdminUser[]> {
 }
 
 export async function getUserByEmail(email: string): Promise<AdminUser | null> {
-  const db = await initDatabase();
-  return db.users.find(u => u.email === email) || null;
+  try {
+    const db = await initDatabase();
+    return db.users.find(u => u.email === email) || null;
+  } catch (error) {
+    console.error('Error getting user by email:', error);
+    return null;
+  }
 }
 
 // Order operations
@@ -215,17 +220,27 @@ export async function getAllOrders(): Promise<Order[]> {
 }
 
 export async function getOrdersByEmail(email: string): Promise<Order[]> {
-  const db = await initDatabase();
-  return db.orders
-    .filter(o => o.customerEmail === email)
-    .sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+  try {
+    const db = await initDatabase();
+    return (db.orders || [])
+      .filter(o => o.customerEmail === email)
+      .sort((a, b) => 
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+  } catch (error) {
+    console.error('Error getting orders by email:', error);
+    return [];
+  }
 }
 
 export async function getOrderById(id: string): Promise<Order | null> {
-  const db = await initDatabase();
-  return db.orders.find(o => o.id === id) || null;
+  try {
+    const db = await initDatabase();
+    return (db.orders || []).find(o => o.id === id) || null;
+  } catch (error) {
+    console.error('Error getting order by id:', error);
+    return null;
+  }
 }
 
 // Payment log operations
@@ -262,10 +277,15 @@ export async function getAllPaymentLogs(): Promise<PaymentLog[]> {
 }
 
 export async function getPaymentLogsByEmail(email: string): Promise<PaymentLog[]> {
-  const db = await initDatabase();
-  return db.paymentLogs
-    .filter(l => l.customerEmail === email)
-    .sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+  try {
+    const db = await initDatabase();
+    return (db.paymentLogs || [])
+      .filter(l => l.customerEmail === email)
+      .sort((a, b) => 
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+  } catch (error) {
+    console.error('Error getting payment logs by email:', error);
+    return [];
+  }
 }
