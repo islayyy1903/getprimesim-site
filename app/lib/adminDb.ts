@@ -104,13 +104,19 @@ async function initDatabase(): Promise<AdminDatabase> {
   // Try Redis first (preferred for Vercel)
   if (redis) {
     try {
+      console.log('📖 Reading from Redis...');
       const data = await redis.get<AdminDatabase>(REDIS_KEY);
       if (data) {
+        console.log('✅ Data loaded from Redis, users:', data.users?.length || 0);
         return data;
+      } else {
+        console.log('ℹ️ No data in Redis, will create new database');
       }
     } catch (error) {
       console.warn('⚠️ Redis read error, falling back:', error);
     }
+  } else {
+    console.log('ℹ️ Redis not available, using fallback');
   }
 
   // Fallback to file system
@@ -229,10 +235,14 @@ export async function saveUser(email: string, name: string): Promise<void> {
 
 export async function getAllUsers(): Promise<AdminUser[]> {
   try {
+    console.log('📖 Getting all users from database...');
     const db = await initDatabase();
-    return db.users || [];
+    console.log('📖 Database loaded, users count:', db.users?.length || 0);
+    const users = db.users || [];
+    console.log('📖 Returning users:', users.length);
+    return users;
   } catch (error) {
-    console.error('Error getting all users:', error);
+    console.error('❌ Error getting all users:', error);
     return [];
   }
 }
