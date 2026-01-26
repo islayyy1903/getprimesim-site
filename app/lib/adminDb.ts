@@ -1,11 +1,13 @@
 /**
- * Admin Database - Simple JSON-based storage
+ * Admin Database - Uses Upstash Redis for persistence
+ * Falls back to in-memory if Redis is not configured
  * 
- * Stores users, orders, and payment logs in a JSON file
+ * Stores users, orders, and payment logs
  */
 
 import { promises as fs } from 'fs';
 import path from 'path';
+import { Redis } from '@upstash/redis';
 
 export interface AdminUser {
   email: string;
@@ -54,52 +56,104 @@ interface AdminDatabase {
 }
 
 const DB_PATH = path.join(process.cwd(), 'data', 'admin.json');
+const REDIS_KEY = 'admin_database';
 
-// In-memory database fallback for Vercel (read-only filesystem)
-// Note: In Vercel serverless, this is reset on each cold start
-// For production, use Vercel KV, Postgres, or external database
-let memoryDatabase: AdminDatabase | null = null;
+// Initialize Upstash Redis client
+let redisClient: Redis | null = null;
 
-// Global object to persist across function calls in same instance
+function getRedisClient(): Redis | null {
+  if (redisClient) {
+    return redisClient;
+  }
+
+  const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!redisUrl || !redisToken) {
+    console.warn('⚠️ Upstash Redis not configured. Using in-memory database (data will be lost on restart).');
+    return null;
+  }
+
+  try {
+    redisClient = new Redis({
+      url: redisUrl,
+      token: redisToken,
+    });
+    console.log('✅ Upstash Redis initialized for admin database');
+    return redisClient;
+  } catch (error) {
+    console.error('❌ Failed to initialize Redis:', error);
+    return null;
+  }
+}
+
+// In-memory database fallback (only used if Redis is not available)
 declare global {
   // eslint-disable-next-line no-var
   var __adminDbMemory: AdminDatabase | undefined;
 }
 
-// Use globalThis to persist across hot reloads in development
-// In production, this will reset on each cold start
-// Initialize as undefined if not already set
 if (typeof globalThis.__adminDbMemory === 'undefined') {
   globalThis.__adminDbMemory = undefined;
 }
 
 // Initialize database if it doesn't exist
 async function initDatabase(): Promise<AdminDatabase> {
-  // Try to use file system first
+  const redis = getRedisClient();
+  
+  // Try Redis first (preferred for Vercel)
+  if (redis) {
+    try {
+      const data = await redis.get<AdminDatabase>(REDIS_KEY);
+      if (data) {
+        return data;
+      }
+    } catch (error) {
+      console.warn('⚠️ Redis read error, falling back:', error);
+    }
+  }
+
+  // Fallback to file system
   try {
     const data = await fs.readFile(DB_PATH, 'utf-8');
-    return JSON.parse(data) as AdminDatabase;
+    const db = JSON.parse(data) as AdminDatabase;
+    // If we have Redis, sync file data to Redis
+    if (redis) {
+      try {
+        await redis.set(REDIS_KEY, db);
+      } catch (error) {
+        console.warn('⚠️ Failed to sync to Redis:', error);
+      }
+    }
+    return db;
   } catch (error) {
-    // If file doesn't exist or can't be read, try to create it
+    // If file doesn't exist or can't be read, create initial database
+    const initialDb: AdminDatabase = {
+      users: [],
+      orders: [],
+      paymentLogs: [],
+      lastUpdated: new Date().toISOString(),
+    };
+    
+    // Try to save to Redis first
+    if (redis) {
+      try {
+        await redis.set(REDIS_KEY, initialDb);
+        return initialDb;
+      } catch (error) {
+        console.warn('⚠️ Redis write error:', error);
+      }
+    }
+    
+    // Fallback to file system
     try {
-      const initialDb: AdminDatabase = {
-        users: [],
-        orders: [],
-        paymentLogs: [],
-        lastUpdated: new Date().toISOString(),
-      };
       await saveDatabase(initialDb);
       return initialDb;
     } catch (writeError) {
       // If write fails (e.g., Vercel read-only filesystem), use in-memory
       console.warn('⚠️ Cannot write to filesystem, using in-memory database:', writeError);
       if (!globalThis.__adminDbMemory) {
-        globalThis.__adminDbMemory = {
-          users: [],
-          orders: [],
-          paymentLogs: [],
-          lastUpdated: new Date().toISOString(),
-        };
+        globalThis.__adminDbMemory = initialDb;
       }
       return globalThis.__adminDbMemory!;
     }
@@ -108,6 +162,19 @@ async function initDatabase(): Promise<AdminDatabase> {
 
 async function saveDatabase(db: AdminDatabase): Promise<void> {
   db.lastUpdated = new Date().toISOString();
+  const redis = getRedisClient();
+  
+  // Try Redis first (preferred for Vercel)
+  if (redis) {
+    try {
+      await redis.set(REDIS_KEY, db);
+      return; // Successfully saved to Redis
+    } catch (error) {
+      console.warn('⚠️ Redis write error, falling back to file:', error);
+    }
+  }
+  
+  // Fallback to file system
   try {
     await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
     await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
@@ -115,7 +182,6 @@ async function saveDatabase(db: AdminDatabase): Promise<void> {
     // If write fails, save to memory instead (Vercel read-only filesystem)
     console.warn('⚠️ Cannot write to filesystem, saving to memory:', error);
     globalThis.__adminDbMemory = db;
-    memoryDatabase = db;
     // Don't throw - just use memory database
   }
 }
