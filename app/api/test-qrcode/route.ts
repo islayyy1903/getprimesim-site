@@ -191,8 +191,17 @@ export async function GET(request: NextRequest) {
 
 /**
  * POST - Test siparişi oluştur ve QR code'u al
+ * Disabled in production to avoid eSimGo spend without Stripe revenue.
  */
 export async function POST(request: NextRequest) {
+  const isProd = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+  if (isProd) {
+    return NextResponse.json(
+      { error: "POST /api/test-qrcode is disabled in production. Use local or preview for testing." },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await request.json();
     const { packageId, email } = body;

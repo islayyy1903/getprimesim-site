@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { purchaseEsim, mapPackageToEsimGo } from "@/app/lib/esimgo";
+import { isDisposableEmail } from "@/app/lib/disposableEmail";
+
+const AUDIT_PREFIX = "AUDIT_PROVISION";
 
 // Stripe webhook secret key
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -129,8 +132,33 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     
-    console.log("✅ Payment successful:", session.id);
+    console.log("✅ Checkout session completed:", session.id);
+    console.log("  - payment_status:", session.payment_status);
     console.log("Session metadata:", session.metadata);
+
+    // Only provision eSimGo when payment is actually paid (avoid provisioning on blocked/unpaid/incomplete)
+    if (session.payment_status !== "paid") {
+      console.warn("⚠️ Skipping eSimGo provision: payment_status is not 'paid'", session.payment_status);
+      return NextResponse.json({ received: true, skipped: "payment_not_paid" });
+    }
+
+    const amountCents = session.amount_total ?? 0;
+    if (amountCents < 300) {
+      console.warn("⚠️ Min amount $3 – blocked (low-amount fraud):", amountCents, "cents");
+      const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
+      if (piId) {
+        try {
+          await stripe.refunds.create({
+            payment_intent: piId,
+            reason: "fraudulent",
+            metadata: { reason: "min_amount", session_id: session.id },
+          });
+        } catch (e) {
+          console.error("❌ Refund failed for min amount:", e);
+        }
+      }
+      return NextResponse.json({ received: true, skipped: "min_amount" });
+    }
 
     // Get package information from metadata
     const packageName = session.metadata?.packageName;
@@ -143,6 +171,39 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         { error: "Missing email" },
         { status: 400 }
       );
+    }
+
+    if (isDisposableEmail(customerEmail)) {
+      console.warn("⚠️ Disposable email blocked:", customerEmail);
+      const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
+      if (piId) {
+        try {
+          await stripe.refunds.create({
+            payment_intent: piId,
+            reason: "fraudulent",
+            metadata: { reason: "disposable_email", session_id: session.id },
+          });
+        } catch (e) {
+          console.error("❌ Refund failed for disposable email:", e);
+        }
+      }
+      return NextResponse.json({ received: true, skipped: "disposable_email" });
+    }
+
+    // Idempotency: avoid double provision on webhook retries
+    const piId = typeof session.payment_intent === "string" ? session.payment_intent : null;
+    if (piId) {
+      try {
+        const pi = await stripe.paymentIntents.retrieve(piId);
+        const existing = (pi.metadata?.primesim_esimgo_order as string) || "";
+        if (existing) {
+          console.warn("⚠️ Idempotent skip – already processed:", existing);
+          console.log(`${AUDIT_PREFIX} skip=idempotent session_id=${session.id} payment_intent=${piId} esimgo_order=${existing}`);
+          return NextResponse.json({ received: true, skipped: "idempotent" });
+        }
+      } catch (e) {
+        console.warn("⚠️ Could not check PI metadata (idempotency):", e);
+      }
     }
 
     // packageId (bundleId) varsa direkt kullan, yoksa packageName'den map et
@@ -186,6 +247,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       
       // Purchase eSim from eSimGo
       const purchaseResult = await purchaseEsim(esimGoPackageId, customerEmail);
+
+      const orderRef = purchaseResult.orderId || `failed_${session.id}`;
+      if (piId) {
+        try {
+          await stripe.paymentIntents.update(piId, {
+            metadata: { ...(await stripe.paymentIntents.retrieve(piId).then((p) => p.metadata || {})), primesim_esimgo_order: orderRef },
+          });
+        } catch (e) {
+          console.warn("⚠️ Could not update PI metadata (idempotency):", e);
+        }
+      }
 
       if (!purchaseResult.success) {
         console.error("❌ eSimGo purchase failed:");
@@ -259,6 +331,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       console.log("  - QR Code URL:", purchaseResult.qrCodeUrl || "Not provided");
       console.log("  - Package:", packageName);
       console.log("  - Email:", customerEmail);
+      const amount = session.amount_total ?? 0;
+      console.log(
+        `${AUDIT_PREFIX} session_id=${session.id} payment_intent=${piId || ""} amount=${amount} email=${customerEmail} esimgo_order=${orderRef} ts=${new Date().toISOString()}`
+      );
 
       // Dokümantasyona göre: QR codes are NOT returned from /orders
       // They are retrieved using: GET /v2.5/esims/assignments?reference=ORDER_REFERENCE

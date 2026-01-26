@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { isDisposableEmail } from "@/app/lib/disposableEmail";
 
 export async function POST(
   request: NextRequest
@@ -49,13 +50,29 @@ export async function POST(
       );
     }
 
+    if (email && isDisposableEmail(email)) {
+      console.warn("⚠️ Disposable email blocked at checkout:", email);
+      return NextResponse.json(
+        { error: "Temporary or disposable email addresses are not allowed. Please use a permanent email." },
+        { status: 400 }
+      );
+    }
+
+    const finalPrice = price;
+    if (finalPrice < 3) {
+      console.warn("⚠️ Min amount $3 – blocked:", finalPrice);
+      return NextResponse.json(
+        { error: "Minimum order amount is $3. Fraudsters often test with $0.50–$2; we block these." },
+        { status: 400 }
+      );
+    }
+
     // Stok kontrolü yapmıyoruz - eSimGo her sipariş için otomatik yeni eSIM üretecek
     // Inventory'den satış yapmıyoruz, direkt üretim yapılıyor
     console.log("📦 Proceeding with payment - eSimGo will generate new eSIM on order");
 
     // Price is already calculated with %20 discount + sign-up bonus (if applicable) from frontend
-    // Use the price directly
-    const finalPrice = price;
+    // Use the price directly (finalPrice set above after min-amount check)
 
     // Map currency symbol to Stripe currency code
     // € → eur, £ → gbp, $ → usd
@@ -74,9 +91,12 @@ export async function POST(
     const stripeCurrency = currencyMap[currency || "$"] || "usd";
     console.log("Currency mapping:", { input: currency, output: stripeCurrency });
 
-    // Create Stripe Checkout Session
+    // Create Stripe Checkout Session (3DS requested for fraud prevention)
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ["card"],
+      payment_method_options: {
+        card: { request_three_d_secure: "automatic" },
+      },
       line_items: [
         {
           price_data: {
